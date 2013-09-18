@@ -12,11 +12,11 @@ Goals
 ANY Item, Mob, NPC (even ones created with Citizens) can be a store. There will be no limits.
 I am even looking into creating PORTALABLE stores (as in, stores attached to items in hand, right click to access)
 
-1 Stores will be accessable by voice (chat) by name.
-2 Stores will be clickable.
-3 Stores will be configuable to cascade (Catagories -> Catagories -> Items)
-4 ADMIN, USER, SERVER shops will be possible.
-5 Items will have custom ToolTips to represent cost
+* Stores will be accessable by voice (chat) by name.
+* Stores will be clickable.
+* Stores will be configuable to cascade (Catagories -> Catagories -> Items)
+* ADMIN, USER, SERVER shops will be possible.
+* Items will have custom ToolTips to represent cost
 
 Welcome to CITITRADERS Revisited, this will be the best most flexable store plugin ever created ;) Welcome home.
 
