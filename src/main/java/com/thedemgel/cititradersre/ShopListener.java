@@ -1,0 +1,65 @@
+package com.thedemgel.cititradersre;
+
+import com.thedemgel.cititradersre.util.Permissions;
+import java.util.List;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+public class ShopListener implements Listener {
+
+	/**
+	 * Checks when a player interacts with a block or item (in hand) to see
+	 * if it is a store.
+	 *
+	 * @param event
+	 */
+	@EventHandler
+	public void onPlayerInteractEvent(PlayerInteractEvent event) {
+		Player player = event.getPlayer();
+
+		// Check if player can even access stores
+		if (!player.hasPermission(Permissions.USE_STORES)) {
+			return;
+		}
+		Block block = event.getClickedBlock();
+
+		if (block.hasMetadata("shop")) {
+			return;
+		}
+
+		ItemStack item = event.getItem();
+
+		if (!item.hasItemMeta()) {
+			return;
+		}
+
+		switch (item.getItemMeta().getDisplayName()) {
+			case "Shop":
+				// Open Store
+				break;
+			case "Create Shop":
+				createShop(player, item, block);
+				break;
+		}
+	}
+
+	public void createShop(Player player, ItemStack item, Block block) {
+		if (!player.hasPermission(Permissions.CREATE_STORES)) {
+			player.sendMessage("You do not have permission to open a shop.");
+			return;
+		}
+		if (item.getItemMeta().hasLore()) {
+			ItemMeta meta = item.getItemMeta();
+			Integer uses = Integer.valueOf(meta.getLore().get(2).split(" ")[0]) - 1;
+			List<String> metas = meta.getLore();
+			metas.set(2, String.valueOf(uses) + " uses left.");
+			meta.setLore(metas);
+			item.setItemMeta(meta);
+		}
+	}
+}
