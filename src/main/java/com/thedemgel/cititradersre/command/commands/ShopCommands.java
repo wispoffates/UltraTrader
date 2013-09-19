@@ -2,8 +2,10 @@
 package com.thedemgel.cititradersre.command.commands;
 
 import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.InventoryHandler;
 import com.thedemgel.cititradersre.command.BukkitCommand;
 import com.thedemgel.cititradersre.command.Commands;
+import com.thedemgel.cititradersre.shop.Shop;
 import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.Material;
@@ -11,6 +13,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -22,6 +25,16 @@ public class ShopCommands extends Commands implements CommandExecutor {
 		plugin = instance;
 	}
 	
+	@BukkitCommand(name = "test")
+	public boolean test(CommandSender sender, Command cmd, String label, String[] args) {
+		Player player = (Player) sender;
+		InventoryHandler handler = new InventoryHandler(plugin);
+		handler.createBuyInventoryView(player, new Shop());
+		InventoryView view = handler.getInventoryView(player);
+		handler.openInventory(player);
+		return true;
+		
+	}
 	@BukkitCommand(name = "shopitem")
 	public boolean something(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player = (Player) sender;
@@ -37,6 +50,11 @@ public class ShopCommands extends Commands implements CommandExecutor {
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		player.getInventory().addItem(item);
+		
+		List<ItemStack> items = plugin.test();
+		for (ItemStack iteme : items) {
+			player.getInventory().addItem(iteme);
+		}
 		return true;
 	}
 

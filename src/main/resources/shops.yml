@@ -1,2 +1,37 @@
-## YAML Template.
----
+shops:
+  1:
+    buywindow: Buy
+    sellwindow: Sell
+    type: entity/block
+    location: if block type/entity null
+    owner: server/player
+    wallet: admin/server/player/self
+    shop: admin/server/player
+    link: shop linked to set prices - this will override prices
+    linkchest:
+      - locations
+      - locations
+    pricelist: yaml file name
+    prices:
+      buy:
+        1:
+          id: 1111
+          data: 111
+          price: 3
+      sell:
+        1:
+          id: 1111
+          data: 111
+          price: 3
+      description:
+        1:
+          id: 1111
+          data: 111
+          description: This is an optional item description.
+          catagory: itemstack of catagory icon
+    inventory:
+      1:
+        id: 1111
+        data: 111
+        amount: 30
+      

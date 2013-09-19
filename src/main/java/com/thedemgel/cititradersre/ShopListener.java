@@ -1,17 +1,37 @@
 package com.thedemgel.cititradersre;
 
 import com.thedemgel.cititradersre.util.Permissions;
+import com.thedemgel.cititradersre.util.ShopInventoryView;
 import java.util.List;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class ShopListener implements Listener {
 
+	@EventHandler
+	public void onInventoryClickEvent(InventoryClickEvent event) {
+		
+		if (event.getView() instanceof ShopInventoryView) {
+			ShopInventoryView view = (ShopInventoryView) event.getView();
+			System.out.println(event.getRawSlot());
+			if (view.getReservedSlots().contains(event.getRawSlot())) {
+				event.setCancelled(true);
+			}
+		}
+	}
+	
+	@EventHandler
+	public void onInventoryCloseEvent(InventoryCloseEvent event) {
+	}
 	/**
 	 * Checks when a player interacts with a block or item (in hand) to see
 	 * if it is a store.
