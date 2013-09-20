@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<rss version="0.91">
+  <channel>
+    <title>CitiTradersRE - Checkstyle report</title>
+    <link>http://demgelopensource.github.io/CitiTraderRE</link>
+    <description>CitiTradersRE - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2013 Demgel OpenSource Coding</copyright>
+    <item>
+      <title>File: 16,
+             Errors: 168,
+             Warnings: 91,
+             Infos: 0
+      </title>
+            <link>http://demgelopensource.github.io/CitiTraderRE/checkstyle.html</link>
+      <description>
+        <p>Click <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.ServerListener.java">com/thedemgel/cititradersre/ServerListener.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.ShopListener.java">com/thedemgel/cititradersre/ShopListener.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.util.Permissions.java">com/thedemgel/cititradersre/util/Permissions.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.PurchaseHandler.java">com/thedemgel/cititradersre/PurchaseHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.StoreConfig.java">com/thedemgel/cititradersre/StoreConfig.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  10
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.CitiTrader.java">com/thedemgel/cititradersre/CitiTrader.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  23
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.command.Commands.java">com/thedemgel/cititradersre/command/Commands.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.InventoryHandler.java">com/thedemgel/cititradersre/InventoryHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  9
+                </td>
+                <td>
+                  20
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.shop.Shop.java">com/thedemgel/cititradersre/shop/Shop.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  30
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.util.Status.java">com/thedemgel/cititradersre/util/Status.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.shop.ShopHandler.java">com/thedemgel/cititradersre/shop/ShopHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.command.commands.ShopCommands.java">com/thedemgel/cititradersre/command/commands/ShopCommands.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.shop.InventoryItem.java">com/thedemgel/cititradersre/shop/InventoryItem.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  19
+                </td>
+                <td>
+                  27
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.WorldListener.java">com/thedemgel/cititradersre/WorldListener.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.command.BukkitCommand.java">com/thedemgel/cititradersre/command/BukkitCommand.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.util.ShopInventoryView.java">com/thedemgel/cititradersre/util/ShopInventoryView.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  15
+                </td>
+                <td>
+                  28
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+
