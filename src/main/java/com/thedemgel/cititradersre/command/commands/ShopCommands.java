@@ -6,6 +6,7 @@ import com.thedemgel.cititradersre.InventoryHandler;
 import com.thedemgel.cititradersre.command.BukkitCommand;
 import com.thedemgel.cititradersre.command.Commands;
 import com.thedemgel.cititradersre.shop.Shop;
+import com.thedemgel.cititradersre.shop.StoreItem;
 import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.Material;
@@ -29,8 +30,7 @@ public class ShopCommands extends Commands implements CommandExecutor {
 	public boolean test(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player = (Player) sender;
 		InventoryHandler handler = new InventoryHandler(plugin);
-		handler.createBuyInventoryView(player, new Shop());
-		InventoryView view = handler.getInventoryView(player);
+		handler.createBuyInventoryView(player, plugin.getStoreHandler().getShop(1));
 		handler.openInventory(player);
 		return true;
 		
@@ -39,22 +39,24 @@ public class ShopCommands extends Commands implements CommandExecutor {
 	public boolean something(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player = (Player) sender;
 
-		List<String> lore = new ArrayList<>();
+		/*List<String> lore = new ArrayList<>();
 		lore.add("Use to create a store,");
 		lore.add("click on any Block or Entity");
-		lore.add("100 uses left.");
+		lore.add("100 uses left.");*/
 
 		ItemStack item = new ItemStack(Material.WOOD_AXE, 1);
-		ItemMeta meta = item.getItemMeta();
+		StoreItem storeItem = new StoreItem();
+		storeItem.createLinkedToShop(plugin.getStoreHandler().getShop(1), item);
+		/* ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName("Store Item");
 		meta.setLore(lore);
-		item.setItemMeta(meta);
+		item.setItemMeta(meta); */
 		player.getInventory().addItem(item);
 		
-		List<ItemStack> items = plugin.test();
+		/*List<ItemStack> items = plugin.test();
 		for (ItemStack iteme : items) {
 			player.getInventory().addItem(iteme);
-		}
+		}*/
 		return true;
 	}
 

@@ -18,9 +18,15 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class ShopListener implements Listener {
 
+	private final CitiTrader plugin;
+
+	public ShopListener(CitiTrader instance) {
+		plugin = instance;
+	}
+
 	@EventHandler
 	public void onInventoryClickEvent(InventoryClickEvent event) {
-		
+
 		if (event.getView() instanceof ShopInventoryView) {
 			ShopInventoryView view = (ShopInventoryView) event.getView();
 			System.out.println(event.getRawSlot());
@@ -35,10 +41,11 @@ public class ShopListener implements Listener {
 			}
 		}
 	}
-	
+
 	@EventHandler
 	public void onInventoryCloseEvent(InventoryCloseEvent event) {
 	}
+
 	/**
 	 * Checks when a player interacts with a block or item (in hand) to see
 	 * if it is a store.
@@ -55,19 +62,29 @@ public class ShopListener implements Listener {
 		}
 		Block block = event.getClickedBlock();
 
-		if (block.hasMetadata("shop")) {
-			return;
+		if (event.hasBlock()) {
+			if (block.hasMetadata("shop")) {
+				return;
+			}
 		}
 
 		ItemStack item = event.getItem();
+
+		// after here is all itemsinhand -- if no item in hand. return.
+		if (item == null) {
+			return;
+		}
 
 		if (!item.hasItemMeta()) {
 			return;
 		}
 
 		switch (item.getItemMeta().getDisplayName()) {
-			case "Shop":
+			case "Store":
 				// Open Store
+				InventoryHandler handler = new InventoryHandler(plugin);
+				handler.createBuyInventoryView(player, plugin.getStoreHandler().getShop(1));
+				handler.openInventory(player);
 				break;
 			case "Create Shop":
 				createShop(player, item, block);

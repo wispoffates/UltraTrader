@@ -1,9 +1,10 @@
 shops:
   1:
+    name: Some Test shop
     buywindow: Buy
     sellwindow: Sell
     type: entity/block
-    location: if block type/entity null
+    location: if block type/entity entity id
     owner: server/player
     wallet: admin/server/player/self
     shop: admin/server/player

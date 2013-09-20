@@ -2,6 +2,7 @@
 package com.thedemgel.cititradersre;
 
 import com.thedemgel.cititradersre.command.commands.ShopCommands;
+import com.thedemgel.cititradersre.shop.ShopHandler;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -11,15 +12,18 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class CitiTrader extends JavaPlugin {
 	private StoreConfig shopsConfig;
+	private ShopHandler shopHandler;
 
 	@Override
 	public void onEnable() {
 		shopsConfig = new StoreConfig(this, "shops.yml");
-		getCommand("trader").setExecutor(new ShopCommands(this));
-		getServer().getPluginManager().registerEvents(new ShopListener(), this);
-		this.getLogger().log(Level.INFO, "CitiTraders Enabled...");
+		shopHandler = new ShopHandler(this);
 		
-		test();
+		shopHandler.initShops();
+		
+		getCommand("trader").setExecutor(new ShopCommands(this));
+		getServer().getPluginManager().registerEvents(new ShopListener(this), this);
+		this.getLogger().log(Level.INFO, "CitiTraders Enabled...");
 	}
 	
 	@Override
@@ -28,6 +32,13 @@ public class CitiTrader extends JavaPlugin {
 		this.getLogger().log(Level.INFO, "CitiTraders Disabled...");
 	}
 	
+	public StoreConfig getStoreConfig() {
+		return shopsConfig;
+	}
+	
+	public ShopHandler getStoreHandler() {
+		return shopHandler;
+	}
 	
 	/// TESTING
 	private List<ItemStack> items = new ArrayList<>();
