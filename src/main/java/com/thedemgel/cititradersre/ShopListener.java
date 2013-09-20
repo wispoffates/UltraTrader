@@ -2,6 +2,7 @@ package com.thedemgel.cititradersre;
 
 import com.thedemgel.cititradersre.util.Permissions;
 import com.thedemgel.cititradersre.util.ShopInventoryView;
+import com.thedemgel.cititradersre.util.Status;
 import java.util.List;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -23,8 +24,14 @@ public class ShopListener implements Listener {
 		if (event.getView() instanceof ShopInventoryView) {
 			ShopInventoryView view = (ShopInventoryView) event.getView();
 			System.out.println(event.getRawSlot());
-			if (view.getReservedSlots().contains(event.getRawSlot())) {
-				event.setCancelled(true);
+			// Nothing needs to be dragged anymore...
+			event.setCancelled(true);
+			if (view.getStatus().equals(Status.MAIN_SCREEN)) {
+				view.buildItemView(event.getCurrentItem());
+			} else if (view.getStatus().equals(Status.SELL_SCREEN)) {
+				if (event.getRawSlot() == 45) {
+					view.buildView();
+				}
 			}
 		}
 	}

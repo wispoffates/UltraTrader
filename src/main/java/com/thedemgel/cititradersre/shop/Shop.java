@@ -3,27 +3,40 @@ package com.thedemgel.cititradersre.shop;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 
 public class Shop {
-	private List<InventoryItem> inventory = new ArrayList<>();
+	private ConcurrentMap<String, InventoryItem> inventory = new ConcurrentHashMap<>();
 	
 	public Shop() {
-		inventory.add(new InventoryItem(new ItemStack(Material.ANVIL, 1), 3D, 30, "Some Lore Text"));
-		inventory.add(new InventoryItem(new ItemStack(Material.BAKED_POTATO, 1), 3D, 30, "Some Lore Text"));
-		inventory.add(new InventoryItem(new ItemStack(Material.BED, 1), 3D, 30, "Some Lore Text"));
-		inventory.add(new InventoryItem(new ItemStack(Material.BED_BLOCK, 2), 3D, 30, "Some Lore Text"));
-		inventory.add(new InventoryItem(new ItemStack(Material.BLAZE_POWDER, 2), 3D, 30, "Some Lore Text"));
-		inventory.add(new InventoryItem(new ItemStack(Material.BOAT, 2), 3D, 30, "Some Lore Text"));
-		inventory.add(new InventoryItem(new ItemStack(Material.BOOK, 2), 3D, 30, "Some Lore Text"));
-		inventory.add(new InventoryItem(new ItemStack(Material.BOOK_AND_QUILL, 2), 3D, 30, "Some Lore Text"));
-		inventory.add(new InventoryItem(new ItemStack(Material.BURNING_FURNACE, 2), 3D, 30, "Some Lore Text"));
-		inventory.add(new InventoryItem(new ItemStack(Material.CARPET, 2), 3D, 30, "Some Lore Text"));
+		addItem(new ItemStack(Material.ANVIL), 3D, 1, "Some Lore Text");
+		addItem(new ItemStack(Material.BAKED_POTATO), 3D, 2, "Some Lore Text");
+		addItem(new ItemStack(Material.BED), 3D, 3, "");
+		addItem(new ItemStack(Material.BED_BLOCK), 3D, 4, "Some Lore Text");
+		addItem(new ItemStack(Material.BLAZE_POWDER), 3D, 8, "Sizzling Hot");
+		addItem(new ItemStack(Material.BOAT), 3D, 12, "Some Lore Text");
+		addItem(new ItemStack(Material.BOOK), 3D, 16, "");
+		addItem(new ItemStack(Material.BOOK_AND_QUILL), 3D, 30, "Need to remember something?");
+		addItem(new ItemStack(Material.BURNING_FURNACE), 3D, 32, "Some Lore Text");
+		addItem(new ItemStack(Material.CARPET), 3D, 54, "Soft floor covering.");
+		addItem(new ItemStack(Material.BUCKET), 3D, 64, "Soft floor covering.");
+		addItem(new ItemStack(Material.BONE), 3D, 128, "Soft floor covering.");
 	}
 	
-	public List<InventoryItem> getInventory() {
+	public ConcurrentMap<String, InventoryItem> getInventory() {
 		return inventory;
+	}
+	
+	public void addItem(ItemStack item, Double price, Integer quantity, String description) {
+		InventoryItem invItem = new InventoryItem(item, price, quantity, description);
+		String random = invItem.setRandom();
+		while (inventory.containsKey(random)) {
+			random = invItem.setRandom();
+		}
+		inventory.put(random, invItem);
 	}
 }
