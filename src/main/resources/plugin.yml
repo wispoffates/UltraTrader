@@ -1,6 +1,8 @@
 name: CitiTraderRE
 main: com.thedemgel.cititradersre.CitiTrader
 version: 1
+depend: [Vault]
+softdepend: [Citizens]
 
 commands:
    trader:
