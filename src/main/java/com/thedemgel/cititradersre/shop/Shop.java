@@ -1,6 +1,7 @@
 
 package com.thedemgel.cititradersre.shop;
 
+import com.google.common.collect.Iterables;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import org.bukkit.Material;
@@ -47,5 +48,11 @@ public class Shop {
 	
 	private void setMetaData() {
 		// Decide whether to set metadata (not if item store) and then set it.
+	}
+	
+	public String getItemId(ItemStack item) {
+		String id = Iterables.getLast(item.getItemMeta().getLore());
+		id = id.substring(id.length() - 8);
+		return id;
 	}
 }

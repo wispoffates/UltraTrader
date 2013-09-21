@@ -71,26 +71,31 @@ public class ShopInventoryView extends InventoryView {
 	public final void buildView() {
 		current = Status.MAIN_SCREEN;
 		top.clear();		
-		for (InventoryItem item : shop.getInventory().values()) {
-			this.getTopInventory().addItem(item.generateLore());
+		for (InventoryItem item : getShop().getInventory().values()) {
+			if (item.getAmount() > 0) {
+				this.getTopInventory().addItem(item.generateLore());
+			}
 		}
 	}
 	
 	public void buildItemView(ItemStack item) {
 		current = Status.SELL_SCREEN;
 		top.clear();
-		//top.addItem(item);
+
+		String id = getShop().getItemId(item);
 		
-		String id = Iterables.getLast(item.getItemMeta().getLore());
-		id = id.substring(id.length() - 8);
-		System.out.println(id);
-		
-		for (Entry<String, InventoryItem> inv : shop.getInventory().entrySet()) {
-			System.out.println(inv.getKey());
+		InventoryItem invItem;
+		if (getShop().getInventory().containsKey(id)) {
+			invItem = getShop().getInventory().get(id);
+		} else {
+			buildView();
+			return;
 		}
 		
-		InventoryItem invItem = shop.getInventory().get(id);
-		
+		if (invItem.getAmount() < 1) {
+			buildView();
+			return;
+		}
 		
 		Integer max = invItem.getItemStack().getMaxStackSize();
 		Integer count = 1;
@@ -115,5 +120,9 @@ public class ShopInventoryView extends InventoryView {
 		
 		this.setItem(45, arrow);
 		reservedSlot.add(45);
+	}
+
+	public Shop getShop() {
+		return shop;
 	}
 }

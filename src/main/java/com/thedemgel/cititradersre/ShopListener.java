@@ -19,9 +19,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class ShopListener implements Listener {
 
 	private final CitiTrader plugin;
+	private final InventoryHandler inventoryHandler;
 
 	public ShopListener(CitiTrader instance) {
 		plugin = instance;
+		inventoryHandler = new InventoryHandler(plugin);
 	}
 
 	@EventHandler
@@ -31,12 +33,22 @@ public class ShopListener implements Listener {
 			ShopInventoryView view = (ShopInventoryView) event.getView();
 			System.out.println(event.getRawSlot());
 			// Nothing needs to be dragged anymore...
-			event.setCancelled(true);
+			if (event.getRawSlot() < view.getTopInventory().getSize()) {
+				event.setCancelled(true);
+			} else {
+				return;
+			}
+			
 			if (view.getStatus().equals(Status.MAIN_SCREEN)) {
 				view.buildItemView(event.getCurrentItem());
 			} else if (view.getStatus().equals(Status.SELL_SCREEN)) {
 				if (event.getRawSlot() == 45) {
 					view.buildView();
+				}
+				
+				if (event.getCurrentItem() != null) {
+					PurchaseHandler.processPurchase(view.getShop(), (Player) event.getWhoClicked(), event.getCurrentItem());
+					view.buildItemView(event.getCurrentItem());
 				}
 			}
 		}
@@ -44,6 +56,11 @@ public class ShopListener implements Listener {
 
 	@EventHandler
 	public void onInventoryCloseEvent(InventoryCloseEvent event) {
+		if (event.getView() instanceof ShopInventoryView) {
+			ShopInventoryView view = (ShopInventoryView) event.getView();
+			inventoryHandler.removeInventoryView((Player) event.getPlayer());
+			view = null;
+		}
 	}
 
 	/**
@@ -82,9 +99,8 @@ public class ShopListener implements Listener {
 		switch (item.getItemMeta().getDisplayName()) {
 			case "Store":
 				// Open Store
-				InventoryHandler handler = new InventoryHandler(plugin);
-				handler.createBuyInventoryView(player, plugin.getStoreHandler().getShop(1));
-				handler.openInventory(player);
+				inventoryHandler.createBuyInventoryView(player, plugin.getStoreHandler().getShop(1));
+				inventoryHandler.openInventory(player);
 				break;
 			case "Create Shop":
 				createShop(player, item, block);

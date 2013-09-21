@@ -16,12 +16,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class CitiTrader extends JavaPlugin {
 
+	public static Economy getEconomy() {
+		return economy;
+	}
+
 	private StoreConfig shopsConfig;
 	private ShopHandler shopHandler;
 	private boolean citizens;
 	private boolean vault;
 	
-	private Economy economy;
+	private static Economy economy;
 
 	@Override
 	public void onEnable() {
