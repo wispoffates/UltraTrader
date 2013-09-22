@@ -1,6 +1,7 @@
 
 package com.thedemgel.cititradersre.shop;
 
+import com.thedemgel.cititradersre.CitiTrader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -41,7 +42,7 @@ public class InventoryItem {
 		if (description.length() > 0) {
 			genLore.add(description);
 		}
-		genLore.add("Price: " + (sellprice * stackAmount)); // Will need to figure for discounts
+		genLore.add(CitiTrader.getResourceBundle().getString("price") + ": " + (sellprice * stackAmount)); // Will need to figure for discounts
 		// If there is a discount... add a message here
 		// Id will always be LAST in the list
 		genLore.add(ChatColor.DARK_GRAY + random);

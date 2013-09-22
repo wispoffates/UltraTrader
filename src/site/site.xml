@@ -65,10 +65,6 @@
 					<toc>sidebar</toc>
 					<breadcrumbs>true</breadcrumbs>
 				</command>
-				<annotation>
-					<toc>sidebar</toc>
-					<breadcrumbs>true</breadcrumbs>
-				</annotation>
 				<permission>
 					<toc>sidebar</toc>
 					<breadcrumbs>true</breadcrumbs>
@@ -105,7 +101,6 @@
 			<!-- <item name="License" href="license.html" /> -->
 		</menu>
 		<menu name="Documentation" inherit="bottom">
-			<item name="Annotations" href="annotation.html" />
 			<item name="Commands" href="command.html" />
 			<item name="Permissions" href="permission.html" />
 			<item name="Usage" href="usage.html" />
