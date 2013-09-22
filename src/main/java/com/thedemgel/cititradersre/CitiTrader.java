@@ -3,8 +3,11 @@ package com.thedemgel.cititradersre;
 import com.thedemgel.cititradersre.citizens.TraderTrait;
 import com.thedemgel.cititradersre.command.commands.ShopCommands;
 import com.thedemgel.cititradersre.shop.ShopHandler;
+import com.thedemgel.yamlresourcebundle.YamlResourceBundle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.trait.TraitInfo;
@@ -24,11 +27,16 @@ public class CitiTrader extends JavaPlugin {
 	private ShopHandler shopHandler;
 	private boolean citizens;
 	private boolean vault;
+	private static ResourceBundle rb;
 	
 	private static Economy economy;
 
 	@Override
 	public void onEnable() {
+		// Assign ResourceBundle (using YAMLResourceBundle)
+		rb = YamlResourceBundle.getBundle("lang.default", Locale.CANADA_FRENCH, getDataFolder());
+		System.out.println(rb.getString("test.message"));
+		System.out.println(rb.getString("test.drop.another"));
 		// Verify resources (Vault/CitizensAPI)
 		checkCitizens();
 		checkVault();
@@ -49,6 +57,10 @@ public class CitiTrader extends JavaPlugin {
 		this.getLogger().log(Level.INFO, "CitiTraders Disabled...");
 	}
 
+	public static ResourceBundle getResourceBundle() {
+		return rb;
+	}
+	
 	public StoreConfig getStoreConfig() {
 		return shopsConfig;
 	}
@@ -80,6 +92,7 @@ public class CitiTrader extends JavaPlugin {
 
 		if (citizens) {
 			CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(TraderTrait.class).withName("cititrader"));
+			CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(TraderTrait.class).withName("rentalshop"));
 		}
 	}
 
