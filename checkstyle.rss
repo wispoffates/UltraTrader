@@ -8,9 +8,9 @@
     <language>en-us</language>
     <copyright>&#169;2013 Demgel OpenSource Coding</copyright>
     <item>
-      <title>File: 16,
-             Errors: 168,
-             Warnings: 91,
+      <title>File: 19,
+             Errors: 209,
+             Warnings: 132,
              Infos: 0
       </title>
             <link>http://demgelopensource.github.io/CitiTraderRE/checkstyle.html</link>
@@ -49,10 +49,10 @@
                   0
                 </td>
                 <td>
-                  5
+                  9
                 </td>
                 <td>
-                  10
+                  8
                 </td>
               </tr>
                           <tr>
@@ -71,20 +71,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.PurchaseHandler.java">com/thedemgel/cititradersre/PurchaseHandler.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.StoreConfig.java">com/thedemgel/cititradersre/StoreConfig.java</a>
                 </td>
                 <td>
@@ -99,16 +85,30 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.PurchaseHandler.java">com/thedemgel/cititradersre/PurchaseHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  18
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.CitiTrader.java">com/thedemgel/cititradersre/CitiTrader.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  4
+                  17
                 </td>
                 <td>
-                  23
+                  16
                 </td>
               </tr>
                           <tr>
@@ -147,10 +147,10 @@
                   0
                 </td>
                 <td>
-                  5
+                  8
                 </td>
                 <td>
-                  30
+                  35
                 </td>
               </tr>
                           <tr>
@@ -169,16 +169,30 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.citizens.RentalShop.java">com/thedemgel/cititradersre/citizens/RentalShop.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.shop.ShopHandler.java">com/thedemgel/cititradersre/shop/ShopHandler.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  2
+                  7
                 </td>
                 <td>
-                  1
+                  7
                 </td>
               </tr>
                           <tr>
@@ -192,7 +206,21 @@
                   5
                 </td>
                 <td>
-                  7
+                  12
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.citizens.TraderTrait.java">com/thedemgel/cititradersre/citizens/TraderTrait.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  6
                 </td>
               </tr>
                           <tr>
@@ -245,10 +273,24 @@
                   0
                 </td>
                 <td>
-                  15
+                  16
                 </td>
                 <td>
                   28
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.shop.StoreItem.java">com/thedemgel/cititradersre/shop/StoreItem.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  9
                 </td>
               </tr>
                       </tbody>
