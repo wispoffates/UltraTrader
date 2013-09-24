@@ -2,25 +2,28 @@
 package com.thedemgel.cititradersre.shop;
 
 import com.thedemgel.cititradersre.CitiTrader;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import org.apache.commons.lang.RandomStringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 
-public class InventoryItem {
+public class ItemPrice {
 	private ItemStack itemStack;
-	private Double sellprice;
+	private BigDecimal price;
 	private Integer amount;
 	private String random;
 	private String description;
 
-	public InventoryItem(ItemStack item, Double price, Integer amount, String lore) {
+	public ItemPrice() {};
+	
+	public ItemPrice(ItemStack item, BigDecimal price, Integer amount, String lore) {
 		itemStack = item.clone();
-		sellprice = price;
+		itemStack.setAmount(1);
+		this.price = price;
 		this.amount = amount;
 		description = lore;
 	}
@@ -39,13 +42,13 @@ public class InventoryItem {
 	public ItemStack generateLore(Integer stackAmount) {
 		ItemStack genItem = itemStack.clone();
 		List<String> genLore = new ArrayList<>();
-		if (description.length() > 0) {
-			genLore.add(description);
+		if (getDescription().length() > 0) {
+			genLore.add(getDescription());
 		}
-		genLore.add(CitiTrader.getResourceBundle().getString("price") + ": " + (sellprice * stackAmount)); // Will need to figure for discounts
+		genLore.add(CitiTrader.getResourceBundle().getString("price") + ": " + price.multiply(BigDecimal.valueOf(stackAmount))); // Will need to figure for discounts
 		// If there is a discount... add a message here
 		// Id will always be LAST in the list
-		genLore.add(ChatColor.DARK_GRAY + random);
+		genLore.add(ChatColor.DARK_GRAY + getRandom());
 		
 		ItemMeta meta = genItem.getItemMeta();
 		meta.setLore(genLore);
@@ -57,12 +60,12 @@ public class InventoryItem {
 	}
 	
 	public String getRandomId() {
-		return random;
+		return getRandom();
 	}
 	
 	public String setRandom() {
-		random = RandomStringUtils.random(8, true, true);
-		return random;
+		setRandom(RandomStringUtils.random(8, true, true));
+		return getRandom();
 	}
 	
 	public ItemStack getItemStack() {
@@ -73,12 +76,12 @@ public class InventoryItem {
 		this.itemStack = itemStack;
 	}
 
-	public Double getSellprice() {
-		return sellprice;
+	public BigDecimal getPrice() {
+		return price;
 	}
 
-	public void setSellprice(Double sellprice) {
-		this.sellprice = sellprice;
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
 
 	public Integer getAmount() {
@@ -87,6 +90,22 @@ public class InventoryItem {
 
 	public void setAmount(Integer amount) {
 		this.amount = amount;
+	}
+
+	public String getRandom() {
+		return random;
+	}
+
+	public void setRandom(String random) {
+		this.random = random;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	

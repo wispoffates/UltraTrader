@@ -45,7 +45,7 @@
 					<breadcrumbs>false</breadcrumbs>
 					<toc>false</toc>
 					<sections>
-						<carousel />
+						<!--<carousel />-->
 						<body />
 					</sections>
 				</index>

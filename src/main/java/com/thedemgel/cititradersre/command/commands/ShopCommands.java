@@ -8,6 +8,7 @@ import com.thedemgel.cititradersre.command.Commands;
 import com.thedemgel.cititradersre.shop.Shop;
 import com.thedemgel.cititradersre.shop.StoreItem;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -17,6 +18,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.metadata.LazyMetadataValue;
 
 
 public class ShopCommands extends Commands implements CommandExecutor {
@@ -35,29 +38,37 @@ public class ShopCommands extends Commands implements CommandExecutor {
 		return true;
 		
 	}
+	
 	@BukkitCommand(name = "shopitem")
 	public boolean something(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player = (Player) sender;
 
-		/*List<String> lore = new ArrayList<>();
-		lore.add("Use to create a store,");
-		lore.add("click on any Block or Entity");
-		lore.add("100 uses left.");*/
-
 		ItemStack item = new ItemStack(Material.WOOD_AXE, 1);
 		StoreItem storeItem = new StoreItem();
 		storeItem.createLinkedToShop(plugin.getStoreHandler().getShop(1), item);
-		/* ItemMeta meta = item.getItemMeta();
-		meta.setDisplayName("Store Item");
-		meta.setLore(lore);
-		item.setItemMeta(meta); */
+
 		player.getInventory().addItem(item);
-		
-		/*List<ItemStack> items = plugin.test();
-		for (ItemStack iteme : items) {
-			player.getInventory().addItem(iteme);
-		}*/
+
 		return true;
 	}
 
+	@BukkitCommand(name = "manage")
+	public boolean setManage(CommandSender sender, Command cmd, String label, String[] args) {
+		Player player = (Player) sender;
+		
+		player.setMetadata("manage", new FixedMetadataValue(plugin, true));
+		
+		return true;
+	}
+	
+	@BukkitCommand(name = "myshops")
+	public boolean getShops(CommandSender sender, Command cmd, String label, String[] args) {
+		Collection<Shop> shops = CitiTrader.getStoreHandler().getShopsByOwner((Player) sender);
+		
+		for (Shop shop : shops) {
+			sender.sendMessage(shop.getName());
+		}
+		
+		return true;
+	}
 }

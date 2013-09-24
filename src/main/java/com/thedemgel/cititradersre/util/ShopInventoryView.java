@@ -1,11 +1,9 @@
 package com.thedemgel.cititradersre.util;
 
-import com.google.common.collect.Iterables;
-import com.thedemgel.cititradersre.shop.InventoryItem;
+import com.thedemgel.cititradersre.shop.ItemPrice;
 import com.thedemgel.cititradersre.shop.Shop;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
@@ -21,6 +19,7 @@ public class ShopInventoryView extends InventoryView {
 	private Player player;
 	private InventoryType type = InventoryType.CHEST;
 	private boolean open = true;
+	private boolean keepAlive = false;
 	private List<Integer> reservedSlot = new ArrayList<>();
 	private Shop shop;
 	
@@ -71,8 +70,9 @@ public class ShopInventoryView extends InventoryView {
 	public final void buildView() {
 		current = Status.MAIN_SCREEN;
 		top.clear();		
-		for (InventoryItem item : getShop().getInventory().values()) {
-			if (item.getAmount() > 0) {
+		for (ItemPrice item : getShop().getSellprices().values()) {
+			Integer currentInvAmount = getShop().getInventory().get(item.getItemStack());
+			if (currentInvAmount > 0) {
 				this.getTopInventory().addItem(item.generateLore());
 			}
 		}
@@ -84,30 +84,32 @@ public class ShopInventoryView extends InventoryView {
 
 		String id = getShop().getItemId(item);
 		
-		InventoryItem invItem;
-		if (getShop().getInventory().containsKey(id)) {
-			invItem = getShop().getInventory().get(id);
+		ItemPrice invItem;
+		if (getShop().getSellprices().containsKey(id)) {
+			invItem = getShop().getSellprices().get(id);
 		} else {
 			buildView();
 			return;
 		}
 		
-		if (invItem.getAmount() < 1) {
+		Integer invCount = shop.getInventory().get(invItem.getItemStack());
+		
+		if (invCount < 1) {
 			buildView();
 			return;
 		}
 		
 		Integer max = invItem.getItemStack().getMaxStackSize();
 		Integer count = 1;
-		while (count <= max && count <= invItem.getAmount()) {
-			System.out.println("Count: " + count);
+		while (count <= max && count <= invCount) {
+			//System.out.println("Count: " + count);
 			top.addItem(invItem.generateLore(count));
 			count = count * 2;
 		}
 		
-		if ((count / 2) < invItem.getAmount() && (count / 2) < max) {
-			System.out.println("Adding last full stack");
-			top.addItem(invItem.generateLore(invItem.getAmount()));
+		if ((count / 2) < invCount && (count / 2) < max) {
+			//System.out.println("Adding last full stack");
+			top.addItem(invItem.generateLore(invCount));
 		}
 		
 		ItemStack arrow = new ItemStack(Material.ARROW, 1);
@@ -118,11 +120,30 @@ public class ShopInventoryView extends InventoryView {
 		arrowMeta.setDisplayName("Back");
 		arrow.setItemMeta(arrowMeta);
 		
+		ItemStack setPrice = item.clone();
+		setPrice.setAmount(1);
+		ItemMeta setPriceMeta = setPrice.getItemMeta();
+		List<String> setPriceText = new ArrayList<>();
+		setPriceText.add("Click to set price");
+		setPriceText.add(id);
+		setPriceMeta.setLore(setPriceText);
+		setPriceMeta.setDisplayName("Set Price");
+		setPrice.setItemMeta(setPriceMeta);
+		
+		this.setItem(53, setPrice);
 		this.setItem(45, arrow);
 		reservedSlot.add(45);
 	}
 
 	public Shop getShop() {
 		return shop;
+	}
+
+	public boolean isKeepAlive() {
+		return keepAlive;
+	}
+
+	public void setKeepAlive(boolean keepAlive) {
+		this.keepAlive = keepAlive;
 	}
 }

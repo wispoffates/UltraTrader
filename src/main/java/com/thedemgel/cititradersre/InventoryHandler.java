@@ -19,7 +19,7 @@ import org.bukkit.inventory.InventoryView;
  * then all items will attempted to be put into the players inventory.
  */
 public class InventoryHandler {
-	private Map<Player, InventoryView> inventories = new ConcurrentHashMap<>();
+	private Map<Player, ShopInventoryView> inventories = new ConcurrentHashMap<>();
 	
 	private final CitiTrader plugin;
 	
@@ -37,7 +37,7 @@ public class InventoryHandler {
 	public void createBuyInventoryView(Player player, Shop shop) {
 		Inventory inv = plugin.getServer().createInventory(null, 54, "Eventually shop name");
 		Inventory bottom = plugin.getServer().createInventory(null, 36, "test");
-		InventoryView view = new ShopInventoryView(inv, bottom, player, shop);
+		ShopInventoryView view = new ShopInventoryView(inv, bottom, player, shop);
 		if (inventories.containsKey(player)) {
 			closeInventoryView(player);
 			removeInventoryView(player);

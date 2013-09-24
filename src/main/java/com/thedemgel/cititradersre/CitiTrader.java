@@ -2,6 +2,7 @@ package com.thedemgel.cititradersre;
 
 import com.thedemgel.cititradersre.citizens.TraderTrait;
 import com.thedemgel.cititradersre.command.commands.ShopCommands;
+import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.shop.ShopHandler;
 import com.thedemgel.yamlresourcebundle.YamlResourceBundle;
 import java.util.ArrayList;
@@ -23,26 +24,35 @@ public class CitiTrader extends JavaPlugin {
 		return economy;
 	}
 
+	public static ConversationHandler getConversationHandler() {
+		return conversationHandler;
+	}
+
+	public static void setConversationHandler(ConversationHandler aConversationHandler) {
+		conversationHandler = aConversationHandler;
+	}
+
 	private StoreConfig shopsConfig;
-	private ShopHandler shopHandler;
+	private static ShopHandler shopHandler;
 	private boolean citizens;
 	private boolean vault;
 	private static ResourceBundle rb;
+	private static ConversationHandler conversationHandler;
 	
 	private static Economy economy;
 
 	@Override
 	public void onEnable() {
 		// Assign ResourceBundle (using YAMLResourceBundle)
-		rb = YamlResourceBundle.getBundle("lang.default", Locale.CANADA_FRENCH, getDataFolder());
-		System.out.println(rb.getString("test.message"));
-		System.out.println(rb.getString("test.drop.another"));
+		Locale locale = new Locale(getConfig().getString("language", "en"));
+		rb = YamlResourceBundle.getBundle("lang.default", locale, getDataFolder());
 		// Verify resources (Vault/CitizensAPI)
 		checkCitizens();
 		checkVault();
 
 		shopsConfig = new StoreConfig(this, "shops.yml");
 		shopHandler = new ShopHandler(this);
+		conversationHandler = new ConversationHandler(this);
 
 		shopHandler.initShops();
 
@@ -54,6 +64,7 @@ public class CitiTrader extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		shopsConfig.saveConfig();
+		rb = null;
 		this.getLogger().log(Level.INFO, "CitiTraders Disabled...");
 	}
 
@@ -65,7 +76,7 @@ public class CitiTrader extends JavaPlugin {
 		return shopsConfig;
 	}
 
-	public ShopHandler getStoreHandler() {
+	public static ShopHandler getStoreHandler() {
 		return shopHandler;
 	}
 	/// TESTING

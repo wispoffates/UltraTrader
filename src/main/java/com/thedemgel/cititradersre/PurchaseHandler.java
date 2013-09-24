@@ -1,8 +1,9 @@
 
 package com.thedemgel.cititradersre;
 
-import com.thedemgel.cititradersre.shop.InventoryItem;
+import com.thedemgel.cititradersre.shop.ItemPrice;
 import com.thedemgel.cititradersre.shop.Shop;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
@@ -32,14 +33,15 @@ import org.bukkit.inventory.ItemStack;
 public class PurchaseHandler {
 	public static void processPurchase(Shop shop, Player player, ItemStack buyStack) {
 		String buyStackId = shop.getItemId(buyStack);
-		InventoryItem invItem = shop.getInventory().get(buyStackId);
-		Double buyStackPriceEach = invItem.getSellprice();
+		//ItemPrice invItem = shop.getInventory().get(buyStackId);
+		ItemPrice invItem = shop.getSellprices().get(buyStackId);
+		BigDecimal buyStackPriceEach = invItem.getPrice();
 		
-		Double buyStackPrice = buyStackPriceEach * buyStack.getAmount();
+		BigDecimal buyStackPrice = buyStackPriceEach.multiply(BigDecimal.valueOf(buyStack.getAmount()));
 		
 		EconomyResponse heldFunds;
-		if (CitiTrader.getEconomy().has(player.getName(), player.getWorld().getName(), buyStackPrice)) {
-			heldFunds = CitiTrader.getEconomy().withdrawPlayer(player.getName(), player.getWorld().getName(), buyStackPrice);
+		if (CitiTrader.getEconomy().has(player.getName(), player.getWorld().getName(), buyStackPrice.doubleValue())) {
+			heldFunds = CitiTrader.getEconomy().withdrawPlayer(player.getName(), player.getWorld().getName(), buyStackPrice.doubleValue());
 		} else {
 			player.sendMessage("You do not have the funds for this Transaction.");
 			return;
@@ -56,20 +58,23 @@ public class PurchaseHandler {
 		}
 		
 		// Check for availability
-		if (buyStack.getAmount() > invItem.getAmount()) {
+		ItemStack baseItem = invItem.getItemStack();
+		Integer currentInvAmount = shop.getInventory().get(baseItem);
+		if (buyStack.getAmount() > currentInvAmount) {
 			CitiTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), heldFunds.amount);
 			// Some error checks for deposit
 			player.sendMessage("There are not enough items to purchase. (Store is out of stock)");
 			return;
 		} else {
-			invItem.setAmount(invItem.getAmount() - buyStack.getAmount());
+			
+			shop.getInventory().put(baseItem, currentInvAmount - buyStack.getAmount());
 		}
 		
-		ItemStack placedStack = invItem.getItemStack();
+		ItemStack placedStack = invItem.getItemStack().clone();
 		placedStack.setAmount(buyStack.getAmount());
 		HashMap<Integer, ItemStack> returnedItems = player.getInventory().addItem(placedStack);
 		
-		Double refund = 0D;
+		BigDecimal refund = BigDecimal.ZERO;
 		if (!returnedItems.isEmpty()) {
 			// calculate returned funds... readd to merchant
 			Integer returned = 0;
@@ -77,14 +82,15 @@ public class PurchaseHandler {
 				returned = returned + returnedItem.getAmount();
 			}
 			
-			refund = returned * buyStackPriceEach;
+			refund = buyStackPriceEach.multiply(BigDecimal.valueOf(returned));
 			
-			CitiTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), refund);
+			CitiTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), refund.doubleValue());
 			
-			invItem.setAmount(invItem.getAmount() + returned);
+			//invItem.setAmount(invItem.getAmount() + returned);
+			shop.getInventory().put(baseItem, currentInvAmount - returned);
 		}
 		
-		Double traderDeposit = heldFunds.amount - refund;
+		BigDecimal traderDeposit = BigDecimal.valueOf(heldFunds.amount).subtract(refund);
 		
 		// Deposit into trader when interface is ready.
 		player.sendMessage("Purchase Complete...");
