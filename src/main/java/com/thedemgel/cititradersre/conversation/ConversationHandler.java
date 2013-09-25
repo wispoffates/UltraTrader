@@ -2,6 +2,7 @@
 package com.thedemgel.cititradersre.conversation;
 
 import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.conversation.setsellprice.SetPriceConversationPrefix;
 import com.thedemgel.cititradersre.conversation.setsellprice.SetPricePrompt;
 import org.bukkit.conversations.ConversationFactory;
 import org.bukkit.conversations.Prompt;
@@ -13,6 +14,7 @@ public class ConversationHandler {
 	public ConversationHandler(CitiTrader instance) {
 		setSellPrice = new ConversationFactory(instance)
 			.withModality(true)
+			.withPrefix(new SetPriceConversationPrefix())
 			.withFirstPrompt(new SetPricePrompt())
 			.withEscapeSequence("/quit")
 			.withTimeout(60)

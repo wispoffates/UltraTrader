@@ -1,20 +1,30 @@
 package com.thedemgel.cititradersre.conversation.setsellprice;
 
 import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.conversation.NotADoublePrompt;
 import com.thedemgel.cititradersre.util.ShopInventoryView;
 import java.math.BigDecimal;
+import java.text.MessageFormat;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.NumericPrompt;
 import org.bukkit.conversations.Prompt;
+import org.bukkit.conversations.StringPrompt;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class SetPricePrompt extends NumericPrompt {
+public class SetPricePrompt extends StringPrompt {
 
 	@Override
-	protected Prompt acceptValidatedInput(ConversationContext context, Number input) {
+	public Prompt acceptInput(ConversationContext context, String input) {
 
-		context.setSessionData("price", BigDecimal.valueOf(input.doubleValue()));
+		Double price;
+		try {
+			price = Double.valueOf(input);
+		} catch (NumberFormatException ex) {
+			context.setSessionData("return", new SetPricePrompt());
+			return new NotADoublePrompt();
+		}
+		context.setSessionData("price", BigDecimal.valueOf(price));
 		return new SetPriceFinishPrompt();
 	}
 
@@ -24,6 +34,6 @@ public class SetPricePrompt extends NumericPrompt {
 		((ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player)).setKeepAlive(true);
 		player.closeInventory();
 		ItemStack item = (ItemStack) context.getSessionData("item");
-		return "What would you like to charge for " + item.getType().name() + "?";
+		return MessageFormat.format(CitiTrader.getResourceBundle().getString("conversation.setsellprice.setprice"), item.getType().name());
 	}
 }

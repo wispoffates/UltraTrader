@@ -1,4 +1,3 @@
-
 package com.thedemgel.cititradersre.command.commands;
 
 import com.thedemgel.cititradersre.CitiTrader;
@@ -21,31 +20,30 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.metadata.LazyMetadataValue;
 
-
 public class ShopCommands extends Commands implements CommandExecutor {
+
 	private CitiTrader plugin;
-	
+
 	public ShopCommands(CitiTrader instance) {
 		plugin = instance;
 	}
-	
+
 	@BukkitCommand(name = "test")
 	public boolean test(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player = (Player) sender;
-		InventoryHandler handler = new InventoryHandler(plugin);
-		handler.createBuyInventoryView(player, plugin.getStoreHandler().getShop(1));
-		handler.openInventory(player);
+		CitiTrader.getStoreHandler().getInventoryHandler().createBuyInventoryView(player, CitiTrader.getStoreHandler().getShop(1));
+		CitiTrader.getStoreHandler().getInventoryHandler().openInventory(player);
 		return true;
-		
+
 	}
-	
+
 	@BukkitCommand(name = "shopitem")
 	public boolean something(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player = (Player) sender;
 
 		ItemStack item = new ItemStack(Material.WOOD_AXE, 1);
 		StoreItem storeItem = new StoreItem();
-		storeItem.createLinkedToShop(plugin.getStoreHandler().getShop(1), item);
+		storeItem.createLinkedToShop(CitiTrader.getStoreHandler().getShop(1), item);
 
 		player.getInventory().addItem(item);
 
@@ -55,20 +53,35 @@ public class ShopCommands extends Commands implements CommandExecutor {
 	@BukkitCommand(name = "manage")
 	public boolean setManage(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player = (Player) sender;
-		
-		player.setMetadata("manage", new FixedMetadataValue(plugin, true));
-		
+
+		switch (args[1]) {
+			case "true":
+				player.setMetadata("manage", new FixedMetadataValue(plugin, true));
+				player.sendMessage(CitiTrader.getResourceBundle().getString("player.status.manage.enter"));
+				break;
+			case "false":
+				player.setMetadata("manage", new FixedMetadataValue(plugin, false));
+				player.sendMessage(CitiTrader.getResourceBundle().getString("player.status.manage.exit"));
+				break;
+			default:
+				player.sendMessage(CitiTrader.getResourceBundle().getString("player.status.manage.error"));
+		}
 		return true;
 	}
-	
+
 	@BukkitCommand(name = "myshops")
 	public boolean getShops(CommandSender sender, Command cmd, String label, String[] args) {
 		Collection<Shop> shops = CitiTrader.getStoreHandler().getShopsByOwner((Player) sender);
-		
-		for (Shop shop : shops) {
-			sender.sendMessage(shop.getName());
+
+		if (shops.isEmpty()) {
+			sender.sendMessage(CitiTrader.getResourceBundle().getString("shops.list.noshops"));
+		} else {
+			sender.sendMessage(CitiTrader.getResourceBundle().getString("shops.list.yourshops"));
+			for (Shop shop : shops) {
+				sender.sendMessage(shop.getId() + ": " + shop.getName());
+			}
 		}
-		
+
 		return true;
 	}
 }
