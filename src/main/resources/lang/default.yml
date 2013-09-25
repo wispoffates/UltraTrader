@@ -15,3 +15,13 @@ conversation:
     setprice: What would you like to charge for {0}?
   error:
     notadouble: Value needs to be a number value (2, 12.12)
+transaction:
+  sale:
+    player:
+      notenoughfunds: You do not have the funds for this Transaction.
+    shop:
+      notenoughitems: There are not enough items to purchase. (Store is out of stock)
+      totalpurchase: 'Total Purchase Price: {0}'
+  error:
+    economy: There was an error with the economy, please report. (NULL)
+    fundstoshop: There was an error, please report

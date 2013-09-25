@@ -4,6 +4,12 @@ import com.google.common.collect.Iterables;
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.StoreConfig;
 import com.thedemgel.cititradersre.util.ShopType;
+import com.thedemgel.cititradersre.util.WalletType;
+import com.thedemgel.cititradersre.wallet.AdminWallet;
+import com.thedemgel.cititradersre.wallet.BankWallet;
+import com.thedemgel.cititradersre.wallet.PlayerWallet;
+import com.thedemgel.cititradersre.wallet.ShopWallet;
+import com.thedemgel.cititradersre.wallet.Wallet;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
@@ -23,15 +29,15 @@ public class Shop {
 	private ConcurrentMap<ItemStack, Integer> inventory = new ConcurrentHashMap<>();
 	private ConfigurationSection config;
 	private StoreConfig shopConfig;
-	
+	private Wallet wallet;
 	private BigDecimal balance;
 
 	public Shop(ConfigurationSection section, CitiTrader instance) {
-
 		config = section;
 
 		shopConfig = new StoreConfig(instance, "/stores/" + config.getName() + ".yml");
 
+		initWallet();
 		loadSellPrice();
 		loadInventory();
 
@@ -112,9 +118,9 @@ public class Shop {
 		return sellprices;
 	}
 
-	public void saveSellPrice() {
+	public final void saveSellPrice() {
 		ConfigurationSection sellconfig = shopConfig.getConfig().createSection("sellprices");
-		
+
 		for (ItemPrice ip : sellprices.values()) {
 			sellconfig.set(ip.getRandom() + ".amount", ip.getAmount());
 			sellconfig.set(ip.getRandom() + ".description", ip.getDescription());
@@ -124,7 +130,7 @@ public class Shop {
 		}
 	}
 
-	public void loadSellPrice() {
+	public final void loadSellPrice() {
 		ConfigurationSection sellconfig = shopConfig.getConfig().getConfigurationSection("sellprices");
 		if (sellconfig == null) {
 			sellconfig = shopConfig.getConfig().createSection("sellprices");
@@ -140,19 +146,20 @@ public class Shop {
 			getSellprices().put(item.getRandom(), item);
 		}
 	}
-	
-	public void saveInventory() {
+
+	public final void saveInventory() {
 		ConfigurationSection invconfig = shopConfig.getConfig().createSection("inventory");
-		
+
 		Integer count = 0;
-		
+
 		for (Entry<ItemStack, Integer> entry : inventory.entrySet()) {
 			invconfig.set(count.toString() + ".itemstack", entry.getKey());
 			invconfig.set(count.toString() + ".amount", entry.getValue());
 			count++;
 		}
 	}
-	public void loadInventory() {
+
+	public final void loadInventory() {
 		ConfigurationSection invconfig = shopConfig.getConfig().getConfigurationSection("inventory");
 		if (invconfig == null) {
 			invconfig = shopConfig.getConfig().createSection("inventory");
@@ -163,33 +170,64 @@ public class Shop {
 			getInventory().put(item, amount);
 		}
 	}
+
+	public final void initWallet() {
+		ConfigurationSection walletconfig = config.getConfigurationSection("wallet");
+		if (walletconfig == null) {
+			walletconfig = config.createSection("wallet");
+		}
+
+		String type = walletconfig.getString("type", "SHOP");
+		
+		switch (type) {
+			case "SHOP":
+				wallet = new ShopWallet(walletconfig);
+				break;
+			case "ADMIN":
+				wallet = new AdminWallet();
+				break;
+			case "PLAYER":
+				wallet = new PlayerWallet(walletconfig);
+				break;
+			case "BANK":
+				wallet = new BankWallet(walletconfig);
+				break;
+			default:
+				wallet = new ShopWallet(walletconfig);
+		}
+	}
+
+	public Wallet getWallet() {
+		return wallet;
+	}
 	
 	public String getOwner() {
 		return config.getString("owner", "");
 	}
-	
+
 	public void setOwner(Player player) {
 		setOwner(player.getName());
 	}
-	
+
 	public void setOwner(String value) {
 		config.set("owner", value);
 	}
-	
-	public void setType(String value) {}
-	
+
+	public void setType(String value) {
+	}
+
 	public void setType(ShopType value) {
 		config.set("type", value);
 	}
-	
+
 	public ShopType getType() {
 		return ShopType.valueOf(config.getString("type", "SERVER"));
 	}
-	
+
 	public String getName() {
 		return config.getString("name");
 	}
-	
+
 	public Integer getId() {
 		return Integer.valueOf(config.getName());
 	}

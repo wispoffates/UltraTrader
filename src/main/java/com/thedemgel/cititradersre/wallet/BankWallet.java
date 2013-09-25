@@ -2,6 +2,7 @@
 package com.thedemgel.cititradersre.wallet;
 
 import java.math.BigDecimal;
+import org.bukkit.configuration.ConfigurationSection;
 
 
 /**
@@ -13,6 +14,11 @@ import java.math.BigDecimal;
  * This does not effect Inventory in the least.
  */
 public class BankWallet implements Wallet {
+	private ConfigurationSection config;
+
+	public BankWallet(ConfigurationSection walletConfig) {
+		config = walletConfig;
+	}
 
 	@Override
 	public boolean hasFunds() {
