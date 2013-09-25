@@ -1,6 +1,7 @@
 
-package com.thedemgel.cititradersre.conversation.setsellprice;
+package com.thedemgel.cititradersre.conversation.additem;
 
+import com.thedemgel.cititradersre.conversation.setsellprice.*;
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.util.ShopInventoryView;
 import java.math.BigDecimal;
@@ -12,7 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 
-public class SetPriceFinishPrompt extends MessagePrompt {
+public class AddItemFinishPrompt extends MessagePrompt {
 
 	@Override
 	protected Prompt getNextPrompt(ConversationContext context) {
@@ -24,11 +25,12 @@ public class SetPriceFinishPrompt extends MessagePrompt {
 		final Player player = (Player) context.getForWhom();
 		ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
 		view.setKeepAlive(false);
-		ItemStack item = (ItemStack) context.getSessionData("item");
-		String id = view.getShop().getItemId(item);
-		BigDecimal price = (BigDecimal) context.getSessionData("price");
-		view.getShop().getSellprices().get(id).setPrice(price);
-		view.buildItemView(item);
+		
+		//ItemStack item = (ItemStack) context.getSessionData("item");
+		//String id = view.getShop().getItemId(item);
+		//BigDecimal price = (BigDecimal) context.getSessionData("price");
+		//view.getShop().getSellprices().get(id).setPrice(price);
+		view.buildView();
 		Bukkit.getScheduler().scheduleSyncDelayedTask(CitiTrader.getInstance(), new Runnable() {
 			@Override
 			public void run() {
@@ -36,7 +38,7 @@ public class SetPriceFinishPrompt extends MessagePrompt {
 			}
 		}, 3);
 		
-		return "Price Set";
+		return CitiTrader.getResourceBundle().getString("conversation.additem.added");
 	}
 
 }

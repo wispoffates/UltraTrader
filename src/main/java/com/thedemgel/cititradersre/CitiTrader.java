@@ -31,6 +31,10 @@ public class CitiTrader extends JavaPlugin {
 	public static void setConversationHandler(ConversationHandler aConversationHandler) {
 		conversationHandler = aConversationHandler;
 	}
+	
+	public static CitiTrader getInstance() {
+		return plugin;
+	}
 
 	private StoreConfig shopsConfig;
 	private static ShopHandler shopHandler;
@@ -38,11 +42,12 @@ public class CitiTrader extends JavaPlugin {
 	private boolean vault;
 	private static ResourceBundle rb;
 	private static ConversationHandler conversationHandler;
-	
+	private static CitiTrader plugin;
 	private static Economy economy;
 
 	@Override
 	public void onEnable() {
+		plugin = this;
 		// Assign ResourceBundle (using YAMLResourceBundle)
 		Locale locale = new Locale(getConfig().getString("language", "en"));
 		rb = YamlResourceBundle.getBundle("lang.default", locale, getDataFolder());

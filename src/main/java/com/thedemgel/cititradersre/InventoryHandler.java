@@ -29,13 +29,26 @@ public class InventoryHandler {
 	
 	public void openInventory(Player player) {
 		if (inventories.containsKey(player)) {
-			InventoryView inv = inventories.get(player);
+			ShopInventoryView inv = inventories.get(player);
+			if (inv.convo != null) {
+				inv.convo.abandon();
+				inv.convo = null;
+			}
 			player.openInventory(inv);
 		}
 	}
 	
 	public void createBuyInventoryView(Player player, Shop shop) {
-		Inventory inv = plugin.getServer().createInventory(null, 54, "Eventually shop name");
+		// Clear any old InventoryViews if they exist
+		if (inventories.containsKey(player)) {
+			ShopInventoryView oldview = inventories.get(player);
+			if (oldview.convo != null) {
+				oldview.convo.abandon();
+				inventories.remove(player);
+			}
+		}
+		
+		Inventory inv = plugin.getServer().createInventory(null, 54, shop.getName());
 		Inventory bottom = plugin.getServer().createInventory(null, 36, "test");
 		ShopInventoryView view = new ShopInventoryView(inv, bottom, player, shop);
 		if (inventories.containsKey(player)) {
@@ -66,5 +79,9 @@ public class InventoryHandler {
 		}
 		
 		return null;
+	}
+	
+	public boolean hasInventoryView(Player player) {
+		return inventories.containsKey(player);
 	}
 }

@@ -1,5 +1,7 @@
 package com.thedemgel.cititradersre.shop;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.StoreConfig;
@@ -11,6 +13,7 @@ import com.thedemgel.cititradersre.wallet.PlayerWallet;
 import com.thedemgel.cititradersre.wallet.ShopWallet;
 import com.thedemgel.cititradersre.wallet.Wallet;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -55,6 +58,7 @@ public class Shop {
 			addSellItem(new ItemStack(Material.BUCKET, 64), 3D, 64, "Soft floor covering.");
 			addSellItem(new ItemStack(Material.BONE, 128), 3D, 128, "Soft floor covering.");
 			addSellItem(new ItemStack(Material.WOOD, 50, (short) 2), 4D, 1, "HARD");
+			addSellItem(new ItemStack(Material.WOOD, 50, (short) 2), 4D, 1, "HARD");
 		}
 
 		saveInventory();
@@ -67,9 +71,28 @@ public class Shop {
 	public ConcurrentMap<ItemStack, Integer> getInventory() {
 		return inventory;
 	}
-
+	
+	public boolean hasSellItem(final ItemPrice checkItem) {
+		Predicate<ItemPrice> itemPredicate = new Predicate<ItemPrice>() {
+			@Override
+			public boolean apply(ItemPrice item) {
+				return item.getItemStack().equals(checkItem.getItemStack());
+			}
+		};
+		Collection<ItemPrice> sellItems = Collections2.filter(getSellprices().values(), itemPredicate);
+		
+		return sellItems.size() > 0;
+	}
+	
 	public void addSellItem(ItemStack item, Double price, Integer quantity, String description) {
 		ItemPrice invItem = new ItemPrice(item, BigDecimal.valueOf(price), quantity, description);
+		
+		if (hasSellItem(invItem)) {
+			System.out.println("Item Found!");
+			addInventory(item);
+			return;
+		}
+		
 		String random = invItem.setRandom();
 		while (getSellprices().containsKey(random)) {
 			random = invItem.setRandom();

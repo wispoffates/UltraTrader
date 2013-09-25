@@ -7,6 +7,7 @@ import com.thedemgel.cititradersre.util.Status;
 import java.util.List;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.conversations.Conversable;
 import org.bukkit.conversations.Conversation;
@@ -17,6 +18,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.inventory.InventoryEvent;
+import org.bukkit.event.inventory.InventoryInteractEvent;
+import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -30,33 +35,65 @@ public class ShopListener implements Listener {
 		plugin = instance;
 	}
 
+	/**
+	 * Handle dragging and dropping items to inventory here. Inventory Click
+	 * event is unreliable for this.
+	 *
+	 * @param event
+	 */
+	/*@EventHandler
+	public void onInventoryDragEvent(final InventoryDragEvent event) {
+		String output = "Drag Slots: ";
+		for (Integer i : event.getInventorySlots()) {
+			output =+ i + " -- ";
+		}
+		System.out.println(output);
+		test(event);
+	}*/
+
 	@EventHandler
 	public void onInventoryClickEvent(final InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
-
+		System.out.println(event.getRawSlot());
+		System.out.println(event.getAction());
 		if (event.getView() instanceof ShopInventoryView) {
 			final ShopInventoryView view = (ShopInventoryView) event.getView();
 
 			// Nothing needs to be dragged anymore...
-			if (event.getRawSlot() < view.getTopInventory().getSize()) {
-				event.setCancelled(true);
-			} else {
+			if (!(event.getRawSlot() < view.getTopInventory().getSize())) {
 				return;
+			} else {
+				event.setCancelled(true);
 			}
 
 			if (view.getStatus().equals(Status.MAIN_SCREEN)) {
-				
 				if (event.getCurrentItem() != null) {
+					if (!event.getCursor().getType().equals(Material.AIR)) {
+						System.out.println(event.getCursor());
+						
+						player.getInventory().addItem(event.getCursor());
+						event.setCursor(new ItemStack(Material.AIR));
+						//player.setItemInHand();
+					}
 					view.buildItemView(event.getCurrentItem());
+				} else {
+					System.out.println("We can add something to the shop.");
+					Conversation convo = CitiTrader.getConversationHandler().getAddSellItem().buildConversation(player);
+					convo.getContext().setSessionData("item", event.getCursor());
+					view.convo = convo;
+					convo.begin();
 				}
 			} else if (view.getStatus().equals(Status.SELL_SCREEN)) {
+				
 				if (event.getRawSlot() == 45) {
 					view.buildView();
+					return;
 				}
 
 				if (event.getRawSlot() == 53) {
 					Conversation convo = CitiTrader.getConversationHandler().getSetSellPrice().buildConversation(player);
 					convo.getContext().setSessionData("item", event.getCurrentItem());
+					view.convo = convo;
 					convo.begin();
 					return;
 				}
@@ -111,9 +148,18 @@ public class ShopListener implements Listener {
 					return;
 				}
 
+				InventoryHandler handler = CitiTrader.getStoreHandler().getInventoryHandler();
 				// Open Store
-				CitiTrader.getStoreHandler().getInventoryHandler().createBuyInventoryView(player, plugin.getStoreHandler().getShop(shopid));
-				CitiTrader.getStoreHandler().getInventoryHandler().openInventory(player);
+				if (handler.hasInventoryView(player)) {
+					ShopInventoryView view = (ShopInventoryView) handler.getInventoryView(player);
+					if (view.getShop().getId() != shopid) {
+						handler.createBuyInventoryView(player, CitiTrader.getStoreHandler().getShop(shopid));
+					}
+				} else {
+					handler.createBuyInventoryView(player, CitiTrader.getStoreHandler().getShop(shopid));
+				}
+
+				handler.openInventory(player);
 			}
 		}
 	}

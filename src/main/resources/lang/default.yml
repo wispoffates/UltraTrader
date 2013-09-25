@@ -13,6 +13,11 @@ conversation:
   setsellprice:
     prefix: SET SELL PRICE
     setprice: What would you like to charge for {0}?
+  additem:
+    prefix: ADD SHOP ITEM
+    setprice: What would you like to charge for new item [{0}]?
+    setdescription: Give a short description of {0} (can leave blank).
+    added: Item Added.
   error:
     notadouble: Value needs to be a number value (2, 12.12)
 transaction:
