@@ -30,6 +30,8 @@ public class ShopWallet implements Wallet {
 
 	@Override
 	public boolean addFunds(BigDecimal amount) {
+		BigDecimal balance = BigDecimal.valueOf(config.getDouble("balance", 0D));
+		config.set("balance", balance.add(amount));
 		return true;
 	}
 

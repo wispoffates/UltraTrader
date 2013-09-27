@@ -3,6 +3,7 @@ package com.thedemgel.cititradersre.conversation.additem;
 import com.thedemgel.cititradersre.conversation.setsellprice.*;
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.conversation.NotADoublePrompt;
+import com.thedemgel.cititradersre.shop.ItemPrice;
 import com.thedemgel.cititradersre.util.ShopInventoryView;
 import java.math.BigDecimal;
 import java.text.MessageFormat;
@@ -22,7 +23,7 @@ public class AddItemPrompt extends StringPrompt {
 		try {
 			price = Double.valueOf(input);
 		} catch (NumberFormatException ex) {
-			context.setSessionData("return", new SetPricePrompt());
+			context.setSessionData("return", new AddItemPrompt());
 			return new NotADoublePrompt();
 		}
 		context.setSessionData("price", BigDecimal.valueOf(price));
@@ -32,9 +33,10 @@ public class AddItemPrompt extends StringPrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
 		Player player = (Player) context.getForWhom();
-		((ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player)).setKeepAlive(true);
-		player.closeInventory();
+		ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
+		
 		ItemStack item = (ItemStack) context.getSessionData("item");
+		
 		return MessageFormat.format(CitiTrader.getResourceBundle().getString("conversation.additem.setprice"), item.getType().name());
 	}
 }

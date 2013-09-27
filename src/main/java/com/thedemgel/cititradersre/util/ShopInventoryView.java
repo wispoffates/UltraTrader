@@ -1,9 +1,12 @@
 package com.thedemgel.cititradersre.util;
 
+import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.shop.ItemPrice;
 import com.thedemgel.cititradersre.shop.Shop;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.conversations.Conversation;
 import org.bukkit.entity.HumanEntity;
@@ -21,12 +24,13 @@ public class ShopInventoryView extends InventoryView {
 	private InventoryType type = InventoryType.CHEST;
 	private boolean open = true;
 	private boolean keepAlive = false;
-	private List<Integer> reservedSlot = new ArrayList<>();
 	private Shop shop;
 	public Conversation convo;
 	private Status current = Status.NULL;
+	private ResourceBundle rb;
 
-	public ShopInventoryView(Inventory invTop, Inventory invBottom, Player player, Shop shop) {
+	public ShopInventoryView(Inventory invTop, Player player, Shop shop) {
+		rb = CitiTrader.getResourceBundle();
 		top = invTop;
 		this.player = player;
 		this.shop = shop;
@@ -65,18 +69,31 @@ public class ShopInventoryView extends InventoryView {
 		return getPlayer().getInventory();
 	}
 
-	public List<Integer> getReservedSlots() {
-		return reservedSlot;
-	}
-
 	public final void buildView() {
 		current = Status.MAIN_SCREEN;
 		top.clear();
 		for (ItemPrice item : getShop().getSellprices().values()) {
 			Integer currentInvAmount = getShop().getInventory().get(item.getItemStack());
-			if (currentInvAmount > 0 || shop.getOwner().equals(player.getName())) {
-				this.getTopInventory().addItem(item.generateLore());
+			if (currentInvAmount != null) {
+				if (currentInvAmount > 0 || shop.isOwner(player)) {
+					if (shop.getOwner().equals(player.getName())) {
+						this.getTopInventory().addItem(item.generateLore(1, true, currentInvAmount));
+					} else {
+						this.getTopInventory().addItem(item.generateLore());
+					}
+				}
 			}
+		}
+
+		if (shop.getOwner().equals(player.getName())) {
+			ItemStack doAdmin = new ItemStack(Material.BOOK_AND_QUILL);
+			ItemMeta setPriceMeta = doAdmin.getItemMeta();
+			List<String> doAdminText = new ArrayList<>();
+			doAdminText.add(rb.getString("inventory.admin.display"));
+			setPriceMeta.setLore(doAdminText);
+			setPriceMeta.setDisplayName(rb.getString("inventory.admin.lore"));
+			doAdmin.setItemMeta(setPriceMeta);
+			this.setItem(53, doAdmin);
 		}
 	}
 
@@ -110,33 +127,29 @@ public class ShopInventoryView extends InventoryView {
 		}
 
 		if ((count / 2) < invCount && (count / 2) < max) {
-			//System.out.println("Adding last full stack");
 			top.addItem(invItem.generateLore(invCount));
 		}
 
 		ItemStack arrow = new ItemStack(Material.ARROW, 1);
 		ItemMeta arrowMeta = arrow.getItemMeta();
 		List<String> arrowText = new ArrayList<>();
-		arrowText.add("Click to go Back");
+		arrowText.add(rb.getString("inventory.back.lore"));
 		arrowMeta.setLore(arrowText);
-		arrowMeta.setDisplayName("Back");
+		arrowMeta.setDisplayName(rb.getString("inventory.back.display"));
 		arrow.setItemMeta(arrowMeta);
 		this.setItem(45, arrow);
 
 		if (shop.getOwner().equals(player.getName())) {
-			ItemStack setPrice = item.clone();
-			setPrice.setAmount(1);
+			ItemStack setPrice = new ItemStack(Material.GOLD_INGOT);
 			ItemMeta setPriceMeta = setPrice.getItemMeta();
 			List<String> setPriceText = new ArrayList<>();
-			setPriceText.add("Click to set price");
-			setPriceText.add(id);
+			setPriceText.add(rb.getString("inventory.price.lore"));
+			setPriceText.add(ChatColor.DARK_GRAY + id);
 			setPriceMeta.setLore(setPriceText);
-			setPriceMeta.setDisplayName("Set Price");
+			setPriceMeta.setDisplayName(rb.getString("inventory.price.display"));
 			setPrice.setItemMeta(setPriceMeta);
 			this.setItem(53, setPrice);
 		}
-
-		reservedSlot.add(45);
 	}
 
 	public Shop getShop() {

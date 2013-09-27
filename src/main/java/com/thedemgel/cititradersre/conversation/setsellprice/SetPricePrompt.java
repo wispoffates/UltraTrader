@@ -31,9 +31,12 @@ public class SetPricePrompt extends StringPrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
 		Player player = (Player) context.getForWhom();
-		((ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player)).setKeepAlive(true);
+		ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
+		view.setKeepAlive(true);
 		player.closeInventory();
-		ItemStack item = (ItemStack) context.getSessionData("item");
+		ItemStack clickitem = (ItemStack) context.getSessionData("item");
+		String id = view.getShop().getItemId(clickitem);
+		ItemStack item = view.getShop().getSellprices().get(id).getItemStack();
 		return MessageFormat.format(CitiTrader.getResourceBundle().getString("conversation.setsellprice.setprice"), item.getType().name());
 	}
 }

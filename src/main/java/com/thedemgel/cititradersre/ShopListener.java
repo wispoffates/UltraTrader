@@ -16,6 +16,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
@@ -41,22 +42,30 @@ public class ShopListener implements Listener {
 	 *
 	 * @param event
 	 */
-	/*@EventHandler
+	@EventHandler
 	public void onInventoryDragEvent(final InventoryDragEvent event) {
-		String output = "Drag Slots: ";
-		for (Integer i : event.getInventorySlots()) {
-			output =+ i + " -- ";
+		if (event.getView() instanceof ShopInventoryView) {
+			ShopInventoryView view = (ShopInventoryView) event.getView();
+			for (Integer slot : event.getRawSlots()) {
+				if (slot < view.getTopInventory().getSize()) {
+					event.setCancelled(true);
+				}
+			}
 		}
-		System.out.println(output);
-		test(event);
-	}*/
+	}
 
 	@EventHandler
 	public void onInventoryClickEvent(final InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
-		System.out.println(event.getRawSlot());
-		System.out.println(event.getAction());
+		//System.out.println(event.getRawSlot());
+		//System.out.println(event.getAction());
 		if (event.getView() instanceof ShopInventoryView) {
+			// Clear out event types we don't want to handle
+			if (event.getAction().equals(InventoryAction.MOVE_TO_OTHER_INVENTORY)) {
+				event.setCancelled(true);
+				return;
+			}
+
 			final ShopInventoryView view = (ShopInventoryView) event.getView();
 
 			// Nothing needs to be dragged anymore...
@@ -67,24 +76,33 @@ public class ShopListener implements Listener {
 			}
 
 			if (view.getStatus().equals(Status.MAIN_SCREEN)) {
+				if (event.getRawSlot() == 53) {
+					Conversation convo = CitiTrader.getConversationHandler().getAdminConversation().buildConversation(player);
+					//convo.getContext().setSessionData("item", event.getCurrentItem());
+					view.convo = convo;
+					convo.begin();
+					return;
+				}
+				
 				if (event.getCurrentItem() != null) {
 					if (!event.getCursor().getType().equals(Material.AIR)) {
 						System.out.println(event.getCursor());
-						
+
 						player.getInventory().addItem(event.getCursor());
 						event.setCursor(new ItemStack(Material.AIR));
-						//player.setItemInHand();
 					}
 					view.buildItemView(event.getCurrentItem());
+				} else if (event.getCursor().getData().getItemType().equals(Material.AIR)) {
 				} else {
-					System.out.println("We can add something to the shop.");
+					event.setCancelled(false);
+					ItemStack inhand = event.getCursor().clone();
 					Conversation convo = CitiTrader.getConversationHandler().getAddSellItem().buildConversation(player);
-					convo.getContext().setSessionData("item", event.getCursor());
+					convo.getContext().setSessionData("item", inhand);
 					view.convo = convo;
 					convo.begin();
 				}
 			} else if (view.getStatus().equals(Status.SELL_SCREEN)) {
-				
+
 				if (event.getRawSlot() == 45) {
 					view.buildView();
 					return;

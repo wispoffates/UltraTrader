@@ -101,6 +101,8 @@ public class PurchaseHandler {
 		} else {
 			player.sendMessage(CitiTrader.getResourceBundle().getString("transaction.error.fundstoshop"));
 		}
+		
+		shop.save();
 	}
 
 	/**

@@ -40,6 +40,10 @@ public class ShopHandler {
 		}
 	}
 	
+	public void save() {
+		config.saveConfig();
+	}
+	
 	public InventoryHandler getInventoryHandler() {
 		return inventoryHandler;
 	}

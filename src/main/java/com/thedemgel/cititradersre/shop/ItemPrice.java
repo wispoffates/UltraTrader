@@ -20,6 +20,14 @@ public class ItemPrice {
 
 	public ItemPrice() {};
 	
+	public ItemPrice(ItemStack item) {
+		itemStack = item.clone();
+		itemStack.setAmount(1);
+		price = BigDecimal.ZERO;
+		amount = 0;
+		description = "";
+	}
+	
 	public ItemPrice(ItemStack item, BigDecimal price, Integer amount, String lore) {
 		itemStack = item.clone();
 		itemStack.setAmount(1);
@@ -32,6 +40,9 @@ public class ItemPrice {
 		return generateLore(1);
 	}
 	
+	public ItemStack generateLore(Integer stackAmount) {
+		return generateLore(stackAmount, false, 0);
+	}
 	/**
 	 * Item Name
 	 * Short Description (15 Characters)
@@ -39,15 +50,18 @@ public class ItemPrice {
 	 * Discount: Veteran
 	 * 4d823Kd8
 	 */
-	public ItemStack generateLore(Integer stackAmount) {
+	public ItemStack generateLore(Integer stackAmount, boolean displayInventoryAmount, Integer stock) {
 		ItemStack genItem = itemStack.clone();
 		List<String> genLore = new ArrayList<>();
 		if (getDescription().length() > 0) {
 			genLore.add(getDescription());
 		}
-		genLore.add(CitiTrader.getResourceBundle().getString("price") + ": " + price.multiply(BigDecimal.valueOf(stackAmount))); // Will need to figure for discounts
+		genLore.add(ChatColor.GOLD + CitiTrader.getResourceBundle().getString("price") + ": " + price.multiply(BigDecimal.valueOf(stackAmount))); // Will need to figure for discounts
 		// If there is a discount... add a message here
 		// Id will always be LAST in the list
+		if (displayInventoryAmount) {
+			genLore.add(ChatColor.GREEN + "Stock: " + stock);
+		}
 		genLore.add(ChatColor.DARK_GRAY + getRandom());
 		
 		ItemMeta meta = genItem.getItemMeta();

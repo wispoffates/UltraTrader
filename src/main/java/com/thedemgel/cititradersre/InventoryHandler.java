@@ -49,8 +49,7 @@ public class InventoryHandler {
 		}
 		
 		Inventory inv = plugin.getServer().createInventory(null, 54, shop.getName());
-		Inventory bottom = plugin.getServer().createInventory(null, 36, "test");
-		ShopInventoryView view = new ShopInventoryView(inv, bottom, player, shop);
+		ShopInventoryView view = new ShopInventoryView(inv, player, shop);
 		if (inventories.containsKey(player)) {
 			closeInventoryView(player);
 			removeInventoryView(player);

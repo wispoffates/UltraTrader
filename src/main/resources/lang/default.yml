@@ -4,19 +4,55 @@ player:
       enter: You have entered Shop Management mode.
       exit: You have left Shop Management mode.
       error: To change your Management status pass "true" or "false".
+general:
+  name: Name
+  bank: Bank
+  wallet:
+    admin: admin
+    player: player
+    bank: bank
+    shop: shop
+inventory:
+  admin:
+    display: Shop Admin
+    lore: Click to Admin
+  price:
+    display: Set Price
+    lore: Click to set Price
+  back:
+    display: Back
+    lore: Click to go Back
 price: Price
 shops:
   list:
     noshops: You don't currently own any shops.
     yourshops: 'Your current shops:'
 conversation:
+  toquit: (To force exit type "/quit")
+  options: Options
+  abandon: Conversation abandoned.
+  admin:
+    begin: Entering Shop Administration Menu
+    prefix: ADMIN
+    menu:
+      options:
+        storename: storename
+        bank: bank
+        exit: exit
+    exit: Leaving Admin
+    menutext: CitiTraders Admin Menu
+    setname: Name your shop. (32 Characters Max)
+    bankmenu: Choose which type of bank to use.
+    setbank: Setting bank to
   setsellprice:
     prefix: SET SELL PRICE
     setprice: What would you like to charge for {0}?
   additem:
+    begin: Generic text to begin a conversation.
     prefix: ADD SHOP ITEM
     setprice: What would you like to charge for new item [{0}]?
     setdescription: Give a short description of {0} (can leave blank).
+    addinventory: Item has been added to inventory.
     added: Item Added.
   error:
     notadouble: Value needs to be a number value (2, 12.12)

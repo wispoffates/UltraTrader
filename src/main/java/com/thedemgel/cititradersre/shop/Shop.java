@@ -33,7 +33,6 @@ public class Shop {
 	private ConfigurationSection config;
 	private StoreConfig shopConfig;
 	private Wallet wallet;
-	private BigDecimal balance;
 
 	public Shop(ConfigurationSection section, CitiTrader instance) {
 		config = section;
@@ -44,30 +43,33 @@ public class Shop {
 		loadSellPrice();
 		loadInventory();
 
-		if (sellprices.isEmpty()) {
-			addSellItem(new ItemStack(Material.ANVIL, 1), 3D, 1, "Some Lore Text");
-			addSellItem(new ItemStack(Material.BAKED_POTATO, 2), 3D, 2, "Some Lore Text");
-			addSellItem(new ItemStack(Material.BED, 10), 3D, 3, "");
-			addSellItem(new ItemStack(Material.BED_BLOCK, 4), 3D, 4, "Some Lore Text");
-			addSellItem(new ItemStack(Material.BLAZE_POWDER, 8), 3D, 8, "Sizzling Hot");
-			addSellItem(new ItemStack(Material.BOAT, 24), 3D, 12, "Some Lore Text");
-			addSellItem(new ItemStack(Material.BOOK, 16), 3D, 16, "");
-			addSellItem(new ItemStack(Material.BOOK_AND_QUILL, 30), 3D, 30, "Need to remember something?");
-			addSellItem(new ItemStack(Material.BURNING_FURNACE, 32), 3D, 32, "Some Lore Text");
-			addSellItem(new ItemStack(Material.CARPET, 54), 3D, 54, "Soft floor covering.");
-			addSellItem(new ItemStack(Material.BUCKET, 64), 3D, 64, "Soft floor covering.");
-			addSellItem(new ItemStack(Material.BONE, 128), 3D, 128, "Soft floor covering.");
-			addSellItem(new ItemStack(Material.WOOD, 50, (short) 2), 4D, 1, "HARD");
-			addSellItem(new ItemStack(Material.WOOD, 50, (short) 2), 4D, 1, "HARD");
-		}
+		/*if (sellprices.isEmpty()) {
+			addSellItem(new ItemStack(Material.ANVIL, 1), BigDecimal.valueOf(3), 1, "Some Lore Text");
+			addSellItem(new ItemStack(Material.BAKED_POTATO, 2), BigDecimal.valueOf(3), 2, "Some Lore Text");
+			addSellItem(new ItemStack(Material.BED, 10), BigDecimal.valueOf(3), 3, "");
+			addSellItem(new ItemStack(Material.BED_BLOCK, 4), BigDecimal.valueOf(3), 4, "Some Lore Text");
+			addSellItem(new ItemStack(Material.BLAZE_POWDER, 8), BigDecimal.valueOf(3), 8, "Sizzling Hot");
+			addSellItem(new ItemStack(Material.BOAT, 24), BigDecimal.valueOf(3), 12, "Some Lore Text");
+			addSellItem(new ItemStack(Material.BOOK, 16), BigDecimal.valueOf(3), 16, "");
+			addSellItem(new ItemStack(Material.BOOK_AND_QUILL, 30), BigDecimal.valueOf(3), 30, "Need to remember something?");
+			addSellItem(new ItemStack(Material.BURNING_FURNACE, 32), BigDecimal.valueOf(3), 32, "Some Lore Text");
+			addSellItem(new ItemStack(Material.CARPET, 54), BigDecimal.valueOf(3), 54, "Soft floor covering.");
+			addSellItem(new ItemStack(Material.BUCKET, 64), BigDecimal.valueOf(3), 64, "Soft floor covering.");
+			addSellItem(new ItemStack(Material.BONE, 128), BigDecimal.valueOf(3), 128, "Soft floor covering.");
+			addSellItem(new ItemStack(Material.WOOD, 50, (short) 2), BigDecimal.valueOf(4), 1, "HARD");
+			addSellItem(new ItemStack(Material.WOOD, 50, (short) 2), BigDecimal.valueOf(4), 1, "HARD");
+		}*/
 
+		setMetaData();
+		save();
+	}
+
+	public void save() {
 		saveInventory();
 		saveSellPrice();
 		shopConfig.saveConfig();
-
-		setMetaData();
 	}
-
+	
 	public ConcurrentMap<ItemStack, Integer> getInventory() {
 		return inventory;
 	}
@@ -84,13 +86,14 @@ public class Shop {
 		return sellItems.size() > 0;
 	}
 	
-	public void addSellItem(ItemStack item, Double price, Integer quantity, String description) {
-		ItemPrice invItem = new ItemPrice(item, BigDecimal.valueOf(price), quantity, description);
+	public boolean addSellItem(ItemStack item, BigDecimal price, Integer quantity, String description) {
+		
+		ItemPrice invItem = new ItemPrice(item, price, quantity, description);
 		
 		if (hasSellItem(invItem)) {
 			System.out.println("Item Found!");
-			addInventory(item);
-			return;
+			//addInventory(item);
+			return false;
 		}
 		
 		String random = invItem.setRandom();
@@ -98,8 +101,8 @@ public class Shop {
 			random = invItem.setRandom();
 		}
 		getSellprices().put(random, invItem);
-
-		addInventory(item);
+		return true;
+		//addInventory(item);
 	}
 
 	public void addBuyItem(ItemStack item, Double price, Integer quantity, String description) {
@@ -170,8 +173,16 @@ public class Shop {
 		}
 	}
 
+	private ConfigurationSection getInventoryConfig() {
+		ConfigurationSection invconfig = shopConfig.getConfig().getConfigurationSection("inventory");
+		if (invconfig == null) {
+			invconfig = shopConfig.getConfig().createSection("inventory");
+		}
+		return invconfig;
+	}
+	
 	public final void saveInventory() {
-		ConfigurationSection invconfig = shopConfig.getConfig().createSection("inventory");
+		ConfigurationSection invconfig = getInventoryConfig().createSection("items");
 
 		Integer count = 0;
 
@@ -183,9 +194,9 @@ public class Shop {
 	}
 
 	public final void loadInventory() {
-		ConfigurationSection invconfig = shopConfig.getConfig().getConfigurationSection("inventory");
+		ConfigurationSection invconfig = getInventoryConfig().getConfigurationSection("items");
 		if (invconfig == null) {
-			invconfig = shopConfig.getConfig().createSection("inventory");
+			invconfig = getInventoryConfig().createSection("items");
 		}
 		for (String num : invconfig.getKeys(false)) {
 			ItemStack item = invconfig.getItemStack(num + ".itemstack");
@@ -195,33 +206,42 @@ public class Shop {
 	}
 
 	public final void initWallet() {
-		ConfigurationSection walletconfig = config.getConfigurationSection("wallet");
+		ConfigurationSection walletconfig = shopConfig.getConfig().getConfigurationSection("wallet");
 		if (walletconfig == null) {
-			walletconfig = config.createSection("wallet");
+			walletconfig = shopConfig.getConfig().createSection("wallet");
+			walletconfig.set("type", WalletType.SHOP.name());
 		}
 
 		String type = walletconfig.getString("type", "SHOP");
 		
-		switch (type) {
-			case "SHOP":
-				wallet = new ShopWallet(walletconfig);
-				break;
-			case "ADMIN":
-				wallet = new AdminWallet();
-				break;
-			case "PLAYER":
-				wallet = new PlayerWallet(walletconfig);
-				break;
-			case "BANK":
-				wallet = new BankWallet(walletconfig);
-				break;
-			default:
-				wallet = new ShopWallet(walletconfig);
-		}
+		WalletType walletType = WalletType.valueOf(type);
+		
+		wallet = walletType.getNewWallet(walletconfig);
 	}
 
 	public Wallet getWallet() {
 		return wallet;
+	}
+	
+	public void setWalletType(WalletType type) {
+		ConfigurationSection walletconfig = shopConfig.getConfig().getConfigurationSection("wallet");
+		if (walletconfig == null) {
+			walletconfig = shopConfig.getConfig().createSection("wallet");
+			walletconfig.set("type", WalletType.SHOP.name());
+		}
+		
+		walletconfig.set("type", type.name());
+		
+		initWallet();
+	}
+	
+	public WalletType getWalletType() {
+		ConfigurationSection walletconfig = shopConfig.getConfig().getConfigurationSection("wallet");
+		if (walletconfig == null) {
+			walletconfig = shopConfig.getConfig().createSection("wallet");
+			walletconfig.set("type", WalletType.SHOP.name());
+		}
+		return WalletType.valueOf(walletconfig.getString("type"));
 	}
 	
 	public String getOwner() {
@@ -236,6 +256,10 @@ public class Shop {
 		config.set("owner", value);
 	}
 
+	public boolean isOwner(Player player) {
+		return getOwner().equals(player.getName());
+	}
+	
 	public void setType(String value) {
 	}
 
@@ -251,6 +275,10 @@ public class Shop {
 		return config.getString("name");
 	}
 
+	public void setName(String value) {
+		config.set("name", value);
+	}
+	
 	public Integer getId() {
 		return Integer.valueOf(config.getName());
 	}
