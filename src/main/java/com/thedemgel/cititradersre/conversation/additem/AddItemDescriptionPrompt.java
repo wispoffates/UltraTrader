@@ -11,7 +11,11 @@ public class AddItemDescriptionPrompt extends StringPrompt {
 
 	@Override
 	public Prompt acceptInput(ConversationContext context, String input) {
-		context.setSessionData("description", input);
+		if (input.equalsIgnoreCase("none")) {
+			context.setSessionData("description", "");
+		} else {
+			context.setSessionData("description", input);
+		}
 		return new AddItemFinishPrompt();
 	}
 

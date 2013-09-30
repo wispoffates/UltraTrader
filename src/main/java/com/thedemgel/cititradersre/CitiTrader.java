@@ -117,7 +117,7 @@ public class CitiTrader extends JavaPlugin {
 	}
 
 	public void checkVault() {
-		if (getServer().getPluginManager().getPlugin("Vault") == null || getServer().getPluginManager().getPlugin("Citizens").isEnabled() == false) {
+		if (getServer().getPluginManager().getPlugin("Vault") == null || getServer().getPluginManager().getPlugin("Vault").isEnabled() == false) {
 			getLogger().log(Level.WARNING, "Vault not found or not enabled");
 			vault = false;
 		} else {

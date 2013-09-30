@@ -1,11 +1,8 @@
 package com.thedemgel.cititradersre.conversation.additem;
 
-import com.thedemgel.cititradersre.conversation.setsellprice.*;
 import com.thedemgel.cititradersre.CitiTrader;
-import com.thedemgel.cititradersre.shop.ItemPrice;
 import com.thedemgel.cititradersre.util.ShopInventoryView;
 import java.math.BigDecimal;
-import org.bukkit.Bukkit;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
 import org.bukkit.conversations.Prompt;
@@ -29,17 +26,9 @@ public class AddItemFinishPrompt extends MessagePrompt {
 		BigDecimal price = (BigDecimal) context.getSessionData("price");
 
 		view.getShop().addSellItem(item, price, 1, description);
-		view.getShop().addInventory(item);
-
-		//view.setKeepAlive(false);
+		view.getShop().getInventoryInterface().addInventory(item);
 
 		view.buildView();
-		/*Bukkit.getScheduler().scheduleSyncDelayedTask(CitiTrader.getInstance(), new Runnable() {
-			@Override
-			public void run() {
-				CitiTrader.getStoreHandler().getInventoryHandler().openInventory(player);
-			}
-		}, 3);*/
 
 		return CitiTrader.getResourceBundle().getString("conversation.additem.added");
 	}

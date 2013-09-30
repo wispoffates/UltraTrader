@@ -24,7 +24,7 @@ public class AddInventoryPrompt extends MessagePrompt {
 		final ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
 		
 		ItemStack item = (ItemStack) context.getSessionData("item");
-		view.getShop().addInventory(item);
+		view.getShop().getInventoryInterface().addInventory(item);
 		view.setKeepAlive(false);
 		//view.buildView();
 		

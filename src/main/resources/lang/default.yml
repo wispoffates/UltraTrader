@@ -12,6 +12,11 @@ general:
     player: player
     bank: bank
     shop: shop
+  notopen:
+    unassigned: Store not open yet. (No store assinged)
+permission:
+  create:
+    deny: You do not have permission to create a shop.
 inventory:
   admin:
     display: Shop Admin
@@ -22,7 +27,19 @@ inventory:
   back:
     display: Back
     lore: Click to go Back
+  removestock:
+    display: Remove Stock
+    lore:
+      full: Click to Move all to Inventory
+      empty: Nothing to move to Inventory
+  deleteitem:
+    display: Delete Item
+    lore:
+      sell:
+        full: Remove all Items before deleting.
+        empty: Remove this item from Sell List.
 price: Price
+instock: In Stock
 shops:
   list:
     noshops: You don't currently own any shops.
@@ -44,6 +61,8 @@ conversation:
     setname: Name your shop. (32 Characters Max)
     bankmenu: Choose which type of bank to use.
     setbank: Setting bank to
+    setname:
+      nametolong: Shop names can only be 32 characters or shorter.
   setsellprice:
     prefix: SET SELL PRICE
     setprice: What would you like to charge for {0}?
@@ -51,9 +70,10 @@ conversation:
     begin: Generic text to begin a conversation.
     prefix: ADD SHOP ITEM
     setprice: What would you like to charge for new item [{0}]?
-    setdescription: Give a short description of {0} (can leave blank).
+    setdescription: Give a short description of {0} (type "none" for no description).
     addinventory: Item has been added to inventory.
     added: Item Added.
+    none: none
   error:
     notadouble: Value needs to be a number value (2, 12.12)
 transaction:

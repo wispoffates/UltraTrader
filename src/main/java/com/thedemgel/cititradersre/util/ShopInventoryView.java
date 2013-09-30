@@ -149,6 +149,39 @@ public class ShopInventoryView extends InventoryView {
 			setPriceMeta.setDisplayName(rb.getString("inventory.price.display"));
 			setPrice.setItemMeta(setPriceMeta);
 			this.setItem(53, setPrice);
+			
+			ItemStack setDelete = new ItemStack(Material.TNT);
+			ItemMeta setDeleteMeta = setDelete.getItemMeta();
+			List<String> setDeleteText = new ArrayList<>();
+			if (invCount > 0) {
+				setDeleteText.add(rb.getString("inventory.deleteitem.lore.sell.full"));
+			} else {
+				setDeleteText.add(rb.getString("inventory.deleteitem.lore.sell.empty"));
+			}
+			setDeleteText.add(ChatColor.DARK_GRAY + id);
+			setDeleteMeta.setLore(setDeleteText);
+			setDeleteMeta.setDisplayName(rb.getString("inventory.deleteitem.display"));
+			setDelete.setItemMeta(setDeleteMeta);
+			this.setItem(51, setDelete);
+			
+			ItemStack removeStock;
+			if (invCount > 0) {
+				removeStock = new ItemStack(Material.WATER_BUCKET);
+			} else {
+				removeStock = new ItemStack(Material.BUCKET);
+			}
+			ItemMeta setRemoveStockMeta = removeStock.getItemMeta();
+			List<String> setRemoveStockText = new ArrayList<>();
+			if (invCount > 0) {
+				setRemoveStockText.add(rb.getString("inventory.removestock.lore.full"));
+			} else {
+				setRemoveStockText.add(rb.getString("inventory.removestock.lore.empty"));
+			}
+			setRemoveStockText.add(ChatColor.DARK_GRAY + id);
+			setRemoveStockMeta.setLore(setRemoveStockText);
+			setRemoveStockMeta.setDisplayName(rb.getString("inventory.removestock.display"));
+			removeStock.setItemMeta(setRemoveStockMeta);
+			this.setItem(50, removeStock);
 		}
 	}
 

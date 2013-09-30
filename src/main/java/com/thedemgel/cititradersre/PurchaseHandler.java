@@ -62,7 +62,9 @@ public class PurchaseHandler {
 
 		// Check for availability
 		ItemStack baseItem = invItem.getItemStack();
-		Integer currentInvAmount = shop.getInventory().get(baseItem);
+		//Integer currentInvAmount = shop.getInventory().get(baseItem);
+		Integer currentInvAmount = shop.getInventoryInterface().getInventoryAmount(baseItem);
+		
 		if (buyStack.getAmount() > currentInvAmount) {
 			CitiTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), heldFunds.amount);
 			// Some error checks for deposit
@@ -70,7 +72,8 @@ public class PurchaseHandler {
 			return;
 		} else {
 
-			shop.getInventory().put(baseItem, currentInvAmount - buyStack.getAmount());
+			//shop.getInventory().put(baseItem, currentInvAmount - buyStack.getAmount());
+			shop.getInventoryInterface().removeInventory(baseItem, buyStack.getAmount());
 		}
 
 		ItemStack placedStack = invItem.getItemStack().clone();
@@ -90,7 +93,8 @@ public class PurchaseHandler {
 			CitiTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), refund.doubleValue());
 
 			//invItem.setAmount(invItem.getAmount() + returned);
-			shop.getInventory().put(baseItem, currentInvAmount - returned);
+			//shop.getInventory().put(baseItem, currentInvAmount - returned);
+			shop.getInventoryInterface().removeInventory(baseItem, returned);
 		}
 
 		BigDecimal traderDeposit = BigDecimal.valueOf(heldFunds.amount).subtract(refund);

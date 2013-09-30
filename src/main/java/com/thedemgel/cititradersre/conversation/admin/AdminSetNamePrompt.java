@@ -19,7 +19,7 @@ public class AdminSetNamePrompt extends StringPrompt {
 			return new AdminMenuPrompt();
 		}
 		// Will be an error message.
-		return new AdminSetNamePrompt();
+		return new AdminStringToLongPrompt();
 	}
 
 	@Override
