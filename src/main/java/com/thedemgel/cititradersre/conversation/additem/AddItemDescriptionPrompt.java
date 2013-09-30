@@ -11,7 +11,7 @@ public class AddItemDescriptionPrompt extends StringPrompt {
 
 	@Override
 	public Prompt acceptInput(ConversationContext context, String input) {
-		if (input.equalsIgnoreCase("none")) {
+		if (input.equalsIgnoreCase(CitiTrader.getResourceBundle().getString("conversation.additem.none"))) {
 			context.setSessionData("description", "");
 		} else {
 			context.setSessionData("description", input);
@@ -22,6 +22,6 @@ public class AddItemDescriptionPrompt extends StringPrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
 		ItemStack item = (ItemStack) context.getSessionData("item");
-		return MessageFormat.format(CitiTrader.getResourceBundle().getString("conversation.additem.setdescription"), item.getType().name());
+		return MessageFormat.format(CitiTrader.getResourceBundle().getString("conversation.additem.setdescription"), item.getType().name(), CitiTrader.getResourceBundle().getString("conversation.additem.none"));
 	}
 }

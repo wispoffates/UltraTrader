@@ -5,6 +5,10 @@ player:
       exit: You have left Shop Management mode.
       error: To change your Management status pass "true" or "false".
 general:
+  accept: 'Yes'
+  decline: 'No'
+  price: Price
+  description: Description
   name: Name
   bank: Bank
   wallet:
@@ -20,10 +24,10 @@ permission:
 inventory:
   admin:
     display: Shop Admin
-    lore: Click to Admin
-  price:
-    display: Set Price
-    lore: Click to set Price
+    lore: Click to Admin Shop
+  itemadmin:
+    display: Item Admin
+    lore: Click to set Item Details
   back:
     display: Back
     lore: Click to go Back
@@ -32,12 +36,6 @@ inventory:
     lore:
       full: Click to Move all to Inventory
       empty: Nothing to move to Inventory
-  deleteitem:
-    display: Delete Item
-    lore:
-      sell:
-        full: Remove all Items before deleting.
-        empty: Remove this item from Sell List.
 price: Price
 instock: In Stock
 shops:
@@ -63,6 +61,25 @@ conversation:
     setbank: Setting bank to
     setname:
       nametolong: Shop names can only be 32 characters or shorter.
+  itemadmin:
+    begin: Entering Item Administration
+    delete:
+      full: There are still some of these Items in the Inventory!
+      warn: If you continue, these items will be deleted!
+      confirm: Are you sure you want to delete this item?
+      deleted: Item Deleted.
+      cancelled: Operation Cancelled.
+    prefix: ITEM ADMIN
+    setprice: What would you like to charge for {0}?
+    setdescription: Give a short description of {0} (type "{1}" for no description).
+    menu:
+      options:
+        price: price
+        description: description
+        delete: delete
+        empty: empty
+        exit: exit
+    none: none
   setsellprice:
     prefix: SET SELL PRICE
     setprice: What would you like to charge for {0}?
@@ -70,7 +87,7 @@ conversation:
     begin: Generic text to begin a conversation.
     prefix: ADD SHOP ITEM
     setprice: What would you like to charge for new item [{0}]?
-    setdescription: Give a short description of {0} (type "none" for no description).
+    setdescription: Give a short description of {0} (type "{1}" for no description).
     addinventory: Item has been added to inventory.
     added: Item Added.
     none: none

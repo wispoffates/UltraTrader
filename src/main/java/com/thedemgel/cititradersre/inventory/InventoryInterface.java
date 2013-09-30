@@ -33,16 +33,26 @@ public abstract class InventoryInterface {
 	}
 	
 	public void removeInventory(ItemStack item, Integer amount) {
-		Integer currentInvAmount = getInventory().get(item);
-		getInventory().put(item, currentInvAmount - amount);
+		// Remove all Inventory
+		if (amount == -1) {
+			if (getInventory().containsKey(item)) {
+				getInventory().remove(item);
+			}
+		} else {
+			Integer currentInvAmount = getInventory().get(item);
+			getInventory().put(item, currentInvAmount - amount);
+		}
 	}
 	
 	public Integer getInventoryAmount(ItemStack item) {
-		return getInventory().get(item);
+		if (getInventory().containsKey(item)) {
+			return getInventory().get(item);
+		}
+		return 0;
 	}
 	
-	public void getInventoryAmount(ItemPrice item) {
-		
+	public Integer getInventoryAmount(ItemPrice item) {
+		return getInventoryAmount(item.getItemStack());
 	}
 
 	public ConcurrentMap<ItemStack, Integer> getInventory() {

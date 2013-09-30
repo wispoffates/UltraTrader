@@ -111,7 +111,13 @@ public class ShopInventoryView extends InventoryView {
 			return;
 		}
 
-		Integer invCount = shop.getInventory().get(invItem.getItemStack());
+		int invCount = 0;
+		if (shop.getInventory().containsKey(invItem.getItemStack())) {
+			invCount = shop.getInventory().get(invItem.getItemStack());
+		} else {
+			buildView();
+			return;
+		}
 
 		if (invCount < 1 && !shop.getOwner().equals(player.getName())) {
 			buildView();
@@ -140,29 +146,15 @@ public class ShopInventoryView extends InventoryView {
 		this.setItem(45, arrow);
 
 		if (shop.getOwner().equals(player.getName())) {
-			ItemStack setPrice = new ItemStack(Material.GOLD_INGOT);
+			ItemStack setPrice = new ItemStack(Material.BOOK_AND_QUILL);
 			ItemMeta setPriceMeta = setPrice.getItemMeta();
 			List<String> setPriceText = new ArrayList<>();
-			setPriceText.add(rb.getString("inventory.price.lore"));
+			setPriceText.add(rb.getString("inventory.itemadmin.lore"));
 			setPriceText.add(ChatColor.DARK_GRAY + id);
 			setPriceMeta.setLore(setPriceText);
-			setPriceMeta.setDisplayName(rb.getString("inventory.price.display"));
+			setPriceMeta.setDisplayName(rb.getString("inventory.itemadmin.display"));
 			setPrice.setItemMeta(setPriceMeta);
 			this.setItem(53, setPrice);
-			
-			ItemStack setDelete = new ItemStack(Material.TNT);
-			ItemMeta setDeleteMeta = setDelete.getItemMeta();
-			List<String> setDeleteText = new ArrayList<>();
-			if (invCount > 0) {
-				setDeleteText.add(rb.getString("inventory.deleteitem.lore.sell.full"));
-			} else {
-				setDeleteText.add(rb.getString("inventory.deleteitem.lore.sell.empty"));
-			}
-			setDeleteText.add(ChatColor.DARK_GRAY + id);
-			setDeleteMeta.setLore(setDeleteText);
-			setDeleteMeta.setDisplayName(rb.getString("inventory.deleteitem.display"));
-			setDelete.setItemMeta(setDeleteMeta);
-			this.setItem(51, setDelete);
 			
 			ItemStack removeStock;
 			if (invCount > 0) {

@@ -6,8 +6,8 @@ import com.thedemgel.cititradersre.conversation.additem.AddItemBeginPrompt;
 import com.thedemgel.cititradersre.conversation.additem.AddItemConversationPrefix;
 import com.thedemgel.cititradersre.conversation.admin.AdminBeginPrompt;
 import com.thedemgel.cititradersre.conversation.admin.AdminConversationPrefix;
-import com.thedemgel.cititradersre.conversation.setsellprice.SetPriceConversationPrefix;
-import com.thedemgel.cititradersre.conversation.setsellprice.SetPricePrompt;
+import com.thedemgel.cititradersre.conversation.itemadmin.AdminItemBeginPrompt;
+import com.thedemgel.cititradersre.conversation.itemadmin.AdminItemConversationPrefix;
 import org.bukkit.conversations.ConversationFactory;
 
 
@@ -20,8 +20,10 @@ public class ConversationHandler {
 	public ConversationHandler(CitiTrader instance) {
 		setSellPrice = new ConversationFactory(instance)
 			.withModality(true)
-			.withPrefix(new SetPriceConversationPrefix())
-			.withFirstPrompt(new SetPricePrompt())
+			//.withPrefix(new SetPriceConversationPrefix())
+			.withPrefix(new AdminItemConversationPrefix())
+			//.withFirstPrompt(new SetPricePrompt())
+			.withFirstPrompt(new AdminItemBeginPrompt())
 			.withEscapeSequence("/quit")
 			.withTimeout(ConversationHandler.CONVERSATION_TIMEOUT)
 			.addConversationAbandonedListener(new AbandonConvo())
