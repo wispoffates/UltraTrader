@@ -25,6 +25,10 @@ public class AddItemBeginPrompt extends MessagePrompt {
 			return new AddInventoryPrompt();
 		}
 		
+		if (view.getShop().getInventory().size() >= 36) {
+			return new AddItemShopFullPrompt();
+		}
+		
 		view.setKeepAlive(true);
 		Bukkit.getScheduler().scheduleSyncDelayedTask(CitiTrader.getInstance(), new Runnable() {
 			@Override

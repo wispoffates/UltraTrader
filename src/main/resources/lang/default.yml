@@ -85,12 +85,13 @@ conversation:
     setprice: What would you like to charge for {0}?
   additem:
     begin: Generic text to begin a conversation.
-    prefix: ADD SHOP ITEM
+    prefix: ADD ITEM
     setprice: What would you like to charge for new item [{0}]?
     setdescription: Give a short description of {0} (type "{1}" for no description).
     addinventory: Item has been added to inventory.
     added: Item Added.
     none: none
+    shopfull: Shop currently is full.
   error:
     notadouble: Value needs to be a number value (2, 12.12)
 transaction:
