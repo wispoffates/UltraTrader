@@ -61,6 +61,9 @@ conversation:
     setbank: Setting bank to
     setname:
       nametolong: Shop names can only be 32 characters or shorter.
+  createshop:
+    begin: Entering Createshop Conversation
+    prefix: CREATE SHOP
   itemadmin:
     begin: Entering Item Administration
     delete:

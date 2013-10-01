@@ -5,8 +5,10 @@ import com.thedemgel.cititradersre.util.Permissions;
 import com.thedemgel.cititradersre.util.ShopInventoryView;
 import com.thedemgel.cititradersre.util.Status;
 import java.util.List;
+import java.util.logging.Level;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
+import net.citizensnpcs.api.trait.trait.Owner;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.conversations.Conversable;
@@ -170,8 +172,15 @@ public class ShopListener implements Listener {
 				Integer shopid = trait.getShopId();
 
 				if (shopid == -1) {
-					player.sendMessage(CitiTrader.getResourceBundle().getString("general.noopen.unassigned"));
-					return;
+					if (npc.getTrait(Owner.class).isOwnedBy(player)) {
+						Conversation convo = CitiTrader.getConversationHandler().getCreateShop().buildConversation(player);
+						convo.getContext().setSessionData("npc", npc);
+						convo.begin();
+						return;
+					} else {
+						player.sendMessage(CitiTrader.getResourceBundle().getString("general.noopen.unassigned"));
+						return;
+					}
 				}
 
 				InventoryHandler handler = CitiTrader.getStoreHandler().getInventoryHandler();

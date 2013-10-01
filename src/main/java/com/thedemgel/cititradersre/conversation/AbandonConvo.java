@@ -13,25 +13,28 @@ public class AbandonConvo implements ConversationAbandonedListener {
 	public void conversationAbandoned(ConversationAbandonedEvent abandonedEvent) {
 		if (abandonedEvent.gracefulExit()) {
 			final Player player = (Player) abandonedEvent.getContext().getForWhom();
-			ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
-			view.getShop().save();
-			if (view.isKeepAlive()) {
-				view.setKeepAlive(false);
+			if (CitiTrader.getStoreHandler().getInventoryHandler().hasInventoryView(player)) {
+				ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
+				view.getShop().save();
+				if (view.isKeepAlive()) {
+					view.setKeepAlive(false);
 
-				Bukkit.getScheduler().scheduleSyncDelayedTask(CitiTrader.getInstance(), new Runnable() {
-					@Override
-					public void run() {
-						CitiTrader.getStoreHandler().getInventoryHandler().openInventory(player);
-					}
-				}, 3);
+					Bukkit.getScheduler().scheduleSyncDelayedTask(CitiTrader.getInstance(), new Runnable() {
+						@Override
+						public void run() {
+							CitiTrader.getStoreHandler().getInventoryHandler().openInventory(player);
+						}
+					}, 3);
+				}
 			}
 		} else {
 			final Player player = (Player) abandonedEvent.getContext().getForWhom();
-			ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
+			if (CitiTrader.getStoreHandler().getInventoryHandler().hasInventoryView(player)) {
+				ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
 
-			view.setKeepAlive(false);
-			CitiTrader.getStoreHandler().getInventoryHandler().removeInventoryView(player);
-
+				view.setKeepAlive(false);
+				CitiTrader.getStoreHandler().getInventoryHandler().removeInventoryView(player);
+			}
 			abandonedEvent.getContext().getForWhom().sendRawMessage(CitiTrader.getResourceBundle().getString("conversation.abandon"));
 		}
 	}

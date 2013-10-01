@@ -6,6 +6,8 @@ import com.thedemgel.cititradersre.conversation.additem.AddItemBeginPrompt;
 import com.thedemgel.cititradersre.conversation.additem.AddItemConversationPrefix;
 import com.thedemgel.cititradersre.conversation.admin.AdminBeginPrompt;
 import com.thedemgel.cititradersre.conversation.admin.AdminConversationPrefix;
+import com.thedemgel.cititradersre.conversation.createshop.CreateShopBeginPrompt;
+import com.thedemgel.cititradersre.conversation.createshop.CreateShopConversationPrefix;
 import com.thedemgel.cititradersre.conversation.itemadmin.AdminItemBeginPrompt;
 import com.thedemgel.cititradersre.conversation.itemadmin.AdminItemConversationPrefix;
 import org.bukkit.conversations.ConversationFactory;
@@ -16,13 +18,12 @@ public class ConversationHandler {
 	private ConversationFactory setSellPrice;
 	private ConversationFactory addSellItem;
 	private ConversationFactory adminConversation;
+	private ConversationFactory createShop;
 	
 	public ConversationHandler(CitiTrader instance) {
 		setSellPrice = new ConversationFactory(instance)
 			.withModality(true)
-			//.withPrefix(new SetPriceConversationPrefix())
 			.withPrefix(new AdminItemConversationPrefix())
-			//.withFirstPrompt(new SetPricePrompt())
 			.withFirstPrompt(new AdminItemBeginPrompt())
 			.withEscapeSequence("/quit")
 			.withTimeout(ConversationHandler.CONVERSATION_TIMEOUT)
@@ -46,6 +47,15 @@ public class ConversationHandler {
 			.withTimeout(ConversationHandler.CONVERSATION_TIMEOUT)
 			.addConversationAbandonedListener(new AbandonConvo())
 			.thatExcludesNonPlayersWithMessage("No Console Please");
+		
+		createShop = new ConversationFactory(instance)
+			.withModality(true)
+			.withPrefix(new CreateShopConversationPrefix())
+			.withFirstPrompt(new CreateShopBeginPrompt())
+			.withEscapeSequence("/quit")
+			.withTimeout(ConversationHandler.CONVERSATION_TIMEOUT)
+			.addConversationAbandonedListener(new AbandonConvo())
+			.thatExcludesNonPlayersWithMessage("No Console Please");
 	}
 	
 	public ConversationFactory getSetSellPrice() {
@@ -58,5 +68,9 @@ public class ConversationHandler {
 	
 	public ConversationFactory getAdminConversation() {
 		return adminConversation;
+	}
+	
+	public ConversationFactory getCreateShop() {
+		return createShop;
 	}
 }
