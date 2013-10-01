@@ -11,11 +11,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class StoreConfig {
 
-	private final String fileName;
 	private final JavaPlugin plugin;
 	private File configFile;
 	private FileConfiguration fileConfiguration;
-
+	
+	public StoreConfig(JavaPlugin plugin, File file) {
+		this.plugin = plugin;
+		
+		this.configFile = file;
+	}
+	
 	public StoreConfig(JavaPlugin plugin, String fileName) {
 		if (plugin == null) {
 			throw new IllegalArgumentException("plugin cannot be null");
@@ -24,7 +29,6 @@ public class StoreConfig {
 			throw new IllegalArgumentException("plugin must be initiaized");
 		}
 		this.plugin = plugin;
-		this.fileName = fileName;
 		File dataFolder = plugin.getDataFolder();
 		if (dataFolder == null) {
 			throw new IllegalStateException();
@@ -34,13 +38,6 @@ public class StoreConfig {
 
 	public void reloadConfig() {
 		fileConfiguration = YamlConfiguration.loadConfiguration(configFile);
-
-		// Look for defaults in the jar
-		InputStream defConfigStream = plugin.getResource(fileName);
-		if (defConfigStream != null) {
-			YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
-			fileConfiguration.setDefaults(defConfig);
-		}
 	}
 
 	public FileConfiguration getConfig() {
@@ -59,11 +56,4 @@ public class StoreConfig {
 			}
 		}
 	}
-
-	public void saveDefaultConfig() {
-		if (!configFile.exists()) {
-			this.plugin.saveResource(fileName, false);
-		}
-	}
-
 }

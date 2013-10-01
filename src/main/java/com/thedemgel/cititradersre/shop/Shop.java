@@ -32,14 +32,15 @@ public class Shop {
 	private ConcurrentMap<String, ItemPrice> buyprices = new ConcurrentHashMap<>();
 	private ConcurrentMap<String, ItemPrice> sellprices = new ConcurrentHashMap<>();
 	private ConcurrentMap<ItemStack, Integer> inventory = new ConcurrentHashMap<>();
-	private ConfigurationSection config;
+	//private FileConfiguration config;
 	private StoreConfig shopConfig;
 	private Wallet wallet;
 	private InventoryInterface inv;
 
-	public Shop(ConfigurationSection section, CitiTrader instance) {
-		config = section;
-		shopConfig = new StoreConfig(instance, "/stores/" + config.getName() + ".yml");
+	public Shop(StoreConfig shopconfig) {
+		//config = shopconfig;
+		//shopConfig = new StoreConfig(instance, "/stores/" + config.getName() + ".yml");
+		shopConfig = shopconfig;
 		inv = new ShopInventoryInterface(this);
 
 		initWallet();
@@ -251,7 +252,7 @@ public class Shop {
 	}
 
 	public String getOwner() {
-		return config.getString("owner", "");
+		return shopConfig.getConfig().getString("info.owner", "");
 	}
 
 	public void setOwner(Player player) {
@@ -259,7 +260,7 @@ public class Shop {
 	}
 
 	public void setOwner(String value) {
-		config.set("owner", value);
+		shopConfig.getConfig().set("info.owner", value);
 	}
 
 	public boolean isOwner(Player player) {
@@ -270,22 +271,26 @@ public class Shop {
 	}
 
 	public void setType(ShopType value) {
-		config.set("type", value);
+		shopConfig.getConfig().set("info.type", value);
 	}
 
 	public ShopType getType() {
-		return ShopType.valueOf(config.getString("type", "SERVER"));
+		return ShopType.valueOf(shopConfig.getConfig().getString("info.type", "SERVER"));
 	}
 
 	public String getName() {
-		return config.getString("name");
+		return shopConfig.getConfig().getString("info.name");
 	}
 
 	public void setName(String value) {
-		config.set("name", value);
+		shopConfig.getConfig().set("info.name", value);
 	}
 
 	public Integer getId() {
-		return Integer.valueOf(config.getName());
+		return Integer.valueOf(shopConfig.getConfig().getInt("info.id"));
+	}
+	
+	public void setId(int id) {
+		shopConfig.getConfig().set("info.id", id);
 	}
 }

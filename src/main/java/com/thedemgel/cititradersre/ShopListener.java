@@ -77,10 +77,12 @@ public class ShopListener implements Listener {
 		}
 
 		if (view.getStatus().equals(Status.MAIN_SCREEN)) {
-			if (event.getRawSlot() == 53) {
+			if (event.getRawSlot() == 53 && view.getShop().getOwner().equals(player.getName())) {
 				Conversation convo = CitiTrader.getConversationHandler().getAdminConversation().buildConversation(player);
 				view.convo = convo;
 				convo.begin();
+				return;
+			} else if (event.getRawSlot() == 53 && !view.getShop().getOwner().equals(player.getName())) {
 				return;
 			}
 
@@ -106,14 +108,23 @@ public class ShopListener implements Listener {
 				return;
 			}
 
-			if (event.getRawSlot() == 53) {
+			if (event.getRawSlot() == 53 && view.getShop().getOwner().equals(player.getName())) {
 				Conversation convo = CitiTrader.getConversationHandler().getSetSellPrice().buildConversation(player);
 				convo.getContext().setSessionData("item", event.getCurrentItem());
 				view.convo = convo;
 				convo.begin();
 				return;
+			} else if (event.getRawSlot() == 53 && !view.getShop().getOwner().equals(player.getName())) {
+				return;
 			}
 
+			if (event.getRawSlot() == 50 && view.getShop().getOwner().equals(player.getName())) {
+				// Put all items into inventory
+				return;
+			} else if (event.getRawSlot() == 50 && !view.getShop().getOwner().equals(player.getName())) {
+				return;
+			}
+			
 			if (event.getCurrentItem() != null) {
 				PurchaseHandler.processPurchase(view.getShop(), (Player) event.getWhoClicked(), event.getCurrentItem());
 				plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {

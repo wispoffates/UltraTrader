@@ -19,7 +19,7 @@ public class AdminFinishPrompt extends MessagePrompt {
 		final Player player = (Player) context.getForWhom();
 		ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
 		view.buildView();
-		CitiTrader.getStoreHandler().save();
+		//CitiTrader.getStoreHandler().save();
 
 		return CitiTrader.getResourceBundle().getString("conversation.admin.exit");
 	}
