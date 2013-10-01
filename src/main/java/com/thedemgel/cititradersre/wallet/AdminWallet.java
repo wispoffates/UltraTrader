@@ -2,6 +2,8 @@
 package com.thedemgel.cititradersre.wallet;
 
 import java.math.BigDecimal;
+import net.milkbowl.vault.economy.EconomyResponse;
+import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
 
 
 /**
@@ -14,18 +16,18 @@ import java.math.BigDecimal;
 public class AdminWallet implements Wallet {
 
 	@Override
-	public boolean hasFunds() {
+	public boolean hasFunds(BigDecimal amount) {
 		return true;
 	}
 
 	@Override
-	public boolean removeFunds(BigDecimal amount) {
-		return true;
+	public EconomyResponse removeFunds(BigDecimal amount) {
+		return new EconomyResponse(0, 0, ResponseType.SUCCESS, "");
 	}
 
 	@Override
-	public boolean addFunds(BigDecimal amount) {
-		return true;
+	public EconomyResponse addFunds(BigDecimal amount) {
+		return new EconomyResponse(0, 0, ResponseType.SUCCESS, "");
 	}
 
 }

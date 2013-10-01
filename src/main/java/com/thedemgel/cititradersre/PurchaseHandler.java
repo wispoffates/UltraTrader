@@ -100,7 +100,7 @@ public class PurchaseHandler {
 		BigDecimal traderDeposit = BigDecimal.valueOf(heldFunds.amount).subtract(refund);
 
 		// Deposit into trader when interface is ready.
-		if (shop.getWallet().addFunds(traderDeposit)) {
+		if (shop.getWallet().addFunds(traderDeposit).type.equals(ResponseType.SUCCESS)) {
 			player.sendMessage(MessageFormat.format(CitiTrader.getResourceBundle().getString("transaction.sale.shop.totalpurchase"), traderDeposit));
 		} else {
 			player.sendMessage(CitiTrader.getResourceBundle().getString("transaction.error.fundstoshop"));
