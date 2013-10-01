@@ -2,5 +2,13 @@ com.thedemgel.cititradersre
 com.thedemgel.cititradersre.citizens
 com.thedemgel.cititradersre.command
 com.thedemgel.cititradersre.command.commands
+com.thedemgel.cititradersre.conversation
+com.thedemgel.cititradersre.conversation.additem
+com.thedemgel.cititradersre.conversation.admin
+com.thedemgel.cititradersre.conversation.admin.bank
+com.thedemgel.cititradersre.conversation.createshop
+com.thedemgel.cititradersre.conversation.itemadmin
+com.thedemgel.cititradersre.inventory
 com.thedemgel.cititradersre.shop
 com.thedemgel.cititradersre.util
+com.thedemgel.cititradersre.wallet
