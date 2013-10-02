@@ -28,7 +28,7 @@
 <a class="jxr_linenumber" name="18" href="#18">18</a>  	<strong class="jxr_keyword">protected</strong> Prompt getNextPrompt(ConversationContext context) {
 <a class="jxr_linenumber" name="19" href="#19">19</a>  		<strong class="jxr_keyword">final</strong> Player player = (Player) context.getForWhom();
 <a class="jxr_linenumber" name="20" href="#20">20</a>  		ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
-<a class="jxr_linenumber" name="21" href="#21">21</a>  		
+<a class="jxr_linenumber" name="21" href="#21">21</a>  		context.setSessionData(<span class="jxr_string">"view"</span>, view);
 <a class="jxr_linenumber" name="22" href="#22">22</a>  		ItemStack item = (ItemStack) context.getSessionData(<span class="jxr_string">"item"</span>);
 <a class="jxr_linenumber" name="23" href="#23">23</a>  		ItemPrice itemprice = <strong class="jxr_keyword">new</strong> <a href="../../../../../com/thedemgel/cititradersre/shop/ItemPrice.html">ItemPrice</a>(item);
 <a class="jxr_linenumber" name="24" href="#24">24</a>  		<strong class="jxr_keyword">if</strong> (view.getShop().hasSellItem(itemprice)) {

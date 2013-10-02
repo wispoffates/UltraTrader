@@ -8,10 +8,10 @@
     <language>en-us</language>
     <copyright>&#169;2013 Demgel OpenSource Coding</copyright>
     <item>
-      <title>File: 59,
-             Errors: 451,
-             Warnings: 293,
-             Infos: 0
+      <title>File: 60,
+             Errors: 467,
+             Warnings: 299,
+             Infos: 1
       </title>
             <link>http://demgelopensource.github.io/CitiTraderRE/checkstyle.html</link>
       <description>
@@ -35,7 +35,7 @@
                   0
                 </td>
                 <td>
-                  28
+                  27
                 </td>
                 <td>
                   38
@@ -161,10 +161,10 @@
                   0
                 </td>
                 <td>
-                  5
+                  4
                 </td>
                 <td>
-                  10
+                  12
                 </td>
               </tr>
                           <tr>
@@ -267,6 +267,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.conversation.createshop.CreateShopAssignPrompt.java">com/thedemgel/cititradersre/conversation/createshop/CreateShopAssignPrompt.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  13
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.util.ShopType.java">com/thedemgel/cititradersre/util/ShopType.java</a>
                 </td>
                 <td>
@@ -318,7 +332,7 @@
                   1
                 </td>
                 <td>
-                  8
+                  5
                 </td>
               </tr>
                           <tr>
@@ -333,20 +347,6 @@
                 </td>
                 <td>
                   7
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.WorldListener.java">com/thedemgel/cititradersre/WorldListener.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  2
                 </td>
               </tr>
                           <tr>
@@ -402,7 +402,7 @@
                   1
                 </td>
                 <td>
-                  4
+                  2
                 </td>
               </tr>
                           <tr>
@@ -416,21 +416,21 @@
                   4
                 </td>
                 <td>
-                  8
+                  3
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.ServerListener.java">com/thedemgel/cititradersre/ServerListener.java</a>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.conversation.createshop.CreateShopCreatePrompt.java">com/thedemgel/cititradersre/conversation/createshop/CreateShopCreatePrompt.java</a>
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
-                  2
+                  4
                 </td>
                 <td>
-                  2
+                  3
                 </td>
               </tr>
                           <tr>
@@ -469,7 +469,7 @@
                   0
                 </td>
                 <td>
-                  22
+                  25
                 </td>
                 <td>
                   15
@@ -486,7 +486,7 @@
                   1
                 </td>
                 <td>
-                  3
+                  2
                 </td>
               </tr>
                           <tr>
@@ -528,7 +528,7 @@
                   10
                 </td>
                 <td>
-                  11
+                  16
                 </td>
               </tr>
                           <tr>
@@ -570,7 +570,7 @@
                   1
                 </td>
                 <td>
-                  3
+                  4
                 </td>
               </tr>
                           <tr>
@@ -654,7 +654,7 @@
                   1
                 </td>
                 <td>
-                  10
+                  12
                 </td>
               </tr>
                           <tr>
@@ -785,6 +785,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.conversation.createshop.CreateShopMenuPrompt.java">com/thedemgel/cititradersre/conversation/createshop/CreateShopMenuPrompt.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://demgelopensource.github.io/CitiTraderRE/checkstyle.html#com.thedemgel.cititradersre.conversation.additem.AddItemFinishPrompt.java">com/thedemgel/cititradersre/conversation/additem/AddItemFinishPrompt.java</a>
                 </td>
                 <td>
@@ -794,7 +808,7 @@
                   1
                 </td>
                 <td>
-                  3
+                  5
                 </td>
               </tr>
                           <tr>
@@ -808,7 +822,7 @@
                   1
                 </td>
                 <td>
-                  4
+                  2
                 </td>
               </tr>
                           <tr>
@@ -850,7 +864,7 @@
                   1
                 </td>
                 <td>
-                  10
+                  9
                 </td>
               </tr>
                       </tbody>
