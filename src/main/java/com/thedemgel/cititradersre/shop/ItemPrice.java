@@ -56,11 +56,11 @@ public class ItemPrice {
 		if (getDescription().length() > 0) {
 			genLore.add(getDescription());
 		}
-		genLore.add(ChatColor.GOLD + CitiTrader.getResourceBundle().getString("price") + ": " + CitiTrader.getEconomy().format(price.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())); // Will need to figure for discounts
+		genLore.add(ChatColor.GOLD + CitiTrader.getResourceBundle().getString("general.price") + ": " + CitiTrader.getEconomy().format(price.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())); // Will need to figure for discounts
 		// If there is a discount... add a message here
 		// Id will always be LAST in the list
 		if (displayInventoryAmount) {
-			genLore.add(ChatColor.GREEN + CitiTrader.getResourceBundle().getString("instock") + ": " + stock);
+			genLore.add(ChatColor.GREEN + CitiTrader.getResourceBundle().getString("general.instock") + ": " + stock);
 		}
 		genLore.add(ChatColor.DARK_GRAY + getId());
 		
