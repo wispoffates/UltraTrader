@@ -73,6 +73,11 @@
 					<toc>sidebar</toc>
 					<breadcrumbs>true</breadcrumbs>
 				</usage>
+				<localization>
+					<toc>sidebar</toc>
+					<breadcrumbs>true</breadcrumbs>
+					<highlightJs>false</highlightJs>
+				</localization>
 			</pages>
 		</reflowSkin>
 	</custom>
@@ -101,6 +106,7 @@
 			<!-- <item name="License" href="license.html" /> -->
 		</menu>
 		<menu name="Documentation" inherit="bottom">
+			<item name="Localization" href="localization.html"/>
 			<item name="Commands" href="command.html" />
 			<item name="Permissions" href="permission.html" />
 			<item name="Usage" href="usage.html" />

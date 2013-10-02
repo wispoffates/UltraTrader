@@ -28,15 +28,6 @@ public class ShopCommands extends Commands implements CommandExecutor {
 		plugin = instance;
 	}
 
-	@BukkitCommand(name = "test")
-	public boolean test(CommandSender sender, Command cmd, String label, String[] args) {
-		Player player = (Player) sender;
-		CitiTrader.getStoreHandler().getInventoryHandler().createBuyInventoryView(player, CitiTrader.getStoreHandler().getShop(1));
-		CitiTrader.getStoreHandler().getInventoryHandler().openInventory(player);
-		return true;
-
-	}
-
 	@BukkitCommand(name = "shopitem")
 	public boolean something(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player = (Player) sender;
@@ -47,25 +38,6 @@ public class ShopCommands extends Commands implements CommandExecutor {
 
 		player.getInventory().addItem(item);
 
-		return true;
-	}
-
-	@BukkitCommand(name = "manage")
-	public boolean setManage(CommandSender sender, Command cmd, String label, String[] args) {
-		Player player = (Player) sender;
-
-		switch (args[1]) {
-			case "true":
-				player.setMetadata("manage", new FixedMetadataValue(plugin, true));
-				player.sendMessage(CitiTrader.getResourceBundle().getString("player.status.manage.enter"));
-				break;
-			case "false":
-				player.setMetadata("manage", new FixedMetadataValue(plugin, false));
-				player.sendMessage(CitiTrader.getResourceBundle().getString("player.status.manage.exit"));
-				break;
-			default:
-				player.sendMessage(CitiTrader.getResourceBundle().getString("player.status.manage.error"));
-		}
 		return true;
 	}
 

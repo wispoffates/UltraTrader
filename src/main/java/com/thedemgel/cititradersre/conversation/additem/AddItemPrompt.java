@@ -1,14 +1,11 @@
 package com.thedemgel.cititradersre.conversation.additem;
 
-import com.thedemgel.cititradersre.conversation.setsellprice.*;
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.conversation.NotADoublePrompt;
-import com.thedemgel.cititradersre.shop.ItemPrice;
 import com.thedemgel.cititradersre.util.ShopInventoryView;
 import java.math.BigDecimal;
 import java.text.MessageFormat;
 import org.bukkit.conversations.ConversationContext;
-import org.bukkit.conversations.NumericPrompt;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.conversations.StringPrompt;
 import org.bukkit.entity.Player;

@@ -1,0 +1,59 @@
+#parse( "common" )
+Localization is handled using a custom ResourceBundle known as YamlResourceBundle.
+
+$h2 Setup Localization
+(if you are going to use standard English language (en) then you don't need to do anything)
+
+$h3 Download
+Copy the `default.yml` file at the end of this page.
+
+$h3 Create Directory
+Create a `lang` folder in the CitiTraderRE plugin folder.
+
+Should be like this:
+
+    bukkit server folder/plugins/CitiTraderRE/lang/
+
+$h3 Place
+Place the default.yml language file in this folder YOU WILL NEED TO RENAME IT
+
+$h3 What Language
+At this point it is best to decide what language you will be using. This will
+effect the name of the default language file you are about to create.
+
+$h3 Rename
+Rename the default language file (this is very important) even if you are only
+changing the string for the English language, you will need to change the file name
+as mentioned here.
+
+    en = default_en.yml (english)
+    es = default_es.yml (spanish)
+    ar_IQ = default_ar_IQ.yml (Arabic(Iraq))
+
+It would be good to look at [LocalePlanet](http://www.localeplanet.com/java/ "LocalePlanet") to find your localization code.
+
+If you fail to do this, the game will error, as it will need to find the default
+file in the jar to continue, it will not be able to find this file if `default.yml`
+is found in your lang folder.
+
+$h3 Edit
+Edit the file to you language needs.
+
+$h3 Delete
+Delete (or rename to something other than default.yml) the original yml file you downloaded.
+
+$h3 Set CitiTraderRE Config
+You will need to find the language tag in your CitiTradersRE `config.yml` file. It is located
+in the base CitiTraderRE plugin directory. Inside you should look for this tag:
+
+    language: en
+
+en is the default language. Allowing you to in fact make a `default_en.yml` language file without
+any other issues. If you chose a different locale, such as Arabic(Iraq), you would change this
+value to `ar_IQ` (for Arabic(Iraq)).
+
+$h2 Default Yaml Language File
+
+#set( $snippetFile = "/src/main/resources/lang/default.yml" )
+#set( $snippetName = "" )
+#parse( "snippet" )
