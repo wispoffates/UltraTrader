@@ -1,1 +1,3 @@
+# Select the language you wish to use, if selected language is not supported
+# than it will default to english (the default being en)
 language: en

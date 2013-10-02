@@ -1,7 +1,7 @@
 package com.thedemgel.cititradersre.conversation;
 
 import com.thedemgel.cititradersre.CitiTrader;
-import com.thedemgel.cititradersre.util.ShopInventoryView;
+import com.thedemgel.cititradersre.shop.ShopInventoryView;
 import org.bukkit.Bukkit;
 import org.bukkit.conversations.ConversationAbandonedEvent;
 import org.bukkit.conversations.ConversationAbandonedListener;
@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 public class AbandonConvo implements ConversationAbandonedListener {
 
 	@Override
-	public void conversationAbandoned(ConversationAbandonedEvent abandonedEvent) {
+	public final void conversationAbandoned(ConversationAbandonedEvent abandonedEvent) {
 		if (abandonedEvent.gracefulExit()) {
 			final Player player = (Player) abandonedEvent.getContext().getForWhom();
 			if (CitiTrader.getStoreHandler().getInventoryHandler().hasInventoryView(player)) {
@@ -24,7 +24,7 @@ public class AbandonConvo implements ConversationAbandonedListener {
 						public void run() {
 							CitiTrader.getStoreHandler().getInventoryHandler().openInventory(player);
 						}
-					}, 3);
+					}, CitiTrader.BUKKIT_SCHEDULER_DELAY);
 				}
 			}
 		} else {

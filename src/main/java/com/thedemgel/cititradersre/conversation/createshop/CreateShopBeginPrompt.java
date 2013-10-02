@@ -5,7 +5,7 @@ import com.thedemgel.cititradersre.conversation.additem.*;
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.citizens.TraderTrait;
 import com.thedemgel.cititradersre.shop.ItemPrice;
-import com.thedemgel.cititradersre.util.ShopInventoryView;
+import com.thedemgel.cititradersre.shop.ShopInventoryView;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.Bukkit;
 import org.bukkit.conversations.ConversationContext;

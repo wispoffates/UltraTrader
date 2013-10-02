@@ -1,10 +1,7 @@
-
 package com.thedemgel.cititradersre.conversation.createshop;
 
-import com.thedemgel.cititradersre.conversation.admin.*;
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.conversation.FixedIgnoreCaseSetPrompt;
-import com.thedemgel.cititradersre.util.ShopInventoryView;
 import java.util.ResourceBundle;
 import org.bukkit.ChatColor;
 import org.bukkit.conversations.ConversationContext;
@@ -12,11 +9,11 @@ import org.bukkit.conversations.ConversationPrefix;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.entity.Player;
 
-
 public class CreateShopMenuPrompt extends FixedIgnoreCaseSetPrompt {
+
 	private ResourceBundle rb;
 	private ConversationPrefix prefix;
-	
+
 	public CreateShopMenuPrompt() {
 		rb = CitiTrader.getResourceBundle();
 		prefix = new CreateShopConversationPrefix();
@@ -37,7 +34,6 @@ public class CreateShopMenuPrompt extends FixedIgnoreCaseSetPrompt {
 		p.sendRawMessage(prefix.getPrefix(context) + rb.getString("conversation.createshop.menu.text.begin"));
 		p.sendRawMessage(prefix.getPrefix(context) + rb.getString("conversation.createshop.menu.text.create"));
 		p.sendRawMessage(prefix.getPrefix(context) + rb.getString("conversation.createshop.menu.text.assign"));
-		return  rb.getString("conversation.options") + ": " + this.formatFixedSet();
+		return rb.getString("conversation.options") + ": " + this.formatFixedSet();
 	}
-
 }

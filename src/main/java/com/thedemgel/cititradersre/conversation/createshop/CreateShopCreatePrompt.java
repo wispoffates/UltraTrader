@@ -2,6 +2,7 @@ package com.thedemgel.cititradersre.conversation.createshop;
 
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.citizens.TraderTrait;
+import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.shop.Shop;
 import java.util.ResourceBundle;
 import net.citizensnpcs.api.npc.NPC;
@@ -30,7 +31,7 @@ public class CreateShopCreatePrompt extends MessagePrompt {
 
 		if (shop != null) {
 			// TODO: check for blocks and items (or change this to NPC conversation only)
-			NPC npc = (NPC) context.getSessionData("npc");
+			NPC npc = (NPC) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_NPC);
 			npc.getTrait(TraderTrait.class).setShopId(shop.getId());
 			player.sendRawMessage(prefix.getPrefix(context) + ChatColor.GREEN + rb.getString("conversation.createshop.create.created"));
 			return Prompt.END_OF_CONVERSATION;

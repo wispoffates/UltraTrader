@@ -1,8 +1,9 @@
 package com.thedemgel.cititradersre.conversation.admin;
 
 import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.conversation.FixedIgnoreCaseSetPrompt;
-import com.thedemgel.cititradersre.util.ShopInventoryView;
+import com.thedemgel.cititradersre.shop.ShopInventoryView;
 import java.util.ResourceBundle;
 import org.bukkit.ChatColor;
 import org.bukkit.conversations.ConversationContext;
@@ -20,7 +21,7 @@ public class AdminMenuPrompt extends FixedIgnoreCaseSetPrompt {
 		prefix = new AdminConversationPrefix();
 		addOption(rb.getString("conversation.admin.menu.options.storename"), new AdminSetNamePrompt());
 		addOption(rb.getString("conversation.admin.menu.options.bank"), new AdminBankMenuPrompt());
-		addOption(rb.getString("conversation.admin.menu.options.exit"), new AdminFinishPrompt());
+		addOption(rb.getString("general.exit"), new AdminFinishPrompt());
 	}
 
 	@Override
@@ -30,7 +31,7 @@ public class AdminMenuPrompt extends FixedIgnoreCaseSetPrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		ShopInventoryView view = (ShopInventoryView) context.getSessionData("view");
+		ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
 		Player p = (Player) context.getForWhom();
 		p.sendRawMessage(prefix.getPrefix(context) + "------<[ " + ChatColor.BLUE + "ADMIN" + ChatColor.YELLOW + " ]>------");
 		p.sendRawMessage(prefix.getPrefix(context) + rb.getString("general.name") + ": " + ChatColor.WHITE + view.getShop().getName());

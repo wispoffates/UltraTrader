@@ -5,23 +5,21 @@ import com.thedemgel.cititradersre.command.commands.ShopCommands;
 import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.shop.ShopHandler;
 import com.thedemgel.yamlresourcebundle.YamlResourceBundle;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.trait.TraitInfo;
 import net.milkbowl.vault.economy.Economy;
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class CitiTrader extends JavaPlugin {
+
 	public static final String STORE_DIR = "stores";
 	public static final int STORE_ID_RAND_BASE = 10;
 	public static final int STORE_ID_RAND_INCREMENT = 50;
+	public static final long BUKKIT_SCHEDULER_DELAY = 2;
 
 	public static Economy getEconomy() {
 		return economy;
@@ -34,12 +32,11 @@ public class CitiTrader extends JavaPlugin {
 	public static void setConversationHandler(ConversationHandler aConversationHandler) {
 		conversationHandler = aConversationHandler;
 	}
-	
+
 	public static CitiTrader getInstance() {
 		return plugin;
 	}
 
-	private StoreConfig shopsConfig;
 	private static ShopHandler shopHandler;
 	private boolean citizens;
 	private boolean vault;
@@ -49,7 +46,7 @@ public class CitiTrader extends JavaPlugin {
 	private static Economy economy;
 
 	@Override
-	public void onEnable() {
+	public final void onEnable() {
 		plugin = this;
 		// Assign ResourceBundle (using YAMLResourceBundle)
 		Locale locale = new Locale(getConfig().getString("language", "en"));
@@ -58,7 +55,6 @@ public class CitiTrader extends JavaPlugin {
 		checkCitizens();
 		checkVault();
 
-		shopsConfig = new StoreConfig(this, "shops.yml");
 		shopHandler = new ShopHandler(this);
 		conversationHandler = new ConversationHandler(this);
 
@@ -70,35 +66,16 @@ public class CitiTrader extends JavaPlugin {
 	}
 
 	@Override
-	public void onDisable() {
-		shopsConfig.saveConfig();
-		rb = null;
+	public final void onDisable() {
 		this.getLogger().log(Level.INFO, "CitiTraders Disabled...");
 	}
 
 	public static ResourceBundle getResourceBundle() {
 		return rb;
 	}
-	
-	public StoreConfig getStoreConfig() {
-		return shopsConfig;
-	}
 
 	public static ShopHandler getStoreHandler() {
 		return shopHandler;
-	}
-	/// TESTING
-	private List<ItemStack> items = new ArrayList<>();
-
-	public List<ItemStack> test() {
-		for (int i = 0; i < 10; i++) {
-			ItemStack item = new ItemStack(Material.WOOD, 25, (short) ((int) i / 3));
-			items.add(item);
-		}
-
-		shopsConfig.getConfig().set("items", items);
-		shopsConfig.saveConfig();
-		return items;
 	}
 
 	private void checkCitizens() {
@@ -115,11 +92,11 @@ public class CitiTrader extends JavaPlugin {
 		}
 	}
 
-	public boolean isCitizens() {
+	public final boolean isCitizens() {
 		return citizens;
 	}
 
-	public void checkVault() {
+	private void checkVault() {
 		if (getServer().getPluginManager().getPlugin("Vault") == null || getServer().getPluginManager().getPlugin("Vault").isEnabled() == false) {
 			getLogger().log(Level.WARNING, "Vault not found or not enabled");
 			vault = false;
@@ -135,7 +112,7 @@ public class CitiTrader extends JavaPlugin {
 		}
 	}
 
-	public boolean isVault() {
+	public final boolean isVault() {
 		return vault;
 	}
 }

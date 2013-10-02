@@ -13,14 +13,13 @@ import org.bukkit.conversations.Prompt;
 public abstract class FixedIgnoreCaseSetPrompt extends FixedSetPrompt {
 
 	protected Map<String, Prompt> prompts = new HashMap<>();
-	;
 	protected String fixedInput = "";
 
 	public FixedIgnoreCaseSetPrompt() {
 		fixedSet = new ArrayList<>();
 	}
 
-	public Prompt getValidatedPrompt(Prompt defaultPrompt) {
+	public final Prompt getValidatedPrompt(Prompt defaultPrompt) {
 		if (prompts.containsKey(fixedInput)) {
 			return prompts.get(fixedInput);
 		}
@@ -28,7 +27,7 @@ public abstract class FixedIgnoreCaseSetPrompt extends FixedSetPrompt {
 		return defaultPrompt;
 	}
 
-	protected void addOption(String option, Prompt prompt) {
+	protected final void addOption(String option, Prompt prompt) {
 		fixedSet.add(option);
 		prompts.put(option, prompt);
 	}

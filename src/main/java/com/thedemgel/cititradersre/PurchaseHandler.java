@@ -64,7 +64,7 @@ public class PurchaseHandler {
 		ItemStack baseItem = invItem.getItemStack();
 		//Integer currentInvAmount = shop.getInventory().get(baseItem);
 		Integer currentInvAmount = shop.getInventoryInterface().getInventoryAmount(baseItem);
-		
+
 		if (buyStack.getAmount() > currentInvAmount) {
 			CitiTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), heldFunds.amount);
 			// Some error checks for deposit
@@ -105,7 +105,7 @@ public class PurchaseHandler {
 		} else {
 			player.sendMessage(CitiTrader.getResourceBundle().getString("transaction.error.fundstoshop"));
 		}
-		
+
 		shop.save();
 	}
 
@@ -114,7 +114,7 @@ public class PurchaseHandler {
 	 *
 	 * @param shop The shop the sale is going to
 	 * @param player The player the sale is coming from
-	 * @param buyStack The itemstack of the item being purchased.
+	 * @param item The itemstack of the item being purchased.
 	 */
 	public void processSale(Shop shop, Player player, ItemStack item) {
 	}

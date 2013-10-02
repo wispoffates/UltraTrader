@@ -1,9 +1,9 @@
-package com.thedemgel.cititradersre.util;
+package com.thedemgel.cititradersre.wallet;
 
-import com.thedemgel.cititradersre.wallet.AdminWallet;
-import com.thedemgel.cititradersre.wallet.BankWallet;
-import com.thedemgel.cititradersre.wallet.PlayerWallet;
-import com.thedemgel.cititradersre.wallet.ShopWallet;
+import com.thedemgel.cititradersre.wallet.wallets.AdminWallet;
+import com.thedemgel.cititradersre.wallet.wallets.BankWallet;
+import com.thedemgel.cititradersre.wallet.wallets.PlayerWallet;
+import com.thedemgel.cititradersre.wallet.wallets.ShopWallet;
 import com.thedemgel.cititradersre.wallet.Wallet;
 import org.bukkit.configuration.ConfigurationSection;
 

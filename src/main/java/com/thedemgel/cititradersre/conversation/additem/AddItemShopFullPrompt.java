@@ -1,7 +1,8 @@
 package com.thedemgel.cititradersre.conversation.additem;
 
 import com.thedemgel.cititradersre.CitiTrader;
-import com.thedemgel.cititradersre.util.ShopInventoryView;
+import com.thedemgel.cititradersre.conversation.ConversationHandler;
+import com.thedemgel.cititradersre.shop.ShopInventoryView;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.conversations.ConversationContext;
@@ -17,18 +18,16 @@ public class AddItemShopFullPrompt extends MessagePrompt {
 	}
 
 	@Override
-	public String getPromptText(ConversationContext context) {
-		final int slot = (int) context.getSessionData("slot");
-		final ItemStack item = (ItemStack) context.getSessionData("item");
-		final ShopInventoryView view = (ShopInventoryView) context.getSessionData("view");
+	public final String getPromptText(ConversationContext context) {
+		final int slot = (int) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT);
+		final ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
+		final ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
 
 		Bukkit.getScheduler().scheduleSyncDelayedTask(CitiTrader.getInstance(), new Runnable() {
 			@Override
 			public void run() {
 				view.setItem(slot, new ItemStack(Material.AIR));
 				view.getPlayer().getInventory().addItem(item);
-				//view.buildView();
-				//CitiTrader.getStoreHandler().getInventoryHandler().openInventory(player);
 			}
 		}, 3);
 

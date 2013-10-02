@@ -47,6 +47,7 @@
 					<sections>
 						<!--<carousel />-->
 						<body />
+						<sidebar />
 					</sections>
 				</index>
 				<developer-info>
@@ -69,10 +70,11 @@
 					<toc>sidebar</toc>
 					<breadcrumbs>true</breadcrumbs>
 				</permission>
-				<usage>
+				<configuration>
 					<toc>sidebar</toc>
 					<breadcrumbs>true</breadcrumbs>
-				</usage>
+					<highlightJs>false</highlightJs>
+				</configuration>
 				<localization>
 					<toc>sidebar</toc>
 					<breadcrumbs>true</breadcrumbs>
@@ -109,7 +111,7 @@
 			<item name="Localization" href="localization.html"/>
 			<item name="Commands" href="command.html" />
 			<item name="Permissions" href="permission.html" />
-			<item name="Usage" href="usage.html" />
+			<item name="Configuration" href="configuration.html" />
 		</menu>
 		<menu name="Contribute" inherit="bottom">
 			<item name="Contribute" href="contribute.html" />

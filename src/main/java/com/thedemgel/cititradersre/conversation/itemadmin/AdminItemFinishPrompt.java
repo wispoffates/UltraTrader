@@ -1,7 +1,8 @@
 package com.thedemgel.cititradersre.conversation.itemadmin;
 
 import com.thedemgel.cititradersre.CitiTrader;
-import com.thedemgel.cititradersre.util.ShopInventoryView;
+import com.thedemgel.cititradersre.conversation.ConversationHandler;
+import com.thedemgel.cititradersre.shop.ShopInventoryView;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
 import org.bukkit.conversations.Prompt;
@@ -17,9 +18,8 @@ public class AdminItemFinishPrompt extends MessagePrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		final Player player = (Player) context.getForWhom();
-		ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
-		ItemStack item = (ItemStack) context.getSessionData("item");
+		ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
+		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
 		view.buildItemView(item);
 
 		return CitiTrader.getResourceBundle().getString("conversation.admin.exit");

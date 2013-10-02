@@ -1,5 +1,6 @@
-package com.thedemgel.cititradersre.util;
+package com.thedemgel.cititradersre.shop;
 
+import com.thedemgel.cititradersre.shop.Status;
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.shop.ItemPrice;
 import com.thedemgel.cititradersre.shop.Shop;
@@ -136,7 +137,7 @@ public class ShopInventoryView extends InventoryView {
 			top.addItem(invItem.generateLore(invCount));
 		}
 
-		ItemStack arrow = new ItemStack(Material.ARROW, 1);
+		ItemStack arrow = new ItemStack(Material.ARROW);
 		ItemMeta arrowMeta = arrow.getItemMeta();
 		List<String> arrowText = new ArrayList<>();
 		arrowText.add(rb.getString("inventory.back.lore"));

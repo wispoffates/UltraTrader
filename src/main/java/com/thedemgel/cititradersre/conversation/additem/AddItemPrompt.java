@@ -2,7 +2,7 @@ package com.thedemgel.cititradersre.conversation.additem;
 
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.conversation.NotADoublePrompt;
-import com.thedemgel.cititradersre.util.ShopInventoryView;
+import com.thedemgel.cititradersre.shop.ShopInventoryView;
 import java.math.BigDecimal;
 import java.text.MessageFormat;
 import org.bukkit.conversations.ConversationContext;
@@ -29,9 +29,6 @@ public class AddItemPrompt extends StringPrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		Player player = (Player) context.getForWhom();
-		ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
-		
 		ItemStack item = (ItemStack) context.getSessionData("item");
 		
 		return MessageFormat.format(CitiTrader.getResourceBundle().getString("conversation.additem.setprice"), item.getType().name());

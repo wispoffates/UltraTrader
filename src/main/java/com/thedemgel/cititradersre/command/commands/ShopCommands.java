@@ -22,10 +22,10 @@ import org.bukkit.metadata.LazyMetadataValue;
 
 public class ShopCommands extends Commands implements CommandExecutor {
 
-	private CitiTrader plugin;
+	//private CitiTrader plugin;
 
 	public ShopCommands(CitiTrader instance) {
-		plugin = instance;
+		//plugin = instance;
 	}
 
 	/*@BukkitCommand(name = "shopitem")

@@ -1,6 +1,7 @@
 package com.thedemgel.cititradersre.conversation.itemadmin;
 
 import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.conversation.NotADoublePrompt;
 import com.thedemgel.cititradersre.shop.ItemPrice;
 import java.math.BigDecimal;
@@ -19,18 +20,17 @@ public class AdminItemSetPricePrompt extends StringPrompt {
 		try {
 			price = Double.valueOf(input);
 		} catch (NumberFormatException ex) {
-			context.setSessionData("return", new AdminItemSetPricePrompt());
+			context.setSessionData(ConversationHandler.CONVERSATION_SESSION_RETURN, new AdminItemSetPricePrompt());
 			return new NotADoublePrompt();
 		}
-		ItemPrice item = (ItemPrice) context.getSessionData("itemprice");
+		ItemPrice item = (ItemPrice) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEMPRICE);
 		item.setPrice(BigDecimal.valueOf(price));
-		//context.setSessionData("price", BigDecimal.valueOf(price));
 		return new AdminItemMenuPrompt();
 	}
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		ItemStack item = (ItemStack) context.getSessionData("item");
+		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
 		return MessageFormat.format(CitiTrader.getResourceBundle().getString("conversation.itemadmin.setprice"), item.getType().name());
 	}
 }

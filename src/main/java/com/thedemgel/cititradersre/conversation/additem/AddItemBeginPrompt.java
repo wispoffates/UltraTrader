@@ -2,8 +2,10 @@
 package com.thedemgel.cititradersre.conversation.additem;
 
 import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.InventoryHandler;
+import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.shop.ItemPrice;
-import com.thedemgel.cititradersre.util.ShopInventoryView;
+import com.thedemgel.cititradersre.shop.ShopInventoryView;
 import org.bukkit.Bukkit;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
@@ -18,14 +20,14 @@ public class AddItemBeginPrompt extends MessagePrompt {
 	protected Prompt getNextPrompt(ConversationContext context) {
 		final Player player = (Player) context.getForWhom();
 		ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
-		context.setSessionData("view", view);
-		ItemStack item = (ItemStack) context.getSessionData("item");
+		context.setSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW, view);
+		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
 		ItemPrice itemprice = new ItemPrice(item);
 		if (view.getShop().hasSellItem(itemprice)) {
 			return new AddInventoryPrompt();
 		}
 		
-		if (view.getShop().getInventory().size() >= 36) {
+		if (view.getShop().getInventory().size() >= InventoryHandler.MAX_SELL_BUY_ITEMS) {
 			return new AddItemShopFullPrompt();
 		}
 		
@@ -35,7 +37,7 @@ public class AddItemBeginPrompt extends MessagePrompt {
 			public void run() {
 				player.closeInventory();
 			}
-		}, 3);
+		}, CitiTrader.BUKKIT_SCHEDULER_DELAY);
 		
 		return new AddItemPrompt();
 	}

@@ -1,6 +1,7 @@
 package com.thedemgel.cititradersre.conversation.itemadmin;
 
 import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.shop.ItemPrice;
 import java.text.MessageFormat;
 import org.bukkit.conversations.ConversationContext;
@@ -12,7 +13,7 @@ public class AdminItemDescriptionPrompt extends StringPrompt {
 
 	@Override
 	public Prompt acceptInput(ConversationContext context, String input) {
-		ItemPrice itemprice = (ItemPrice) context.getSessionData("itemprice");
+		ItemPrice itemprice = (ItemPrice) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEMPRICE);
 		if (input.equalsIgnoreCase(CitiTrader.getResourceBundle().getString("conversation.itemadmin.none"))) {
 			itemprice.setDescription("");
 		} else {
@@ -23,7 +24,7 @@ public class AdminItemDescriptionPrompt extends StringPrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		ItemStack item = (ItemStack) context.getSessionData("item");
+		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
 		return MessageFormat.format(CitiTrader.getResourceBundle().getString("conversation.itemadmin.setdescription"), item.getType().name(), CitiTrader.getResourceBundle().getString("conversation.itemadmin.none"));
 	}
 }

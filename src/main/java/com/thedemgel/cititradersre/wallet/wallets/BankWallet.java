@@ -1,7 +1,8 @@
 
-package com.thedemgel.cititradersre.wallet;
+package com.thedemgel.cititradersre.wallet.wallets;
 
 import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.wallet.Wallet;
 import java.math.BigDecimal;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;

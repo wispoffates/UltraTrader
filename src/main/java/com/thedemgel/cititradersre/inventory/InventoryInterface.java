@@ -58,4 +58,8 @@ public abstract class InventoryInterface {
 	public ConcurrentMap<ItemStack, Integer> getInventory() {
 		return shop.getInventory();
 	}
+	
+	public ConfigurationSection getConfig() {
+		return config;
+	}
 }

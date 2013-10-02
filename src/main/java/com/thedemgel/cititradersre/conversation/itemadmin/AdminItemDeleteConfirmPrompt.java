@@ -1,9 +1,10 @@
 package com.thedemgel.cititradersre.conversation.itemadmin;
 
 import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.shop.ItemPrice;
 import com.thedemgel.cititradersre.shop.Shop;
-import com.thedemgel.cititradersre.util.ShopInventoryView;
+import com.thedemgel.cititradersre.shop.ShopInventoryView;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
 import org.bukkit.conversations.Prompt;
@@ -32,9 +33,9 @@ public class AdminItemDeleteConfirmPrompt extends MessagePrompt {
 
 
 		if (delete) {
-			ShopInventoryView view = (ShopInventoryView) context.getSessionData("view");
-			ItemPrice itemprice = (ItemPrice) context.getSessionData("itemprice");
-			ItemStack item = (ItemStack) context.getSessionData("item");
+			ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
+			ItemPrice itemprice = (ItemPrice) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEMPRICE);
+			ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
 			Shop shop = view.getShop();
 			shop.getInventoryInterface().removeInventory(itemprice.getItemStack(), -1);
 			String id = shop.getItemId(item);

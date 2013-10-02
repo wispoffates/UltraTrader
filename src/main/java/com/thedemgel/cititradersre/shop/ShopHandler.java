@@ -6,7 +6,7 @@ import com.google.common.collect.Iterables;
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.InventoryHandler;
 import com.thedemgel.cititradersre.StoreConfig;
-import com.thedemgel.cititradersre.util.WalletType;
+import com.thedemgel.cititradersre.wallet.WalletType;
 import com.thedemgel.cititradersre.util.YamlFilenameFilter;
 import java.io.File;
 import java.io.FilenameFilter;
@@ -21,6 +21,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
 public class ShopHandler {
+	public static final int SHOP_NULL = -1;
 
 	private final CitiTrader plugin;
 	private Map<Integer, Shop> shops = new ConcurrentHashMap<>();

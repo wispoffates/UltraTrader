@@ -1,5 +1,5 @@
 
-package com.thedemgel.cititradersre.util;
+package com.thedemgel.cititradersre.shop;
 
 
 public enum Status {

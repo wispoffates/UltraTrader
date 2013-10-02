@@ -2,9 +2,10 @@
 package com.thedemgel.cititradersre.conversation.admin.bank;
 
 import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.conversation.admin.AdminMenuPrompt;
-import com.thedemgel.cititradersre.util.ShopInventoryView;
-import com.thedemgel.cititradersre.util.WalletType;
+import com.thedemgel.cititradersre.shop.ShopInventoryView;
+import com.thedemgel.cititradersre.wallet.WalletType;
 import org.bukkit.ChatColor;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
@@ -27,8 +28,7 @@ public class AdminBankPrompt extends MessagePrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		final Player player = (Player) context.getForWhom();
-		final ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
+		ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
 		view.getShop().setWalletType(type);
 		return ChatColor.GREEN + CitiTrader.getResourceBundle().getString("conversation.admin.setbank") + ": " + type.name();
 	}

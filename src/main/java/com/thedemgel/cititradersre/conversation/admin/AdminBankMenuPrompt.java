@@ -4,7 +4,7 @@ import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.conversation.FixedIgnoreCaseSetPrompt;
 import com.thedemgel.cititradersre.conversation.admin.bank.AdminBankPrompt;
 import com.thedemgel.cititradersre.util.Permissions;
-import com.thedemgel.cititradersre.util.WalletType;
+import com.thedemgel.cititradersre.wallet.WalletType;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

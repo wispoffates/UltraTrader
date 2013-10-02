@@ -3,27 +3,17 @@ package com.thedemgel.cititradersre.shop;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
-import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.StoreConfig;
 import com.thedemgel.cititradersre.inventory.InventoryInterface;
 import com.thedemgel.cititradersre.inventory.ShopInventoryInterface;
-import com.thedemgel.cititradersre.util.ShopType;
-import com.thedemgel.cititradersre.util.WalletType;
-import com.thedemgel.cititradersre.wallet.AdminWallet;
-import com.thedemgel.cititradersre.wallet.BankWallet;
-import com.thedemgel.cititradersre.wallet.PlayerWallet;
-import com.thedemgel.cititradersre.wallet.ShopWallet;
+import com.thedemgel.cititradersre.wallet.WalletType;
 import com.thedemgel.cititradersre.wallet.Wallet;
 import java.math.BigDecimal;
 import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -245,17 +235,6 @@ public class Shop {
 
 	public boolean isOwner(Player player) {
 		return getOwner().equals(player.getName());
-	}
-
-	public void setType(String value) {
-	}
-
-	public void setType(ShopType value) {
-		shopConfig.getConfig().set("info.type", value);
-	}
-
-	public ShopType getType() {
-		return ShopType.valueOf(shopConfig.getConfig().getString("info.type", "SERVER"));
 	}
 
 	public String getName() {

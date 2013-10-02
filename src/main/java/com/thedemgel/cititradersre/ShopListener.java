@@ -1,17 +1,17 @@
 package com.thedemgel.cititradersre;
 
 import com.thedemgel.cititradersre.citizens.TraderTrait;
+import com.thedemgel.cititradersre.conversation.ConversationHandler;
+import com.thedemgel.cititradersre.shop.ShopHandler;
 import com.thedemgel.cititradersre.util.Permissions;
-import com.thedemgel.cititradersre.util.ShopInventoryView;
-import com.thedemgel.cititradersre.util.Status;
+import com.thedemgel.cititradersre.shop.ShopInventoryView;
+import com.thedemgel.cititradersre.shop.Status;
 import java.util.List;
-import java.util.logging.Level;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.api.trait.trait.Owner;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.conversations.Conversable;
 import org.bukkit.conversations.Conversation;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -22,9 +22,6 @@ import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
-import org.bukkit.event.inventory.InventoryEvent;
-import org.bukkit.event.inventory.InventoryInteractEvent;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -59,7 +56,7 @@ public class ShopListener implements Listener {
 	@EventHandler
 	public void onInventoryClickEvent(final InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
-		
+
 		if (!(event.getView() instanceof ShopInventoryView)) {
 			return;
 		}
@@ -79,12 +76,12 @@ public class ShopListener implements Listener {
 		}
 
 		if (view.getStatus().equals(Status.MAIN_SCREEN)) {
-			if (event.getRawSlot() == 53 && view.getShop().getOwner().equals(player.getName())) {
+			if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && view.getShop().getOwner().equals(player.getName())) {
 				Conversation convo = CitiTrader.getConversationHandler().getAdminConversation().buildConversation(player);
 				view.convo = convo;
 				convo.begin();
 				return;
-			} else if (event.getRawSlot() == 53 && !view.getShop().getOwner().equals(player.getName())) {
+			} else if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && !view.getShop().getOwner().equals(player.getName())) {
 				return;
 			}
 
@@ -99,35 +96,35 @@ public class ShopListener implements Listener {
 				event.setCancelled(false);
 				ItemStack inhand = event.getCursor().clone();
 				Conversation convo = CitiTrader.getConversationHandler().getAddSellItem().buildConversation(player);
-				convo.getContext().setSessionData("item", inhand);
-				convo.getContext().setSessionData("slot", event.getRawSlot());
+				convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, inhand);
+				convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
 				view.convo = convo;
 				convo.begin();
 			}
 		} else if (view.getStatus().equals(Status.SELL_SCREEN)) {
 
-			if (event.getRawSlot() == 45) {
+			if (event.getRawSlot() == InventoryHandler.INVENTORY_BACK_ARROW_SLOT) {
 				view.buildView();
 				return;
 			}
 
-			if (event.getRawSlot() == 53 && view.getShop().getOwner().equals(player.getName())) {
+			if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && view.getShop().getOwner().equals(player.getName())) {
 				Conversation convo = CitiTrader.getConversationHandler().getSetSellPrice().buildConversation(player);
-				convo.getContext().setSessionData("item", event.getCurrentItem());
+				convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, event.getCurrentItem());
 				view.convo = convo;
 				convo.begin();
 				return;
-			} else if (event.getRawSlot() == 53 && !view.getShop().getOwner().equals(player.getName())) {
+			} else if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && !view.getShop().getOwner().equals(player.getName())) {
 				return;
 			}
 
-			if (event.getRawSlot() == 50 && view.getShop().getOwner().equals(player.getName())) {
+			if (event.getRawSlot() == InventoryHandler.INVENTORY_TAKE_ALL_SLOT && view.getShop().getOwner().equals(player.getName())) {
 				// Put all items into inventory
 				return;
-			} else if (event.getRawSlot() == 50 && !view.getShop().getOwner().equals(player.getName())) {
+			} else if (event.getRawSlot() == InventoryHandler.INVENTORY_TAKE_ALL_SLOT && !view.getShop().getOwner().equals(player.getName())) {
 				return;
 			}
-			
+
 			if (event.getCurrentItem() != null) {
 				PurchaseHandler.processPurchase(view.getShop(), (Player) event.getWhoClicked(), event.getCurrentItem());
 				plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
@@ -135,7 +132,7 @@ public class ShopListener implements Listener {
 					public void run() {
 						view.buildItemView(event.getCurrentItem());
 					}
-				}, 2);
+				}, CitiTrader.BUKKIT_SCHEDULER_DELAY);
 			}
 		}
 	}
@@ -172,10 +169,10 @@ public class ShopListener implements Listener {
 
 				Integer shopid = trait.getShopId();
 
-				if (shopid == -1) {
+				if (shopid == ShopHandler.SHOP_NULL) {
 					if (npc.getTrait(Owner.class).isOwnedBy(player)) {
 						Conversation convo = CitiTrader.getConversationHandler().getCreateShop().buildConversation(player);
-						convo.getContext().setSessionData("npc", npc);
+						convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
 						convo.begin();
 						return;
 					} else {
@@ -188,7 +185,7 @@ public class ShopListener implements Listener {
 				// Open Store
 				if (handler.hasInventoryView(player)) {
 					ShopInventoryView view = (ShopInventoryView) handler.getInventoryView(player);
-					if (view.getShop().getId() != shopid) {
+					if (!view.getShop().getId().equals(shopid)) {
 						handler.createBuyInventoryView(player, CitiTrader.getStoreHandler().getShop(shopid));
 					}
 				} else {
@@ -243,6 +240,7 @@ public class ShopListener implements Listener {
 				case "Create Shop":
 					createShop(player, item, event.getClickedBlock());
 					break;
+				default:
 			}
 		}
 	}

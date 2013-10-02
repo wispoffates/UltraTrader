@@ -2,6 +2,7 @@
 package com.thedemgel.cititradersre.conversation.itemadmin;
 
 import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.conversation.FixedIgnoreCaseSetPrompt;
 import com.thedemgel.cititradersre.shop.ItemPrice;
 import java.util.ResourceBundle;
@@ -32,7 +33,7 @@ public class AdminItemMenuPrompt extends FixedIgnoreCaseSetPrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		ItemPrice itemprice = (ItemPrice) context.getSessionData("itemprice");
+		ItemPrice itemprice = (ItemPrice) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEMPRICE);
 		Player p = (Player) context.getForWhom();
 		p.sendRawMessage(prefix.getPrefix(context) + "------<[ " + ChatColor.BLUE + "ITEM ADMIN" + ChatColor.YELLOW + " ]>------");
 		p.sendRawMessage(prefix.getPrefix(context) + rb.getString("general.price") +": " + ChatColor.WHITE + CitiTrader.getEconomy().format(itemprice.getPrice().doubleValue()));

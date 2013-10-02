@@ -1,7 +1,8 @@
 package com.thedemgel.cititradersre.conversation.additem;
 
 import com.thedemgel.cititradersre.CitiTrader;
-import com.thedemgel.cititradersre.util.ShopInventoryView;
+import com.thedemgel.cititradersre.conversation.ConversationHandler;
+import com.thedemgel.cititradersre.shop.ShopInventoryView;
 import java.math.BigDecimal;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
@@ -18,13 +19,11 @@ public class AddItemFinishPrompt extends MessagePrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		//final Player player = (Player) context.getForWhom();
-		//ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
-		ShopInventoryView view = (ShopInventoryView) context.getSessionData("view");
+		ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
 		
-		String description = (String) context.getSessionData("description");
-		ItemStack item = (ItemStack) context.getSessionData("item");
-		BigDecimal price = (BigDecimal) context.getSessionData("price");
+		String description = (String) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_DESCRIPTION);
+		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
+		BigDecimal price = (BigDecimal) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_PRICE);
 
 		view.getShop().addSellItem(item, price, 1, description);
 		view.getShop().getInventoryInterface().addInventory(item);
