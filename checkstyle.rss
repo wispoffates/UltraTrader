@@ -9,8 +9,8 @@
     <copyright>&#169;2013 Demgel OpenSource Coding</copyright>
     <item>
       <title>File: 60,
-             Errors: 467,
-             Warnings: 299,
+             Errors: 470,
+             Warnings: 295,
              Infos: 1
       </title>
             <link>http://demgelopensource.github.io/CitiTraderRE/checkstyle.html</link>
@@ -63,10 +63,10 @@
                   0
                 </td>
                 <td>
-                  7
+                  3
                 </td>
                 <td>
-                  3
+                  6
                 </td>
               </tr>
                           <tr>
