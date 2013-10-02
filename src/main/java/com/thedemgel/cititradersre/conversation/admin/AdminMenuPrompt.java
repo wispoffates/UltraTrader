@@ -1,16 +1,13 @@
 
 package com.thedemgel.cititradersre.conversation.admin;
 
-import com.google.common.base.Strings;
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.conversation.FixedIgnoreCaseSetPrompt;
 import com.thedemgel.cititradersre.util.ShopInventoryView;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import org.bukkit.ChatColor;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.ConversationPrefix;
-import org.bukkit.conversations.FixedSetPrompt;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.entity.Player;
 

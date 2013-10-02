@@ -7,6 +7,7 @@ player:
 general:
   accept: 'Yes'
   decline: 'No'
+  exit: exit
   price: Price
   description: Description
   name: Name
@@ -64,6 +65,14 @@ conversation:
   createshop:
     begin: Entering Createshop Conversation
     prefix: CREATE SHOP
+    menu:
+      options:
+        create: create
+        assign: assign
+      text:
+        begin: Would you like to
+        create: Create a new shop.
+        assign: Assign an existing shop.
   itemadmin:
     begin: Entering Item Administration
     delete:

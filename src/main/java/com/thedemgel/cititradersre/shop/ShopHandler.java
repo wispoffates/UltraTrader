@@ -6,6 +6,7 @@ import com.google.common.collect.Iterables;
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.InventoryHandler;
 import com.thedemgel.cititradersre.StoreConfig;
+import com.thedemgel.cititradersre.util.WalletType;
 import com.thedemgel.cititradersre.util.YamlFilenameFilter;
 import java.io.File;
 import java.io.FilenameFilter;
@@ -13,7 +14,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
+import org.apache.commons.lang.RandomStringUtils;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
@@ -61,6 +64,36 @@ public class ShopHandler {
 		return ownedShops;
 	}
 
-	public void createShop(Player player) {
+	public boolean createShop(Player player) {
+		Random rnd = new Random();
+		int increment = CitiTrader.STORE_ID_RAND_INCREMENT;
+		boolean found = true;
+		int i = 0;
+		int randid = -1;
+		File tempConfig = null;
+		while (found) {
+			int seed = CitiTrader.STORE_ID_RAND_BASE + (i * increment);
+			randid = rnd.nextInt(seed);
+			tempConfig = new File(plugin.getDataFolder() + File.separator + CitiTrader.STORE_DIR + File.separator + randid + ".yml");
+			if (!tempConfig.exists()) {
+				found = false;
+			}
+			i++;
+		}
+		
+		if (tempConfig == null || randid == -1) {
+			return false;
+		}
+		
+		StoreConfig tempShopConfig = new StoreConfig(plugin, tempConfig);
+		Shop tempShop = new Shop(tempShopConfig);
+		tempShop.setId(randid);
+		tempShop.setOwner(player);
+		tempShop.setName("Name not set");
+		tempShop.setWalletType(WalletType.SHOP);
+		tempShop.save();
+		
+		shops.put(tempShop.getId(), tempShop);
+		return true;
 	}
 }

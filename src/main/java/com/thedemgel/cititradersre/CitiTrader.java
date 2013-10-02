@@ -19,6 +19,9 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class CitiTrader extends JavaPlugin {
+	public static final String STORE_DIR = "stores";
+	public static final int STORE_ID_RAND_BASE = 10;
+	public static final int STORE_ID_RAND_INCREMENT = 50;
 
 	public static Economy getEconomy() {
 		return economy;

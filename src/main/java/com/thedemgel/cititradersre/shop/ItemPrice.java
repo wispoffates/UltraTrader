@@ -62,7 +62,7 @@ public class ItemPrice {
 		if (displayInventoryAmount) {
 			genLore.add(ChatColor.GREEN + CitiTrader.getResourceBundle().getString("instock") + ": " + stock);
 		}
-		genLore.add(ChatColor.DARK_GRAY + getRandom());
+		genLore.add(ChatColor.DARK_GRAY + getId());
 		
 		ItemMeta meta = genItem.getItemMeta();
 		meta.setLore(genLore);
@@ -73,13 +73,17 @@ public class ItemPrice {
 		return genItem;
 	}
 	
-	public String getRandomId() {
-		return getRandom();
+	public String getId() {
+		return random;
 	}
 	
 	public String setRandom() {
 		setRandom(RandomStringUtils.random(8, true, true));
-		return getRandom();
+		return random;
+	}
+	
+	public void setRandom(String random) {
+		this.random = random;
 	}
 	
 	public ItemStack getItemStack() {
@@ -104,14 +108,6 @@ public class ItemPrice {
 
 	public void setAmount(Integer amount) {
 		this.amount = amount;
-	}
-
-	public String getRandom() {
-		return random;
-	}
-
-	public void setRandom(String random) {
-		this.random = random;
 	}
 
 	public String getDescription() {

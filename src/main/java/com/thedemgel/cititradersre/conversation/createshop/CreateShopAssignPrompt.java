@@ -15,7 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 
-public class CreateShopBeginPrompt extends MessagePrompt {
+public class CreateShopAssignPrompt extends MessagePrompt {
 
 	@Override
 	protected Prompt getNextPrompt(ConversationContext context) {

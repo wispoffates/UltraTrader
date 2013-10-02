@@ -32,37 +32,17 @@ public class Shop {
 	private ConcurrentMap<String, ItemPrice> buyprices = new ConcurrentHashMap<>();
 	private ConcurrentMap<String, ItemPrice> sellprices = new ConcurrentHashMap<>();
 	private ConcurrentMap<ItemStack, Integer> inventory = new ConcurrentHashMap<>();
-	//private FileConfiguration config;
 	private StoreConfig shopConfig;
 	private Wallet wallet;
 	private InventoryInterface inv;
 
 	public Shop(StoreConfig shopconfig) {
-		//config = shopconfig;
-		//shopConfig = new StoreConfig(instance, "/stores/" + config.getName() + ".yml");
 		shopConfig = shopconfig;
 		inv = new ShopInventoryInterface(this);
 
 		initWallet();
 		loadSellPrice();
 		loadInventory();
-
-		/*if (sellprices.isEmpty()) {
-		 addSellItem(new ItemStack(Material.ANVIL, 1), BigDecimal.valueOf(3), 1, "Some Lore Text");
-		 addSellItem(new ItemStack(Material.BAKED_POTATO, 2), BigDecimal.valueOf(3), 2, "Some Lore Text");
-		 addSellItem(new ItemStack(Material.BED, 10), BigDecimal.valueOf(3), 3, "");
-		 addSellItem(new ItemStack(Material.BED_BLOCK, 4), BigDecimal.valueOf(3), 4, "Some Lore Text");
-		 addSellItem(new ItemStack(Material.BLAZE_POWDER, 8), BigDecimal.valueOf(3), 8, "Sizzling Hot");
-		 addSellItem(new ItemStack(Material.BOAT, 24), BigDecimal.valueOf(3), 12, "Some Lore Text");
-		 addSellItem(new ItemStack(Material.BOOK, 16), BigDecimal.valueOf(3), 16, "");
-		 addSellItem(new ItemStack(Material.BOOK_AND_QUILL, 30), BigDecimal.valueOf(3), 30, "Need to remember something?");
-		 addSellItem(new ItemStack(Material.BURNING_FURNACE, 32), BigDecimal.valueOf(3), 32, "Some Lore Text");
-		 addSellItem(new ItemStack(Material.CARPET, 54), BigDecimal.valueOf(3), 54, "Soft floor covering.");
-		 addSellItem(new ItemStack(Material.BUCKET, 64), BigDecimal.valueOf(3), 64, "Soft floor covering.");
-		 addSellItem(new ItemStack(Material.BONE, 128), BigDecimal.valueOf(3), 128, "Soft floor covering.");
-		 addSellItem(new ItemStack(Material.WOOD, 50, (short) 2), BigDecimal.valueOf(4), 1, "HARD");
-		 addSellItem(new ItemStack(Material.WOOD, 50, (short) 2), BigDecimal.valueOf(4), 1, "HARD");
-		 }*/
 
 		setMetaData();
 		save();
@@ -151,11 +131,11 @@ public class Shop {
 		ConfigurationSection sellconfig = shopConfig.getConfig().createSection("sellprices");
 
 		for (ItemPrice ip : sellprices.values()) {
-			sellconfig.set(ip.getRandom() + ".amount", ip.getAmount());
-			sellconfig.set(ip.getRandom() + ".description", ip.getDescription());
-			sellconfig.set(ip.getRandom() + ".itemStack", ip.getItemStack());
-			sellconfig.set(ip.getRandom() + ".price", ip.getPrice());
-			sellconfig.set(ip.getRandom() + ".random", ip.getRandom());
+			sellconfig.set(ip.getId() + ".amount", ip.getAmount());
+			sellconfig.set(ip.getId() + ".description", ip.getDescription());
+			sellconfig.set(ip.getId() + ".itemStack", ip.getItemStack());
+			sellconfig.set(ip.getId() + ".price", ip.getPrice());
+			sellconfig.set(ip.getId() + ".random", ip.getId());
 		}
 	}
 
@@ -172,7 +152,7 @@ public class Shop {
 			item.setItemStack(itemconfig.getItemStack("itemStack"));
 			item.setPrice(BigDecimal.valueOf(itemconfig.getDouble("price")));
 			item.setRandom(itemconfig.getString("random"));
-			getSellprices().put(item.getRandom(), item);
+			getSellprices().put(item.getId(), item);
 		}
 	}
 

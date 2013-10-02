@@ -56,4 +56,10 @@ public class ShopCommands extends Commands implements CommandExecutor {
 
 		return true;
 	}
+	
+	@BukkitCommand(name = "test")
+	public boolean test(CommandSender sender, Command cmd, String label, String[] args) {
+		CitiTrader.getStoreHandler().createShop((Player) sender);
+		return true;
+	}
 }
