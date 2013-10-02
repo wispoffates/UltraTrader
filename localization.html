@@ -8,7 +8,7 @@
 
 	<head>
 		<meta charset="UTF-8" />
-		<title> | CitiTradersRE</title>
+		<title>Setup Localization | CitiTradersRE</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content="" />
 		<meta http-equiv="content-language" content="en" />
@@ -18,7 +18,6 @@
 		<link href="./css/bootswatch.css" rel="stylesheet" />
 		<link href="./css/reflow-skin.css" rel="stylesheet" />
 		
-		<link href="http://yandex.st/highlightjs/7.3/styles/default.min.css" rel="stylesheet" />
 		
 		<link href="./css/lightbox.css" rel="stylesheet" />
 		
@@ -125,7 +124,7 @@
 			<ul class="breadcrumb">
 				<li><a href="./" title="CitiTradersRE">CitiTradersRE </a></li>
 				<li class="divider">/</li>
-				<li></li>
+				<li>Setup Localization</li>
 			</ul>
 		</div>
 	</header>
@@ -134,29 +133,178 @@
 	<div class="row">
 		<div class="span8">
 			<div class="body-content">
-<p>Localization is handled using a custom ResourceBundle known as YamlResourceBundle.</p>
-<p>Setup:</p>
-<p>(if you are going to use standard English language (en) then you don&#x2019;t need to do anything)</p>
-
-<ul>
-  
-<li>Download the default.yml language file: here</li>
-  
-<li>Create a lang folder in the CitiTraderRE plugin folder.</li>
-  
-<li>place the default.yml language file in this folder YOU WILL NEED TO RENAME IT</li>
-  
-<li>At this point it is best to decide what language you will be using. This will effect the name of the default language file you are about to create.</li>
-  
-<li>Rename the default language file (this is very important) even if you are only changing the string for the English language, you will need to change the file name as mentioned here.</li>
-</ul>
-<p>en = default_en.yml (english) es = default_es.yml (spanish) </p>
-<p>If you fail to do this, the game will error, as it will need to find the default file in the jar to continue, it will not be able to find this file if default.yml is found in your lang folder.</p>
-
-<ul>
-  
-<li>Edit the file to you language need.</li>
-</ul>
+<p>Localization is handled using a custom ResourceBundle known as YamlResourceBundle.</p> 
+<div class="section"> 
+ <div class="page-header">
+  <h2 id="Setup_Localization">Setup Localization</h2>
+ </div> 
+ <p>(if you are going to use standard English language (en) then you don’t need to do anything)</p> 
+ <div class="section"> 
+  <h3 id="Download">Download</h3> 
+  <p>Copy the <tt>default.yml</tt> file at the end of this page.</p> 
+ </div> 
+ <div class="section"> 
+  <h3 id="Create_Directory">Create Directory</h3> 
+  <p>Create a <tt>lang</tt> folder in the CitiTraderRE plugin folder.</p> 
+  <p>Should be like this:</p> 
+  <div class="source"> 
+   <pre>bukkit server folder/plugins/CitiTraderRE/lang/
+</pre> 
+  </div> 
+ </div> 
+ <div class="section"> 
+  <h3 id="Place">Place</h3> 
+  <p>Place the default.yml language file in this folder YOU WILL NEED TO RENAME IT</p> 
+ </div> 
+ <div class="section"> 
+  <h3 id="What_Language">What Language</h3> 
+  <p>At this point it is best to decide what language you will be using. This will effect the name of the default language file you are about to create.</p> 
+ </div> 
+ <div class="section"> 
+  <h3 id="Rename">Rename</h3> 
+  <p>Rename the default language file (this is very important) even if you are only changing the string for the English language, you will need to change the file name as mentioned here.</p> 
+  <div class="source"> 
+   <pre>en = default_en.yml (english)
+es = default_es.yml (spanish)
+ar_IQ = default_ar_IQ.yml (Arabic(Iraq))
+</pre> 
+  </div> 
+  <p>It would be good to look at <a class="externalLink" href="http://www.localeplanet.com/java/" title="LocalePlanet">LocalePlanet</a> to find your localization code.</p> 
+  <p>If you fail to do this, the game will error, as it will need to find the default file in the jar to continue, it will not be able to find this file if default.yml is found in your lang folder.</p> 
+ </div> 
+ <div class="section"> 
+  <h3 id="Edit">Edit</h3> 
+  <p>Edit the file to you language needs.</p> 
+ </div> 
+ <div class="section"> 
+  <h3 id="Delete">Delete</h3> 
+  <p>Delete (or rename to something other than default.yml) the original yml file you downloaded.</p> 
+ </div> 
+ <div class="section"> 
+  <h3 id="Set_CitiTraderRE_Config">Set CitiTraderRE Config</h3> 
+  <p>You will need to find the language tag in your CitiTradersRE <tt>config.yml</tt> file. It is located in the base CitiTraderRE plugin directory. Inside you should look for this tag:</p> 
+  <div class="source"> 
+   <pre>language: en
+</pre> 
+  </div> 
+  <p>en is the default language. Allowing you to in fact make a <tt>default_en.yml</tt> language file without any other issues. If you chose a different locale, such as Arabic(Iraq), you would change this value to ar_IQ (for Arabic(Iraq)).</p> 
+ </div> 
+</div> 
+<div class="section"> 
+ <h2 id="Default_Yaml_Language_File">Default Yaml Language File</h2> 
+ <div class="source"> 
+  <pre>player:
+  status:
+    manage:
+      enter: You have entered Shop Management mode.
+      exit: You have left Shop Management mode.
+      error: To change your Management status pass &quot;true&quot; or &quot;false&quot;.
+general:
+  accept: 'Yes'
+  decline: 'No'
+  price: Price
+  description: Description
+  name: Name
+  bank: Bank
+  wallet:
+    admin: admin
+    player: player
+    bank: bank
+    shop: shop
+  notopen:
+    unassigned: Store not open yet. (No store assinged)
+permission:
+  create:
+    deny: You do not have permission to create a shop.
+inventory:
+  admin:
+    display: Shop Admin
+    lore: Click to Admin Shop
+  itemadmin:
+    display: Item Admin
+    lore: Click to set Item Details
+  back:
+    display: Back
+    lore: Click to go Back
+  removestock:
+    display: Remove Stock
+    lore:
+      full: Click to Move all to Inventory
+      empty: Nothing to move to Inventory
+price: Price
+instock: In Stock
+shops:
+  list:
+    noshops: You don't currently own any shops.
+    yourshops: 'Your current shops:'
+conversation:
+  toquit: (To force exit type &quot;/quit&quot;)
+  options: Options
+  abandon: Conversation abandoned.
+  admin:
+    begin: Entering Shop Administration Menu
+    prefix: ADMIN
+    menu:
+      options:
+        storename: storename
+        bank: bank
+        exit: exit
+    exit: Leaving Admin
+    menutext: CitiTraders Admin Menu
+    setname: Name your shop. (32 Characters Max)
+    bankmenu: Choose which type of bank to use.
+    setbank: Setting bank to
+    setname:
+      nametolong: Shop names can only be 32 characters or shorter.
+  createshop:
+    begin: Entering Createshop Conversation
+    prefix: CREATE SHOP
+  itemadmin:
+    begin: Entering Item Administration
+    delete:
+      full: There are still some of these Items in the Inventory!
+      warn: If you continue, these items will be deleted!
+      confirm: Are you sure you want to delete this item?
+      deleted: Item Deleted.
+      cancelled: Operation Cancelled.
+    prefix: ITEM ADMIN
+    setprice: What would you like to charge for {0}?
+    setdescription: Give a short description of {0} (type &quot;{1}&quot; for no description).
+    menu:
+      options:
+        price: price
+        description: description
+        delete: delete
+        empty: empty
+        exit: exit
+    none: none
+  setsellprice:
+    prefix: SET SELL PRICE
+    setprice: What would you like to charge for {0}?
+  additem:
+    begin: Generic text to begin a conversation.
+    prefix: ADD ITEM
+    setprice: What would you like to charge for new item [{0}]?
+    setdescription: Give a short description of {0} (type &quot;{1}&quot; for no description).
+    addinventory: Item has been added to inventory.
+    added: Item Added.
+    none: none
+    shopfull: Shop currently is full.
+  error:
+    notadouble: Value needs to be a number value (2, 12.12)
+transaction:
+  sale:
+    player:
+      notenoughfunds: You do not have the funds for this Transaction.
+    shop:
+      notenoughitems: There are not enough items to purchase. (Store is out of stock)
+      totalpurchase: 'Total Purchase Price: {0}'
+  error:
+    economy: There was an error with the economy, please report. (NULL)
+    fundstoshop: There was an error, please report
+</pre> 
+ </div> 
+</div>
 			</div>
 		</div>
 		<div class="span4">
@@ -164,6 +312,20 @@
 				<div class="well">
 					<ul class="nav nav-list">
 						<li class="nav-header">Table of Contents</li>
+		<li class="dropdown"><a href="#Setup_Localization" title="Setup Localization">Setup Localization <b class="caret"></b></a>
+			<ul class="nav nav-list">
+		<li><a href="#Download" title="Download">Download</a>
+		<li><a href="#Create_Directory" title="Create Directory">Create Directory</a>
+		<li><a href="#Place" title="Place">Place</a>
+		<li><a href="#What_Language" title="What Language">What Language</a>
+		<li><a href="#Rename" title="Rename">Rename</a>
+		<li><a href="#Edit" title="Edit">Edit</a>
+		<li><a href="#Delete" title="Delete">Delete</a>
+		<li><a href="#Set_CitiTraderRE_Config" title="Set CitiTraderRE Config">Set CitiTraderRE Config</a>
+				<li class="divider"></li>
+			</ul>
+		</li>
+		<li><a href="#Default_Yaml_Language_File" title="Default Yaml Language File">Default Yaml Language File</a>
 					</ul>
 				</div>
 			</div>
@@ -257,7 +419,6 @@
 	<script src="./js/jquery.smooth-scroll.min.js"></script>
 	<!-- back button support for smooth scroll -->
 	<script src="./js/jquery.ba-bbq.min.js"></script>
-	<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
 
 	<script src="./js/reflow-skin.js"></script>
 	
