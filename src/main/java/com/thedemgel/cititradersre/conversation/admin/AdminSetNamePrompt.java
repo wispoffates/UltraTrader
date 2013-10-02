@@ -24,6 +24,6 @@ public class AdminSetNamePrompt extends StringPrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		return CitiTrader.getResourceBundle().getString("conversation.admin.setname");
+		return CitiTrader.getResourceBundle().getString("conversation.admin.setname.setname");
 	}
 }

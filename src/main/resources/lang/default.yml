@@ -11,6 +11,7 @@ general:
   price: Price
   description: Description
   name: Name
+  newshopname: No Name Set.
   bank: Bank
   wallet:
     admin: admin
@@ -57,10 +58,10 @@ conversation:
         exit: exit
     exit: Leaving Admin
     menutext: CitiTraders Admin Menu
-    setname: Name your shop. (32 Characters Max)
     bankmenu: Choose which type of bank to use.
     setbank: Setting bank to
     setname:
+      setname: Name your shop. (32 Characters Max)
       nametolong: Shop names can only be 32 characters or shorter.
   createshop:
     begin: Entering Createshop Conversation
@@ -73,6 +74,10 @@ conversation:
         begin: Would you like to
         create: Create a new shop.
         assign: Assign an existing shop.
+    create:
+      created: Shop was Created and Assigned to NPC.
+      error: There was an error creating the shop.
+      creating: Attempting to create shop.
   itemadmin:
     begin: Entering Item Administration
     delete:

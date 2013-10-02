@@ -100,6 +100,7 @@ public class ShopListener implements Listener {
 				ItemStack inhand = event.getCursor().clone();
 				Conversation convo = CitiTrader.getConversationHandler().getAddSellItem().buildConversation(player);
 				convo.getContext().setSessionData("item", inhand);
+				convo.getContext().setSessionData("slot", event.getRawSlot());
 				view.convo = convo;
 				convo.begin();
 			}

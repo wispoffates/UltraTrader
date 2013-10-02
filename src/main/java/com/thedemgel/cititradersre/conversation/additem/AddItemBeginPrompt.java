@@ -18,7 +18,7 @@ public class AddItemBeginPrompt extends MessagePrompt {
 	protected Prompt getNextPrompt(ConversationContext context) {
 		final Player player = (Player) context.getForWhom();
 		ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
-		
+		context.setSessionData("view", view);
 		ItemStack item = (ItemStack) context.getSessionData("item");
 		ItemPrice itemprice = new ItemPrice(item);
 		if (view.getShop().hasSellItem(itemprice)) {

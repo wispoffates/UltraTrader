@@ -18,9 +18,10 @@ public class AddItemFinishPrompt extends MessagePrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		final Player player = (Player) context.getForWhom();
-		ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
-
+		//final Player player = (Player) context.getForWhom();
+		//ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
+		ShopInventoryView view = (ShopInventoryView) context.getSessionData("view");
+		
 		String description = (String) context.getSessionData("description");
 		ItemStack item = (ItemStack) context.getSessionData("item");
 		BigDecimal price = (BigDecimal) context.getSessionData("price");

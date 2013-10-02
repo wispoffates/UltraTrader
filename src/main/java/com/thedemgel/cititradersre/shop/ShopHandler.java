@@ -64,7 +64,7 @@ public class ShopHandler {
 		return ownedShops;
 	}
 
-	public boolean createShop(Player player) {
+	public Shop createShop(Player player) {
 		Random rnd = new Random();
 		int increment = CitiTrader.STORE_ID_RAND_INCREMENT;
 		boolean found = true;
@@ -82,18 +82,18 @@ public class ShopHandler {
 		}
 		
 		if (tempConfig == null || randid == -1) {
-			return false;
+			return null;
 		}
 		
 		StoreConfig tempShopConfig = new StoreConfig(plugin, tempConfig);
 		Shop tempShop = new Shop(tempShopConfig);
 		tempShop.setId(randid);
 		tempShop.setOwner(player);
-		tempShop.setName("Name not set");
+		tempShop.setName(CitiTrader.getResourceBundle().getString("general.newshopname"));
 		tempShop.setWalletType(WalletType.SHOP);
 		tempShop.save();
 		
 		shops.put(tempShop.getId(), tempShop);
-		return true;
+		return tempShop;
 	}
 }

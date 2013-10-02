@@ -28,7 +28,7 @@ public class ShopCommands extends Commands implements CommandExecutor {
 		plugin = instance;
 	}
 
-	@BukkitCommand(name = "shopitem")
+	/*@BukkitCommand(name = "shopitem")
 	public boolean something(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player = (Player) sender;
 
@@ -39,7 +39,7 @@ public class ShopCommands extends Commands implements CommandExecutor {
 		player.getInventory().addItem(item);
 
 		return true;
-	}
+	}*/
 
 	@BukkitCommand(name = "myshops")
 	public boolean getShops(CommandSender sender, Command cmd, String label, String[] args) {
@@ -54,12 +54,6 @@ public class ShopCommands extends Commands implements CommandExecutor {
 			}
 		}
 
-		return true;
-	}
-	
-	@BukkitCommand(name = "test")
-	public boolean test(CommandSender sender, Command cmd, String label, String[] args) {
-		CitiTrader.getStoreHandler().createShop((Player) sender);
 		return true;
 	}
 }

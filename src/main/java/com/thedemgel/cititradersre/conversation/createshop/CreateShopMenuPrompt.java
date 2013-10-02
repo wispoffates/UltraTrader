@@ -20,8 +20,8 @@ public class CreateShopMenuPrompt extends FixedIgnoreCaseSetPrompt {
 	public CreateShopMenuPrompt() {
 		rb = CitiTrader.getResourceBundle();
 		prefix = new CreateShopConversationPrefix();
-		addOption(rb.getString("conversation.createshop.menu.options.create"), new AdminSetNamePrompt());
-		addOption(rb.getString("conversation.createshop.menu.options.assign"), new AdminBankMenuPrompt());
+		addOption(rb.getString("conversation.createshop.menu.options.create"), new CreateShopCreatePrompt());
+		addOption(rb.getString("conversation.createshop.menu.options.assign"), new CreateShopAssignPrompt());
 		addOption(rb.getString("general.exit"), Prompt.END_OF_CONVERSATION);
 	}
 
