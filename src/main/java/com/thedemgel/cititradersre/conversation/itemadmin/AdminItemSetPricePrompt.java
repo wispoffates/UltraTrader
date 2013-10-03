@@ -30,7 +30,7 @@ public class AdminItemSetPricePrompt extends StringPrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
-		return MessageFormat.format(CitiTrader.getResourceBundle().getString("conversation.itemadmin.setprice"), item.getType().name());
+		ItemPrice item = (ItemPrice) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEMPRICE);
+		return MessageFormat.format(CitiTrader.getResourceBundle().getString("conversation.itemadmin.setprice"), item.getItemStack().getType().name());
 	}
 }

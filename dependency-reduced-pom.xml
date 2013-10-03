@@ -148,16 +148,8 @@
         </configuration>
       </plugin>
       <plugin>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.9.1</version>
-      </plugin>
-      <plugin>
         <artifactId>maven-jxr-plugin</artifactId>
         <version>2.3</version>
-      </plugin>
-      <plugin>
-        <artifactId>maven-pmd-plugin</artifactId>
-        <version>3.0.1</version>
       </plugin>
       <plugin>
         <artifactId>maven-plugin-plugin</artifactId>
@@ -170,11 +162,9 @@
           <reportSet>
             <reports>
               <report>cim</report>
-              <report>distribution-management</report>
               <report>index</report>
               <report>issue-tracking</report>
               <report>license</report>
-              <report>mailing-list</report>
               <report>project-team</report>
               <report>scm</report>
               <report>summary</report>
@@ -183,23 +173,9 @@
         </reportSets>
       </plugin>
       <plugin>
-        <artifactId>maven-surefire-report-plugin</artifactId>
-        <version>2.15</version>
-      </plugin>
-      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
         <version>2.5.2</version>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>jdepend-maven-plugin</artifactId>
-        <version>2.0-beta-2</version>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>taglist-maven-plugin</artifactId>
-        <version>2.4</version>
       </plugin>
     </plugins>
   </reporting>

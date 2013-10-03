@@ -24,7 +24,7 @@ public class AdminItemDescriptionPrompt extends StringPrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
-		return MessageFormat.format(CitiTrader.getResourceBundle().getString("conversation.itemadmin.setdescription"), item.getType().name(), CitiTrader.getResourceBundle().getString("conversation.itemadmin.none"));
+		ItemPrice item = (ItemPrice) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEMPRICE);
+		return MessageFormat.format(CitiTrader.getResourceBundle().getString("conversation.itemadmin.setdescription"), item.getItemStack().getType().name(), CitiTrader.getResourceBundle().getString("conversation.itemadmin.none"));
 	}
 }
