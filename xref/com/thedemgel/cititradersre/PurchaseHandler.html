@@ -74,7 +74,7 @@
 <a class="jxr_linenumber" name="64" href="#64">64</a>  		ItemStack baseItem = invItem.getItemStack();
 <a class="jxr_linenumber" name="65" href="#65">65</a>  		<em class="jxr_comment">//Integer currentInvAmount = shop.getInventory().get(baseItem);</em>
 <a class="jxr_linenumber" name="66" href="#66">66</a>  		Integer currentInvAmount = shop.getInventoryInterface().getInventoryAmount(baseItem);
-<a class="jxr_linenumber" name="67" href="#67">67</a>  		
+<a class="jxr_linenumber" name="67" href="#67">67</a>  
 <a class="jxr_linenumber" name="68" href="#68">68</a>  		<strong class="jxr_keyword">if</strong> (buyStack.getAmount() &gt; currentInvAmount) {
 <a class="jxr_linenumber" name="69" href="#69">69</a>  			CitiTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), heldFunds.amount);
 <a class="jxr_linenumber" name="70" href="#70">70</a>  			<em class="jxr_comment">// Some error checks for deposit</em>
@@ -115,7 +115,7 @@
 <a class="jxr_linenumber" name="105" href="#105">105</a> 		} <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="106" href="#106">106</a> 			player.sendMessage(CitiTrader.getResourceBundle().getString(<span class="jxr_string">"transaction.error.fundstoshop"</span>));
 <a class="jxr_linenumber" name="107" href="#107">107</a> 		}
-<a class="jxr_linenumber" name="108" href="#108">108</a> 		
+<a class="jxr_linenumber" name="108" href="#108">108</a> 
 <a class="jxr_linenumber" name="109" href="#109">109</a> 		shop.save();
 <a class="jxr_linenumber" name="110" href="#110">110</a> 	}
 <a class="jxr_linenumber" name="111" href="#111">111</a> 
@@ -124,7 +124,7 @@
 <a class="jxr_linenumber" name="114" href="#114">114</a> <em class="jxr_javadoccomment">	 *</em>
 <a class="jxr_linenumber" name="115" href="#115">115</a> <em class="jxr_javadoccomment">	 * @param shop The shop the sale is going to</em>
 <a class="jxr_linenumber" name="116" href="#116">116</a> <em class="jxr_javadoccomment">	 * @param player The player the sale is coming from</em>
-<a class="jxr_linenumber" name="117" href="#117">117</a> <em class="jxr_javadoccomment">	 * @param buyStack The itemstack of the item being purchased.</em>
+<a class="jxr_linenumber" name="117" href="#117">117</a> <em class="jxr_javadoccomment">	 * @param item The itemstack of the item being purchased.</em>
 <a class="jxr_linenumber" name="118" href="#118">118</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="119" href="#119">119</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> processSale(<a href="../../../com/thedemgel/cititradersre/shop/Shop.html">Shop</a> shop, Player player, ItemStack item) {
 <a class="jxr_linenumber" name="120" href="#120">120</a> 	}

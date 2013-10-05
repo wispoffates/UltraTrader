@@ -12,45 +12,45 @@
 <a class="jxr_linenumber" name="2" href="#2">2</a>   
 <a class="jxr_linenumber" name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> com.google.common.base.Predicate;
 <a class="jxr_linenumber" name="4" href="#4">4</a>   <strong class="jxr_keyword">import</strong> com.google.common.collect.Collections2;
-<a class="jxr_linenumber" name="5" href="#5">5</a>   <strong class="jxr_keyword">import</strong> com.google.common.collect.Iterables;
-<a class="jxr_linenumber" name="6" href="#6">6</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.cititradersre.CitiTrader;
-<a class="jxr_linenumber" name="7" href="#7">7</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.cititradersre.InventoryHandler;
-<a class="jxr_linenumber" name="8" href="#8">8</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.cititradersre.StoreConfig;
-<a class="jxr_linenumber" name="9" href="#9">9</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.cititradersre.util.WalletType;
-<a class="jxr_linenumber" name="10" href="#10">10</a>  <strong class="jxr_keyword">import</strong> com.thedemgel.cititradersre.util.YamlFilenameFilter;
-<a class="jxr_linenumber" name="11" href="#11">11</a>  <strong class="jxr_keyword">import</strong> java.io.File;
-<a class="jxr_linenumber" name="12" href="#12">12</a>  <strong class="jxr_keyword">import</strong> java.io.FilenameFilter;
-<a class="jxr_linenumber" name="13" href="#13">13</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
-<a class="jxr_linenumber" name="14" href="#14">14</a>  <strong class="jxr_keyword">import</strong> java.util.Collection;
-<a class="jxr_linenumber" name="15" href="#15">15</a>  <strong class="jxr_keyword">import</strong> java.util.List;
-<a class="jxr_linenumber" name="16" href="#16">16</a>  <strong class="jxr_keyword">import</strong> java.util.Map;
-<a class="jxr_linenumber" name="17" href="#17">17</a>  <strong class="jxr_keyword">import</strong> java.util.Random;
-<a class="jxr_linenumber" name="18" href="#18">18</a>  <strong class="jxr_keyword">import</strong> java.util.concurrent.ConcurrentHashMap;
-<a class="jxr_linenumber" name="19" href="#19">19</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.lang.RandomStringUtils;
-<a class="jxr_linenumber" name="20" href="#20">20</a>  <strong class="jxr_keyword">import</strong> org.bukkit.configuration.ConfigurationSection;
-<a class="jxr_linenumber" name="21" href="#21">21</a>  <strong class="jxr_keyword">import</strong> org.bukkit.entity.Player;
+<a class="jxr_linenumber" name="5" href="#5">5</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.cititradersre.CitiTrader;
+<a class="jxr_linenumber" name="6" href="#6">6</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.cititradersre.InventoryHandler;
+<a class="jxr_linenumber" name="7" href="#7">7</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.cititradersre.StoreConfig;
+<a class="jxr_linenumber" name="8" href="#8">8</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.cititradersre.wallet.WalletHandler;
+<a class="jxr_linenumber" name="9" href="#9">9</a>   <strong class="jxr_keyword">import</strong> java.io.File;
+<a class="jxr_linenumber" name="10" href="#10">10</a>  <strong class="jxr_keyword">import</strong> java.util.Collection;
+<a class="jxr_linenumber" name="11" href="#11">11</a>  <strong class="jxr_keyword">import</strong> java.util.Map;
+<a class="jxr_linenumber" name="12" href="#12">12</a>  <strong class="jxr_keyword">import</strong> java.util.Random;
+<a class="jxr_linenumber" name="13" href="#13">13</a>  <strong class="jxr_keyword">import</strong> java.util.concurrent.ConcurrentHashMap;
+<a class="jxr_linenumber" name="14" href="#14">14</a>  <strong class="jxr_keyword">import</strong> org.bukkit.entity.Player;
+<a class="jxr_linenumber" name="15" href="#15">15</a>  
+<a class="jxr_linenumber" name="16" href="#16">16</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../com/thedemgel/cititradersre/shop/ShopHandler.html">ShopHandler</a> {
+<a class="jxr_linenumber" name="17" href="#17">17</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> SHOP_NULL = -1;
+<a class="jxr_linenumber" name="18" href="#18">18</a>  
+<a class="jxr_linenumber" name="19" href="#19">19</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../com/thedemgel/cititradersre/CitiTrader.html">CitiTrader</a> plugin;
+<a class="jxr_linenumber" name="20" href="#20">20</a>  	<strong class="jxr_keyword">private</strong> Map&lt;Integer, Shop&gt; shops = <strong class="jxr_keyword">new</strong> ConcurrentHashMap&lt;&gt;();
+<a class="jxr_linenumber" name="21" href="#21">21</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../com/thedemgel/cititradersre/InventoryHandler.html">InventoryHandler</a> inventoryHandler;
 <a class="jxr_linenumber" name="22" href="#22">22</a>  
-<a class="jxr_linenumber" name="23" href="#23">23</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../com/thedemgel/cititradersre/shop/ShopHandler.html">ShopHandler</a> {
-<a class="jxr_linenumber" name="24" href="#24">24</a>  
-<a class="jxr_linenumber" name="25" href="#25">25</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../com/thedemgel/cititradersre/CitiTrader.html">CitiTrader</a> plugin;
-<a class="jxr_linenumber" name="26" href="#26">26</a>  	<strong class="jxr_keyword">private</strong> Map&lt;Integer, Shop&gt; shops = <strong class="jxr_keyword">new</strong> ConcurrentHashMap&lt;&gt;();
-<a class="jxr_linenumber" name="27" href="#27">27</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../com/thedemgel/cititradersre/InventoryHandler.html">InventoryHandler</a> inventoryHandler;
-<a class="jxr_linenumber" name="28" href="#28">28</a>  
-<a class="jxr_linenumber" name="29" href="#29">29</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../com/thedemgel/cititradersre/shop/ShopHandler.html">ShopHandler</a>(<a href="../../../../com/thedemgel/cititradersre/CitiTrader.html">CitiTrader</a> instance) {
-<a class="jxr_linenumber" name="30" href="#30">30</a>  		plugin = instance;
-<a class="jxr_linenumber" name="31" href="#31">31</a>  		inventoryHandler = <strong class="jxr_keyword">new</strong> <a href="../../../../com/thedemgel/cititradersre/InventoryHandler.html">InventoryHandler</a>(plugin);
-<a class="jxr_linenumber" name="32" href="#32">32</a>  	}
-<a class="jxr_linenumber" name="33" href="#33">33</a>  
-<a class="jxr_linenumber" name="34" href="#34">34</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> initShops() {
-<a class="jxr_linenumber" name="35" href="#35">35</a>  		File storedir = <strong class="jxr_keyword">new</strong> File(plugin.getDataFolder() + <span class="jxr_string">"/stores/"</span>);
-<a class="jxr_linenumber" name="36" href="#36">36</a>  		File[] files = storedir.listFiles(<strong class="jxr_keyword">new</strong> <a href="../../../../com/thedemgel/cititradersre/util/YamlFilenameFilter.html">YamlFilenameFilter</a>());
+<a class="jxr_linenumber" name="23" href="#23">23</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../com/thedemgel/cititradersre/shop/ShopHandler.html">ShopHandler</a>(<a href="../../../../com/thedemgel/cititradersre/CitiTrader.html">CitiTrader</a> instance) {
+<a class="jxr_linenumber" name="24" href="#24">24</a>  		plugin = instance;
+<a class="jxr_linenumber" name="25" href="#25">25</a>  		inventoryHandler = <strong class="jxr_keyword">new</strong> <a href="../../../../com/thedemgel/cititradersre/InventoryHandler.html">InventoryHandler</a>(plugin);
+<a class="jxr_linenumber" name="26" href="#26">26</a>  	}
+<a class="jxr_linenumber" name="27" href="#27">27</a>  
+<a class="jxr_linenumber" name="28" href="#28">28</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addShop(<a href="../../../../com/thedemgel/cititradersre/shop/Shop.html">Shop</a> shop) {
+<a class="jxr_linenumber" name="29" href="#29">29</a>  		shops.put(shop.getId(), shop);
+<a class="jxr_linenumber" name="30" href="#30">30</a>  	}
+<a class="jxr_linenumber" name="31" href="#31">31</a>  	
+<a class="jxr_linenumber" name="32" href="#32">32</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> initShops() {
+<a class="jxr_linenumber" name="33" href="#33">33</a>  		CitiTrader.getDbObj().initShops();
+<a class="jxr_linenumber" name="34" href="#34">34</a>  		
+<a class="jxr_linenumber" name="35" href="#35">35</a>  		<em class="jxr_comment">/*<em class="jxr_comment">File storedir = new File(plugin.getDataFolder() + "/stores/");</em></em>
+<a class="jxr_linenumber" name="36" href="#36">36</a>  <em class="jxr_comment">		File[] files = storedir.listFiles(new YamlFilenameFilter());</em>
 <a class="jxr_linenumber" name="37" href="#37">37</a>  
-<a class="jxr_linenumber" name="38" href="#38">38</a>  		<strong class="jxr_keyword">for</strong> (File file : files) {
-<a class="jxr_linenumber" name="39" href="#39">39</a>  			StoreConfig config = <strong class="jxr_keyword">new</strong> <a href="../../../../com/thedemgel/cititradersre/StoreConfig.html">StoreConfig</a>(plugin, file);
-<a class="jxr_linenumber" name="40" href="#40">40</a>  			Shop shop = <strong class="jxr_keyword">new</strong> <a href="../../../../com/thedemgel/cititradersre/shop/Shop.html">Shop</a>(config);
-<a class="jxr_linenumber" name="41" href="#41">41</a>  			shops.put(shop.getId(), shop);
-<a class="jxr_linenumber" name="42" href="#42">42</a>  			System.out.println(<span class="jxr_string">"Initialized shop "</span> + shop.getName() + <span class="jxr_string">"("</span> + shop.getId() + <span class="jxr_string">")"</span>);
-<a class="jxr_linenumber" name="43" href="#43">43</a>  		}
+<a class="jxr_linenumber" name="38" href="#38">38</a>  <em class="jxr_comment">		for (File file : files) {</em>
+<a class="jxr_linenumber" name="39" href="#39">39</a>  <em class="jxr_comment">			StoreConfig config = new StoreConfig(plugin, file);</em>
+<a class="jxr_linenumber" name="40" href="#40">40</a>  <em class="jxr_comment">			Shop shop = new Shop(config);</em>
+<a class="jxr_linenumber" name="41" href="#41">41</a>  <em class="jxr_comment">			shops.put(shop.getId(), shop);</em>
+<a class="jxr_linenumber" name="42" href="#42">42</a>  <em class="jxr_comment">			System.out.println("Initialized shop " + shop.getName() + "(" + shop.getId() + ")");</em>
+<a class="jxr_linenumber" name="43" href="#43">43</a>  <em class="jxr_comment">		}*/</em>
 <a class="jxr_linenumber" name="44" href="#44">44</a>  	}
 <a class="jxr_linenumber" name="45" href="#45">45</a>  
 <a class="jxr_linenumber" name="46" href="#46">46</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../com/thedemgel/cititradersre/InventoryHandler.html">InventoryHandler</a> getInventoryHandler() {
@@ -100,7 +100,7 @@
 <a class="jxr_linenumber" name="90" href="#90">90</a>  		tempShop.setId(randid);
 <a class="jxr_linenumber" name="91" href="#91">91</a>  		tempShop.setOwner(player);
 <a class="jxr_linenumber" name="92" href="#92">92</a>  		tempShop.setName(CitiTrader.getResourceBundle().getString(<span class="jxr_string">"general.newshopname"</span>));
-<a class="jxr_linenumber" name="93" href="#93">93</a>  		tempShop.setWalletType(WalletType.SHOP);
+<a class="jxr_linenumber" name="93" href="#93">93</a>  		tempShop.setWalletType(WalletHandler.DEFAULT_WALLET_TYPE);
 <a class="jxr_linenumber" name="94" href="#94">94</a>  		tempShop.save();
 <a class="jxr_linenumber" name="95" href="#95">95</a>  		
 <a class="jxr_linenumber" name="96" href="#96">96</a>  		shops.put(tempShop.getId(), tempShop);

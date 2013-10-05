@@ -66,11 +66,11 @@
 <a class="jxr_linenumber" name="56" href="#56">56</a>  		<strong class="jxr_keyword">if</strong> (getDescription().length() &gt; 0) {
 <a class="jxr_linenumber" name="57" href="#57">57</a>  			genLore.add(getDescription());
 <a class="jxr_linenumber" name="58" href="#58">58</a>  		}
-<a class="jxr_linenumber" name="59" href="#59">59</a>  		genLore.add(ChatColor.GOLD + CitiTrader.getResourceBundle().getString(<span class="jxr_string">"price"</span>) + <span class="jxr_string">": "</span> + CitiTrader.getEconomy().format(price.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())); <em class="jxr_comment">// Will need to figure for discounts</em>
+<a class="jxr_linenumber" name="59" href="#59">59</a>  		genLore.add(ChatColor.GOLD + CitiTrader.getResourceBundle().getString(<span class="jxr_string">"general.price"</span>) + <span class="jxr_string">": "</span> + CitiTrader.getEconomy().format(price.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())); <em class="jxr_comment">// Will need to figure for discounts</em>
 <a class="jxr_linenumber" name="60" href="#60">60</a>  		<em class="jxr_comment">// If there is a discount... add a message here</em>
 <a class="jxr_linenumber" name="61" href="#61">61</a>  		<em class="jxr_comment">// Id will always be LAST in the list</em>
 <a class="jxr_linenumber" name="62" href="#62">62</a>  		<strong class="jxr_keyword">if</strong> (displayInventoryAmount) {
-<a class="jxr_linenumber" name="63" href="#63">63</a>  			genLore.add(ChatColor.GREEN + CitiTrader.getResourceBundle().getString(<span class="jxr_string">"instock"</span>) + <span class="jxr_string">": "</span> + stock);
+<a class="jxr_linenumber" name="63" href="#63">63</a>  			genLore.add(ChatColor.GREEN + CitiTrader.getResourceBundle().getString(<span class="jxr_string">"general.instock"</span>) + <span class="jxr_string">": "</span> + stock);
 <a class="jxr_linenumber" name="64" href="#64">64</a>  		}
 <a class="jxr_linenumber" name="65" href="#65">65</a>  		genLore.add(ChatColor.DARK_GRAY + getId());
 <a class="jxr_linenumber" name="66" href="#66">66</a>  		
