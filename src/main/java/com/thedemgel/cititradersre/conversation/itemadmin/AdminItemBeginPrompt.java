@@ -1,13 +1,11 @@
 package com.thedemgel.cititradersre.conversation.itemadmin;
 
-import com.thedemgel.cititradersre.conversation.admin.*;
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.shop.ItemPrice;
 import com.thedemgel.cititradersre.shop.ShopInventoryView;
 import java.util.ResourceBundle;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.ConversationPrefix;
 import org.bukkit.conversations.MessagePrompt;
@@ -24,7 +22,7 @@ public class AdminItemBeginPrompt extends MessagePrompt {
 	private ConversationPrefix prefix;
 
 	public AdminItemBeginPrompt() {
-		prefix = new AdminConversationPrefix();
+		prefix = new AdminItemConversationPrefix();
 		rb = CitiTrader.getResourceBundle();
 	}
 
