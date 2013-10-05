@@ -35,7 +35,7 @@ public class AdminMenuPrompt extends FixedIgnoreCaseSetPrompt {
 		Player p = (Player) context.getForWhom();
 		p.sendRawMessage(prefix.getPrefix(context) + "------<[ " + ChatColor.BLUE + "ADMIN" + ChatColor.YELLOW + " ]>------");
 		p.sendRawMessage(prefix.getPrefix(context) + rb.getString("general.name") + ": " + ChatColor.WHITE + view.getShop().getName());
-		p.sendRawMessage(prefix.getPrefix(context) + rb.getString("general.bank") + ": " + ChatColor.WHITE + view.getShop().getWalletType().name());
+		p.sendRawMessage(prefix.getPrefix(context) + rb.getString("general.bank") + ": " + ChatColor.WHITE + view.getShop().getWalletType());
 		p.sendRawMessage(prefix.getPrefix(context) + rb.getString("conversation.admin.menutext"));
 		return rb.getString("conversation.options") + ": " + this.formatFixedSet();
 	}

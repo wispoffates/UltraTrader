@@ -3,14 +3,11 @@ package com.thedemgel.cititradersre.conversation.admin;
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.conversation.FixedIgnoreCaseSetPrompt;
 import com.thedemgel.cititradersre.conversation.admin.bank.AdminBankPrompt;
-import com.thedemgel.cititradersre.util.Permissions;
-import com.thedemgel.cititradersre.wallet.WalletType;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import com.thedemgel.cititradersre.wallet.Wallet;
+import com.thedemgel.cititradersre.wallet.WalletHandler;
+import java.util.Map.Entry;
 import java.util.ResourceBundle;
 import org.bukkit.conversations.ConversationContext;
-import org.bukkit.conversations.FixedSetPrompt;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.entity.Player;
 
@@ -31,8 +28,19 @@ public class AdminBankMenuPrompt extends FixedIgnoreCaseSetPrompt {
 	public String getPromptText(ConversationContext context) {
 		rb = CitiTrader.getResourceBundle();
 		Player player = (Player) context.getForWhom();
-
-		if (player.hasPermission(Permissions.WALLET_ADMIN)) {
+		WalletHandler handler = CitiTrader.getWallethandler();
+		
+		for (Entry<String, Class<? extends Wallet>> wallets : handler.getWallets().entrySet()) {
+			try {
+				if (player.hasPermission(handler.getPermission(wallets.getKey()))) {
+					addOption(handler.getDisplayName(wallets.getKey()), new AdminBankPrompt(wallets.getKey()));
+				}
+			} catch (Exception ex) {
+				continue;
+			}
+		}
+		
+		/*if (player.hasPermission(Permissions.WALLET_ADMIN)) {
 			addOption(rb.getString("general.wallet.admin"), new AdminBankPrompt(WalletType.ADMIN));
 		}
 		if (player.hasPermission(Permissions.WALLET_PLAYER)) {
@@ -43,7 +51,7 @@ public class AdminBankMenuPrompt extends FixedIgnoreCaseSetPrompt {
 		}
 		if (player.hasPermission(Permissions.WALLET_SHOP)) {
 			addOption(rb.getString("general.wallet.shop"), new AdminBankPrompt(WalletType.SHOP));
-		}
+		}*/
 		
 		addOption(rb.getString("conversation.admin.menu.options.exit"), new AdminMenuPrompt());
 

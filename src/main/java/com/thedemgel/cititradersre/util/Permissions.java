@@ -45,6 +45,14 @@ public class Permissions {
 	 */
 	public static final String WALLET_SHOP = "trader.wallet.shop";
 	/**
+	 * STAER SNIPPET: perm
+	 * ####trader.wallet.player.setother
+	 * `Player with this permission is allowed to set other players to
+	 * a wallet in any store.`
+	 * END SNIPPET: perm
+	 */
+	public static final String WALLET_PLAYER_SETOTHER = "trader.wallet.player.setother";
+	/**
 	 * START SNIPPET: perm
 	 * ####trader.wallet.player
 	 * `Allows a user to set a store's wallet to PLAYER.

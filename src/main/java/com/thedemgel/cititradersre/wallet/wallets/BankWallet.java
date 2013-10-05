@@ -2,12 +2,20 @@
 package com.thedemgel.cititradersre.wallet.wallets;
 
 import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.conversation.admin.bank.bank.BankWalletPrompt;
+import com.thedemgel.cititradersre.shop.Shop;
+import com.thedemgel.cititradersre.util.ConfigValue;
+import com.thedemgel.cititradersre.util.Permissions;
 import com.thedemgel.cititradersre.wallet.Wallet;
+import com.thedemgel.cititradersre.wallet.annotation.AssignConversation;
+import com.thedemgel.cititradersre.wallet.annotation.WalletPermission;
+import com.thedemgel.cititradersre.wallet.annotation.WalletTypeName;
 import java.math.BigDecimal;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.conversations.Prompt;
 
 
 /**
@@ -18,12 +26,15 @@ import org.bukkit.configuration.ConfigurationSection;
  * 
  * This does not effect Inventory in the least.
  */
-public class BankWallet implements Wallet {
-	private ConfigurationSection config;
+@WalletTypeName("bank")
+@WalletPermission(Permissions.WALLET_BANK)
+@AssignConversation(BankWalletPrompt.class)
+public class BankWallet extends Wallet {
+	//private ConfigurationSection config;
 	private Economy economy;
 
-	public BankWallet(ConfigurationSection walletConfig) {
-		config = walletConfig;
+	public BankWallet(Shop shop) {
+		super(shop);
 		economy = CitiTrader.getEconomy();
 	}
 
@@ -62,13 +73,14 @@ public class BankWallet implements Wallet {
 		
 		return response;
 	}
-
-	public void setBank(String string) {
-		config.set("bank", string);
-		
-	}
 	
 	public String getBank() {
-		return config.getString("bank");
+		ConfigValue<String> bank = getShop().getWalletinfo().get("bank");
+		return bank.getValue();
+	}
+	
+	@Override
+	public String getDisplayName() {
+		return CitiTrader.getResourceBundle().getString("general.wallet.bank");
 	}
 }

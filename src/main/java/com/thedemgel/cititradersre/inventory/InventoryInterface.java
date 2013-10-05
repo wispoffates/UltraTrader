@@ -3,17 +3,14 @@ package com.thedemgel.cititradersre.inventory;
 import com.thedemgel.cititradersre.shop.ItemPrice;
 import com.thedemgel.cititradersre.shop.Shop;
 import java.util.concurrent.ConcurrentMap;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 
 public abstract class InventoryInterface {
 
 	private Shop shop;
-	private ConfigurationSection config;
 
 	public InventoryInterface(Shop shop) {
 		this.shop = shop;
-		config = shop.getInventoryConfig();
 	}
 
 	public abstract boolean hasItem(ItemStack item);
@@ -57,9 +54,5 @@ public abstract class InventoryInterface {
 
 	public ConcurrentMap<ItemStack, Integer> getInventory() {
 		return shop.getInventory();
-	}
-	
-	public ConfigurationSection getConfig() {
-		return config;
 	}
 }

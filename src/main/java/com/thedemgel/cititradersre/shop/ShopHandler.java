@@ -2,22 +2,15 @@ package com.thedemgel.cititradersre.shop;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
-import com.google.common.collect.Iterables;
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.InventoryHandler;
 import com.thedemgel.cititradersre.StoreConfig;
-import com.thedemgel.cititradersre.wallet.WalletType;
-import com.thedemgel.cititradersre.util.YamlFilenameFilter;
+import com.thedemgel.cititradersre.wallet.WalletHandler;
 import java.io.File;
-import java.io.FilenameFilter;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
-import org.apache.commons.lang.RandomStringUtils;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
 public class ShopHandler {
@@ -32,8 +25,14 @@ public class ShopHandler {
 		inventoryHandler = new InventoryHandler(plugin);
 	}
 
+	public void addShop(Shop shop) {
+		shops.put(shop.getId(), shop);
+	}
+	
 	public void initShops() {
-		File storedir = new File(plugin.getDataFolder() + "/stores/");
+		CitiTrader.getDbObj().initShops();
+		
+		/*File storedir = new File(plugin.getDataFolder() + "/stores/");
 		File[] files = storedir.listFiles(new YamlFilenameFilter());
 
 		for (File file : files) {
@@ -41,7 +40,7 @@ public class ShopHandler {
 			Shop shop = new Shop(config);
 			shops.put(shop.getId(), shop);
 			System.out.println("Initialized shop " + shop.getName() + "(" + shop.getId() + ")");
-		}
+		}*/
 	}
 
 	public InventoryHandler getInventoryHandler() {
@@ -91,7 +90,7 @@ public class ShopHandler {
 		tempShop.setId(randid);
 		tempShop.setOwner(player);
 		tempShop.setName(CitiTrader.getResourceBundle().getString("general.newshopname"));
-		tempShop.setWalletType(WalletType.SHOP);
+		tempShop.setWalletType(WalletHandler.DEFAULT_WALLET_TYPE);
 		tempShop.save();
 		
 		shops.put(tempShop.getId(), tempShop);

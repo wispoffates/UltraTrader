@@ -1,7 +1,12 @@
 
 package com.thedemgel.cititradersre.wallet.wallets;
 
+import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.shop.Shop;
+import com.thedemgel.cititradersre.util.Permissions;
 import com.thedemgel.cititradersre.wallet.Wallet;
+import com.thedemgel.cititradersre.wallet.annotation.WalletPermission;
+import com.thedemgel.cititradersre.wallet.annotation.WalletTypeName;
 import java.math.BigDecimal;
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
@@ -14,8 +19,14 @@ import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
  * 
  * This does not effect Inventory in the least.
  */
-public class AdminWallet implements Wallet {
+@WalletTypeName("admin")
+@WalletPermission(Permissions.WALLET_ADMIN)
+public class AdminWallet extends Wallet {
 
+	public AdminWallet(Shop shop) {
+		super(shop);
+	}
+	
 	@Override
 	public boolean hasFunds(BigDecimal amount) {
 		return true;
@@ -31,4 +42,8 @@ public class AdminWallet implements Wallet {
 		return new EconomyResponse(0, 0, ResponseType.SUCCESS, "");
 	}
 
+	@Override
+	public String getDisplayName() {
+		return CitiTrader.getResourceBundle().getString("general.wallet.admin");
+	}
 }

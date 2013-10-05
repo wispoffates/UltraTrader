@@ -3,7 +3,14 @@ package com.thedemgel.cititradersre;
 import com.thedemgel.cititradersre.citizens.TraderTrait;
 import com.thedemgel.cititradersre.command.commands.ShopCommands;
 import com.thedemgel.cititradersre.conversation.ConversationHandler;
+import com.thedemgel.cititradersre.data.DataObject;
+import com.thedemgel.cititradersre.data.YamlDataObject;
 import com.thedemgel.cititradersre.shop.ShopHandler;
+import com.thedemgel.cititradersre.wallet.WalletHandler;
+import com.thedemgel.cititradersre.wallet.wallets.AdminWallet;
+import com.thedemgel.cititradersre.wallet.wallets.BankWallet;
+import com.thedemgel.cititradersre.wallet.wallets.PlayerWallet;
+import com.thedemgel.cititradersre.wallet.wallets.ShopWallet;
 import com.thedemgel.yamlresourcebundle.YamlResourceBundle;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -20,6 +27,13 @@ public class CitiTrader extends JavaPlugin {
 	public static final int STORE_ID_RAND_BASE = 10;
 	public static final int STORE_ID_RAND_INCREMENT = 50;
 	public static final long BUKKIT_SCHEDULER_DELAY = 2;
+	private static ResourceBundle rb;
+	private static ConversationHandler conversationHandler;
+	private static CitiTrader plugin;
+	private static Economy economy;
+	private static DataObject dbObj;
+	private static WalletHandler wallethandler;
+	private static ShopHandler shopHandler;
 
 	public static Economy getEconomy() {
 		return economy;
@@ -29,28 +43,39 @@ public class CitiTrader extends JavaPlugin {
 		return conversationHandler;
 	}
 
-	public static void setConversationHandler(ConversationHandler aConversationHandler) {
-		conversationHandler = aConversationHandler;
-	}
-
 	public static CitiTrader getInstance() {
 		return plugin;
 	}
 
-	private static ShopHandler shopHandler;
+	public static DataObject getDbObj() {
+		return dbObj;
+	}
+
+	public static WalletHandler getWallethandler() {
+		return wallethandler;
+	}
+	
 	private boolean citizens;
 	private boolean vault;
-	private static ResourceBundle rb;
-	private static ConversationHandler conversationHandler;
-	private static CitiTrader plugin;
-	private static Economy economy;
 
 	@Override
-	public final void onEnable() {
-		plugin = this;
+	public final void onLoad() {
 		// Assign ResourceBundle (using YAMLResourceBundle)
 		Locale locale = new Locale(getConfig().getString("language", "en"));
 		rb = YamlResourceBundle.getBundle("lang.default", locale, getDataFolder());
+	}
+	@Override
+	public final void onEnable() {
+		plugin = this;
+		wallethandler = new WalletHandler();
+
+		getWallethandler().registerWallet(AdminWallet.class, rb.getString("general.wallet.admin"))
+			.registerWallet(PlayerWallet.class, rb.getString("general.wallet.player"))
+			.registerWallet(BankWallet.class, rb.getString("general.wallet.bank"))
+			.registerWallet(ShopWallet.class, rb.getString("general.wallet.shop"));
+
+		dbObj = new YamlDataObject();
+		
 		// Verify resources (Vault/CitizensAPI)
 		checkCitizens();
 		checkVault();

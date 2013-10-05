@@ -1,6 +1,12 @@
 package com.thedemgel.cititradersre.wallet.wallets;
 
+import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.shop.Shop;
+import com.thedemgel.cititradersre.util.ConfigValue;
+import com.thedemgel.cititradersre.util.Permissions;
 import com.thedemgel.cititradersre.wallet.Wallet;
+import com.thedemgel.cititradersre.wallet.annotation.WalletPermission;
+import com.thedemgel.cititradersre.wallet.annotation.WalletTypeName;
 import java.math.BigDecimal;
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
@@ -11,12 +17,16 @@ import org.bukkit.configuration.ConfigurationSection;
  *
  * This does not effect Inventory in the least.
  */
-public class ShopWallet implements Wallet {
+@WalletTypeName("shop")
+@WalletPermission(Permissions.WALLET_SHOP)
+public class ShopWallet extends Wallet {
 
-	private ConfigurationSection config;
+	//private ConfigurationSection config;
+	private Shop shop;
 
-	public ShopWallet(ConfigurationSection walletConfig) {
-		config = walletConfig;
+	public ShopWallet(Shop shop) {
+		super(shop);
+		this.shop = shop;
 	}
 
 	@Override
@@ -32,22 +42,36 @@ public class ShopWallet implements Wallet {
 	public EconomyResponse removeFunds(BigDecimal amount) {
 		BigDecimal balance = getBalance();
 		if (hasFunds(amount)) {
-			config.set("balance", balance.subtract(amount));
+			balance = balance.subtract(amount);
+			double value = balance.doubleValue();
+			shop.getWalletinfo().put("balance", new ConfigValue(value));
 			return new EconomyResponse(amount.doubleValue(), getBalance().doubleValue(), ResponseType.SUCCESS, "");
 		}
-		
+
 		return new EconomyResponse(amount.doubleValue(), getBalance().doubleValue(), ResponseType.FAILURE, "Not enough funds");
 	}
 
 	@Override
 	public EconomyResponse addFunds(BigDecimal amount) {
 		BigDecimal balance = getBalance();
-		config.set("balance", balance.add(amount));
+		balance = balance.add(amount);
+		double value = balance.doubleValue();
+		shop.getWalletinfo().put("balance", new ConfigValue(value));
 		return new EconomyResponse(amount.doubleValue(), getBalance().doubleValue(), ResponseType.SUCCESS, "");
 	}
 
 	private BigDecimal getBalance() {
-		BigDecimal balance = BigDecimal.valueOf(config.getDouble("balance", 0D));
+		//BigDecimal balance = BigDecimal.valueOf(config.getDouble("balance", 0D));
+		ConfigValue<Double> get = shop.getWalletinfo().get("balance");
+		if (get == null) {
+			get = new ConfigValue<>(0D);
+		}
+		BigDecimal balance = BigDecimal.valueOf(get.getValue());
 		return balance;
+	}
+	
+	@Override
+	public String getDisplayName() {
+		return CitiTrader.getResourceBundle().getString("general.wallet.shop");
 	}
 }

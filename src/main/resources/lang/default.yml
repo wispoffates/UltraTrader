@@ -53,6 +53,10 @@ conversation:
     menutext: CitiTraders Admin Menu
     bankmenu: Choose which type of bank to use.
     setbank: Setting bank to
+    playerwallet:
+      options:
+        anotherplayer: another
+        yourself: yourself
     setname:
       setname: Name your shop. (32 Characters Max)
       nametolong: Shop names can only be 32 characters or shorter.
