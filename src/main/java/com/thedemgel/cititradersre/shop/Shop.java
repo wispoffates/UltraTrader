@@ -255,21 +255,21 @@ public class Shop {
 		return info;
 	}
 
-	public void setInfo(ConcurrentMap<String, ConfigValue> info) {
+	/*public void setInfo(ConcurrentMap<String, ConfigValue> info) {
 		this.info = info;
-	}
+	}*/
 
-	public void setInventory(ConcurrentMap<ItemStack, Integer> inventory) {
+	/*public void setInventory(ConcurrentMap<ItemStack, Integer> inventory) {
 		this.inventory = inventory;
-	}
+	}*/
 
-	public void setBuyprices(ConcurrentMap<String, ItemPrice> buyprices) {
+	/*public void setBuyprices(ConcurrentMap<String, ItemPrice> buyprices) {
 		this.buyprices = buyprices;
-	}
+	}*/
 
-	public void setSellprices(ConcurrentMap<String, ItemPrice> sellprices) {
+	/*public void setSellprices(ConcurrentMap<String, ItemPrice> sellprices) {
 		this.sellprices = sellprices;
-	}
+	}*/
 
 	public void setWallet(Wallet wallet) {
 		this.wallet = wallet;

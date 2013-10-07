@@ -35,8 +35,8 @@ public class AdminItemDeletePrompt extends FixedIgnoreCaseSetPrompt {
 		Player p = (Player) context.getForWhom();
 		ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
 		int invCount = 0;
-		if (view.getShop().getInventoryInterface().hasItem(itemprice)) {
-			invCount = view.getShop().getInventoryInterface().getInventoryAmount(itemprice.getItemStack());
+		if (view.getShop().getInventoryInterface().containsItem(itemprice)) {
+			invCount = view.getShop().getInventoryInterface().getInventoryStock(itemprice.getItemStack());
 		}
 
 		if (invCount > 0) {

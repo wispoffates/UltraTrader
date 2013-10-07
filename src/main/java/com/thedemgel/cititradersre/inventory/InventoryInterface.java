@@ -3,56 +3,71 @@ package com.thedemgel.cititradersre.inventory;
 import com.thedemgel.cititradersre.shop.ItemPrice;
 import com.thedemgel.cititradersre.shop.Shop;
 import java.util.concurrent.ConcurrentMap;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public abstract class InventoryInterface {
 
 	private Shop shop;
+	private ConcurrentMap<ItemStack, Integer> inv;
 
 	public InventoryInterface(Shop shop) {
 		this.shop = shop;
+		inv = shop.getInventory();
 	}
 
-	public abstract boolean hasItem(ItemStack item);
-
-	public abstract boolean hasItem(ItemPrice item);
-
-	public void addInventory(ItemStack item) {
-		ItemStack invItem = item.clone();
-		invItem.setAmount(1);
-
-		if (getInventory().containsKey(invItem)) {
-			Integer amount = getInventory().get(invItem).intValue() + item.getAmount();
-			getInventory().put(invItem, amount);
-		} else {
-			getInventory().put(invItem, item.getAmount());
-		}
+	/**
+	 * Check to see if this item (single itemstack) is in the inventory.
+	 * 
+	 * @param item
+	 * @return 
+	 */
+	public abstract boolean containsItem(ItemStack item);
+	
+	public final boolean containsItem(ItemPrice item) {
+		return containsItem(item.getItemStack());
 	}
 	
-	public void removeInventory(ItemStack item, Integer amount) {
-		// Remove all Inventory
-		if (amount == -1) {
-			if (getInventory().containsKey(item)) {
-				getInventory().remove(item);
-			}
-		} else {
-			Integer currentInvAmount = getInventory().get(item);
-			getInventory().put(item, currentInvAmount - amount);
-		}
-	}
-	
-	public Integer getInventoryAmount(ItemStack item) {
-		if (getInventory().containsKey(item)) {
-			return getInventory().get(item);
-		}
-		return 0;
-	}
-	
-	public Integer getInventoryAmount(ItemPrice item) {
-		return getInventoryAmount(item.getItemStack());
+	/**
+	 * Checks to see if this item AND amount are in stock.
+	 * 
+	 * @param item
+	 * @return 
+	 */
+	public abstract boolean hasItemInStock(ItemStack item);
+
+	public final boolean hasItemInStock(ItemPrice item) {
+		return hasItemInStock(item.getItemStack());
 	}
 
-	public ConcurrentMap<ItemStack, Integer> getInventory() {
-		return shop.getInventory();
+	public abstract void addInventory(ItemStack item);
+	
+	public abstract void removeInventory(ItemStack item, Integer amount);
+	
+	/**
+	 * Gets the current Stock level of an item, returns 0 if item isn't currently
+	 * in inventory.
+	 * @param item
+	 * @return 
+	 */
+	public abstract int getInventoryStock(ItemStack item);
+	
+	public final int getInventoryStock(ItemPrice item) {
+		return getInventoryStock(item.getItemStack());
+	}
+
+	protected ConcurrentMap<ItemStack, Integer> getInventory() {
+		return inv;
+	}
+	
+	/**
+	 * Whether or not to display this item in the main inventory view of the
+	 * trader.
+	 * @return Boolean to display item.
+	 */
+	public abstract boolean displayItemToPlayer(Player player);
+	
+	public Shop getShop() {
+		return shop;
 	}
 }

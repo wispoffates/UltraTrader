@@ -36,7 +36,6 @@ public class PurchaseHandler {
 	 */
 	public static void processPurchase(Shop shop, Player player, ItemStack buyStack) {
 		String buyStackId = shop.getItemId(buyStack);
-		//ItemPrice invItem = shop.getInventory().get(buyStackId);
 		ItemPrice invItem = shop.getSellprices().get(buyStackId);
 		BigDecimal buyStackPriceEach = invItem.getPrice();
 
@@ -62,8 +61,7 @@ public class PurchaseHandler {
 
 		// Check for availability
 		ItemStack baseItem = invItem.getItemStack();
-		//Integer currentInvAmount = shop.getInventory().get(baseItem);
-		Integer currentInvAmount = shop.getInventoryInterface().getInventoryAmount(baseItem);
+		Integer currentInvAmount = shop.getInventoryInterface().getInventoryStock(baseItem);
 
 		if (buyStack.getAmount() > currentInvAmount) {
 			CitiTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), heldFunds.amount);
@@ -71,8 +69,6 @@ public class PurchaseHandler {
 			player.sendMessage(CitiTrader.getResourceBundle().getString("transaction.sale.shop.notenoughitems"));
 			return;
 		} else {
-
-			//shop.getInventory().put(baseItem, currentInvAmount - buyStack.getAmount());
 			shop.getInventoryInterface().removeInventory(baseItem, buyStack.getAmount());
 		}
 
@@ -92,9 +88,9 @@ public class PurchaseHandler {
 
 			CitiTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), refund.doubleValue());
 
-			//invItem.setAmount(invItem.getAmount() + returned);
-			//shop.getInventory().put(baseItem, currentInvAmount - returned);
-			shop.getInventoryInterface().removeInventory(baseItem, returned);
+			ItemStack itemReturned = baseItem.clone();
+			itemReturned.setAmount(returned);
+			shop.getInventoryInterface().addInventory(itemReturned);
 		}
 
 		BigDecimal traderDeposit = BigDecimal.valueOf(heldFunds.amount).subtract(refund);

@@ -1,9 +1,6 @@
 package com.thedemgel.cititradersre.shop;
 
-import com.thedemgel.cititradersre.shop.Status;
 import com.thedemgel.cititradersre.CitiTrader;
-import com.thedemgel.cititradersre.shop.ItemPrice;
-import com.thedemgel.cititradersre.shop.Shop;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -23,13 +20,12 @@ public class ShopInventoryView extends InventoryView {
 	private Inventory top;
 	private Player player;
 	private InventoryType type = InventoryType.CHEST;
-	private boolean open = true;
 	private boolean keepAlive = false;
 	private Shop shop;
-	public Conversation convo;
 	private Status current = Status.NULL;
 	private ResourceBundle rb;
-
+	public Conversation convo;
+	
 	public ShopInventoryView(Inventory invTop, Player player, Shop shop) {
 		rb = CitiTrader.getResourceBundle();
 		top = invTop;
@@ -40,14 +36,6 @@ public class ShopInventoryView extends InventoryView {
 
 	public Status getStatus() {
 		return current;
-	}
-
-	public void setOpen() {
-		open = false;
-	}
-
-	public boolean isOpen() {
-		return open;
 	}
 
 	@Override
@@ -73,20 +61,20 @@ public class ShopInventoryView extends InventoryView {
 	public final void buildView() {
 		current = Status.MAIN_SCREEN;
 		top.clear();
+		boolean displayAdmin = shop.getInventoryInterface().displayItemToPlayer(player);
 		for (ItemPrice item : getShop().getSellprices().values()) {
-			Integer currentInvAmount = getShop().getInventory().get(item.getItemStack());
-			if (currentInvAmount != null) {
-				if (currentInvAmount > 0 || shop.isOwner(player)) {
-					if (shop.getOwner().equals(player.getName())) {
-						this.getTopInventory().addItem(item.generateLore(1, true, currentInvAmount));
-					} else {
-						this.getTopInventory().addItem(item.generateLore());
-					}
+			int currentInvAmount = shop.getInventoryInterface().getInventoryStock(item);
+
+			if (currentInvAmount > 0 || shop.isOwner(player)) {
+				if (displayAdmin) {
+					this.getTopInventory().addItem(item.generateLore(1, true, currentInvAmount));
+				} else {
+					this.getTopInventory().addItem(item.generateLore());
 				}
 			}
 		}
 
-		if (shop.getOwner().equals(player.getName())) {
+		if (displayAdmin) {
 			ItemStack doAdmin = new ItemStack(Material.BOOK_AND_QUILL);
 			ItemMeta setPriceMeta = doAdmin.getItemMeta();
 			List<String> doAdminText = new ArrayList<>();
@@ -113,14 +101,15 @@ public class ShopInventoryView extends InventoryView {
 		}
 
 		int invCount = 0;
-		if (shop.getInventory().containsKey(invItem.getItemStack())) {
-			invCount = shop.getInventory().get(invItem.getItemStack());
+		//if (shop.getInventory().containsKey(invItem.getItemStack())) {
+		if (shop.getInventoryInterface().containsItem(invItem)) {
+			invCount = shop.getInventoryInterface().getInventoryStock(invItem);
 		} else {
 			buildView();
 			return;
 		}
 
-		if (invCount < 1 && !shop.getOwner().equals(player.getName())) {
+		if (invCount < 1 && !shop.getInventoryInterface().displayItemToPlayer(player)) {
 			buildView();
 			return;
 		}
@@ -128,7 +117,6 @@ public class ShopInventoryView extends InventoryView {
 		Integer max = invItem.getItemStack().getMaxStackSize();
 		Integer count = 1;
 		while (count <= max && count <= invCount) {
-			//System.out.println("Count: " + count);
 			top.addItem(invItem.generateLore(count));
 			count = count * 2;
 		}
@@ -146,7 +134,7 @@ public class ShopInventoryView extends InventoryView {
 		arrow.setItemMeta(arrowMeta);
 		this.setItem(45, arrow);
 
-		if (shop.getOwner().equals(player.getName())) {
+		if (shop.isOwner(player)) {
 			ItemStack setPrice = new ItemStack(Material.BOOK_AND_QUILL);
 			ItemMeta setPriceMeta = setPrice.getItemMeta();
 			List<String> setPriceText = new ArrayList<>();
@@ -156,7 +144,7 @@ public class ShopInventoryView extends InventoryView {
 			setPriceMeta.setDisplayName(rb.getString("inventory.itemadmin.display"));
 			setPrice.setItemMeta(setPriceMeta);
 			this.setItem(53, setPrice);
-			
+
 			ItemStack removeStock;
 			if (invCount > 0) {
 				removeStock = new ItemStack(Material.WATER_BUCKET);
