@@ -1,6 +1,6 @@
 package com.thedemgel.cititradersre.wallet.wallets;
 
-import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.shop.Shop;
 import com.thedemgel.cititradersre.util.ConfigValue;
 import com.thedemgel.cititradersre.util.Permissions;
@@ -10,7 +10,6 @@ import com.thedemgel.cititradersre.wallet.annotation.WalletTypeName;
 import java.math.BigDecimal;
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
-import org.bukkit.configuration.ConfigurationSection;
 
 /**
  * ShopWallets are internal wallets, the value is stored in the Shop.yml.
@@ -69,9 +68,9 @@ public class ShopWallet extends Wallet {
 		BigDecimal balance = BigDecimal.valueOf(get.getValue());
 		return balance;
 	}
-	
+
 	@Override
 	public String getDisplayName() {
-		return CitiTrader.getResourceBundle().getString("general.wallet.shop");
+		return L.getString("general.wallet.shop");
 	}
 }

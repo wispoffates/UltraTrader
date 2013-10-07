@@ -1,7 +1,6 @@
-
 package com.thedemgel.cititradersre.conversation.admin.bank;
 
-import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.conversation.admin.AdminMenuPrompt;
 import com.thedemgel.cititradersre.shop.ShopInventoryView;
@@ -12,16 +11,15 @@ import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
 import org.bukkit.conversations.Prompt;
 
-
 public class AdminBankPrompt extends MessagePrompt {
 
 	private String type;
 	private Wallet wallet;
-	
+
 	public AdminBankPrompt(String walletType) {
 		type = walletType;
 	}
-	
+
 	@Override
 	protected Prompt getNextPrompt(ConversationContext context) {
 		context.setSessionData(ConversationHandler.CONVERSATION_SESSION_RETURN, new AdminMenuPrompt());
@@ -35,20 +33,16 @@ public class AdminBankPrompt extends MessagePrompt {
 				System.out.println("Conversation Prompt construction failed: " + convo.value());
 			}
 		}
-		
+
 		return new AdminMenuPrompt();
 	}
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		//Player player = (Player) context.getForWhom();
 		ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
 		view.getShop().setWalletType(type);
 		wallet = view.getShop().getWallet();
-		/*if (wallet instanceof PlayerWallet) {
-			wallet.setInfo("player", new ConfigValue(player.getName()));
-		}*/
-		return ChatColor.GREEN + CitiTrader.getResourceBundle().getString("conversation.admin.setbank") + ": " + type;
+		
+		return ChatColor.GREEN + L.getString("conversation.admin.setbank") + ": " + type;
 	}
-
 }

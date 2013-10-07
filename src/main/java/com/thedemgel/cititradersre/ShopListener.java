@@ -176,7 +176,7 @@ public class ShopListener implements Listener {
 						convo.begin();
 						return;
 					} else {
-						player.sendMessage(CitiTrader.getResourceBundle().getString("general.noopen.unassigned"));
+						player.sendMessage(L.getString("general.noopen.unassigned"));
 						return;
 					}
 				}
@@ -247,7 +247,7 @@ public class ShopListener implements Listener {
 
 	public void createShop(Player player, ItemStack item, Block block) {
 		if (!player.hasPermission(Permissions.CREATE_STORES)) {
-			player.sendMessage(CitiTrader.getResourceBundle().getString("permission.create.deny"));
+			player.sendMessage(L.getString("permission.create.deny"));
 			return;
 		}
 		if (item.getItemMeta().hasLore()) {

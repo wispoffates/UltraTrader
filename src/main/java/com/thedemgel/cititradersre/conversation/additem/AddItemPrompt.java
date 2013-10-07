@@ -1,14 +1,12 @@
 package com.thedemgel.cititradersre.conversation.additem;
 
-import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.conversation.NotADoublePrompt;
-import com.thedemgel.cititradersre.shop.ShopInventoryView;
 import java.math.BigDecimal;
 import java.text.MessageFormat;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.conversations.StringPrompt;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class AddItemPrompt extends StringPrompt {
@@ -31,6 +29,6 @@ public class AddItemPrompt extends StringPrompt {
 	public String getPromptText(ConversationContext context) {
 		ItemStack item = (ItemStack) context.getSessionData("item");
 		
-		return MessageFormat.format(CitiTrader.getResourceBundle().getString("conversation.additem.setprice"), item.getType().name());
+		return MessageFormat.format(L.getString("conversation.additem.setprice"), item.getType().name());
 	}
 }

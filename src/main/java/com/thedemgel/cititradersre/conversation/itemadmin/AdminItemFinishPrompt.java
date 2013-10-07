@@ -1,12 +1,11 @@
 package com.thedemgel.cititradersre.conversation.itemadmin;
 
-import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.shop.ShopInventoryView;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
 import org.bukkit.conversations.Prompt;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class AdminItemFinishPrompt extends MessagePrompt {
@@ -22,6 +21,6 @@ public class AdminItemFinishPrompt extends MessagePrompt {
 		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
 		view.buildItemView(item);
 
-		return CitiTrader.getResourceBundle().getString("conversation.admin.exit");
+		return L.getString("conversation.admin.exit");
 	}
 }

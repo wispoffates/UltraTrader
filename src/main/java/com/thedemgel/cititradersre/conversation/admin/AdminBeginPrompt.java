@@ -1,6 +1,7 @@
 package com.thedemgel.cititradersre.conversation.admin;
 
 import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.shop.ShopInventoryView;
 import java.util.ResourceBundle;
@@ -17,12 +18,10 @@ import org.bukkit.entity.Player;
  */
 public class AdminBeginPrompt extends MessagePrompt {
 
-	private ResourceBundle rb;
 	private ConversationPrefix prefix;
 
 	public AdminBeginPrompt() {
 		prefix = new AdminConversationPrefix();
-		rb = CitiTrader.getResourceBundle();
 	}
 
 	@Override
@@ -46,7 +45,7 @@ public class AdminBeginPrompt extends MessagePrompt {
 	@Override
 	public final String getPromptText(ConversationContext context) {
 		Player p = (Player) context.getForWhom();
-		p.sendRawMessage(prefix.getPrefix(context) + rb.getString("conversation.admin.begin"));
-		return rb.getString("conversation.toquit");
+		p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.admin.begin"));
+		return L.getString("conversation.toquit");
 	}
 }

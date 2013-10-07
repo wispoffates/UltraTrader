@@ -1,6 +1,6 @@
 package com.thedemgel.cititradersre.conversation;
 
-import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.L;
 import org.bukkit.ChatColor;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
@@ -15,6 +15,6 @@ public class NotADoublePrompt extends MessagePrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		return ChatColor.RED + CitiTrader.getResourceBundle().getString("conversation.error.notadouble");
+		return ChatColor.RED + L.getString("conversation.error.notadouble");
 	}
 }

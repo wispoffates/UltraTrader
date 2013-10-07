@@ -1,6 +1,7 @@
 package com.thedemgel.cititradersre.conversation;
 
 import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.shop.ShopInventoryView;
 import org.bukkit.Bukkit;
 import org.bukkit.conversations.ConversationAbandonedEvent;
@@ -35,7 +36,7 @@ public class AbandonConvo implements ConversationAbandonedListener {
 				view.setKeepAlive(false);
 				CitiTrader.getStoreHandler().getInventoryHandler().removeInventoryView(player);
 			}
-			abandonedEvent.getContext().getForWhom().sendRawMessage(CitiTrader.getResourceBundle().getString("conversation.abandon"));
+			abandonedEvent.getContext().getForWhom().sendRawMessage(L.getString("conversation.abandon"));
 		}
 	}
 }

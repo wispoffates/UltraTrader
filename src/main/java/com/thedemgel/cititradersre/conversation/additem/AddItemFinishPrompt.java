@@ -1,13 +1,12 @@
 package com.thedemgel.cititradersre.conversation.additem;
 
-import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.shop.ShopInventoryView;
 import java.math.BigDecimal;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
 import org.bukkit.conversations.Prompt;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class AddItemFinishPrompt extends MessagePrompt {
@@ -30,6 +29,6 @@ public class AddItemFinishPrompt extends MessagePrompt {
 
 		view.buildView();
 
-		return CitiTrader.getResourceBundle().getString("conversation.additem.added");
+		return L.getString("conversation.additem.added");
 	}
 }

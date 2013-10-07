@@ -1,4 +1,5 @@
 general:
+  initialized: (Shop Initialized) {0} with id {1}
   accept: 'Yes'
   decline: 'No'
   exit: exit

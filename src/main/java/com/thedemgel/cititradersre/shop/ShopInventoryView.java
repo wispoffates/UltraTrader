@@ -1,9 +1,8 @@
 package com.thedemgel.cititradersre.shop;
 
-import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.L;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.conversations.Conversation;
@@ -23,11 +22,9 @@ public class ShopInventoryView extends InventoryView {
 	private boolean keepAlive = false;
 	private Shop shop;
 	private Status current = Status.NULL;
-	private ResourceBundle rb;
 	public Conversation convo;
-	
+
 	public ShopInventoryView(Inventory invTop, Player player, Shop shop) {
-		rb = CitiTrader.getResourceBundle();
 		top = invTop;
 		this.player = player;
 		this.shop = shop;
@@ -78,9 +75,9 @@ public class ShopInventoryView extends InventoryView {
 			ItemStack doAdmin = new ItemStack(Material.BOOK_AND_QUILL);
 			ItemMeta setPriceMeta = doAdmin.getItemMeta();
 			List<String> doAdminText = new ArrayList<>();
-			doAdminText.add(rb.getString("inventory.admin.display"));
+			doAdminText.add(L.getString("inventory.admin.display"));
 			setPriceMeta.setLore(doAdminText);
-			setPriceMeta.setDisplayName(rb.getString("inventory.admin.lore"));
+			setPriceMeta.setDisplayName(L.getString("inventory.admin.lore"));
 			doAdmin.setItemMeta(setPriceMeta);
 			this.setItem(53, doAdmin);
 		}
@@ -128,9 +125,9 @@ public class ShopInventoryView extends InventoryView {
 		ItemStack arrow = new ItemStack(Material.ARROW);
 		ItemMeta arrowMeta = arrow.getItemMeta();
 		List<String> arrowText = new ArrayList<>();
-		arrowText.add(rb.getString("inventory.back.lore"));
+		arrowText.add(L.getString("inventory.back.lore"));
 		arrowMeta.setLore(arrowText);
-		arrowMeta.setDisplayName(rb.getString("inventory.back.display"));
+		arrowMeta.setDisplayName(L.getString("inventory.back.display"));
 		arrow.setItemMeta(arrowMeta);
 		this.setItem(45, arrow);
 
@@ -138,10 +135,10 @@ public class ShopInventoryView extends InventoryView {
 			ItemStack setPrice = new ItemStack(Material.BOOK_AND_QUILL);
 			ItemMeta setPriceMeta = setPrice.getItemMeta();
 			List<String> setPriceText = new ArrayList<>();
-			setPriceText.add(rb.getString("inventory.itemadmin.lore"));
+			setPriceText.add(L.getString("inventory.itemadmin.lore"));
 			setPriceText.add(ChatColor.DARK_GRAY + id);
 			setPriceMeta.setLore(setPriceText);
-			setPriceMeta.setDisplayName(rb.getString("inventory.itemadmin.display"));
+			setPriceMeta.setDisplayName(L.getString("inventory.itemadmin.display"));
 			setPrice.setItemMeta(setPriceMeta);
 			this.setItem(53, setPrice);
 
@@ -154,13 +151,13 @@ public class ShopInventoryView extends InventoryView {
 			ItemMeta setRemoveStockMeta = removeStock.getItemMeta();
 			List<String> setRemoveStockText = new ArrayList<>();
 			if (invCount > 0) {
-				setRemoveStockText.add(rb.getString("inventory.removestock.lore.full"));
+				setRemoveStockText.add(L.getString("inventory.removestock.lore.full"));
 			} else {
-				setRemoveStockText.add(rb.getString("inventory.removestock.lore.empty"));
+				setRemoveStockText.add(L.getString("inventory.removestock.lore.empty"));
 			}
 			setRemoveStockText.add(ChatColor.DARK_GRAY + id);
 			setRemoveStockMeta.setLore(setRemoveStockText);
-			setRemoveStockMeta.setDisplayName(rb.getString("inventory.removestock.display"));
+			setRemoveStockMeta.setDisplayName(L.getString("inventory.removestock.display"));
 			removeStock.setItemMeta(setRemoveStockMeta);
 			this.setItem(50, removeStock);
 		}

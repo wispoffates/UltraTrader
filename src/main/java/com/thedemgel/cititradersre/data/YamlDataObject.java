@@ -1,6 +1,7 @@
 package com.thedemgel.cititradersre.data;
 
 import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.StoreConfig;
 import com.thedemgel.cititradersre.shop.ItemPrice;
 import com.thedemgel.cititradersre.shop.Shop;
@@ -9,10 +10,13 @@ import com.thedemgel.cititradersre.util.YamlFilenameFilter;
 import com.thedemgel.cititradersre.wallet.WalletHandler;
 import java.io.File;
 import java.math.BigDecimal;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 
@@ -104,7 +108,7 @@ public class YamlDataObject extends DataObject {
 		
 		CitiTrader.getStoreHandler().addShop(shop);
 
-		System.out.println("Initialized shop " + shop.getName() + "(" + shop.getId() + ")");
+		Bukkit.getLogger().log(Level.INFO, L.getFormatString("general.initialized", shop.getName(), shop.getId()));
 	}
 
 	@Override
@@ -121,10 +125,6 @@ public class YamlDataObject extends DataObject {
 		for (File file : files) {
 			String id = file.getName().replace(".yml", "");
 			ids.add(Integer.parseInt(id));
-			//StoreConfig config = new StoreConfig(plugin, file);
-			//Shop shop = new Shop(config);
-			//shops.put(shop.getId(), shop);
-			//System.out.println("Initialized shop " + shop.getName() + "(" + shop.getId() + ")");
 		}
 
 		return ids;
@@ -193,7 +193,7 @@ public class YamlDataObject extends DataObject {
 			ConfigurationSection infoconfig = config.getConfig().getConfigurationSection("info");
 			if (infoconfig == null) {
 				infoconfig = config.getConfig().createSection("info");
-				ConfigValue<String> defaultname = new ConfigValue(CitiTrader.getResourceBundle().getString("general.newshopname"));
+				ConfigValue<String> defaultname = new ConfigValue(L.getString("general.newshopname"));
 				infoconfig.set("name", defaultname);
 			}
 

@@ -1,7 +1,6 @@
-
 package com.thedemgel.cititradersre.wallet.wallets;
 
-import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.shop.Shop;
 import com.thedemgel.cititradersre.util.Permissions;
 import com.thedemgel.cititradersre.wallet.Wallet;
@@ -11,12 +10,10 @@ import java.math.BigDecimal;
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
 
-
 /**
- * Admin wallets will contain no funds, will accept all funds
- * will always have funds. These are Server shops that have unlimited
- * funds.
- * 
+ * Admin wallets will contain no funds, will accept all funds will always have
+ * funds. These are Server shops that have unlimited funds.
+ *
  * This does not effect Inventory in the least.
  */
 @WalletTypeName("admin")
@@ -26,7 +23,7 @@ public class AdminWallet extends Wallet {
 	public AdminWallet(Shop shop) {
 		super(shop);
 	}
-	
+
 	@Override
 	public boolean hasFunds(BigDecimal amount) {
 		return true;
@@ -44,6 +41,6 @@ public class AdminWallet extends Wallet {
 
 	@Override
 	public String getDisplayName() {
-		return CitiTrader.getResourceBundle().getString("general.wallet.admin");
+		return L.getString("general.wallet.admin");
 	}
 }

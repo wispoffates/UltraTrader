@@ -3,6 +3,7 @@ package com.thedemgel.cititradersre.conversation.additem;
 
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.InventoryHandler;
+import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.shop.ItemPrice;
 import com.thedemgel.cititradersre.shop.ShopInventoryView;
@@ -44,7 +45,7 @@ public class AddItemBeginPrompt extends MessagePrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {		
-		return CitiTrader.getResourceBundle().getString("conversation.additem.begin");
+		return L.getString("conversation.additem.begin");
 	}
 
 }

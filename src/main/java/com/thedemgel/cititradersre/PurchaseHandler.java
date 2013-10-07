@@ -3,7 +3,6 @@ package com.thedemgel.cititradersre;
 import com.thedemgel.cititradersre.shop.ItemPrice;
 import com.thedemgel.cititradersre.shop.Shop;
 import java.math.BigDecimal;
-import java.text.MessageFormat;
 import java.util.HashMap;
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
@@ -45,17 +44,17 @@ public class PurchaseHandler {
 		if (CitiTrader.getEconomy().has(player.getName(), player.getWorld().getName(), buyStackPrice.doubleValue())) {
 			heldFunds = CitiTrader.getEconomy().withdrawPlayer(player.getName(), player.getWorld().getName(), buyStackPrice.doubleValue());
 		} else {
-			player.sendMessage(CitiTrader.getResourceBundle().getString("transaction.sale.player.notenoughfunds"));
+			player.sendMessage(L.getString("transaction.sale.player.notenoughfunds"));
 			return;
 		}
 
 		if (heldFunds == null) {
-			player.sendMessage(CitiTrader.getResourceBundle().getString("transaction.error.economy"));
+			player.sendMessage(L.getString("transaction.error.economy"));
 			return;
 		}
 
 		if (!heldFunds.type.equals(ResponseType.SUCCESS)) {
-			player.sendMessage(CitiTrader.getResourceBundle().getString("transaction.error.economy"));
+			player.sendMessage(L.getString("transaction.error.economy"));
 			return;
 		}
 
@@ -66,7 +65,7 @@ public class PurchaseHandler {
 		if (buyStack.getAmount() > currentInvAmount) {
 			CitiTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), heldFunds.amount);
 			// Some error checks for deposit
-			player.sendMessage(CitiTrader.getResourceBundle().getString("transaction.sale.shop.notenoughitems"));
+			player.sendMessage(L.getString("transaction.sale.shop.notenoughitems"));
 			return;
 		} else {
 			shop.getInventoryInterface().removeInventory(baseItem, buyStack.getAmount());
@@ -97,9 +96,10 @@ public class PurchaseHandler {
 
 		// Deposit into trader when interface is ready.
 		if (shop.getWallet().addFunds(traderDeposit).type.equals(ResponseType.SUCCESS)) {
-			player.sendMessage(MessageFormat.format(CitiTrader.getResourceBundle().getString("transaction.sale.shop.totalpurchase"), traderDeposit));
+			//player.sendMessage(MessageFormat.format(CitiTrader.getResourceBundle().getString("transaction.sale.shop.totalpurchase"), traderDeposit));
+			player.sendMessage(L.getFormatString("transaction.sale.shop.totalpurchase", traderDeposit));
 		} else {
-			player.sendMessage(CitiTrader.getResourceBundle().getString("transaction.error.fundstoshop"));
+			player.sendMessage(L.getString("transaction.error.fundstoshop"));
 		}
 
 		shop.save();

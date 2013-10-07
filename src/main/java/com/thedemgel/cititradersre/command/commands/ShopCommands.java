@@ -2,6 +2,7 @@ package com.thedemgel.cititradersre.command.commands;
 
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.InventoryHandler;
+import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.command.BukkitCommand;
 import com.thedemgel.cititradersre.command.Commands;
 import com.thedemgel.cititradersre.shop.Shop;
@@ -46,9 +47,9 @@ public class ShopCommands extends Commands implements CommandExecutor {
 		Collection<Shop> shops = CitiTrader.getStoreHandler().getShopsByOwner((Player) sender);
 
 		if (shops.isEmpty()) {
-			sender.sendMessage(CitiTrader.getResourceBundle().getString("shops.list.noshops"));
+			sender.sendMessage(L.getString("shops.list.noshops"));
 		} else {
-			sender.sendMessage(CitiTrader.getResourceBundle().getString("shops.list.yourshops"));
+			sender.sendMessage(L.getString("shops.list.yourshops"));
 			for (Shop shop : shops) {
 				sender.sendMessage(shop.getId() + ": " + shop.getName());
 			}

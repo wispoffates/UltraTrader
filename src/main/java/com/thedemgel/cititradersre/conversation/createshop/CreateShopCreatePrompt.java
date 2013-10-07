@@ -1,6 +1,7 @@
 package com.thedemgel.cititradersre.conversation.createshop;
 
 import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.citizens.TraderTrait;
 import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.shop.Shop;
@@ -15,11 +16,9 @@ import org.bukkit.entity.Player;
 
 public class CreateShopCreatePrompt extends MessagePrompt {
 
-	private ResourceBundle rb;
 	private ConversationPrefix prefix;
 
 	public CreateShopCreatePrompt() {
-		rb = CitiTrader.getResourceBundle();
 		prefix = new CreateShopConversationPrefix();
 	}
 
@@ -33,16 +32,16 @@ public class CreateShopCreatePrompt extends MessagePrompt {
 			// TODO: check for blocks and items (or change this to NPC conversation only)
 			NPC npc = (NPC) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_NPC);
 			npc.getTrait(TraderTrait.class).setShopId(shop.getId());
-			player.sendRawMessage(prefix.getPrefix(context) + ChatColor.GREEN + rb.getString("conversation.createshop.create.created"));
+			player.sendRawMessage(prefix.getPrefix(context) + ChatColor.GREEN + L.getString("conversation.createshop.create.created"));
 			return Prompt.END_OF_CONVERSATION;
 		} else {
-			player.sendRawMessage(prefix.getPrefix(context) + ChatColor.RED + rb.getString("conversation.createshop.create.error"));
+			player.sendRawMessage(prefix.getPrefix(context) + ChatColor.RED + L.getString("conversation.createshop.create.error"));
 			return new CreateShopMenuPrompt();
 		}
 	}
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		return rb.getString("conversation.createshop.create.creating");
+		return L.getString("conversation.createshop.create.creating");
 	}
 }

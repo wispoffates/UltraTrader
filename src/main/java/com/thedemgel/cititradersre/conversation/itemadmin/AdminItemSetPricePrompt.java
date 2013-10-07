@@ -1,15 +1,13 @@
 package com.thedemgel.cititradersre.conversation.itemadmin;
 
-import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.conversation.NotADoublePrompt;
 import com.thedemgel.cititradersre.shop.ItemPrice;
 import java.math.BigDecimal;
-import java.text.MessageFormat;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.conversations.StringPrompt;
-import org.bukkit.inventory.ItemStack;
 
 public class AdminItemSetPricePrompt extends StringPrompt {
 
@@ -31,6 +29,6 @@ public class AdminItemSetPricePrompt extends StringPrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
 		ItemPrice item = (ItemPrice) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEMPRICE);
-		return MessageFormat.format(CitiTrader.getResourceBundle().getString("conversation.itemadmin.setprice"), item.getItemStack().getType().name());
+		return L.getFormatString("conversation.itemadmin.setprice", item.getItemStack().getType().name());
 	}
 }

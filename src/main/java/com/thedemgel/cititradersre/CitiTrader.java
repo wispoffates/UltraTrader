@@ -27,7 +27,7 @@ public class CitiTrader extends JavaPlugin {
 	public static final int STORE_ID_RAND_BASE = 10;
 	public static final int STORE_ID_RAND_INCREMENT = 50;
 	public static final long BUKKIT_SCHEDULER_DELAY = 2;
-	private static ResourceBundle rb;
+	//private static ResourceBundle rb;
 	private static ConversationHandler conversationHandler;
 	private static CitiTrader plugin;
 	private static Economy economy;
@@ -61,18 +61,18 @@ public class CitiTrader extends JavaPlugin {
 	@Override
 	public final void onLoad() {
 		// Assign ResourceBundle (using YAMLResourceBundle)
-		Locale locale = new Locale(getConfig().getString("language", "en"));
-		rb = YamlResourceBundle.getBundle("lang.default", locale, getDataFolder());
+		//Locale locale = new Locale(getConfig().getString("language", "en"));
+		//rb = YamlResourceBundle.getBundle("lang.default", locale, getDataFolder());
 	}
 	@Override
 	public final void onEnable() {
 		plugin = this;
 		wallethandler = new WalletHandler();
 
-		getWallethandler().registerWallet(AdminWallet.class, rb.getString("general.wallet.admin"))
-			.registerWallet(PlayerWallet.class, rb.getString("general.wallet.player"))
-			.registerWallet(BankWallet.class, rb.getString("general.wallet.bank"))
-			.registerWallet(ShopWallet.class, rb.getString("general.wallet.shop"));
+		getWallethandler().registerWallet(AdminWallet.class, L.getString("general.wallet.admin"))
+			.registerWallet(PlayerWallet.class, L.getString("general.wallet.player"))
+			.registerWallet(BankWallet.class, L.getString("general.wallet.bank"))
+			.registerWallet(ShopWallet.class, L.getString("general.wallet.shop"));
 
 		dbObj = new YamlDataObject();
 		
@@ -95,9 +95,9 @@ public class CitiTrader extends JavaPlugin {
 		this.getLogger().log(Level.INFO, "CitiTraders Disabled...");
 	}
 
-	public static ResourceBundle getResourceBundle() {
-		return rb;
-	}
+	//public static ResourceBundle getResourceBundle() {
+	//	return rb;
+	//}
 
 	public static ShopHandler getStoreHandler() {
 		return shopHandler;

@@ -1,6 +1,7 @@
 package com.thedemgel.cititradersre.conversation.additem;
 
 import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.shop.ShopInventoryView;
 import org.bukkit.Bukkit;
@@ -29,8 +30,8 @@ public class AddItemShopFullPrompt extends MessagePrompt {
 				view.setItem(slot, new ItemStack(Material.AIR));
 				view.getPlayer().getInventory().addItem(item);
 			}
-		}, 3);
+		}, CitiTrader.BUKKIT_SCHEDULER_DELAY);
 
-		return CitiTrader.getResourceBundle().getString("conversation.additem.shopfull");
+		return L.getString("conversation.additem.shopfull");
 	}
 }

@@ -4,6 +4,7 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.InventoryHandler;
+import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.StoreConfig;
 import com.thedemgel.cititradersre.wallet.WalletHandler;
 import java.io.File;
@@ -14,8 +15,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.bukkit.entity.Player;
 
 public class ShopHandler {
-	public static final int SHOP_NULL = -1;
 
+	public static final int SHOP_NULL = -1;
 	private final CitiTrader plugin;
 	private Map<Integer, Shop> shops = new ConcurrentHashMap<>();
 	private final InventoryHandler inventoryHandler;
@@ -28,19 +29,9 @@ public class ShopHandler {
 	public void addShop(Shop shop) {
 		shops.put(shop.getId(), shop);
 	}
-	
+
 	public void initShops() {
 		CitiTrader.getDbObj().initShops();
-		
-		/*File storedir = new File(plugin.getDataFolder() + "/stores/");
-		File[] files = storedir.listFiles(new YamlFilenameFilter());
-
-		for (File file : files) {
-			StoreConfig config = new StoreConfig(plugin, file);
-			Shop shop = new Shop(config);
-			shops.put(shop.getId(), shop);
-			System.out.println("Initialized shop " + shop.getName() + "(" + shop.getId() + ")");
-		}*/
 	}
 
 	public InventoryHandler getInventoryHandler() {
@@ -80,19 +71,19 @@ public class ShopHandler {
 			}
 			i++;
 		}
-		
+
 		if (tempConfig == null || randid == -1) {
 			return null;
 		}
-		
+
 		StoreConfig tempShopConfig = new StoreConfig(plugin, tempConfig);
 		Shop tempShop = new Shop(tempShopConfig);
 		tempShop.setId(randid);
 		tempShop.setOwner(player);
-		tempShop.setName(CitiTrader.getResourceBundle().getString("general.newshopname"));
+		tempShop.setName(L.getString("general.newshopname"));
 		tempShop.setWalletType(WalletHandler.DEFAULT_WALLET_TYPE);
 		tempShop.save();
-		
+
 		shops.put(tempShop.getId(), tempShop);
 		return tempShop;
 	}

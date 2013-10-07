@@ -1,10 +1,10 @@
 package com.thedemgel.cititradersre.conversation.itemadmin;
 
 import com.thedemgel.cititradersre.CitiTrader;
+import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.shop.ItemPrice;
 import com.thedemgel.cititradersre.shop.ShopInventoryView;
-import java.util.ResourceBundle;
 import org.bukkit.Bukkit;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.ConversationPrefix;
@@ -18,12 +18,10 @@ import org.bukkit.inventory.ItemStack;
  */
 public class AdminItemBeginPrompt extends MessagePrompt {
 
-	private ResourceBundle rb;
 	private ConversationPrefix prefix;
 
 	public AdminItemBeginPrompt() {
 		prefix = new AdminItemConversationPrefix();
-		rb = CitiTrader.getResourceBundle();
 	}
 
 	@Override
@@ -53,7 +51,7 @@ public class AdminItemBeginPrompt extends MessagePrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
 		Player p = (Player) context.getForWhom();
-		p.sendRawMessage(prefix.getPrefix(context) + rb.getString("conversation.itemadmin.begin"));
-		return rb.getString("conversation.toquit");
+		p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.itemadmin.begin"));
+		return L.getString("conversation.toquit");
 	}
 }
