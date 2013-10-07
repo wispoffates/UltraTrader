@@ -23,6 +23,9 @@ inventory:
   admin:
     display: Shop Admin
     lore: Click to Admin Shop
+  buyadmin:
+    display: Buy Admin
+    lore: Click to Admin Buy Values
   itemadmin:
     display: Item Admin
     lore: Click to set Item Details
@@ -34,6 +37,12 @@ inventory:
     lore:
       full: Click to Move all to Inventory
       empty: Nothing to move to Inventory
+  tobuyscreen:
+    display: Buy Screen
+    lore: Goto Buy Screen
+  tosellscreen:
+    display: Sell Screen
+    lore: Goto Sell Screen
 shops:
   list:
     noshops: You don't currently own any shops.

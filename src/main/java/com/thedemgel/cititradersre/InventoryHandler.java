@@ -32,9 +32,9 @@ public class InventoryHandler {
 	public void openInventory(Player player) {
 		if (inventories.containsKey(player)) {
 			ShopInventoryView inv = inventories.get(player);
-			if (inv.convo != null) {
-				inv.convo.abandon();
-				inv.convo = null;
+			if (inv.getConvo() != null) {
+				inv.getConvo().abandon();
+				inv.setConvo(null);
 			}
 			player.openInventory(inv);
 		}
@@ -44,8 +44,8 @@ public class InventoryHandler {
 		// Clear any old InventoryViews if they exist
 		if (inventories.containsKey(player)) {
 			ShopInventoryView oldview = inventories.get(player);
-			if (oldview.convo != null) {
-				oldview.convo.abandon();
+			if (oldview.getConvo() != null) {
+				oldview.getConvo().abandon();
 				inventories.remove(player);
 			}
 		}

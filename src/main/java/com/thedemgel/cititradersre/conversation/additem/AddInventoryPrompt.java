@@ -29,7 +29,7 @@ public class AddInventoryPrompt extends MessagePrompt {
 		Bukkit.getScheduler().scheduleSyncDelayedTask(CitiTrader.getInstance(), new Runnable() {
 			@Override
 			public void run() {
-				view.buildView();
+				view.buildSellView();
 			}
 		}, CitiTrader.BUKKIT_SCHEDULER_DELAY);
 

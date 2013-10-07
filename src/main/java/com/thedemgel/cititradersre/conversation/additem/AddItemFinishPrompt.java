@@ -19,7 +19,7 @@ public class AddItemFinishPrompt extends MessagePrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
 		ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
-		
+
 		String description = (String) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_DESCRIPTION);
 		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
 		BigDecimal price = (BigDecimal) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_PRICE);
@@ -27,7 +27,7 @@ public class AddItemFinishPrompt extends MessagePrompt {
 		view.getShop().addSellItem(item, price, 1, description);
 		view.getShop().getInventoryInterface().addInventory(item);
 
-		view.buildView();
+		view.buildSellView();
 
 		return L.getString("conversation.additem.added");
 	}

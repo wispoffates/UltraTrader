@@ -1,5 +1,6 @@
 package com.thedemgel.cititradersre.shop;
 
+import com.thedemgel.cititradersre.InventoryHandler;
 import com.thedemgel.cititradersre.L;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +23,13 @@ public class ShopInventoryView extends InventoryView {
 	private boolean keepAlive = false;
 	private Shop shop;
 	private Status current = Status.NULL;
-	public Conversation convo;
+	private Conversation convo;
 
 	public ShopInventoryView(Inventory invTop, Player player, Shop shop) {
 		top = invTop;
 		this.player = player;
 		this.shop = shop;
-		buildView();
+		buildSellView();
 	}
 
 	public Status getStatus() {
@@ -55,7 +56,7 @@ public class ShopInventoryView extends InventoryView {
 		return getPlayer().getInventory();
 	}
 
-	public final void buildView() {
+	public final void buildSellView() {
 		current = Status.MAIN_SCREEN;
 		top.clear();
 		boolean displayAdmin = shop.getInventoryInterface().displayItemToPlayer(player);
@@ -71,15 +72,60 @@ public class ShopInventoryView extends InventoryView {
 			}
 		}
 
+		ItemStack toSell = new ItemStack(Material.ENDER_PEARL);
+		ItemMeta toSellMeta = toSell.getItemMeta();
+		List<String> toSellText = new ArrayList<>();
+		toSellText.add(L.getString("inventory.tobuyscreen.lore"));
+		toSellMeta.setLore(toSellText);
+		toSellMeta.setDisplayName(L.getString("inventory.tobuyscreen.display"));
+		toSell.setItemMeta(toSellMeta);
+		this.setItem(InventoryHandler.INVENTORY_BACK_ARROW_SLOT, toSell);
+
 		if (displayAdmin) {
 			ItemStack doAdmin = new ItemStack(Material.BOOK_AND_QUILL);
 			ItemMeta setPriceMeta = doAdmin.getItemMeta();
 			List<String> doAdminText = new ArrayList<>();
-			doAdminText.add(L.getString("inventory.admin.display"));
+			doAdminText.add(L.getString("inventory.admin.lore"));
 			setPriceMeta.setLore(doAdminText);
-			setPriceMeta.setDisplayName(L.getString("inventory.admin.lore"));
+			setPriceMeta.setDisplayName(L.getString("inventory.admin.display"));
 			doAdmin.setItemMeta(setPriceMeta);
-			this.setItem(53, doAdmin);
+			this.setItem(InventoryHandler.INVENTORY_ADMIN_SLOT, doAdmin);
+		}
+	}
+
+	public void buildBuyView() {
+		current = Status.BUY_SCREEN;
+		top.clear();
+
+		boolean displayAdmin = shop.getInventoryInterface().displayItemToPlayer(player);
+		for (ItemPrice item : getShop().getBuyprices().values()) {
+			int currentInvAmount = shop.getInventoryInterface().getInventoryStock(item);
+
+			if (displayAdmin) {
+				this.getTopInventory().addItem(item.generateLore(1, true, currentInvAmount));
+			} else {
+				this.getTopInventory().addItem(item.generateLore());
+			}
+		}
+
+		ItemStack toSell = new ItemStack(Material.SLIME_BALL);
+		ItemMeta toSellMeta = toSell.getItemMeta();
+		List<String> toSellText = new ArrayList<>();
+		toSellText.add(L.getString("inventory.tosellscreen.lore"));
+		toSellMeta.setLore(toSellText);
+		toSellMeta.setDisplayName(L.getString("inventory.tosellscreen.display"));
+		toSell.setItemMeta(toSellMeta);
+		this.setItem(InventoryHandler.INVENTORY_BACK_ARROW_SLOT, toSell);
+
+		if (displayAdmin) {
+			ItemStack doAdmin = new ItemStack(Material.BOOK_AND_QUILL);
+			ItemMeta setPriceMeta = doAdmin.getItemMeta();
+			List<String> doAdminText = new ArrayList<>();
+			doAdminText.add(L.getString("inventory.buyadmin.lore"));
+			setPriceMeta.setLore(doAdminText);
+			setPriceMeta.setDisplayName(L.getString("inventory.buyadmin.display"));
+			doAdmin.setItemMeta(setPriceMeta);
+			this.setItem(InventoryHandler.INVENTORY_ADMIN_SLOT, doAdmin);
 		}
 	}
 
@@ -93,7 +139,7 @@ public class ShopInventoryView extends InventoryView {
 		if (getShop().getSellprices().containsKey(id)) {
 			invItem = getShop().getSellprices().get(id);
 		} else {
-			buildView();
+			buildSellView();
 			return;
 		}
 
@@ -102,12 +148,12 @@ public class ShopInventoryView extends InventoryView {
 		if (shop.getInventoryInterface().containsItem(invItem)) {
 			invCount = shop.getInventoryInterface().getInventoryStock(invItem);
 		} else {
-			buildView();
+			buildSellView();
 			return;
 		}
 
 		if (invCount < 1 && !shop.getInventoryInterface().displayItemToPlayer(player)) {
-			buildView();
+			buildSellView();
 			return;
 		}
 
@@ -129,7 +175,7 @@ public class ShopInventoryView extends InventoryView {
 		arrowMeta.setLore(arrowText);
 		arrowMeta.setDisplayName(L.getString("inventory.back.display"));
 		arrow.setItemMeta(arrowMeta);
-		this.setItem(45, arrow);
+		this.setItem(InventoryHandler.INVENTORY_BACK_ARROW_SLOT, arrow);
 
 		if (shop.isOwner(player)) {
 			ItemStack setPrice = new ItemStack(Material.BOOK_AND_QUILL);
@@ -140,7 +186,7 @@ public class ShopInventoryView extends InventoryView {
 			setPriceMeta.setLore(setPriceText);
 			setPriceMeta.setDisplayName(L.getString("inventory.itemadmin.display"));
 			setPrice.setItemMeta(setPriceMeta);
-			this.setItem(53, setPrice);
+			this.setItem(InventoryHandler.INVENTORY_ADMIN_SLOT, setPrice);
 
 			ItemStack removeStock;
 			if (invCount > 0) {
@@ -159,7 +205,7 @@ public class ShopInventoryView extends InventoryView {
 			setRemoveStockMeta.setLore(setRemoveStockText);
 			setRemoveStockMeta.setDisplayName(L.getString("inventory.removestock.display"));
 			removeStock.setItemMeta(setRemoveStockMeta);
-			this.setItem(50, removeStock);
+			this.setItem(InventoryHandler.INVENTORY_TAKE_ALL_SLOT, removeStock);
 		}
 	}
 
@@ -173,5 +219,13 @@ public class ShopInventoryView extends InventoryView {
 
 	public void setKeepAlive(boolean keepAlive) {
 		this.keepAlive = keepAlive;
+	}
+
+	public Conversation getConvo() {
+		return convo;
+	}
+
+	public void setConvo(Conversation value) {
+		convo = value;
 	}
 }

@@ -5,7 +5,6 @@ import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.shop.ShopHandler;
 import com.thedemgel.cititradersre.util.Permissions;
 import com.thedemgel.cititradersre.shop.ShopInventoryView;
-import com.thedemgel.cititradersre.shop.Status;
 import java.util.List;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
@@ -75,65 +74,79 @@ public class ShopListener implements Listener {
 			event.setCancelled(true);
 		}
 
-		if (view.getStatus().equals(Status.MAIN_SCREEN)) {
-			if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && view.getShop().getOwner().equals(player.getName())) {
-				Conversation convo = CitiTrader.getConversationHandler().getAdminConversation().buildConversation(player);
-				view.convo = convo;
-				convo.begin();
-				return;
-			} else if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && !view.getShop().getOwner().equals(player.getName())) {
-				return;
-			}
-
-			if (event.getCurrentItem() != null) {
-				if (!event.getCursor().getType().equals(Material.AIR)) {
-					player.getInventory().addItem(event.getCursor());
-					player.setItemOnCursor(new ItemStack(Material.AIR));
+		switch (view.getStatus()) {
+			case MAIN_SCREEN:
+				if (event.getRawSlot() == InventoryHandler.INVENTORY_BACK_ARROW_SLOT) {
+					view.buildBuyView();
+					return;
 				}
-				view.buildItemView(event.getCurrentItem());
-			} else if (event.getCursor().getData().getItemType().equals(Material.AIR)) {
-			} else {
-				event.setCancelled(false);
-				ItemStack inhand = event.getCursor().clone();
-				Conversation convo = CitiTrader.getConversationHandler().getAddSellItem().buildConversation(player);
-				convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, inhand);
-				convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
-				view.convo = convo;
-				convo.begin();
-			}
-		} else if (view.getStatus().equals(Status.SELL_SCREEN)) {
 
-			if (event.getRawSlot() == InventoryHandler.INVENTORY_BACK_ARROW_SLOT) {
-				view.buildView();
-				return;
-			}
+				if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && view.getShop().getOwner().equals(player.getName())) {
+					Conversation convo = CitiTrader.getConversationHandler().getAdminConversation().buildConversation(player);
+					view.setConvo(convo);
+					convo.begin();
+					return;
+				} else if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && !view.getShop().getOwner().equals(player.getName())) {
+					return;
+				}
 
-			if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && view.getShop().getOwner().equals(player.getName())) {
-				Conversation convo = CitiTrader.getConversationHandler().getSetSellPrice().buildConversation(player);
-				convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, event.getCurrentItem());
-				view.convo = convo;
-				convo.begin();
-				return;
-			} else if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && !view.getShop().getOwner().equals(player.getName())) {
-				return;
-			}
-
-			if (event.getRawSlot() == InventoryHandler.INVENTORY_TAKE_ALL_SLOT && view.getShop().getOwner().equals(player.getName())) {
-				// Put all items into inventory
-				return;
-			} else if (event.getRawSlot() == InventoryHandler.INVENTORY_TAKE_ALL_SLOT && !view.getShop().getOwner().equals(player.getName())) {
-				return;
-			}
-
-			if (event.getCurrentItem() != null) {
-				PurchaseHandler.processPurchase(view.getShop(), (Player) event.getWhoClicked(), event.getCurrentItem());
-				plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-					@Override
-					public void run() {
-						view.buildItemView(event.getCurrentItem());
+				if (event.getCurrentItem() != null) {
+					if (!event.getCursor().getType().equals(Material.AIR)) {
+						player.getInventory().addItem(event.getCursor());
+						player.setItemOnCursor(new ItemStack(Material.AIR));
 					}
-				}, CitiTrader.BUKKIT_SCHEDULER_DELAY);
-			}
+					view.buildItemView(event.getCurrentItem());
+				} else if (event.getCursor().getData().getItemType().equals(Material.AIR)) {
+				} else {
+					event.setCancelled(false);
+					ItemStack inhand = event.getCursor().clone();
+					Conversation convo = CitiTrader.getConversationHandler().getAddSellItem().buildConversation(player);
+					convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, inhand);
+					convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
+					view.setConvo(convo);
+					convo.begin();
+				}
+				break;
+			case SELL_SCREEN:
+				if (event.getRawSlot() == InventoryHandler.INVENTORY_BACK_ARROW_SLOT) {
+					view.buildSellView();
+					return;
+				}
+
+				if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && view.getShop().getOwner().equals(player.getName())) {
+					Conversation convo = CitiTrader.getConversationHandler().getSetSellPrice().buildConversation(player);
+					convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, event.getCurrentItem());
+					view.setConvo(convo);
+					convo.begin();
+					return;
+				} else if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && !view.getShop().getOwner().equals(player.getName())) {
+					return;
+				}
+
+				if (event.getRawSlot() == InventoryHandler.INVENTORY_TAKE_ALL_SLOT && view.getShop().getOwner().equals(player.getName())) {
+					// Put all items into inventory
+					return;
+				} else if (event.getRawSlot() == InventoryHandler.INVENTORY_TAKE_ALL_SLOT && !view.getShop().getOwner().equals(player.getName())) {
+					return;
+				}
+
+				if (event.getCurrentItem() != null) {
+					PurchaseHandler.processPurchase(view.getShop(), (Player) event.getWhoClicked(), event.getCurrentItem());
+					plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+						@Override
+						public void run() {
+							view.buildItemView(event.getCurrentItem());
+						}
+					}, CitiTrader.BUKKIT_SCHEDULER_DELAY);
+				}
+				break;
+			case BUY_SCREEN:
+				if (event.getRawSlot() == InventoryHandler.INVENTORY_BACK_ARROW_SLOT) {
+					view.buildSellView();
+					return;
+				}
+				break;
+			default:
 		}
 	}
 
