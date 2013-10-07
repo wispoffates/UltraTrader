@@ -20,7 +20,6 @@ import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
 @WalletPermission(Permissions.WALLET_SHOP)
 public class ShopWallet extends Wallet {
 
-	//private ConfigurationSection config;
 	private Shop shop;
 
 	public ShopWallet(Shop shop) {
@@ -60,7 +59,6 @@ public class ShopWallet extends Wallet {
 	}
 
 	private BigDecimal getBalance() {
-		//BigDecimal balance = BigDecimal.valueOf(config.getDouble("balance", 0D));
 		ConfigValue<Double> get = shop.getWalletinfo().get("balance");
 		if (get == null) {
 			get = new ConfigValue<>(0D);
