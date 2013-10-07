@@ -52,7 +52,18 @@ public class ItemPrice {
 	 */
 	public ItemStack generateLore(Integer stackAmount, boolean displayInventoryAmount, Integer stock) {
 		ItemStack genItem = itemStack.clone();
-		List<String> genLore = new ArrayList<>();
+		
+		List<String> genLore;
+		if (genItem.hasItemMeta()) {
+			if (genItem.getItemMeta().hasLore()) {
+				genLore = genItem.getItemMeta().getLore();
+			} else {
+				genLore = new ArrayList<>();
+			}
+		} else {
+			genLore = new ArrayList<>();
+		}
+		
 		if (getDescription().length() > 0) {
 			genLore.add(getDescription());
 		}
