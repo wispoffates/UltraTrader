@@ -54,16 +54,10 @@ public class CitiTrader extends JavaPlugin {
 	public static WalletHandler getWallethandler() {
 		return wallethandler;
 	}
-	
+
 	private boolean citizens;
 	private boolean vault;
 
-	@Override
-	public final void onLoad() {
-		// Assign ResourceBundle (using YAMLResourceBundle)
-		//Locale locale = new Locale(getConfig().getString("language", "en"));
-		//rb = YamlResourceBundle.getBundle("lang.default", locale, getDataFolder());
-	}
 	@Override
 	public final void onEnable() {
 		plugin = this;
@@ -75,7 +69,7 @@ public class CitiTrader extends JavaPlugin {
 			.registerWallet(ShopWallet.class, L.getString("general.wallet.shop"));
 
 		dbObj = new YamlDataObject();
-		
+
 		// Verify resources (Vault/CitizensAPI)
 		checkCitizens();
 		checkVault();
