@@ -24,6 +24,10 @@ public class YamlDataObject extends DataObject {
 
 	private File STORE_DIR = new File(CitiTrader.getInstance().getDataFolder() + File.separator + CitiTrader.STORE_DIR + File.separator);
 
+	public YamlDataObject() {
+		STORE_DIR.mkdirs();
+	}
+
 	@Override
 	public void save(Shop shop) {
 		getPool().execute(new SaveShop(shop));
