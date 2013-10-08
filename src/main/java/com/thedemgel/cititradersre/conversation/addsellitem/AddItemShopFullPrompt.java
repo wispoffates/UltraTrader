@@ -1,4 +1,4 @@
-package com.thedemgel.cititradersre.conversation.additem;
+package com.thedemgel.cititradersre.conversation.addsellitem;
 
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.L;

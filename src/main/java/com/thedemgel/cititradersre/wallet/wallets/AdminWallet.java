@@ -31,12 +31,12 @@ public class AdminWallet extends Wallet {
 
 	@Override
 	public EconomyResponse removeFunds(BigDecimal amount) {
-		return new EconomyResponse(0, 0, ResponseType.SUCCESS, "");
+		return new EconomyResponse(amount.doubleValue(), 0, ResponseType.SUCCESS, "");
 	}
 
 	@Override
 	public EconomyResponse addFunds(BigDecimal amount) {
-		return new EconomyResponse(0, 0, ResponseType.SUCCESS, "");
+		return new EconomyResponse(amount.doubleValue(), 0, ResponseType.SUCCESS, "");
 	}
 
 	@Override

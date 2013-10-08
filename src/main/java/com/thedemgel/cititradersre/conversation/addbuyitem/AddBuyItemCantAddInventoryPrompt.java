@@ -1,4 +1,4 @@
-package com.thedemgel.cititradersre.conversation.additem;
+package com.thedemgel.cititradersre.conversation.addbuyitem;
 
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.L;
@@ -11,7 +11,7 @@ import org.bukkit.conversations.Prompt;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class AddInventoryPrompt extends MessagePrompt {
+public class AddBuyItemCantAddInventoryPrompt extends MessagePrompt {
 
 	@Override
 	protected Prompt getNextPrompt(ConversationContext context) {
@@ -21,18 +21,19 @@ public class AddInventoryPrompt extends MessagePrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
 		final ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
-		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
-		view.getShop().getInventoryInterface().addInventory(item);
+		//Player player = (Player) context.getForWhom();
+		final ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
+		//view.getShop().getInventoryInterface().addInventory(item);
 		view.setKeepAlive(false);
-		//view.buildView();
 
 		Bukkit.getScheduler().scheduleSyncDelayedTask(CitiTrader.getInstance(), new Runnable() {
 			@Override
 			public void run() {
-				view.buildSellView();
+				view.getBottomInventory().addItem(item);
+				view.buildBuyView();
 			}
 		}, CitiTrader.BUKKIT_SCHEDULER_DELAY);
 
-		return L.getString("conversation.additem.addinventory");
+		return L.getString("conversation.addbuyitem.cantaddinventory");
 	}
 }

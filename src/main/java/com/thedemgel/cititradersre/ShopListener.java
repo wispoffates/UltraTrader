@@ -97,7 +97,7 @@ public class ShopListener implements Listener {
 					}
 					view.buildItemView(event.getCurrentItem());
 				} else if (event.getCursor().getData().getItemType().equals(Material.AIR)) {
-				} else {
+				} else if (view.getShop().isOwner(player)) {
 					event.setCancelled(false);
 					ItemStack inhand = event.getCursor().clone();
 					Conversation convo = CitiTrader.getConversationHandler().getAddSellItem().buildConversation(player);
@@ -145,6 +145,71 @@ public class ShopListener implements Listener {
 					view.buildSellView();
 					return;
 				}
+
+				if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && view.getShop().getOwner().equals(player.getName())) {
+					Conversation convo = CitiTrader.getConversationHandler().getAdminConversation().buildConversation(player);
+					view.setConvo(convo);
+					convo.begin();
+					return;
+				} else if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && !view.getShop().getOwner().equals(player.getName())) {
+					return;
+				}
+
+				if (event.getCurrentItem() != null && view.getShop().isOwner(player)) {
+					if (!event.getCursor().getType().equals(Material.AIR)) {
+						player.getInventory().addItem(event.getCursor());
+						player.setItemOnCursor(new ItemStack(Material.AIR));
+					}
+					view.buildBuyItemView(event.getCurrentItem());
+				} else if (event.getCurrentItem() != null) {
+					if (!event.getCursor().getType().equals(Material.AIR)) {
+						player.sendMessage("Place in Empty Slot.");
+						event.setCancelled(true);
+					}
+				} else if (view.getShop().isOwner(player)) {
+					event.setCancelled(false);
+					ItemStack inhand = event.getCursor().clone();
+					Conversation convo = CitiTrader.getConversationHandler().getAddBuyItem().buildConversation(player);
+					convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, inhand);
+					convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
+					view.setConvo(convo);
+					convo.begin();
+				} else if (!event.getCursor().getData().getItemType().equals(Material.AIR)) {
+					// Buy the items if you want them...
+					ItemStack inhand = event.getCursor().clone();
+					if (view.getShop().hasBuyItem(inhand)) {
+						event.setCancelled(false);
+						PurchaseHandler.processSale(view.getShop(), (Player) event.getWhoClicked(), inhand);
+						plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+							@Override
+							public void run() {
+								view.buildBuyView();
+							}
+						}, CitiTrader.BUKKIT_SCHEDULER_DELAY);
+					}
+				}
+				break;
+			case BUY_ITEM_SCREEN:
+				if (event.getRawSlot() == InventoryHandler.INVENTORY_BACK_ARROW_SLOT) {
+					view.buildBuyView();
+					return;
+				}
+
+				if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && view.getShop().getOwner().equals(player.getName())) {
+					Conversation convo = CitiTrader.getConversationHandler().getBuyItemAdmin().buildConversation(player);
+					convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, event.getCurrentItem());
+					view.setConvo(convo);
+					convo.begin();
+					return;
+				} else if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && !view.getShop().getOwner().equals(player.getName())) {
+					return;
+				}
+
+				if (event.getRawSlot() == InventoryHandler.INVENTORY_TAKE_ALL_SLOT && view.getShop().getOwner().equals(player.getName())) {
+					// Put all items into inventory
+					return;
+				}
+
 				break;
 			default:
 		}

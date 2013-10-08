@@ -1,4 +1,4 @@
-package com.thedemgel.cititradersre.conversation.itemadmin;
+package com.thedemgel.cititradersre.conversation.buyitemadmin;
 
 import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.conversation.ConversationHandler;
@@ -7,7 +7,7 @@ import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.conversations.StringPrompt;
 
-public class AdminItemDescriptionPrompt extends StringPrompt {
+public class AdminBuyItemDescriptionPrompt extends StringPrompt {
 
 	@Override
 	public Prompt acceptInput(ConversationContext context, String input) {
@@ -17,7 +17,7 @@ public class AdminItemDescriptionPrompt extends StringPrompt {
 		} else {
 			itemprice.setDescription(input);
 		}
-		return new AdminItemMenuPrompt();
+		return new AdminBuyItemMenuPrompt();
 	}
 
 	@Override

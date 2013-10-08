@@ -107,9 +107,18 @@ conversation:
   setsellprice:
     prefix: SET SELL PRICE
     setprice: What would you like to charge for {0}?
+  addbuyitem:
+    begin: Begin adding an item to buy.
+    prefix: ADD BUY ITEM
+    setprice: What would you like to pay for [{0}]?
+    setdescription: Give a short description. {0} (type "{1}" for no description).
+    cantaddinventory: You can't add inventory in buy mode.
+    added: Item Added.
+    none: none
+    shopfull: Shop currently is full.
   additem:
-    begin: Generic text to begin a conversation.
-    prefix: ADD ITEM
+    begin: Begin adding an item for sale.
+    prefix: ADD SELL ITEM
     setprice: What would you like to charge for new item [{0}]?
     setdescription: Give a short description of {0} (type "{1}" for no description).
     addinventory: Item has been added to inventory.

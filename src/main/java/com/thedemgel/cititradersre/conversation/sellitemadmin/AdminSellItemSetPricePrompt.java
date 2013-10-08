@@ -1,4 +1,4 @@
-package com.thedemgel.cititradersre.conversation.itemadmin;
+package com.thedemgel.cititradersre.conversation.sellitemadmin;
 
 import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.conversation.ConversationHandler;
@@ -9,7 +9,7 @@ import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.conversations.StringPrompt;
 
-public class AdminItemSetPricePrompt extends StringPrompt {
+public class AdminSellItemSetPricePrompt extends StringPrompt {
 
 	@Override
 	public Prompt acceptInput(ConversationContext context, String input) {
@@ -18,12 +18,12 @@ public class AdminItemSetPricePrompt extends StringPrompt {
 		try {
 			price = Double.valueOf(input);
 		} catch (NumberFormatException ex) {
-			context.setSessionData(ConversationHandler.CONVERSATION_SESSION_RETURN, new AdminItemSetPricePrompt());
+			context.setSessionData(ConversationHandler.CONVERSATION_SESSION_RETURN, new AdminSellItemSetPricePrompt());
 			return new NotADoublePrompt();
 		}
 		ItemPrice item = (ItemPrice) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEMPRICE);
 		item.setPrice(BigDecimal.valueOf(price));
-		return new AdminItemMenuPrompt();
+		return new AdminSellItemMenuPrompt();
 	}
 
 	@Override

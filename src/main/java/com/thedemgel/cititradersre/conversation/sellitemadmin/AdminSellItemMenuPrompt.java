@@ -1,4 +1,4 @@
-package com.thedemgel.cititradersre.conversation.itemadmin;
+package com.thedemgel.cititradersre.conversation.sellitemadmin;
 
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.L;
@@ -11,21 +11,21 @@ import org.bukkit.conversations.ConversationPrefix;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.entity.Player;
 
-public class AdminItemMenuPrompt extends FixedIgnoreCaseSetPrompt {
+public class AdminSellItemMenuPrompt extends FixedIgnoreCaseSetPrompt {
 
 	private ConversationPrefix prefix;
 
-	public AdminItemMenuPrompt() {
-		prefix = new AdminItemConversationPrefix();
-		addOption(L.getString("conversation.itemadmin.menu.options.price"), new AdminItemSetPricePrompt());
-		addOption(L.getString("conversation.itemadmin.menu.options.description"), new AdminItemDescriptionPrompt());
-		addOption(L.getString("conversation.itemadmin.menu.options.delete"), new AdminItemDeletePrompt());
-		addOption(L.getString("conversation.itemadmin.menu.options.exit"), new AdminItemFinishPrompt());
+	public AdminSellItemMenuPrompt() {
+		prefix = new AdminSellItemConversationPrefix();
+		addOption(L.getString("conversation.itemadmin.menu.options.price"), new AdminSellItemSetPricePrompt());
+		addOption(L.getString("conversation.itemadmin.menu.options.description"), new AdminSellItemDescriptionPrompt());
+		addOption(L.getString("conversation.itemadmin.menu.options.delete"), new AdminSellItemDeletePrompt());
+		addOption(L.getString("conversation.itemadmin.menu.options.exit"), new AdminSellItemFinishPrompt());
 	}
 
 	@Override
 	protected Prompt acceptValidatedInput(ConversationContext context, String input) {
-		return getValidatedPrompt(new AdminItemMenuPrompt());
+		return getValidatedPrompt(new AdminSellItemMenuPrompt());
 	}
 
 	@Override

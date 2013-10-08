@@ -1,14 +1,18 @@
 package com.thedemgel.cititradersre.conversation;
 
 import com.thedemgel.cititradersre.CitiTrader;
-import com.thedemgel.cititradersre.conversation.additem.AddItemBeginPrompt;
-import com.thedemgel.cititradersre.conversation.additem.AddItemConversationPrefix;
+import com.thedemgel.cititradersre.conversation.addbuyitem.AddBuyItemBeginPrompt;
+import com.thedemgel.cititradersre.conversation.addbuyitem.AddBuyItemConversationPrefix;
+import com.thedemgel.cititradersre.conversation.addsellitem.AddItemBeginPrompt;
+import com.thedemgel.cititradersre.conversation.addsellitem.AddItemConversationPrefix;
 import com.thedemgel.cititradersre.conversation.admin.AdminBeginPrompt;
 import com.thedemgel.cititradersre.conversation.admin.AdminConversationPrefix;
+import com.thedemgel.cititradersre.conversation.buyitemadmin.AdminBuyItemBeginPrompt;
+import com.thedemgel.cititradersre.conversation.buyitemadmin.AdminBuyItemConversationPrefix;
 import com.thedemgel.cititradersre.conversation.createshop.CreateShopBeginPrompt;
 import com.thedemgel.cititradersre.conversation.createshop.CreateShopConversationPrefix;
-import com.thedemgel.cititradersre.conversation.itemadmin.AdminItemBeginPrompt;
-import com.thedemgel.cititradersre.conversation.itemadmin.AdminItemConversationPrefix;
+import com.thedemgel.cititradersre.conversation.sellitemadmin.AdminSellItemBeginPrompt;
+import com.thedemgel.cititradersre.conversation.sellitemadmin.AdminSellItemConversationPrefix;
 import org.bukkit.conversations.ConversationFactory;
 
 public class ConversationHandler {
@@ -27,12 +31,23 @@ public class ConversationHandler {
 	private ConversationFactory addSellItem;
 	private ConversationFactory adminConversation;
 	private ConversationFactory createShop;
+	private ConversationFactory buyItemAdmin;
+	private ConversationFactory addBuyItem;
 
 	public ConversationHandler(CitiTrader instance) {
 		setSellPrice = new ConversationFactory(instance)
 			.withModality(true)
-			.withPrefix(new AdminItemConversationPrefix())
-			.withFirstPrompt(new AdminItemBeginPrompt())
+			.withPrefix(new AdminSellItemConversationPrefix())
+			.withFirstPrompt(new AdminSellItemBeginPrompt())
+			.withEscapeSequence("/quit")
+			.withTimeout(ConversationHandler.CONVERSATION_TIMEOUT)
+			.addConversationAbandonedListener(new AbandonConvo())
+			.thatExcludesNonPlayersWithMessage("No Console Please");
+
+		buyItemAdmin = new ConversationFactory(instance)
+			.withModality(true)
+			.withPrefix(new AdminBuyItemConversationPrefix())
+			.withFirstPrompt(new AdminBuyItemBeginPrompt())
 			.withEscapeSequence("/quit")
 			.withTimeout(ConversationHandler.CONVERSATION_TIMEOUT)
 			.addConversationAbandonedListener(new AbandonConvo())
@@ -42,6 +57,15 @@ public class ConversationHandler {
 			.withModality(true)
 			.withPrefix(new AddItemConversationPrefix())
 			.withFirstPrompt(new AddItemBeginPrompt())
+			.withEscapeSequence("/quit")
+			.withTimeout(ConversationHandler.CONVERSATION_TIMEOUT)
+			.addConversationAbandonedListener(new AbandonConvo())
+			.thatExcludesNonPlayersWithMessage("No Console Please");
+
+		addBuyItem = new ConversationFactory(instance)
+			.withModality(true)
+			.withPrefix(new AddBuyItemConversationPrefix())
+			.withFirstPrompt(new AddBuyItemBeginPrompt())
 			.withEscapeSequence("/quit")
 			.withTimeout(ConversationHandler.CONVERSATION_TIMEOUT)
 			.addConversationAbandonedListener(new AbandonConvo())
@@ -80,5 +104,13 @@ public class ConversationHandler {
 
 	public ConversationFactory getCreateShop() {
 		return createShop;
+	}
+
+	public ConversationFactory getBuyItemAdmin() {
+		return buyItemAdmin;
+	}
+
+	public ConversationFactory getAddBuyItem() {
+		return addBuyItem;
 	}
 }

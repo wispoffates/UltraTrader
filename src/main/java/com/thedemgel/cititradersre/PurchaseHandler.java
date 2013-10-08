@@ -2,6 +2,7 @@ package com.thedemgel.cititradersre;
 
 import com.thedemgel.cititradersre.shop.ItemPrice;
 import com.thedemgel.cititradersre.shop.Shop;
+import com.thedemgel.cititradersre.wallet.Wallet;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import net.milkbowl.vault.economy.EconomyResponse;
@@ -97,7 +98,7 @@ public class PurchaseHandler {
 		// Deposit into trader when interface is ready.
 		if (shop.getWallet().addFunds(traderDeposit).type.equals(ResponseType.SUCCESS)) {
 			//player.sendMessage(MessageFormat.format(CitiTrader.getResourceBundle().getString("transaction.sale.shop.totalpurchase"), traderDeposit));
-			player.sendMessage(L.getFormatString("transaction.sale.shop.totalpurchase", traderDeposit));
+			player.sendMessage(L.getFormatString("transaction.sale.shop.totalpurchase", CitiTrader.getEconomy().format(traderDeposit.doubleValue())));
 		} else {
 			player.sendMessage(L.getString("transaction.error.fundstoshop"));
 		}
@@ -112,6 +113,48 @@ public class PurchaseHandler {
 	 * @param player The player the sale is coming from
 	 * @param item The itemstack of the item being purchased.
 	 */
-	public void processSale(Shop shop, Player player, ItemStack item) {
+	public static void processSale(Shop shop, Player player, ItemStack item) {
+		ItemPrice invItem = shop.getBuyItem(item);
+		BigDecimal buyStackPriceEach = invItem.getPrice();
+		BigDecimal buyStackPrice = buyStackPriceEach.multiply(BigDecimal.valueOf(item.getAmount()));
+
+		Wallet wallet = shop.getWallet();
+
+		EconomyResponse heldFunds;
+		if (wallet.hasFunds(buyStackPrice)) {
+			heldFunds = wallet.removeFunds(buyStackPrice);
+		} else {
+			player.sendMessage(L.getString("transaction.sale.player.notenoughfunds"));
+			return;
+		}
+
+		if (heldFunds == null) {
+			player.sendMessage(L.getString("transaction.error.economy") + 1);
+			return;
+		}
+
+		if (!heldFunds.type.equals(ResponseType.SUCCESS)) {
+			player.sendMessage(L.getString("transaction.error.economy") + 2);
+			return;
+		}
+
+		// Add the Item to Trader Inventory
+		shop.getInventoryInterface().addInventory(item);
+
+		EconomyResponse depResponse = CitiTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), heldFunds.amount);
+
+		if (depResponse == null) {
+			player.sendMessage(L.getString("transaction.error.economy") + 3);
+			return;
+		}
+
+		if (!depResponse.type.equals(ResponseType.SUCCESS)) {
+			player.sendMessage(L.getString("transaction.error.economy") + 4);
+			return;
+		}
+
+		player.sendMessage(L.getFormatString("transaction.sale.shop.totalpurchase", CitiTrader.getEconomy().format(heldFunds.amount)));
+
+		shop.save();
 	}
 }

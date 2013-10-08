@@ -74,38 +74,57 @@ public class YamlDataObject extends DataObject {
 			shop.getSellprices().put(item.getId(), item);
 		}
 
+		// Load all BuyPrices
+		// Find or create configuration section
+		ConfigurationSection buyconfig = config.getConfig().getConfigurationSection("buyprices");
+		if (buyconfig == null) {
+			buyconfig = config.getConfig().createSection("buyprices");
+		}
+
+		// Load all sell prices
+		for (String id : buyconfig.getKeys(false)) {
+			ConfigurationSection itemconfig = buyconfig.getConfigurationSection(id);
+			ItemPrice item = new ItemPrice();
+			item.setAmount(itemconfig.getInt("amount"));
+			item.setDescription(itemconfig.getString("description"));
+			item.setItemStack(itemconfig.getItemStack("itemStack"));
+			item.setPrice(BigDecimal.valueOf(itemconfig.getDouble("price")));
+			item.setRandom(itemconfig.getString("random"));
+			shop.getBuyprices().put(item.getId(), item);
+		}
+
 		// Load the Wallet
 		// Find or create wallet Configuration Section
 		ConfigurationSection walletconfig = config.getConfig().getConfigurationSection("wallet");
 		if (walletconfig == null) {
 			walletconfig = config.getConfig().createSection("wallet");
 		}
-		
+
 		for (String key : walletconfig.getKeys(false)) {
 			shop.getWalletinfo().put(key, new ConfigValue(walletconfig.get(key)));
 		}
-		
+
 		if (!shop.getWalletinfo().containsKey("type")) {
 			shop.getWalletinfo().put("type", new ConfigValue(WalletHandler.DEFAULT_WALLET_TYPE));
 		}
-		
+
 		ConfigValue<String> wallettype = shop.getWalletinfo().get("type");
-		
+
 		//WalletType walletType = wallettype.getValue(); //WalletType.valueOf(wallettype.getValue());
-		
+
 		shop.setWallet(CitiTrader.getWallethandler().getWalletInstance(wallettype.getValue(), shop));
-		
+
 		//Load the Info section
 		// Find or create info Configuration Section
 		ConfigurationSection infoconfig = config.getConfig().getConfigurationSection("info");
 		if (infoconfig == null) {
 			infoconfig = config.getConfig().createSection("info");
 		}
-		
+
 		for (String key : infoconfig.getKeys(false)) {
 			shop.getInfo().put(key, new ConfigValue(infoconfig.get(key)));
 		}
-		
+
 		CitiTrader.getStoreHandler().addShop(shop);
 
 		Bukkit.getLogger().log(Level.INFO, L.getFormatString("general.initialized", shop.getName(), shop.getId()));

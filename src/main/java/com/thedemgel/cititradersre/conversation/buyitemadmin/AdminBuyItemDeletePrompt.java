@@ -1,5 +1,6 @@
-package com.thedemgel.cititradersre.conversation.itemadmin;
+package com.thedemgel.cititradersre.conversation.buyitemadmin;
 
+import com.thedemgel.cititradersre.conversation.sellitemadmin.*;
 import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.conversation.FixedIgnoreCaseSetPrompt;
@@ -11,19 +12,19 @@ import org.bukkit.conversations.ConversationPrefix;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.entity.Player;
 
-public class AdminItemDeletePrompt extends FixedIgnoreCaseSetPrompt {
+public class AdminBuyItemDeletePrompt extends FixedIgnoreCaseSetPrompt {
 
 	private ConversationPrefix prefix;
 
-	public AdminItemDeletePrompt() {
-		prefix = new AdminItemConversationPrefix();
-		addOption(L.getString("general.accept"), new AdminItemDeleteConfirmPrompt(true));
-		addOption(L.getString("general.decline"), new AdminItemDeleteConfirmPrompt(false));
+	public AdminBuyItemDeletePrompt() {
+		prefix = new AdminBuyItemConversationPrefix();
+		addOption(L.getString("general.accept"), new AdminBuyItemDeleteConfirmPrompt(true));
+		addOption(L.getString("general.decline"), new AdminBuyItemDeleteConfirmPrompt(false));
 	}
 
 	@Override
 	protected Prompt acceptValidatedInput(ConversationContext context, String input) {
-		return getValidatedPrompt(new AdminItemMenuPrompt());
+		return getValidatedPrompt(new AdminBuyItemMenuPrompt());
 	}
 
 	@Override
@@ -36,7 +37,7 @@ public class AdminItemDeletePrompt extends FixedIgnoreCaseSetPrompt {
 			invCount = view.getShop().getInventoryInterface().getInventoryStock(itemprice.getItemStack());
 		}
 
-		if (invCount > 0) {
+		if (invCount > 0 && !view.getShop().hasSellItem(itemprice)) {
 			p.sendRawMessage(prefix.getPrefix(context) + ChatColor.RED + L.getString("conversation.itemadmin.delete.full"));
 			p.sendRawMessage(prefix.getPrefix(context) + ChatColor.RED + L.getString("conversation.itemadmin.delete.warn"));
 		}

@@ -50,6 +50,41 @@ public class Shop {
 		return sellItems.size() > 0;
 	}
 
+	public boolean hasBuyItem(final ItemStack checkItem) {
+		return getBuyItem(checkItem) != null;
+	}
+	
+	public ItemPrice getBuyItem(final ItemStack checkItem) {
+		final ItemStack check = checkItem.clone();
+		check.setAmount(1);
+
+		Predicate<ItemPrice> itemPredicate = new Predicate<ItemPrice>() {
+			@Override
+			public boolean apply(ItemPrice item) {
+				return item.getItemStack().equals(check);
+			}
+		};
+		Collection<ItemPrice> buyItems = Collections2.filter(getBuyprices().values(), itemPredicate);
+
+		if (buyItems.size() > 0) {
+			return (ItemPrice) buyItems.toArray()[0];
+		} else {
+			return null;
+		}
+	}
+
+	public boolean hasBuyItem(final ItemPrice checkItem) {
+		Predicate<ItemPrice> itemPredicate = new Predicate<ItemPrice>() {
+			@Override
+			public boolean apply(ItemPrice item) {
+				return item.getItemStack().equals(checkItem.getItemStack());
+			}
+		};
+		Collection<ItemPrice> buyItems = Collections2.filter(getBuyprices().values(), itemPredicate);
+
+		return buyItems.size() > 0;
+	}
+
 	public boolean addSellItem(ItemStack item, BigDecimal price, Integer quantity, String description) {
 
 		ItemPrice invItem = new ItemPrice(item, price, quantity, description);
@@ -66,13 +101,19 @@ public class Shop {
 		return true;
 	}
 
-	public void addBuyItem(ItemStack item, Double price, Integer quantity, String description) {
-		ItemPrice invItem = new ItemPrice(item, BigDecimal.valueOf(price), quantity, description);
+	public boolean addBuyItem(ItemStack item, BigDecimal price, Integer quantity, String description) {
+		ItemPrice invItem = new ItemPrice(item, price, quantity, description);
+
+		if (hasBuyItem(invItem)) {
+			return false;
+		}
+
 		String random = invItem.setRandom();
 		while (getBuyprices().containsKey(random)) {
 			random = invItem.setRandom();
 		}
 		getBuyprices().put(random, invItem);
+		return true;
 	}
 
 	private void setMetaData() {

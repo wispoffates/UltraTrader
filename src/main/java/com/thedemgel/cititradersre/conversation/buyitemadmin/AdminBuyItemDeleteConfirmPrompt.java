@@ -1,4 +1,4 @@
-package com.thedemgel.cititradersre.conversation.itemadmin;
+package com.thedemgel.cititradersre.conversation.buyitemadmin;
 
 import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.conversation.ConversationHandler;
@@ -10,11 +10,11 @@ import org.bukkit.conversations.MessagePrompt;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.inventory.ItemStack;
 
-public class AdminItemDeleteConfirmPrompt extends MessagePrompt {
+public class AdminBuyItemDeleteConfirmPrompt extends MessagePrompt {
 
 	private boolean delete = false;
 
-	public AdminItemDeleteConfirmPrompt(boolean delete) {
+	public AdminBuyItemDeleteConfirmPrompt(boolean delete) {
 		this.delete = delete;
 	}
 
@@ -23,7 +23,7 @@ public class AdminItemDeleteConfirmPrompt extends MessagePrompt {
 		if (delete) {
 			return Prompt.END_OF_CONVERSATION;
 		} else {
-			return new AdminItemMenuPrompt();
+			return new AdminBuyItemMenuPrompt();
 		}
 	}
 
@@ -36,10 +36,12 @@ public class AdminItemDeleteConfirmPrompt extends MessagePrompt {
 			ItemPrice itemprice = (ItemPrice) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEMPRICE);
 			ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
 			Shop shop = view.getShop();
-			shop.getInventoryInterface().removeInventory(itemprice.getItemStack(), -1);
+			if (!shop.hasSellItem(itemprice)) {
+				shop.getInventoryInterface().removeInventory(itemprice.getItemStack(), -1);
+			}
 			String id = shop.getItemId(item);
-			shop.getSellprices().remove(id);
-			view.buildItemView(item);
+			shop.getBuyprices().remove(id);
+			view.buildBuyItemView(item);
 			return L.getString("conversation.itemadmin.delete.deleted");
 		} else {
 			return L.getString("conversation.itemadmin.delete.cancelled");
