@@ -1,4 +1,4 @@
-CitiTradersRE (REvisited)
+UltraTrader (REvisited)
 =========================
 
 First off, some notes to previous users...
