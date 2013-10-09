@@ -22,7 +22,7 @@ public class ItemPrice {
 	}
 
 	;
-	
+
 	public ItemPrice(ItemStack item) {
 		itemStack = item.clone();
 		itemStack.setAmount(1);
@@ -39,19 +39,19 @@ public class ItemPrice {
 		description = lore;
 	}
 
-	public ItemStack generateLore() {
-		return generateLore(1);
+	public ItemStack generateLore(Status status) {
+		return generateLore(1, status);
 	}
 
-	public ItemStack generateLore(Integer stackAmount) {
-		return generateLore(stackAmount, false, 0);
+	public ItemStack generateLore(Integer stackAmount, Status status) {
+		return generateLore(stackAmount, false, 0, status);
 	}
 
 	/**
 	 * Item Name Short Description (15 Characters) Price: 10.00 Discount:
 	 * Veteran 4d823Kd8
 	 */
-	public ItemStack generateLore(Integer stackAmount, boolean displayInventoryAmount, Integer stock) {
+	public ItemStack generateLore(Integer stackAmount, boolean displayInventoryAmount, Integer stock, Status status) {
 		ItemStack genItem = itemStack.clone();
 
 		List<String> genLore;
@@ -68,7 +68,19 @@ public class ItemPrice {
 		if (getDescription().length() > 0) {
 			genLore.add(getDescription());
 		}
-		genLore.add(ChatColor.GOLD + L.getString("general.price") + ": " + UltraTrader.getEconomy().format(price.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())); // Will need to figure for discounts
+
+		switch (status) {
+			case BUY_SCREEN:
+			case BUY_ITEM_SCREEN:
+				genLore.add(ChatColor.GOLD + L.getFormatString("general.buyprice", UltraTrader.getEconomy().format(price.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
+				break;
+			case MAIN_SCREEN:
+			case SELL_SCREEN:
+				genLore.add(ChatColor.BLUE + L.getFormatString("general.sellprice", UltraTrader.getEconomy().format(price.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
+				break;
+			default:
+		}
+		//genLore.add(ChatColor.GOLD + L.getString("general.price") + ": " + ); // Will need to figure for discounts
 		// If there is a discount... add a message here
 		// Id will always be LAST in the list
 		if (displayInventoryAmount) {

@@ -167,13 +167,15 @@ public class ShopListener implements Listener {
 						event.setCancelled(true);
 					}
 				} else if (view.getShop().isOwner(player)) {
-					event.setCancelled(false);
 					ItemStack inhand = event.getCursor().clone();
-					Conversation convo = UltraTrader.getConversationHandler().getAddBuyItem().buildConversation(player);
-					convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, inhand);
-					convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
-					view.setConvo(convo);
-					convo.begin();
+					if (!inhand.getType().equals(Material.AIR)) {
+						event.setCancelled(false);
+						Conversation convo = UltraTrader.getConversationHandler().getAddBuyItem().buildConversation(player);
+						convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, inhand);
+						convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
+						view.setConvo(convo);
+						convo.begin();
+					}
 				} else if (!event.getCursor().getData().getItemType().equals(Material.AIR)) {
 					// Buy the items if you want them...
 					ItemStack inhand = event.getCursor().clone();

@@ -66,9 +66,9 @@ public class ShopInventoryView extends InventoryView {
 
 			if (currentInvAmount > 0 || shop.isOwner(player)) {
 				if (displayAdmin) {
-					this.getTopInventory().addItem(item.generateLore(1, true, currentInvAmount));
+					this.getTopInventory().addItem(item.generateLore(1, true, currentInvAmount, current));
 				} else {
-					this.getTopInventory().addItem(item.generateLore());
+					this.getTopInventory().addItem(item.generateLore(current));
 				}
 			}
 		}
@@ -103,9 +103,9 @@ public class ShopInventoryView extends InventoryView {
 			int currentInvAmount = shop.getInventoryInterface().getInventoryStock(item);
 
 			if (displayAdmin) {
-				this.getTopInventory().addItem(item.generateLore(1, true, currentInvAmount));
+				this.getTopInventory().addItem(item.generateLore(1, true, currentInvAmount, current));
 			} else {
-				this.getTopInventory().addItem(item.generateLore());
+				this.getTopInventory().addItem(item.generateLore(current));
 			}
 		}
 
@@ -156,7 +156,7 @@ public class ShopInventoryView extends InventoryView {
 		int max = AdminInventoryInterface.ADMIN_INVENTORY_STOCK;
 		int count = 1;
 		while (count <= max && count <= invCount) {
-			top.addItem(invItem.generateLore(count));
+			top.addItem(invItem.generateLore(count, current));
 			count = count * 2;
 		}
 
@@ -227,12 +227,12 @@ public class ShopInventoryView extends InventoryView {
 		int max = invItem.getItemStack().getMaxStackSize();
 		int count = 1;
 		while (count <= max && count <= invCount) {
-			top.addItem(invItem.generateLore(count));
+			top.addItem(invItem.generateLore(count, current));
 			count = count * 2;
 		}
 
 		if ((count / 2) < invCount && (count / 2) < max) {
-			top.addItem(invItem.generateLore(invCount));
+			top.addItem(invItem.generateLore(invCount, current));
 		}
 
 		ItemStack arrow = new ItemStack(Material.ARROW);

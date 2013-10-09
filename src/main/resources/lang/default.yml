@@ -5,6 +5,8 @@ general:
   exit: exit
   instock: Instock
   price: Price
+  buyprice: 'Buy Price: {0}'
+  sellprice: 'Sell Price: {0}'
   description: Description
   name: Name
   newshopname: No Name Set.
