@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.conversations.ConversationAbandonedEvent;
 import org.bukkit.conversations.ConversationAbandonedListener;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.InventoryView;
 
 public class AbandonConvo implements ConversationAbandonedListener {
 
@@ -31,10 +32,20 @@ public class AbandonConvo implements ConversationAbandonedListener {
 		} else {
 			final Player player = (Player) abandonedEvent.getContext().getForWhom();
 			if (CitiTrader.getStoreHandler().getInventoryHandler().hasInventoryView(player)) {
-				ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
+				final ShopInventoryView view = (ShopInventoryView) CitiTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
 
 				view.setKeepAlive(false);
-				CitiTrader.getStoreHandler().getInventoryHandler().removeInventoryView(player);
+
+				Bukkit.getScheduler().scheduleSyncDelayedTask(CitiTrader.getInstance(), new Runnable() {
+					@Override
+					public void run() {
+						InventoryView playerview = player.getOpenInventory();
+						if (!playerview.equals(view)) {
+							CitiTrader.getStoreHandler().getInventoryHandler().removeInventoryView(player);
+						}
+					}
+				}, CitiTrader.BUKKIT_SCHEDULER_DELAY);
+
 			}
 			abandonedEvent.getContext().getForWhom().sendRawMessage(L.getString("conversation.abandon"));
 		}

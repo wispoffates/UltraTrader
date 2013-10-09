@@ -5,6 +5,9 @@ import com.thedemgel.cititradersre.command.commands.ShopCommands;
 import com.thedemgel.cititradersre.conversation.ConversationHandler;
 import com.thedemgel.cititradersre.data.DataObject;
 import com.thedemgel.cititradersre.data.YamlDataObject;
+import com.thedemgel.cititradersre.inventory.AdminInventoryInterface;
+import com.thedemgel.cititradersre.inventory.InventoryInterfaceHandler;
+import com.thedemgel.cititradersre.inventory.ShopInventoryInterface;
 import com.thedemgel.cititradersre.shop.ShopHandler;
 import com.thedemgel.cititradersre.wallet.WalletHandler;
 import com.thedemgel.cititradersre.wallet.wallets.AdminWallet;
@@ -27,12 +30,12 @@ public class CitiTrader extends JavaPlugin {
 	public static final int STORE_ID_RAND_BASE = 10;
 	public static final int STORE_ID_RAND_INCREMENT = 50;
 	public static final long BUKKIT_SCHEDULER_DELAY = 2;
-	//private static ResourceBundle rb;
 	private static ConversationHandler conversationHandler;
 	private static CitiTrader plugin;
 	private static Economy economy;
 	private static DataObject dbObj;
 	private static WalletHandler wallethandler;
+	private static InventoryInterfaceHandler inventoryInterfaceHandler;
 	private static ShopHandler shopHandler;
 
 	public static Economy getEconomy() {
@@ -55,6 +58,10 @@ public class CitiTrader extends JavaPlugin {
 		return wallethandler;
 	}
 
+	public static InventoryInterfaceHandler getInventoryInterfaceHandler() {
+		return inventoryInterfaceHandler;
+	}
+
 	private boolean citizens;
 	private boolean vault;
 
@@ -67,6 +74,11 @@ public class CitiTrader extends JavaPlugin {
 			.registerWallet(PlayerWallet.class, L.getString("general.wallet.player"))
 			.registerWallet(BankWallet.class, L.getString("general.wallet.bank"))
 			.registerWallet(ShopWallet.class, L.getString("general.wallet.shop"));
+
+		inventoryInterfaceHandler = new InventoryInterfaceHandler();
+
+		getInventoryInterfaceHandler().registerInventoryInterface(AdminInventoryInterface.class, "admin")
+			.registerInventoryInterface(ShopInventoryInterface.class, "shop");
 
 		dbObj = new YamlDataObject();
 
@@ -86,12 +98,9 @@ public class CitiTrader extends JavaPlugin {
 
 	@Override
 	public final void onDisable() {
+		getStoreHandler().saveShops();
 		this.getLogger().log(Level.INFO, "CitiTraders Disabled...");
 	}
-
-	//public static ResourceBundle getResourceBundle() {
-	//	return rb;
-	//}
 
 	public static ShopHandler getStoreHandler() {
 		return shopHandler;

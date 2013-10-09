@@ -3,6 +3,7 @@ package com.thedemgel.cititradersre.data;
 import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.StoreConfig;
+import com.thedemgel.cititradersre.inventory.InventoryInterfaceHandler;
 import com.thedemgel.cititradersre.shop.ItemPrice;
 import com.thedemgel.cititradersre.shop.Shop;
 import com.thedemgel.cititradersre.util.ConfigValue;
@@ -45,6 +46,25 @@ public class YamlDataObject extends DataObject {
 		if (invconfig == null) {
 			invconfig = config.getConfig().createSection("inventory");
 		}
+
+		// Load the Inventory Interface
+		// Find or create inventory interface "interface" Configuration Section
+		ConfigurationSection interfaceconfig = invconfig.getConfigurationSection("type");
+		if (interfaceconfig == null) {
+			interfaceconfig = invconfig.createSection("type");
+		}
+
+		for (String key : interfaceconfig.getKeys(false)) {
+			shop.getInventoryinfo().put(key, new ConfigValue(interfaceconfig.get(key)));
+		}
+
+		if (!shop.getWalletinfo().containsKey("type")) {
+			shop.getInventoryinfo().put("type", new ConfigValue(InventoryInterfaceHandler.DEFAULT_INVENTORY_TYPE));
+		}
+
+		ConfigValue<String> inventorytype = shop.getInventoryinfo().get("type");
+
+		shop.setInventoryInterface(CitiTrader.getInventoryInterfaceHandler().getInventoryInterfaceInstance(inventorytype.getValue(), shop));
 
 		// Find or create Inventory Item Section
 		ConfigurationSection invitemconfig = invconfig.getConfigurationSection("items");
@@ -113,8 +133,6 @@ public class YamlDataObject extends DataObject {
 		}
 
 		ConfigValue<String> wallettype = shop.getWalletinfo().get("type");
-
-		//WalletType walletType = wallettype.getValue(); //WalletType.valueOf(wallettype.getValue());
 
 		shop.setWallet(CitiTrader.getWallethandler().getWalletInstance(wallettype.getValue(), shop));
 
@@ -190,8 +208,19 @@ public class YamlDataObject extends DataObject {
 				invconfig = config.getConfig().createSection("inventory");
 			}
 
-			// TODO: Save Inventory TYPE
+			// Save Inventory INFO
+			ConfigurationSection inventoryinfoconfig = invconfig.getConfigurationSection("info");
+			if (inventoryinfoconfig == null) {
+				inventoryinfoconfig = invconfig.createSection("info");
+				ConfigValue<String> defaultinventory = new ConfigValue(InventoryInterfaceHandler.DEFAULT_INVENTORY_TYPE);
+				inventoryinfoconfig.set("type", defaultinventory.getValue());
+			}
 
+			for (Entry<String, ConfigValue> inventoryinfo : shop.getInventoryinfo().entrySet()) {
+				inventoryinfoconfig.set(inventoryinfo.getKey(), inventoryinfo.getValue().getValue());
+			}
+
+			// Save Inventory items
 			ConfigurationSection invconf = invconfig.createSection("items");
 
 			Integer count = 0;

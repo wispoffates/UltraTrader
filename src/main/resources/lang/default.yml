@@ -9,6 +9,7 @@ general:
   name: Name
   newshopname: No Name Set.
   bank: Bank
+  inventory: Inventory
   wallet:
     admin: admin
     player: player
@@ -58,11 +59,13 @@ conversation:
       options:
         storename: storename
         bank: bank
+        inventoryinterface: inventory
         exit: exit
     exit: Leaving Admin
     menutext: CitiTraders Admin Menu
     bankmenu: Choose which type of bank to use.
     setbank: Setting bank to
+    setinventory: Setting inventory to
     playerwallet:
       options:
         anotherplayer: another

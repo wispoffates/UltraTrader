@@ -18,6 +18,7 @@ public class AdminMenuPrompt extends FixedIgnoreCaseSetPrompt {
 		prefix = new AdminConversationPrefix();
 		addOption(L.getString("conversation.admin.menu.options.storename"), new AdminSetNamePrompt());
 		addOption(L.getString("conversation.admin.menu.options.bank"), new AdminBankMenuPrompt());
+		addOption(L.getString("conversation.admin.menu.options.inventoryinterface"), new AdminInventoryInterfaceMenuPrompt());
 		addOption(L.getString("general.exit"), new AdminFinishPrompt());
 	}
 
@@ -33,6 +34,7 @@ public class AdminMenuPrompt extends FixedIgnoreCaseSetPrompt {
 		p.sendRawMessage(prefix.getPrefix(context) + "------<[ " + ChatColor.BLUE + "ADMIN" + ChatColor.YELLOW + " ]>------");
 		p.sendRawMessage(prefix.getPrefix(context) + L.getString("general.name") + ": " + ChatColor.WHITE + view.getShop().getName());
 		p.sendRawMessage(prefix.getPrefix(context) + L.getString("general.bank") + ": " + ChatColor.WHITE + view.getShop().getWalletType());
+		p.sendRawMessage(prefix.getPrefix(context) + L.getString("general.inventory") + ": " + ChatColor.WHITE + view.getShop().getInventoryInterfaceType());
 		p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.admin.menutext"));
 		return L.getString("conversation.options") + ": " + this.formatFixedSet();
 	}

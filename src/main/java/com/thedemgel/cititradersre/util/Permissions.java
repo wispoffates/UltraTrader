@@ -7,7 +7,7 @@ public class Permissions {
 	 * ### Stores or Shops
 	 * END SNIPPET: perm
 	 */
-	
+
 	/**
 	 * START SNIPPET: perm
 	 * ####trader.store.use
@@ -22,12 +22,12 @@ public class Permissions {
 	 * END SNIPPET: perm
 	 */
 	public static final String CREATE_STORES = "trader.store.create";
-	
+
 	/* START SNIPPET: perm
 	 * ### Wallets
 	 * END SNIPPET: perm
 	 */
-	
+
 	/**
 	 * START SNIPPET: perm
 	 * ####trader.wallet.admin
@@ -65,11 +65,36 @@ public class Permissions {
 	 * ####trader.wallet.bank
 	 * `Allows a user to set a store's wallet to BANK.
 	 * Uses the economy plugin if it supports banks.`
-	 * 
+	 *
 	 * `If the plugin does not support bank this option will not show.
 	 * Shops set to this option after a economy is removed that supported
 	 * banks will disable this bank until manual editing.`
 	 * END SNIPPET: perm
 	 */
 	public static final String WALLET_BANK = "trader.wallet.bank";
+
+	/* START SNIPPET: perm
+	 * ### Inventories
+	 * END SNIPPET: perm
+	 */
+
+	/**
+	 * START SNIPPET: perm
+	 * ####trader.inventory.shop
+	 * `Allows a user to set a store's inventory to SHOP.
+	 *
+	 * The shop inventory is also the default inventory type`
+	 * END SNIPPET: perm
+	 */
+	public static final String INVENTORY_SHOP = "trader.inventory.shop";
+	/**
+	 * START SNIPPET: perm
+	 * ####trader.inventory.admin
+	 * `Allows a user to set a store's inventory to ADMIN.
+	 *
+	 * This means that inventory is never checked, there is always
+	 * items, and items are never recieved.`
+	 * END SNIPPET: perm
+	 */
+	public static final String INVENTORY_ADMIN = "trader.inventory.admin";
 }

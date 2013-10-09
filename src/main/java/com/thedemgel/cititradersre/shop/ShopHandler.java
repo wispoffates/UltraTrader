@@ -6,6 +6,7 @@ import com.thedemgel.cititradersre.CitiTrader;
 import com.thedemgel.cititradersre.InventoryHandler;
 import com.thedemgel.cititradersre.L;
 import com.thedemgel.cititradersre.StoreConfig;
+import com.thedemgel.cititradersre.inventory.InventoryInterfaceHandler;
 import com.thedemgel.cititradersre.wallet.WalletHandler;
 import java.io.File;
 import java.util.Collection;
@@ -32,6 +33,12 @@ public class ShopHandler {
 
 	public void initShops() {
 		CitiTrader.getDbObj().initShops();
+	}
+
+	public void saveShops() {
+		for (Shop shop : shops.values()) {
+			shop.save();
+		}
 	}
 
 	public InventoryHandler getInventoryHandler() {
@@ -82,6 +89,7 @@ public class ShopHandler {
 		tempShop.setOwner(player);
 		tempShop.setName(L.getString("general.newshopname"));
 		tempShop.setWalletType(WalletHandler.DEFAULT_WALLET_TYPE);
+		tempShop.setInventoryInterfaceType(InventoryInterfaceHandler.DEFAULT_INVENTORY_TYPE);
 		tempShop.save();
 
 		shops.put(tempShop.getId(), tempShop);

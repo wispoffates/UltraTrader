@@ -146,12 +146,7 @@ public class ShopInventoryView extends InventoryView {
 
 		int invCount;
 
-		if (shop.getInventoryInterface().containsItem(invItem)) {
-			invCount = shop.getInventoryInterface().getInventoryStock(invItem);
-		} else {
-			buildBuyView();
-			return;
-		}
+		invCount = shop.getInventoryInterface().getInventoryStock(invItem);
 
 		if (invCount < 1 && !shop.getInventoryInterface().displayItemToPlayer(player)) {
 			buildBuyView();
@@ -222,12 +217,7 @@ public class ShopInventoryView extends InventoryView {
 
 		int invCount;
 
-		if (shop.getInventoryInterface().containsItem(invItem)) {
-			invCount = shop.getInventoryInterface().getInventoryStock(invItem);
-		} else {
-			buildSellView();
-			return;
-		}
+		invCount = shop.getInventoryInterface().getInventoryStock(invItem);
 
 		if (invCount < 1 && !shop.getInventoryInterface().displayItemToPlayer(player)) {
 			buildSellView();
