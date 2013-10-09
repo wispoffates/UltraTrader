@@ -30,6 +30,11 @@ public class AdminWallet extends Wallet {
 	}
 
 	@Override
+	public BigDecimal getBalance() {
+		return BigDecimal.ZERO;
+	}
+
+	@Override
 	public EconomyResponse removeFunds(BigDecimal amount) {
 		return new EconomyResponse(amount.doubleValue(), 0, ResponseType.SUCCESS, "");
 	}

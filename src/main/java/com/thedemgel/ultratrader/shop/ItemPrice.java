@@ -80,7 +80,7 @@ public class ItemPrice {
 				break;
 			default:
 		}
-		//genLore.add(ChatColor.GOLD + L.getString("general.price") + ": " + ); // Will need to figure for discounts
+		// Will need to figure for discounts
 		// If there is a discount... add a message here
 		// Id will always be LAST in the list
 		if (displayInventoryAmount) {

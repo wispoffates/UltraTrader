@@ -66,7 +66,15 @@ conversation:
         exit: exit
     exit: Leaving Admin
     menutext: CitiTraders Admin Menu
-    bankmenu: Choose which type of bank to use.
+    banktypemenu: Choose which type of bank to use.
+    bankmenu:
+      balance: 'Wallet Balance: {0}'
+      type: 'Wallet Type: {0}'
+      withdraw: withdraw
+      deposit: deposit
+      settype: settype
+    withdraw: How much would you like to Withdraw?
+    deposit: How much would you like to Deposit?
     setbank: Setting bank to
     setinventory: Setting inventory to
     playerwallet:

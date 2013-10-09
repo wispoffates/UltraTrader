@@ -16,6 +16,8 @@ public abstract class Wallet {
 
 	public abstract boolean hasFunds(BigDecimal amount);
 
+	public abstract BigDecimal getBalance();
+
 	public abstract EconomyResponse removeFunds(BigDecimal amount);
 
 	public abstract EconomyResponse addFunds(BigDecimal amount);

@@ -48,6 +48,15 @@ public class BankWallet extends Wallet {
 	}
 
 	@Override
+	public BigDecimal getBalance() {
+		EconomyResponse response = economy.bankBalance(getBank());
+
+		BigDecimal balance = BigDecimal.valueOf(response.balance);
+
+		return balance;
+	}
+
+	@Override
 	public EconomyResponse removeFunds(BigDecimal amount) {
 		String bank = getBank();
 		if (bank == null) {

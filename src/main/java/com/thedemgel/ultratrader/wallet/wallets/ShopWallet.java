@@ -58,7 +58,8 @@ public class ShopWallet extends Wallet {
 		return new EconomyResponse(amount.doubleValue(), getBalance().doubleValue(), ResponseType.SUCCESS, "");
 	}
 
-	private BigDecimal getBalance() {
+	@Override
+	public BigDecimal getBalance() {
 		ConfigValue<Double> get = shop.getWalletinfo().get("balance");
 		if (get == null) {
 			get = new ConfigValue<>(0D);

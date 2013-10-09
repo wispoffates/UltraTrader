@@ -37,6 +37,12 @@ public class PlayerWallet extends Wallet {
 	}
 
 	@Override
+	public BigDecimal getBalance() {
+		double response = economy.getBalance(getPlayer());
+		return BigDecimal.valueOf(response);
+	}
+
+	@Override
 	public EconomyResponse removeFunds(BigDecimal amount) {
 		return economy.withdrawPlayer(getPlayer(), amount.doubleValue());
 	}

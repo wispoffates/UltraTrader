@@ -1,8 +1,10 @@
 package com.thedemgel.ultratrader.conversation.admin;
 
+import com.thedemgel.ultratrader.conversation.admin.bank.AdminBankTypeMenuPrompt;
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
+import com.thedemgel.ultratrader.conversation.admin.bank.AdminBankMenuPrompt;
 import com.thedemgel.ultratrader.shop.ShopInventoryView;
 import org.bukkit.ChatColor;
 import org.bukkit.conversations.ConversationContext;
