@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.thedemgel</groupId>
-	<artifactId>CitiTradersRE</artifactId>
+	<artifactId>UltraTrader</artifactId>
 	<version>0.1-BETA</version>
 	<packaging>jar</packaging>
 
-	<name>CitiTradersRE</name>
-	<url>http://demgelopensource.github.io/CitiTraderRE</url>
+	<name>UltraTrader</name>
+	<url>http://demgelopensource.github.io/UltraTrader</url>
 	<inceptionYear>2013</inceptionYear>
 	<description>A rewrite of the popular CitiTraders originally by tehBeard and tenowg.</description>
 

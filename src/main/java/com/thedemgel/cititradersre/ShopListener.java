@@ -247,6 +247,8 @@ public class ShopListener implements Listener {
 
 				Integer shopid = trait.getShopId();
 
+
+
 				if (shopid == ShopHandler.SHOP_NULL) {
 					if (npc.getTrait(Owner.class).isOwnedBy(player)) {
 						Conversation convo = CitiTrader.getConversationHandler().getCreateShop().buildConversation(player);
@@ -254,9 +256,12 @@ public class ShopListener implements Listener {
 						convo.begin();
 						return;
 					} else {
-						player.sendMessage(L.getString("general.noopen.unassigned"));
+						player.sendMessage(L.getString("general.notopen.unassigned"));
 						return;
 					}
+				} else if (CitiTrader.getStoreHandler().getShop(shopid) == null) {
+					player.sendMessage(L.getString("general.notopen.errorloading"));
+					return;
 				}
 
 				InventoryHandler handler = CitiTrader.getStoreHandler().getInventoryHandler();

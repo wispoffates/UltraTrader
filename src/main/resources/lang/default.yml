@@ -17,6 +17,7 @@ general:
     shop: shop
   notopen:
     unassigned: Store not open yet. (No store assinged)
+    errorloading: Store wasn't loaded properly. (Please report)
 permission:
   create:
     deny: You do not have permission to create a shop.
