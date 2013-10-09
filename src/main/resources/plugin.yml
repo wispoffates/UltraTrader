@@ -1,6 +1,6 @@
 name: CitiTraderRE
-main: com.thedemgel.cititradersre.CitiTrader
-version: 1
+main: com.thedemgel.ultratrader.UltraTrader
+version: .10 BETA
 depend: [Vault]
 softdepend: [Citizens]
 

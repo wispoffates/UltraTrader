@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="CitiTradersRE" xmlns="http://maven.apache.org/DECORATION/1.3.0"
+<project name="UltraTrader" xmlns="http://maven.apache.org/DECORATION/1.3.0"
 	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	 xsi:schemaLocation="http://maven.apache.org/DECORATION/1.3.0 http://maven.apache.org/xsd/decoration-1.3.0.xsd">
 
@@ -40,8 +40,8 @@
 				This is a very good project doing interesting and valuable things.
 			</bottomDescription>
 			<pages>
-				<index project="cititradersre">
-					<titleTemplate>CitiTradersRE</titleTemplate>
+				<index>
+					<titleTemplate>UltraTrader</titleTemplate>
 					<breadcrumbs>false</breadcrumbs>
 					<toc>false</toc>
 					<sections>
@@ -59,9 +59,9 @@
 				<issue-tracking>
 					<toc>false</toc>
 				</issue-tracking>
-				
-				
-				
+
+
+
 				<command>
 					<toc>sidebar</toc>
 					<breadcrumbs>true</breadcrumbs>
@@ -88,16 +88,16 @@
 		<head>
 			<link rel="author" href="https://github.com/tenowg"/>
 		</head>
-  
+
 		<links>
 			<item name="Download" href="download.html" />
 			<!-- <item name="GitHub project" href="http://github.com/tenowg/Regions/" /> -->
 		</links>
 
 		<breadcrumbs>
-			<item name="CitiTradersRE" href="/" />
+			<item name="UltraTrader" href="/" />
 		</breadcrumbs>
-  
+
 		<menu name="Main" inherit="top">
 			<item name="Home" href="./" />
 			<item name="GitHub project" href="${project.scm.url}" />
@@ -115,7 +115,7 @@
 		</menu>
 		<menu name="Contribute" inherit="bottom">
 			<item name="Contribute" href="contribute.html" />
-			<item name="Issues" href="http://github.com/DemgelOpenSource/CitiTraders/issues/" />
+			<item name="Issues" href="http://github.com/DemgelOpenSource/UltraTrader/issues/" />
 			<item name="Fork on GitHub" href="${project.scm.url}" />
 			<item name="Donate" href="" />
 		</menu>

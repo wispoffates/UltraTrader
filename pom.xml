@@ -20,15 +20,15 @@
 	<distributionManagement>
 		<site>
 			<id>github-project-site</id>
-			<url>gitsite:git@github.com/demgelopensource/CitiTradersRE.git</url>
+			<url>gitsite:git@github.com/demgelopensource/UltraTrader.git</url>
 		</site>
 	</distributionManagement>
 
 	<scm>
-		<connection>scm:git:git@github.com:demgelopensource/CitiTradersRE.git</connection>
-		<developerConnection>scm:git:git@github.com:demgelopensource/CitiTradersRE.git</developerConnection>
+		<connection>scm:git:git@github.com:demgelopensource/UltraTrader.git</connection>
+		<developerConnection>scm:git:git@github.com:demgelopensource/UltraTrader.git</developerConnection>
 		<tag>HEAD</tag>
-		<url>https://github.com/demgelopensource/CitiTradersRE</url>
+		<url>https://github.com/demgelopensource/UltraTrader</url>
 	</scm>
 
 	<build>
