@@ -35,6 +35,12 @@ public class PurchaseHandler {
 	 * @param buyStack The itemstack of the item clicked.
 	 */
 	public static void processPurchase(Shop shop, Player player, ItemStack buyStack) {
+		boolean charge = true;
+		// Should we charge
+		if (shop.isOwner(player)) {
+			charge = false;
+		}
+
 		String buyStackId = shop.getItemId(buyStack);
 		ItemPrice invItem = shop.getSellprices().get(buyStackId);
 		BigDecimal buyStackPriceEach = invItem.getPrice();
@@ -42,7 +48,9 @@ public class PurchaseHandler {
 		BigDecimal buyStackPrice = buyStackPriceEach.multiply(BigDecimal.valueOf(buyStack.getAmount()));
 
 		EconomyResponse heldFunds;
-		if (UltraTrader.getEconomy().has(player.getName(), player.getWorld().getName(), buyStackPrice.doubleValue())) {
+		if (!charge) {
+			heldFunds = new EconomyResponse(0, 0, ResponseType.SUCCESS, "");
+		} else if (UltraTrader.getEconomy().has(player.getName(), player.getWorld().getName(), buyStackPrice.doubleValue())) {
 			heldFunds = UltraTrader.getEconomy().withdrawPlayer(player.getName(), player.getWorld().getName(), buyStackPrice.doubleValue());
 		} else {
 			player.sendMessage(L.getString("transaction.sale.player.notenoughfunds"));
@@ -64,7 +72,9 @@ public class PurchaseHandler {
 		Integer currentInvAmount = shop.getInventoryInterface().getInventoryStock(baseItem);
 
 		if (buyStack.getAmount() > currentInvAmount) {
-			UltraTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), heldFunds.amount);
+			if (charge) {
+				UltraTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), heldFunds.amount);
+			}
 			// Some error checks for deposit
 			player.sendMessage(L.getString("transaction.sale.shop.notenoughitems"));
 			return;
@@ -84,9 +94,11 @@ public class PurchaseHandler {
 				returned = returned + returnedItem.getAmount();
 			}
 
-			refund = buyStackPriceEach.multiply(BigDecimal.valueOf(returned));
+			if (charge) {
+				refund = buyStackPriceEach.multiply(BigDecimal.valueOf(returned));
 
-			UltraTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), refund.doubleValue());
+				UltraTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), refund.doubleValue());
+			}
 
 			ItemStack itemReturned = baseItem.clone();
 			itemReturned.setAmount(returned);
@@ -96,7 +108,9 @@ public class PurchaseHandler {
 		BigDecimal traderDeposit = BigDecimal.valueOf(heldFunds.amount).subtract(refund);
 
 		// Deposit into trader when interface is ready.
-		if (shop.getWallet().addFunds(traderDeposit).type.equals(ResponseType.SUCCESS)) {
+		if (!charge) {
+			player.sendMessage(L.getFormatString("transaction.sale.shop.totalpurchase", "FREE"));
+		} else if (shop.getWallet().addFunds(traderDeposit).type.equals(ResponseType.SUCCESS)) {
 			//player.sendMessage(MessageFormat.format(UltraTrader.getResourceBundle().getString("transaction.sale.shop.totalpurchase"), traderDeposit));
 			player.sendMessage(L.getFormatString("transaction.sale.shop.totalpurchase", UltraTrader.getEconomy().format(traderDeposit.doubleValue())));
 		} else {
