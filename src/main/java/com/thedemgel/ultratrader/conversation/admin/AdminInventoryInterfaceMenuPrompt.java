@@ -47,7 +47,7 @@ public class AdminInventoryInterfaceMenuPrompt extends FixedIgnoreCaseSetPrompt 
 
 		Player p = (Player) context.getForWhom();
 
-		p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.admin.bankmenu"));
+		p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.admin.inventorytypemenu"));
 		return L.getString("conversation.options") + ": " + this.formatFixedSet();
 	}
 }

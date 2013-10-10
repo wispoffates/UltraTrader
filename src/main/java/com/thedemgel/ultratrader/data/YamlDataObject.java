@@ -49,16 +49,17 @@ public class YamlDataObject extends DataObject {
 
 		// Load the Inventory Interface
 		// Find or create inventory interface "interface" Configuration Section
-		ConfigurationSection interfaceconfig = invconfig.getConfigurationSection("type");
+		ConfigurationSection interfaceconfig = invconfig.getConfigurationSection("info");
 		if (interfaceconfig == null) {
-			interfaceconfig = invconfig.createSection("type");
+			interfaceconfig = invconfig.createSection("info");
 		}
 
 		for (String key : interfaceconfig.getKeys(false)) {
 			shop.getInventoryinfo().put(key, new ConfigValue(interfaceconfig.get(key)));
 		}
 
-		if (!shop.getWalletinfo().containsKey("type")) {
+		if (!shop.getInventoryinfo().containsKey("type")) {
+			System.out.println("Setting to Default Inventory Interface!!!!!!");
 			shop.getInventoryinfo().put("type", new ConfigValue(InventoryInterfaceHandler.DEFAULT_INVENTORY_TYPE));
 		}
 

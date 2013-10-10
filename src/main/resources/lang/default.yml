@@ -77,6 +77,7 @@ conversation:
     deposit: How much would you like to Deposit?
     setbank: Setting bank to
     setinventory: Setting inventory to
+    inventorytypemenu: What type of inventory would you like?
     playerwallet:
       options:
         anotherplayer: another

@@ -1,4 +1,4 @@
-name: CitiTraderRE
+name: UltraTrader
 main: com.thedemgel.ultratrader.UltraTrader
 version: .10 BETA
 depend: [Vault]
