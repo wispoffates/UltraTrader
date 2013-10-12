@@ -1,6 +1,5 @@
 package com.thedemgel.ultratrader.conversation.admin;
 
-import com.thedemgel.ultratrader.conversation.admin.bank.AdminBankTypeMenuPrompt;
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
@@ -21,12 +20,13 @@ public class AdminMenuPrompt extends FixedIgnoreCaseSetPrompt {
 		addOption(L.getString("conversation.admin.menu.options.storename"), new AdminSetNamePrompt());
 		addOption(L.getString("conversation.admin.menu.options.bank"), new AdminBankMenuPrompt());
 		addOption(L.getString("conversation.admin.menu.options.inventoryinterface"), new AdminInventoryInterfaceMenuPrompt());
+		addOption(L.getString("conversation.admin.menu.options.unassign"), this);
 		addOption(L.getString("general.exit"), new AdminFinishPrompt());
 	}
 
 	@Override
 	protected Prompt acceptValidatedInput(ConversationContext context, String input) {
-		return getValidatedPrompt(new AdminMenuPrompt());
+		return getValidatedPrompt(this);
 	}
 
 	@Override

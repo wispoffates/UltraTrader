@@ -63,6 +63,7 @@ conversation:
         storename: storename
         bank: bank
         inventoryinterface: inventory
+        unassign: unassign
         exit: exit
     exit: Leaving Admin
     menutext: CitiTraders Admin Menu
