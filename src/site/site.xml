@@ -80,6 +80,10 @@
 					<breadcrumbs>true</breadcrumbs>
 					<highlightJs>false</highlightJs>
 				</localization>
+				<createtrader>
+					<toc>sidebar</toc>
+					<breakcrumbs>true</breakcrumbs>
+				</createtrader>
 			</pages>
 		</reflowSkin>
 	</custom>
@@ -112,6 +116,7 @@
 			<item name="Commands" href="command.html" />
 			<item name="Permissions" href="permission.html" />
 			<item name="Configuration" href="configuration.html" />
+			<item name="Create A NPC Trader" href="createtrader.html" />
 		</menu>
 		<menu name="Contribute" inherit="bottom">
 			<item name="Contribute" href="contribute.html" />
