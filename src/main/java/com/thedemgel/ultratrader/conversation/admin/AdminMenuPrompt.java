@@ -20,7 +20,6 @@ public class AdminMenuPrompt extends FixedIgnoreCaseSetPrompt {
 		addOption(L.getString("conversation.admin.menu.options.storename"), new AdminSetNamePrompt());
 		addOption(L.getString("conversation.admin.menu.options.bank"), new AdminBankMenuPrompt());
 		addOption(L.getString("conversation.admin.menu.options.inventoryinterface"), new AdminInventoryInterfaceMenuPrompt());
-		addOption(L.getString("conversation.admin.menu.options.unassign"), this);
 		addOption(L.getString("general.exit"), new AdminFinishPrompt());
 	}
 

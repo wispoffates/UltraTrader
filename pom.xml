@@ -109,6 +109,7 @@
 								<includes>
 									<include>com.thedemgel:YamlResourceBundle</include>
 									<include>net.snaq:dbpool</include>
+									<include>org.mcstats.bukkit</include>
 								</includes>
 							</artifactSet>
 						</configuration>
@@ -147,6 +148,12 @@
 			<artifactId>dbpool</artifactId>
 			<version>5.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.mcstats.bukkit</groupId>
+			<artifactId>metrics</artifactId>
+			<version>R7</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 	<repositories>
 		<repository>
@@ -164,6 +171,10 @@
 		<repository>
 			<id>demgel-repo</id>
 			<url>http://repository-tenowg.forge.cloudbees.com/release</url>
+		</repository>
+		<repository>
+			<id>Plugin Metrics</id>
+			<url>http://repo.mcstats.org/content/repositories/public</url>
 		</repository>
 	</repositories>
 

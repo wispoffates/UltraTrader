@@ -15,6 +15,7 @@ import com.thedemgel.ultratrader.wallet.wallets.BankWallet;
 import com.thedemgel.ultratrader.wallet.wallets.PlayerWallet;
 import com.thedemgel.ultratrader.wallet.wallets.ShopWallet;
 import com.thedemgel.yamlresourcebundle.YamlResourceBundle;
+import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -24,6 +25,7 @@ import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.mcstats.Metrics;
 
 public class UltraTrader extends JavaPlugin {
 
@@ -62,12 +64,18 @@ public class UltraTrader extends JavaPlugin {
 	public static InventoryInterfaceHandler getInventoryInterfaceHandler() {
 		return inventoryInterfaceHandler;
 	}
-
 	private boolean citizens;
 	private boolean vault;
 
 	@Override
 	public final void onEnable() {
+		try {
+			Metrics metrics = new Metrics(this);
+			metrics.start();
+		} catch (IOException e) {
+			// Failed to submit the stats :-(
+			getLogger().info("Metrics has failed to load...");
+		}
 		plugin = this;
 		wallethandler = new WalletHandler();
 
