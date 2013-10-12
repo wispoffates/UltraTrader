@@ -8,7 +8,7 @@
 
 	<head>
 		<meta charset="UTF-8" />
-		<title>Configuration | UltraTrader</title>
+		<title>Limits | UltraTrader</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content="" />
 		<meta http-equiv="content-language" content="en" />
@@ -18,6 +18,7 @@
 		<link href="./css/bootswatch.css" rel="stylesheet" />
 		<link href="./css/reflow-skin.css" rel="stylesheet" />
 		
+		<link href="http://yandex.st/highlightjs/7.3/styles/default.min.css" rel="stylesheet" />
 		
 		<link href="./css/lightbox.css" rel="stylesheet" />
 		
@@ -32,7 +33,7 @@
 <link rel="author" href="https://github.com/tenowg"/>
 	</head>
 
-	<body class="page-configuration project-ultratrader" data-spy="scroll" data-offset="60" data-target="#toc-scroll-target">
+	<body class="page-limits project-ultratrader" data-spy="scroll" data-offset="60" data-target="#toc-scroll-target">
 
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
@@ -58,10 +59,10 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li><a href="localization.html" title="Localization">Localization </a></li>
-									<li><a href="limits.html" title="Setting Shop Limits">Setting Shop Limits </a></li>
+									<li class="active"><a href="" title="Setting Shop Limits">Setting Shop Limits </a></li>
 									<li><a href="command.html" title="Commands">Commands </a></li>
 									<li><a href="permission.html" title="Permissions">Permissions </a></li>
-									<li class="active"><a href="" title="Configuration">Configuration </a></li>
+									<li><a href="configuration.html" title="Configuration">Configuration </a></li>
 									<li><a href="createtrader.html" title="Create A NPC Trader">Create A NPC Trader </a></li>
 								</ul>
 							</li>
@@ -118,7 +119,7 @@
 			<ul class="breadcrumb">
 				<li><a href="./" title="UltraTrader">UltraTrader </a></li>
 				<li class="divider">/</li>
-				<li>Configuration</li>
+				<li>Limits</li>
 			</ul>
 		</div>
 	</header>
@@ -129,32 +130,29 @@
 			<div class="body-content">
 <div class="section"> 
  <div class="page-header">
-  <h2 id="Configuration">Configuration</h2>
+  <h2 id="Limits">Limits</h2>
  </div> 
- <p>Currently configuration is fairly simple.</p> 
  <div class="source"> 
-  <pre># Select the language you wish to use, if selected language is not supported
-# than it will default to english (the default being en)
-language: en
-# Shop defaults
-shops:
+  <pre># This works with permissions, the first one hit is the one used, so higher level
+# limites should be listed first.
+limits:
+  # Permission: trader.limits.admin
+  admin:
+    shops: -1
+    maxlevel: 4
+    # Optional defaults for permission level
+    # This overrides the server defaults.
+    defaults:
+      remote: true
+      level: 4
+  # Permission: trader.limits.default
   default:
-    # Level: minimum level is 1 and maximum level is 4. This controls how many
-    # Available buy/sell slots the trader has. (Level * 9)
-    level: 1
-    # Remote controls whether or not a shop can be accessed with items as opposed
-    # to phyical shops (blocks, signs, npcs). If set to false, items will not be
-    # allowed to access this shop.
+    shops: 1
+    # Max level the shops can get too.
+    maxlevel: 1
+    # Can remote be purchased for this shop
+    # If shops have remote as default this does nothing.
     remote: false
-  level:
-    # The cost to advance to each level.
-    costs:
-      1: 0
-      2: 100
-      3: 1000
-      4: 10000
-    # Add remote access to shop.
-    remote: 1000
 </pre> 
  </div> 
 </div>
@@ -165,7 +163,7 @@ shops:
 				<div class="well">
 					<ul class="nav nav-list">
 						<li class="nav-header">Table of Contents</li>
-		<li><a href="#Configuration" title="Configuration">Configuration</a>
+		<li><a href="#Limits" title="Limits">Limits</a>
 					</ul>
 				</div>
 			</div>
@@ -200,8 +198,8 @@ shops:
 						<li>
 							<a href="localization.html" title="Localization">Localization </a>
 						</li>
-						<li>
-							<a href="limits.html" title="Setting Shop Limits">Setting Shop Limits </a>
+						<li class="active">
+							<a href="#" title="Setting Shop Limits">Setting Shop Limits </a>
 						</li>
 						<li>
 							<a href="command.html" title="Commands">Commands </a>
@@ -209,8 +207,8 @@ shops:
 						<li>
 							<a href="permission.html" title="Permissions">Permissions </a>
 						</li>
-						<li class="active">
-							<a href="#" title="Configuration">Configuration </a>
+						<li>
+							<a href="configuration.html" title="Configuration">Configuration </a>
 						</li>
 						<li>
 							<a href="createtrader.html" title="Create A NPC Trader">Create A NPC Trader </a>
@@ -265,6 +263,7 @@ shops:
 	<script src="./js/jquery.smooth-scroll.min.js"></script>
 	<!-- back button support for smooth scroll -->
 	<script src="./js/jquery.ba-bbq.min.js"></script>
+	<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
 
 	<script src="./js/reflow-skin.js"></script>
 	
