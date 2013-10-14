@@ -1,5 +1,5 @@
 #parse( "common" )
-#h2 Create A Trader
+$h2 Create A Trader
 $h3 NPC
 Creating an NPC trader is very simple, follow the following instructions and you should be up and running in no time.
 

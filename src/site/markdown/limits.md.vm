@@ -1,0 +1,8 @@
+#parse( "common" )
+$h2 Limits
+This option is currently not implemented, this is here to display my plans and to
+get implemented as soon as possible. Stay tuned for more information.
+
+#set( $snippetFile = "/src/main/resources/limits.yml" )
+#set( $snippetName = "" )
+#parse( "snippet" )

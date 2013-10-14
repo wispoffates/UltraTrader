@@ -77,6 +77,12 @@ public class UltraTrader extends JavaPlugin {
 			getLogger().info("Metrics has failed to load...");
 		}
 		plugin = this;
+
+		// Populate config.yml
+		this.saveDefaultConfig();
+		getConfig().options().copyDefaults(true);
+		this.saveConfig();
+
 		wallethandler = new WalletHandler();
 
 		getWallethandler().registerWallet(AdminWallet.class, L.getString("general.wallet.admin"))
@@ -108,6 +114,7 @@ public class UltraTrader extends JavaPlugin {
 	@Override
 	public final void onDisable() {
 		getStoreHandler().saveShops();
+		this.saveConfig();
 		this.getLogger().log(Level.INFO, "UltraTrader Disabled...");
 	}
 

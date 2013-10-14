@@ -1,0 +1,46 @@
+# This works with permissions, the first one hit is the one used, so higher level
+# limites should be listed first.
+limits:
+  # Permission: trader.limits.admin
+  admin:
+    # -1 = unlimited shops
+    shops: -1
+    maxlevel: 4
+    # Optional defaults for permission level
+    # This overrides the server defaults.
+    defaults:
+      remote: true
+      level: 4
+    # Override cost default in config.yml
+    costs:
+      shop:
+        create: 10000
+      remote:
+        # Cost per item created.
+        item: 0
+  # Permission: trader.limits.donatorlevelone
+  # The following demonstrates a limit on donatorlevelone members, it will
+  # allow 5 shops to be opened, at a cost of 5000 each, max level of 2 and can
+  # activate remote item access for 10000, each remote item will cost 50 to
+  # create.
+  donatorlevelone:
+    shops: 5
+    maxlevel: 2
+    remote: true
+    costs:
+      shop:
+        create: 5000
+      level:
+        1: 0
+        2: 1000
+      remote:
+        activate: 10000
+        item: 50
+  # Permission: trader.limits.default
+  default:
+    shops: 1
+    # Max level the shops can get too.
+    maxlevel: 1
+    # Can remote be purchased for this shop
+    # If shops have remote as default this does nothing.
+    remote: false

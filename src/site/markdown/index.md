@@ -35,6 +35,7 @@ store, think about selling an item that can open your store from afar?
 
 ### Documentation
 * [Localization](localization.html "Localization")
+* [Setting Shop Limits](limits.html "Setting Shop Limits")
 * [Permissions](permission.html "Permissions")
 * [Commands] (commands.html "Commands")
 * [Create a Trader](createtrader.html "Create a Trader")
