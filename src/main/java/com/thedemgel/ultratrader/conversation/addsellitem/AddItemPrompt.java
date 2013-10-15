@@ -1,6 +1,7 @@
 package com.thedemgel.ultratrader.conversation.addsellitem;
 
 import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.NotADoublePrompt;
 import java.math.BigDecimal;
 import java.text.MessageFormat;
@@ -18,17 +19,17 @@ public class AddItemPrompt extends StringPrompt {
 		try {
 			price = Double.valueOf(input);
 		} catch (NumberFormatException ex) {
-			context.setSessionData("return", new AddItemPrompt());
+			context.setSessionData(ConversationHandler.CONVERSATION_SESSION_RETURN, new AddItemPrompt());
 			return new NotADoublePrompt();
 		}
-		context.setSessionData("price", BigDecimal.valueOf(price));
+		context.setSessionData(ConversationHandler.CONVERSATION_SESSION_PRICE, BigDecimal.valueOf(price));
 		return new AddItemDescriptionPrompt();
 	}
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		ItemStack item = (ItemStack) context.getSessionData("item");
-		
+		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
+
 		return MessageFormat.format(L.getString("conversation.additem.setprice"), item.getType().name());
 	}
 }

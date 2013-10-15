@@ -63,7 +63,7 @@ conversation:
         storename: storename
         bank: bank
         inventoryinterface: inventory
-        unassign: unassign
+        transfer: transfer
         exit: exit
     exit: Leaving Admin
     menutext: CitiTraders Admin Menu
@@ -86,6 +86,11 @@ conversation:
     setname:
       setname: Name your shop. (32 Characters Max)
       nametolong: Shop names can only be 32 characters or shorter.
+    transfer:
+      transfered: Shop is no longer yours.
+      playercantaccept: Player can't accept this shop.
+      towhom: Who would you like to transfer this shop to?
+      needstobeonline: (Player needs to be online)
   createshop:
     begin: Entering Createshop Conversation
     prefix: CREATE SHOP

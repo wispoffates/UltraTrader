@@ -26,7 +26,13 @@ public class CreateShopCreatePrompt extends MessagePrompt {
 	protected Prompt getNextPrompt(ConversationContext context) {
 		Player player = (Player) context.getForWhom();
 
-		Shop shop = UltraTrader.getStoreHandler().createShop(player);
+		Shop shop;
+		try {
+		shop = UltraTrader.getStoreHandler().createShop(player);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Prompt.END_OF_CONVERSATION;
+		}
 
 		if (shop != null) {
 			// TODO: check for blocks and items (or change this to NPC conversation only)

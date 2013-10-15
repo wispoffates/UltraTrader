@@ -4,6 +4,7 @@ package com.thedemgel.ultratrader.conversation.addbuyitem;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.InventoryHandler;
 import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.LimitHandler;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.shop.ItemPrice;
 import com.thedemgel.ultratrader.shop.ShopInventoryView;
@@ -28,7 +29,7 @@ public class AddBuyItemBeginPrompt extends MessagePrompt {
 			return new AddBuyItemCantAddInventoryPrompt();
 		}
 
-		if (view.getShop().getBuyprices().size() >= InventoryHandler.MAX_SELL_BUY_ITEMS) {
+		if (view.getShop().getBuyprices().size() >= LimitHandler.getMaxBuySellSize(view.getShop())) {
 			return new AddItemShopFullPrompt();
 		}
 

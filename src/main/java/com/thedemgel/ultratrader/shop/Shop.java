@@ -237,6 +237,20 @@ public class Shop {
 		info.put("id", id);
 	}
 
+	public int getLevel() {
+		ConfigValue<Integer> level = info.get("level");
+		if (level == null) {
+			info.put("level", new ConfigValue(1));
+			return 1;
+		}
+		return level.getValue();
+	}
+
+	public void setLevel(int value) {
+		ConfigValue<Integer> level = new ConfigValue(value);
+		info.put("level", level);
+	}
+
 	public ConcurrentMap<String, ConfigValue> getInfo() {
 		return info;
 	}

@@ -1,29 +1,5 @@
 # Select the language you wish to use, if selected language is not supported
 # than it will default to english (the default being en)
 language: en
-# Shop defaults
-shops:
-  default:
-    # Level: minimum level is 1 and maximum level is 4. This controls how many
-    # Available buy/sell slots the trader has. (Level * 9)
-    level: 1
-    # Remote controls whether or not a shop can be accessed with items as opposed
-    # to phyical shops (blocks, signs, npcs). If set to false, items will not be
-    # allowed to access this shop.
-    remote: false
-  costs:
-    shop:
-      create: 10000
-    # The cost to advance to each level.
-    level:
-      # If level 1 is not 0, cost of creation will increase.
-      1: 0
-      2: 100
-      3: 1000
-      4: 10000
-    # Add remote access to shop.
-    remote:
-      # Activate the remote access option on this shop
-      activate: 1000
-      # Cost per item created.
-      item: 25
+test: testing
+another: another

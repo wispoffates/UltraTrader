@@ -5,6 +5,7 @@ import com.google.common.collect.Collections2;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.InventoryHandler;
 import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.LimitHandler;
 import com.thedemgel.ultratrader.StoreConfig;
 import com.thedemgel.ultratrader.inventory.InventoryInterfaceHandler;
 import com.thedemgel.ultratrader.wallet.WalletHandler;
@@ -13,6 +14,8 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
+import net.milkbowl.vault.economy.EconomyResponse;
+import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
 import org.bukkit.entity.Player;
 
 public class ShopHandler {
@@ -63,6 +66,19 @@ public class ShopHandler {
 	}
 
 	public Shop createShop(Player player) {
+		if (!LimitHandler.canCreate(player)) {
+			player.sendRawMessage("You already have to many shops.");
+			return null;
+		}
+
+		// Check to be sure the player has the money to create the shop
+		double cost = LimitHandler.getCreateCost(player);
+		boolean has = UltraTrader.getEconomy().has(player.getName(), player.getWorld().getName(), cost);
+		if (!has) {
+			player.sendRawMessage("Not enough funds.");
+			return null;
+		}
+
 		Random rnd = new Random();
 		int increment = UltraTrader.STORE_ID_RAND_INCREMENT;
 		boolean found = true;
@@ -83,6 +99,15 @@ public class ShopHandler {
 			return null;
 		}
 
+		// Withdraw the money if successfully created
+		EconomyResponse response = UltraTrader.getEconomy().withdrawPlayer(player.getName(), player.getWorld().getName(), cost);
+		if (response.type.equals(ResponseType.SUCCESS)) {
+			player.sendRawMessage(cost + " withdrawn from account");
+		} else {
+			player.sendRawMessage("Could not withdraw " + cost);
+			return null;
+		}
+
 		StoreConfig tempShopConfig = new StoreConfig(plugin, tempConfig);
 		Shop tempShop = new Shop(tempShopConfig);
 		tempShop.setId(randid);
@@ -90,6 +115,7 @@ public class ShopHandler {
 		tempShop.setName(L.getString("general.newshopname"));
 		tempShop.setWalletType(WalletHandler.DEFAULT_WALLET_TYPE);
 		tempShop.setInventoryInterfaceType(InventoryInterfaceHandler.DEFAULT_INVENTORY_TYPE);
+		tempShop.setLevel(LimitHandler.getLevelAtCreate(player));
 		tempShop.save();
 
 		shops.put(tempShop.getId(), tempShop);

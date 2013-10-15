@@ -1,6 +1,8 @@
 package com.thedemgel.ultratrader.conversation.admin;
 
 import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.LimitHandler;
+import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
 import com.thedemgel.ultratrader.conversation.admin.bank.AdminBankMenuPrompt;
@@ -20,6 +22,7 @@ public class AdminMenuPrompt extends FixedIgnoreCaseSetPrompt {
 		addOption(L.getString("conversation.admin.menu.options.storename"), new AdminSetNamePrompt());
 		addOption(L.getString("conversation.admin.menu.options.bank"), new AdminBankMenuPrompt());
 		addOption(L.getString("conversation.admin.menu.options.inventoryinterface"), new AdminInventoryInterfaceMenuPrompt());
+		addOption(L.getString("conversation.admin.menu.options.transfer"), new AdminTransferPrompt());
 		addOption(L.getString("general.exit"), new AdminFinishPrompt());
 	}
 
@@ -36,6 +39,7 @@ public class AdminMenuPrompt extends FixedIgnoreCaseSetPrompt {
 		p.sendRawMessage(prefix.getPrefix(context) + L.getString("general.name") + ": " + ChatColor.WHITE + view.getShop().getName());
 		p.sendRawMessage(prefix.getPrefix(context) + L.getString("general.bank") + ": " + ChatColor.WHITE + view.getShop().getWalletType());
 		p.sendRawMessage(prefix.getPrefix(context) + L.getString("general.inventory") + ": " + ChatColor.WHITE + view.getShop().getInventoryInterfaceType());
+		p.sendRawMessage(prefix.getPrefix(context) + "Level: " + ChatColor.WHITE + view.getShop().getLevel() + ChatColor.YELLOW + " Shops: " + ChatColor.WHITE + UltraTrader.getStoreHandler().getShopsByOwner(p).size() + ChatColor.YELLOW + "/" + ChatColor.WHITE + LimitHandler.getMaxShops(p) + ChatColor.YELLOW + " MaxBuySell: " + ChatColor.WHITE + LimitHandler.getMaxBuySellSize(view.getShop()));
 		p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.admin.menutext"));
 		return L.getString("conversation.options") + ": " + this.formatFixedSet();
 	}

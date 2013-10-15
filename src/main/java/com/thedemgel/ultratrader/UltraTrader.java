@@ -78,8 +78,8 @@ public class UltraTrader extends JavaPlugin {
 		}
 		plugin = this;
 
+		LimitHandler.init();
 		// Populate config.yml
-		this.saveDefaultConfig();
 		getConfig().options().copyDefaults(true);
 		this.saveConfig();
 

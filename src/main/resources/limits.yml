@@ -1,10 +1,37 @@
+# Defaults, this is given to everyone on the server if they don't match any other
+# limit groups, this should be the most restricting, even defaulting to 0.
+default:
+  maxshops: 1
+  # Max level the shops can get too.
+  maxlevel: 1
+  # Can remote be purchased for this shop
+  # If shops have remote as default this does nothing.
+  remote: false
+  defaults:
+    remote: false
+    level: 1
+  costs:
+    shop:
+      create: 10000
+    # The cost to advance to each level.
+    level:
+      1: 0
+      2: 100
+      3: 1000
+      4: 10000
+    # Add remote access to shop.
+    remote:
+      # Activate the remote access option on this shop
+      activate: 50000
+      # Cost per item created.
+      item: 500
 # This works with permissions, the first one hit is the one used, so higher level
 # limites should be listed first.
 limits:
   # Permission: trader.limits.admin
   admin:
     # -1 = unlimited shops
-    shops: -1
+    maxshops: -1
     maxlevel: 4
     # Optional defaults for permission level
     # This overrides the server defaults.
@@ -14,7 +41,7 @@ limits:
     # Override cost default in config.yml
     costs:
       shop:
-        create: 10000
+        create: 0
       remote:
         # Cost per item created.
         item: 0
@@ -22,9 +49,9 @@ limits:
   # The following demonstrates a limit on donatorlevelone members, it will
   # allow 5 shops to be opened, at a cost of 5000 each, max level of 2 and can
   # activate remote item access for 10000, each remote item will cost 50 to
-  # create.
+  # create. And to raise from level 1 to level 2 will cost 1000 per shop.
   donatorlevelone:
-    shops: 5
+    maxshops: 5
     maxlevel: 2
     remote: true
     costs:
@@ -36,11 +63,3 @@ limits:
       remote:
         activate: 10000
         item: 50
-  # Permission: trader.limits.default
-  default:
-    shops: 1
-    # Max level the shops can get too.
-    maxlevel: 1
-    # Can remote be purchased for this shop
-    # If shops have remote as default this does nothing.
-    remote: false
