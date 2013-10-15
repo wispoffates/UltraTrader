@@ -87,6 +87,8 @@ public class PurchaseHandler {
 		HashMap<Integer, ItemStack> returnedItems = player.getInventory().addItem(placedStack);
 
 		BigDecimal refund = BigDecimal.ZERO;
+		Integer finalamount = buyStack.getAmount();
+
 		if (!returnedItems.isEmpty()) {
 			// calculate returned funds... readd to merchant
 			Integer returned = 0;
@@ -103,15 +105,17 @@ public class PurchaseHandler {
 			ItemStack itemReturned = baseItem.clone();
 			itemReturned.setAmount(returned);
 			shop.getInventoryInterface().addInventory(itemReturned);
+			finalamount =- returned;
 		}
 
 		BigDecimal traderDeposit = BigDecimal.valueOf(heldFunds.amount).subtract(refund);
 
 		// Deposit into trader when interface is ready.
 		if (!charge) {
+			player.sendMessage(L.getFormatString("transaction.sale.shop.purchase", buyStack.getType().name(), finalamount));
 			player.sendMessage(L.getFormatString("transaction.sale.shop.totalpurchase", "FREE"));
 		} else if (shop.getWallet().addFunds(traderDeposit).type.equals(ResponseType.SUCCESS)) {
-			//player.sendMessage(MessageFormat.format(UltraTrader.getResourceBundle().getString("transaction.sale.shop.totalpurchase"), traderDeposit));
+			player.sendMessage(L.getFormatString("transaction.sale.shop.purchase", buyStack.getType().name(), finalamount));
 			player.sendMessage(L.getFormatString("transaction.sale.shop.totalpurchase", UltraTrader.getEconomy().format(traderDeposit.doubleValue())));
 		} else {
 			player.sendMessage(L.getString("transaction.error.fundstoshop"));
@@ -167,6 +171,7 @@ public class PurchaseHandler {
 			return;
 		}
 
+		player.sendMessage(L.getFormatString("transaction.sale.shop.sale", item.getType().name(), item.getAmount()));
 		player.sendMessage(L.getFormatString("transaction.sale.shop.totalpurchase", UltraTrader.getEconomy().format(heldFunds.amount)));
 
 		shop.save();

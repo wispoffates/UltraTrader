@@ -157,7 +157,9 @@ transaction:
       notenoughfunds: You do not have the funds for this Transaction.
     shop:
       notenoughitems: There are not enough items to purchase. (Store is out of stock)
-      totalpurchase: 'Total Purchase Price: {0}'
+      totalpurchase: 'Total Price: {0}'
+      purchase: You bought {0} {1}
+      sale: You sold {0} {1}
       notenoughfunds: Shop doesn't have the funds for this Transaction.
   error:
     economy: There was an error with the economy, please report. (NULL)
