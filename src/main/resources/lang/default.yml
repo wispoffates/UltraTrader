@@ -51,6 +51,9 @@ shops:
   list:
     noshops: You don't currently own any shops.
     yourshops: 'Your current shops:'
+  gotobuy:
+    line1: To sell to shop
+    line2: Move to Buy screen
 conversation:
   toquit: (To force exit type "/quit")
   options: Options
@@ -155,6 +158,7 @@ transaction:
     shop:
       notenoughitems: There are not enough items to purchase. (Store is out of stock)
       totalpurchase: 'Total Purchase Price: {0}'
+      notenoughfunds: Shop doesn't have the funds for this Transaction.
   error:
     economy: There was an error with the economy, please report. (NULL)
     fundstoshop: There was an error, please report

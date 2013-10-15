@@ -59,6 +59,7 @@ public class ShopInventoryView extends InventoryView {
 
 	public final void buildSellView() {
 		current = Status.MAIN_SCREEN;
+		
 		top.clear();
 		boolean displayAdmin = shop.getInventoryInterface().displayItemToPlayer(player);
 		for (ItemPrice item : getShop().getSellprices().values()) {

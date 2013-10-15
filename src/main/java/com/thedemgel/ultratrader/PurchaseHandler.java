@@ -138,7 +138,7 @@ public class PurchaseHandler {
 		if (wallet.hasFunds(buyStackPrice)) {
 			heldFunds = wallet.removeFunds(buyStackPrice);
 		} else {
-			player.sendMessage(L.getString("transaction.sale.player.notenoughfunds"));
+			player.sendMessage(L.getString("transaction.sale.shop.notenoughfunds"));
 			return;
 		}
 

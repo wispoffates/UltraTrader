@@ -105,6 +105,9 @@ public class ShopListener implements Listener {
 					convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
 					view.setConvo(convo);
 					convo.begin();
+				} else {
+					player.sendMessage(L.getString("shops.gotobuy.line1"));
+					player.sendMessage(L.getString("shops.gotobuy.line2"));
 				}
 				break;
 			case SELL_SCREEN:

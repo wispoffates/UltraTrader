@@ -3,6 +3,16 @@ $h2 Limits
 This option is currently not implemented, this is here to display my plans and to
 get implemented as soon as possible. Stay tuned for more information.
 
+$h3 Defaults
+A special note about the defaults section. The options can change, but the keys
+and sections need to stay the same. Most of these settings are what a player
+gets if they just have the permissions needed to make a shop. So make sure that
+the settings in this section are good for everyone, unless you place players
+that can have shops into a special group/permission.
+
+In the Section below each item is explained.
+
+$h3 Limits
 #set( $snippetFile = "/src/main/resources/limits.yml" )
 #set( $snippetName = "" )
 #parse( "snippet" )
