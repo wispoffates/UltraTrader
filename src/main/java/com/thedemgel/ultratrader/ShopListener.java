@@ -320,6 +320,7 @@ public class ShopListener implements Listener {
 			}
 
 			/*
+			 * // FUTURE: have to check for null and special lore data before continuing.
 			switch (item.getItemMeta().getDisplayName()) {
 				case "Store":
 					// Open Store
