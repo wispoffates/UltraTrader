@@ -319,6 +319,7 @@ public class ShopListener implements Listener {
 				return;
 			}
 
+			/*
 			switch (item.getItemMeta().getDisplayName()) {
 				case "Store":
 					// Open Store
@@ -329,7 +330,7 @@ public class ShopListener implements Listener {
 					createShop(player, item, event.getClickedBlock());
 					break;
 				default:
-			}
+			}*/
 		}
 	}
 
