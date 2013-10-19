@@ -11,7 +11,7 @@ public class BankWalletPrompt extends MessagePrompt {
 
 	@Override
 	protected Prompt getNextPrompt(ConversationContext context) {
-		return (Prompt) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_RETURN);
+		return new BankSetBankPrompt();
 	}
 
 	@Override
