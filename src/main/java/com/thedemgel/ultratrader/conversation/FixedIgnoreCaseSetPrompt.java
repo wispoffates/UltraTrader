@@ -28,7 +28,9 @@ public abstract class FixedIgnoreCaseSetPrompt extends FixedSetPrompt {
 	}
 
 	protected final void addOption(String option, Prompt prompt) {
-		fixedSet.add(option);
+		if (!fixedSet.contains(option)) {
+			fixedSet.add(option);
+		}
 		prompts.put(option, prompt);
 	}
 
@@ -52,6 +54,6 @@ public abstract class FixedIgnoreCaseSetPrompt extends FixedSetPrompt {
 	 */
 	@Override
 	protected String formatFixedSet() {
-		return "[" + ChatColor.WHITE + StringUtils.join(fixedSet, ChatColor.YELLOW + ", " + ChatColor.WHITE) + ChatColor.YELLOW + "]";
+		return ChatColor.YELLOW + "[" + ChatColor.WHITE + StringUtils.join(fixedSet, ChatColor.YELLOW + ", " + ChatColor.WHITE) + ChatColor.YELLOW + "]";
 	}
 }

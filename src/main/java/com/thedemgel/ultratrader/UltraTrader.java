@@ -1,6 +1,7 @@
 package com.thedemgel.ultratrader;
 
 import com.thedemgel.ultratrader.citizens.TraderTrait;
+import com.thedemgel.ultratrader.command.commands.DebugCommands;
 import com.thedemgel.ultratrader.command.commands.ShopCommands;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.data.DataObject;
@@ -16,6 +17,7 @@ import com.thedemgel.ultratrader.wallet.wallets.PlayerWallet;
 import com.thedemgel.ultratrader.wallet.wallets.ShopWallet;
 import com.thedemgel.yamlresourcebundle.YamlResourceBundle;
 import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -23,6 +25,7 @@ import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.trait.TraitInfo;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.mcstats.Metrics;
@@ -66,6 +69,15 @@ public class UltraTrader extends JavaPlugin {
 	}
 	private boolean citizens;
 	private boolean vault;
+	private boolean debug = false;
+
+	public void toggleDebug() {
+		debug = !debug;
+	}
+
+	public boolean isDebug() {
+		return debug;
+	}
 
 	@Override
 	public final void onEnable() {
@@ -107,6 +119,7 @@ public class UltraTrader extends JavaPlugin {
 		shopHandler.initShops();
 
 		getCommand("trader").setExecutor(new ShopCommands(this));
+		getCommand("traderadmin").setExecutor(new DebugCommands());
 		getServer().getPluginManager().registerEvents(new ShopListener(this), this);
 		this.getLogger().log(Level.INFO, "UltraTrader Enabled...");
 	}

@@ -66,9 +66,15 @@ conversation:
         storename: storename
         bank: bank
         inventoryinterface: inventory
+        level: level
         transfer: transfer
         exit: exit
     exit: Leaving Admin
+    level:
+      options:
+        increase: increase
+        decrease: decrease
+        set: set
     menutext: CitiTraders Admin Menu
     banktypemenu: Choose which type of bank to use.
     bankmenu:

@@ -15,7 +15,7 @@ import org.bukkit.conversations.Prompt;
 public class AdminInventoryInterfacePrompt extends MessagePrompt {
 
 	private String type;
-	private InventoryInterface inventoryInterface;
+	//private InventoryInterface inventoryInterface;
 
 	public AdminInventoryInterfacePrompt(String inventoryType) {
 		type = inventoryType;
@@ -43,7 +43,7 @@ public class AdminInventoryInterfacePrompt extends MessagePrompt {
 	public String getPromptText(ConversationContext context) {
 		ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
 		view.getShop().setInventoryInterfaceType(type);
-		inventoryInterface = view.getShop().getInventoryInterface();
+		//inventoryInterface = view.getShop().getInventoryInterface();
 
 		return ChatColor.GREEN + L.getString("conversation.admin.setinventory") + ": " + type;
 	}

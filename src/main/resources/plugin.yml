@@ -9,6 +9,6 @@ commands:
       description: This is a demo command.
       usage: /<command> [player]
       permission-message: You don't have <permission>
-   util:
+   traderadmin:
       description: Utility commands I will remove later
       usage: /<command> [subcommand]

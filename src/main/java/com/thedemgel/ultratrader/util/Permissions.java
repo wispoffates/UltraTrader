@@ -4,6 +4,19 @@ package com.thedemgel.ultratrader.util;
 
 public class Permissions {
 	/* START SNIPPET: perm
+	 * ### Admin
+	 * END SNIPPET: perm
+	 */
+
+	/**
+	 * START SNIPPET: perm
+	 * ####trader.admin.debug
+	 * `Allows a player to use the "/traderdebug" command`
+	 * END SNIPPET: perm
+	 */
+	public static final String ADMIN_DEBUG = "trader.admin.debug";
+
+	/* START SNIPPET: perm
 	 * ### Stores or Shops
 	 * END SNIPPET: perm
 	 */
@@ -22,6 +35,27 @@ public class Permissions {
 	 * END SNIPPET: perm
 	 */
 	public static final String CREATE_STORES = "trader.store.create";
+	/**
+	 * START SNIPPET: perm
+	 * ####trader.store.level.increase
+	 * `Allows a user to increase his/her shop level`
+	 * END SNIPPET: perm
+	 */
+	public static final String LEVEL_INCREASE = "trader.store.level.increase";
+	/**
+	 * START SNIPPET: perm
+	 * ####trader.store.level.decrease
+	 * `Allows a user to decrease his/her shop level`
+	 * END SNIPPET: perm
+	 */
+	public static final String LEVEL_DECREASE = "trader.store.level.decrease";
+	/**
+	 * START SNIPPET: perm
+	 * ####trader.store.level.set
+	 * `Allows a user to set his/her shop level. This will not charge a player the level change fee.`
+	 * END SNIPPET: perm
+	 */
+	public static final String LEVEL_SET = "trader.store.level.set";
 
 	/* START SNIPPET: perm
 	 * ### Wallets
@@ -93,7 +127,7 @@ public class Permissions {
 	 * `Allows a user to set a store's inventory to ADMIN.
 	 *
 	 * This means that inventory is never checked, there is always
-	 * items, and items are never recieved.`
+	 * items, and items are never received.`
 	 * END SNIPPET: perm
 	 */
 	public static final String INVENTORY_ADMIN = "trader.inventory.admin";
