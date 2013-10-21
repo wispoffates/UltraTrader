@@ -59,11 +59,16 @@ public class ShopListener implements Listener {
 		if (!(event.getView() instanceof ShopInventoryView)) {
 			return;
 		}
-		// Clear out event types we don't want to handle
-		if (event.getAction().equals(InventoryAction.MOVE_TO_OTHER_INVENTORY)) {
-			event.setCancelled(true);
-			return;
+
+		switch (event.getAction()) {
+			case MOVE_TO_OTHER_INVENTORY:
+			case NOTHING:
+				event.setCancelled(true);
+				return;
+			default:
 		}
+
+		//System.out.println(event.getAction());
 
 		final ShopInventoryView view = (ShopInventoryView) event.getView();
 

@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -131,28 +132,42 @@ public class PurchaseHandler {
 	 * @param player The player the sale is coming from
 	 * @param item The itemstack of the item being purchased.
 	 */
-	public static void processSale(Shop shop, Player player, ItemStack item) {
+	public static void processSale(Shop shop, final Player player, final ItemStack item) {
 		ItemPrice invItem = shop.getBuyItem(item);
 		BigDecimal buyStackPriceEach = invItem.getPrice();
 		BigDecimal buyStackPrice = buyStackPriceEach.multiply(BigDecimal.valueOf(item.getAmount()));
 
+		boolean success = true;
+
 		Wallet wallet = shop.getWallet();
 
-		EconomyResponse heldFunds;
-		if (wallet.hasFunds(buyStackPrice)) {
-			heldFunds = wallet.removeFunds(buyStackPrice);
-		} else {
-			player.sendMessage(L.getString("transaction.sale.shop.notenoughfunds"));
-			return;
-		}
+		//heldFunds = null;
+		//if (wallet.hasFunds(buyStackPrice)) {
+		EconomyResponse heldFunds = wallet.removeFunds(buyStackPrice);
+		//} else {
+			//player.sendMessage(L.getString("transaction.sale.shop.notenoughfunds"));
+			//success = false;
+		//}
 
-		if (heldFunds == null) {
+		/*if (heldFunds == null) {
 			player.sendMessage(L.getString("transaction.error.economy") + 1);
-			return;
-		}
+			success = false;
+		} else */
 
 		if (!heldFunds.type.equals(ResponseType.SUCCESS)) {
-			player.sendMessage(L.getString("transaction.error.economy") + 2);
+			player.sendMessage(L.getString("transaction.sale.shop.notenoughfunds"));
+			success = false;
+		}
+
+		if (!success) {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(UltraTrader.getInstance(), new Runnable() {
+
+				@Override
+				public void run() {
+					player.getInventory().addItem(item);
+				}
+			}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
+
 			return;
 		}
 
