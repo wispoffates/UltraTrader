@@ -23,8 +23,8 @@ public class AdminTransferPrompt extends PlayerNamePrompt {
 
 	@Override
 	protected Prompt acceptValidatedInput(ConversationContext context, Player input) {
-		if (LimitHandler.canCreate(input)) {
-			ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
+		ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
+		if (LimitHandler.canOwnShop(view.getShop(), input)) {
 			view.getShop().setOwner(input);
 			context.getForWhom().sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.admin.transfer.transfered"));
 			return new AdminFinishPrompt();

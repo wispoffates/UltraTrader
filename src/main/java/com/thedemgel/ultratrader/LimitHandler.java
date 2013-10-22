@@ -20,7 +20,7 @@ public class LimitHandler {
 	}
 
 	public static void init() {}
-	
+
 	public static ConfigurationSection getLimitsConfigSection() {
 		if (config.getConfig().isConfigurationSection("limits")) {
 			return config.getConfig().getConfigurationSection("limits");
@@ -68,7 +68,6 @@ public class LimitHandler {
 		}
 
 		return maxlevel.getValue();
-		//return section.getInt("maxlevel");
 	}
 
 	public static int getLevelAtCreate(Player player) {
@@ -91,7 +90,6 @@ public class LimitHandler {
 		}
 
 		return maxshops.getValue();
-		//return section.getInt("shops");
 	}
 
 	public static double getCreateCost(Player player) {
@@ -155,5 +153,15 @@ public class LimitHandler {
 
 		Bukkit.getLogger().log(Level.WARNING, "Config value not found in limits.yml in default section: " + search);
 		return null;
+	}
+
+	public static boolean canOwnShop(Shop shop, Player player) {
+		int maxlevel = getMaxLevel(player);
+
+		if (canCreate(player) && shop.getLevel() <= maxlevel) {
+			return true;
+		}
+
+		return false;
 	}
 }
