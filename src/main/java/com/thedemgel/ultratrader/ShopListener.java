@@ -178,21 +178,31 @@ public class ShopListener implements Listener {
 					ItemStack inhand = event.getCursor().clone();
 					if (!inhand.getType().equals(Material.AIR)) {
 						event.setCancelled(false);
-						Conversation convo = UltraTrader.getConversationHandler().getAddBuyItem().buildConversation(player);
-						convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, inhand);
-						convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
-						view.setConvo(convo);
-						convo.begin();
+						plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+							@Override
+							public void run() {
+								ItemStack placedItem = view.getItem(event.getRawSlot());
+								Conversation convo = UltraTrader.getConversationHandler().getAddBuyItem().buildConversation((Player) event.getWhoClicked());
+								convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, placedItem);
+								convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
+								view.setConvo(convo);
+								convo.begin();
+							}
+						}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
+
+
 					}
 				} else if (!event.getCursor().getData().getItemType().equals(Material.AIR)) {
 					// Buy the items if you want them...
 					ItemStack inhand = event.getCursor().clone();
+					final int slot = event.getRawSlot();
 					if (view.getShop().hasBuyItem(inhand)) {
 						event.setCancelled(false);
-						PurchaseHandler.processSale(view.getShop(), (Player) event.getWhoClicked(), inhand);
 						plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 							@Override
 							public void run() {
+								ItemStack buyItem = view.getItem(slot);
+								PurchaseHandler.processSale(view.getShop(), (Player) event.getWhoClicked(), buyItem);
 								view.buildBuyView();
 							}
 						}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
@@ -326,17 +336,17 @@ public class ShopListener implements Listener {
 
 			/*
 			 * // FUTURE: have to check for null and special lore data before continuing.
-			switch (item.getItemMeta().getDisplayName()) {
-				case "Store":
-					// Open Store
-					UltraTrader.getStoreHandler().getInventoryHandler().createBuyInventoryView(player, UltraTrader.getStoreHandler().getShop(1));
-					UltraTrader.getStoreHandler().getInventoryHandler().openInventory(player);
-					break;
-				case "Create Shop":
-					createShop(player, item, event.getClickedBlock());
-					break;
-				default:
-			}*/
+			 switch (item.getItemMeta().getDisplayName()) {
+			 case "Store":
+			 // Open Store
+			 UltraTrader.getStoreHandler().getInventoryHandler().createBuyInventoryView(player, UltraTrader.getStoreHandler().getShop(1));
+			 UltraTrader.getStoreHandler().getInventoryHandler().openInventory(player);
+			 break;
+			 case "Create Shop":
+			 createShop(player, item, event.getClickedBlock());
+			 break;
+			 default:
+			 }*/
 		}
 	}
 
