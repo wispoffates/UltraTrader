@@ -20,6 +20,7 @@ public class InventoryHandler {
 	public static final int INVENTORY_ADMIN_SLOT = 53;
 	public static final int INVENTORY_TAKE_ALL_SLOT = 50;
 	public static final int INVENTORY_BACK_ARROW_SLOT = 45;
+	public static final int INVENTORY_CREATE_ITEM_SLOT = 51;
 	public static final int MAX_SELL_BUY_ITEMS = 36;
 
 	private Map<Player, ShopInventoryView> inventories = new ConcurrentHashMap<>();

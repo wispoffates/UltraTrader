@@ -59,7 +59,7 @@ public class ShopInventoryView extends InventoryView {
 
 	public final void buildSellView() {
 		current = Status.MAIN_SCREEN;
-		
+
 		top.clear();
 		boolean displayAdmin = shop.getInventoryInterface().displayItemToPlayer(player);
 		for (ItemPrice item : getShop().getSellprices().values()) {
@@ -129,6 +129,26 @@ public class ShopInventoryView extends InventoryView {
 			doAdmin.setItemMeta(setPriceMeta);
 			this.setItem(InventoryHandler.INVENTORY_ADMIN_SLOT, doAdmin);
 		}
+
+		// Check if limits allow for remote access...
+		ItemStack doItemShop = new ItemStack(StoreItem.STORE_ITEM_MATERIAL);
+		StoreItem.linkToShop(shop, doItemShop);
+
+		ItemMeta meta = doItemShop.getItemMeta();
+
+		List<String> lore = meta.getLore();
+		lore.set(0, ChatColor.AQUA + "Click to buy Remote Shop Item");
+		lore.add(ChatColor.YELLOW + "Price: " + 50);
+		meta.setLore(lore);
+		meta.setDisplayName("Remote Store Item");
+		doItemShop.setItemMeta(meta);
+			//ItemMeta setPriceMeta = doAdmin.getItemMeta();
+			//List<String> doAdminText = new ArrayList<>();
+			//doAdminText.add(L.getString("inventory.buyadmin.lore"));
+			//setPriceMeta.setLore(doAdminText);
+			//setPriceMeta.setDisplayName(L.getString("inventory.buyadmin.display"));
+			//doAdmin.setItemMeta(setPriceMeta);
+		this.setItem(InventoryHandler.INVENTORY_CREATE_ITEM_SLOT, doItemShop);
 	}
 
 	public void buildBuyItemView(ItemStack item) {

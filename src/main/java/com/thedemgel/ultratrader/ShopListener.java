@@ -350,7 +350,7 @@ public class ShopListener implements Listener {
 		}
 	}
 
-	public void createShop(Player player, ItemStack item, Block block) {
+	/*public void createShop(Player player, ItemStack item, Block block) {
 		if (!player.hasPermission(Permissions.CREATE_STORES)) {
 			player.sendMessage(L.getString("permission.create.deny"));
 			return;
@@ -363,5 +363,5 @@ public class ShopListener implements Listener {
 			meta.setLore(metas);
 			item.setItemMeta(meta);
 		}
-	}
+	}*/
 }
