@@ -8,7 +8,7 @@
 
 	<head>
 		<meta charset="UTF-8" />
-		<title>Limits | UltraTrader</title>
+		<title>Commands | UltraTrader</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content="" />
 		<meta http-equiv="content-language" content="en" />
@@ -18,6 +18,7 @@
 		<link href="./css/bootswatch.css" rel="stylesheet" />
 		<link href="./css/reflow-skin.css" rel="stylesheet" />
 		
+		<link href="http://yandex.st/highlightjs/7.3/styles/default.min.css" rel="stylesheet" />
 		
 		<link href="./css/lightbox.css" rel="stylesheet" />
 		
@@ -32,7 +33,7 @@
 <link rel="author" href="https://github.com/tenowg"/>
 	</head>
 
-	<body class="page-limits project-ultratrader" data-spy="scroll" data-offset="60" data-target="#toc-scroll-target">
+	<body class="page-command project-ultratrader" data-spy="scroll" data-offset="60" data-target="#toc-scroll-target">
 
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
@@ -59,8 +60,8 @@
 								<ul class="dropdown-menu">
 									<li><a href="localization.html" title="Localization">Localization </a></li>
 									<li><a href="installation.html" title="Installation">Installation </a></li>
-									<li class="active"><a href="" title="Setting Shop Limits">Setting Shop Limits </a></li>
-									<li><a href="command.html" title="Commands">Commands </a></li>
+									<li><a href="limits.html" title="Setting Shop Limits">Setting Shop Limits </a></li>
+									<li class="active"><a href="" title="Commands">Commands </a></li>
 									<li><a href="permission.html" title="Permissions">Permissions </a></li>
 									<li><a href="configuration.html" title="Configuration">Configuration </a></li>
 									<li><a href="createtrader.html" title="Create A NPC Trader">Create A NPC Trader </a></li>
@@ -119,7 +120,7 @@
 			<ul class="breadcrumb">
 				<li><a href="./" title="UltraTrader">UltraTrader </a></li>
 				<li class="divider">/</li>
-				<li>Limits</li>
+				<li>Commands</li>
 			</ul>
 		</div>
 	</header>
@@ -130,96 +131,23 @@
 			<div class="body-content">
 <div class="section"> 
  <div class="page-header">
-  <h2 id="Limits">Limits</h2>
+  <h2 id="Commands">Commands</h2>
  </div> 
- <p>This option is currently not implemented, this is here to display my plans and to get implemented as soon as possible. Stay tuned for more information.</p> 
+ <p>UltraTrader was designed to have a limited amount of direct commands, there are some informative commands, and there will be some help commands.</p> 
  <div class="section"> 
-  <h3 id="Defaults">Defaults</h3> 
-  <p>A special note about the defaults section. The options can change, but the keys and sections need to stay the same. Most of these settings are what a player gets if they just have the permissions needed to make a shop. So make sure that the settings in this section are good for everyone, unless you place players that can have shops into a special group/permission.</p> 
-  <p>In the Section below each item is explained.</p> 
+  <h3 id="Player_Commands">Player Commands</h3> 
+  <p><b>myshops</b> - <i>/trader myshops</i></p> 
+  <blockquote> 
+   <p>This will list any shops that the player currently owns</p> 
+   <p><i>TODO</i> - admins can list other players shops.</p> 
+  </blockquote> 
  </div> 
  <div class="section"> 
-  <h3 id="Limits">Limits</h3> 
-  <div class="source"> 
-   <pre># Defaults, this is given to everyone on the server if they don't match any other
-# limit groups, this should be the most restricting, even defaulting to 0.
-default:
-  maxshops: 1
-  # Max level the shops can get too.
-  maxlevel: 1
-  # Can remote access be purchased for this shop
-  # If shops have remote as default this does nothing.
-  remote: false
-  defaults:
-    # Does the shop start with remote access enabled
-    # If this is true, than remote setting above does nothing.
-    remote: false
-    # What level does this shop start at. 1-4
-    # This will decide how many slots are available in the buy and sell
-    # screens.
-    level: 1
-  costs:
-    shop:
-      # The cost to create a shop.
-      create: 10000
-    # The cost to advance to each level.
-    level:
-      # Level 1 will probably always be 0
-      1: 0
-      2: 100
-      3: 1000
-      4: 10000
-    remote:
-      # Activate the remote access option on this shop
-      activate: 50000
-      # Cost per item created.
-      item: 500
-# This works with permissions, the first one hit is the one used, so higher level
-# limites should be listed first.
-#
-# admin and default will be the only one listed in release version, but for now
-# there is a donatorlevelone.
-#
-# Any setting that is listed in defaults, but not placed into each limit section
-# below will be read from the defaults section above.
-limits:
-  # Permission: trader.limits.admin
-  admin:
-    # -1 = unlimited shops
-    maxshops: -1
-    maxlevel: 4
-    # Optional defaults for permission level
-    # This overrides the server defaults.
-    defaults:
-      remote: true
-      level: 4
-    # Override cost default in config.yml
-    costs:
-      shop:
-        create: 0
-      remote:
-        # Cost per item created.
-        item: 0
-  # Permission: trader.limits.donatorlevelone
-  # The following demonstrates a limit on donatorlevelone members, it will
-  # allow 5 shops to be opened, at a cost of 5000 each, max level of 2 and can
-  # activate remote item access for 10000, each remote item will cost 50 to
-  # create. And to raise from level 1 to level 2 will cost 1000 per shop.
-  donatorlevelone:
-    maxshops: 5
-    maxlevel: 2
-    remote: true
-    costs:
-      shop:
-        create: 5000
-      level:
-        1: 0
-        2: 1000
-      remote:
-        activate: 10000
-        item: 50
-</pre> 
-  </div> 
+  <h3 id="Admin_Commands">Admin Commands</h3> 
+  <p><b>debug</b> - <i>/traderadmin debug</i></p> 
+  <blockquote> 
+   <p>This will turn all log debug message in the console. Best current use would be to find any Language key/tags you might be missing.</p> 
+  </blockquote> 
  </div> 
 </div>
 			</div>
@@ -229,10 +157,10 @@ limits:
 				<div class="well">
 					<ul class="nav nav-list">
 						<li class="nav-header">Table of Contents</li>
-		<li class="dropdown"><a href="#Limits" title="Limits">Limits <b class="caret"></b></a>
+		<li class="dropdown"><a href="#Commands" title="Commands">Commands <b class="caret"></b></a>
 			<ul class="nav nav-list">
-		<li><a href="#Defaults" title="Defaults">Defaults</a>
-		<li><a href="#Limits" title="Limits">Limits</a>
+		<li><a href="#Player_Commands" title="Player Commands">Player Commands</a>
+		<li><a href="#Admin_Commands" title="Admin Commands">Admin Commands</a>
 				<li class="divider"></li>
 			</ul>
 		</li>
@@ -273,11 +201,11 @@ limits:
 						<li>
 							<a href="installation.html" title="Installation">Installation </a>
 						</li>
-						<li class="active">
-							<a href="#" title="Setting Shop Limits">Setting Shop Limits </a>
-						</li>
 						<li>
-							<a href="command.html" title="Commands">Commands </a>
+							<a href="limits.html" title="Setting Shop Limits">Setting Shop Limits </a>
+						</li>
+						<li class="active">
+							<a href="#" title="Commands">Commands </a>
 						</li>
 						<li>
 							<a href="permission.html" title="Permissions">Permissions </a>
@@ -338,6 +266,7 @@ limits:
 	<script src="./js/jquery.smooth-scroll.min.js"></script>
 	<!-- back button support for smooth scroll -->
 	<script src="./js/jquery.ba-bbq.min.js"></script>
+	<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
 
 	<script src="./js/reflow-skin.js"></script>
 	

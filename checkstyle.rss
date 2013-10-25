@@ -8,9 +8,9 @@
     <language>en-us</language>
     <copyright>&#169;2013 Demgel OpenSource Coding</copyright>
     <item>
-      <title>File: 104,
-             Errors: 424,
-             Warnings: 466,
+      <title>File: 106,
+             Errors: 433,
+             Warnings: 489,
              Infos: 1
       </title>
             <link>http://demgelopensource.github.io/UltraTrader/checkstyle.html</link>
@@ -80,7 +80,7 @@
                   1
                 </td>
                 <td>
-                  7
+                  8
                 </td>
               </tr>
                           <tr>
@@ -365,6 +365,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.annotation.WalletDisplayName.java">com/thedemgel/ultratrader/wallet/annotation/WalletDisplayName.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.bank.BankWalletPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/bank/BankWalletPrompt.java</a>
                 </td>
                 <td>
@@ -379,16 +393,16 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.annotation.WalletDisplayName.java">com/thedemgel/ultratrader/wallet/annotation/WalletDisplayName.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.level.AdminSetLevelIncreasePrompt.java">com/thedemgel/ultratrader/conversation/admin/level/AdminSetLevelIncreasePrompt.java</a>
                 </td>
                 <td>
                   0
+                </td>
+                <td>
+                  7
                 </td>
                 <td>
                   2
-                </td>
-                <td>
-                  0
                 </td>
               </tr>
                           <tr>
@@ -553,10 +567,10 @@
                   0
                 </td>
                 <td>
-                  3
+                  5
                 </td>
                 <td>
-                  8
+                  2
                 </td>
               </tr>
                           <tr>
@@ -819,10 +833,10 @@
                   0
                 </td>
                 <td>
-                  45
+                  49
                 </td>
                 <td>
-                  35
+                  40
                 </td>
               </tr>
                           <tr>
@@ -949,6 +963,20 @@
                 </td>
                 <td>
                   5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.level.AdminSetLevelDecreasePrompt.java">com/thedemgel/ultratrader/conversation/admin/level/AdminSetLevelDecreasePrompt.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+                <td>
+                  2
                 </td>
               </tr>
                           <tr>
@@ -1127,10 +1155,10 @@
                   0
                 </td>
                 <td>
-                  16
+                  19
                 </td>
                 <td>
-                  8
+                  9
                 </td>
               </tr>
                           <tr>
@@ -1295,7 +1323,7 @@
                   0
                 </td>
                 <td>
-                  15
+                  16
                 </td>
                 <td>
                   1
@@ -1393,10 +1421,10 @@
                   0
                 </td>
                 <td>
-                  9
+                  8
                 </td>
                 <td>
-                  9
+                  13
                 </td>
               </tr>
                           <tr>
