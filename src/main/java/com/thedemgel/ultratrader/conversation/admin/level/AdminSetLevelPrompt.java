@@ -33,11 +33,11 @@ public class AdminSetLevelPrompt extends FixedIgnoreCaseSetPrompt {
 		if (view.getShop().getLevel() < LimitHandler.getMaxLevel(player) && player.hasPermission(Permissions.LEVEL_INCREASE)) {
 			addOption(L.getString("conversation.admin.level.options.increase"), new AdminSetLevelIncreasePrompt());
 		}
-		if (view.getShop().getLevel() < LimitHandler.getMaxLevel(player) && player.hasPermission(Permissions.LEVEL_DECREASE)) {
+		if (view.getShop().getLevel() > 1 && player.hasPermission(Permissions.LEVEL_DECREASE)) {
 			addOption(L.getString("conversation.admin.level.options.decrease"), new AdminSetLevelDecreasePrompt());
 		}
 		if (player.hasPermission(Permissions.LEVEL_SET)) {
-			addOption(L.getString("conversation.admin.level.options.set"), this);
+			//addOption(L.getString("conversation.admin.level.options.set"), this);
 		}
 
 		addOption(L.getString("general.exit"), new AdminMenuPrompt());

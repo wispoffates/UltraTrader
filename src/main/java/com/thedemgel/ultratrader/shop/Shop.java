@@ -251,6 +251,41 @@ public class Shop {
 		info.put("level", level);
 	}
 
+	public boolean getCanRemote() {
+		ConfigValue<Boolean> remote = info.get("remote");
+		if (remote == null) {
+			info.put("remote", new ConfigValue(false));
+			return false;
+		}
+		return remote.getValue();
+	}
+
+	public void setCanRemote(boolean value) {
+		ConfigValue<Boolean> remote = new ConfigValue(value);
+		info.put("remote", remote);
+	}
+
+	public double getRemoteItemCost() {
+		ConfigValue price = info.get("remoteprice");
+		if (price == null) {
+			price = new ConfigValue(50d);
+			info.put("remoteprice", price);
+		}
+
+		if (price.getValue() instanceof Integer) {
+			Integer cost = (Integer) price.getValue();
+			return cost.doubleValue();
+		} else {
+			Double cost = (Double) price.getValue();
+			return cost;
+		}
+	}
+
+	public void setRemoteItemCost(double value) {
+		ConfigValue<Double> price = new ConfigValue(value);
+		info.put("remoteprice", price);
+	}
+
 	public ConcurrentMap<String, ConfigValue> getInfo() {
 		return info;
 	}

@@ -92,6 +92,40 @@ public class LimitHandler {
 		return maxshops.getValue();
 	}
 
+	public static double getRemoteActivateCost(Player player) {
+		ConfigurationSection section = getLimit(player);
+		ConfigValue remoteCost = getConfigValue(section, "costs.remove.activate");
+
+		if (remoteCost == null) {
+			remoteCost = new ConfigValue(10000);
+		}
+
+		if (remoteCost.getValue() instanceof Integer) {
+			Integer cost = (Integer) remoteCost.getValue();
+			return cost.doubleValue();
+		} else {
+			Double cost = (Double) remoteCost.getValue();
+			return cost;
+		}
+	}
+
+	public static double getRemoteItemCost(Player player) {
+		ConfigurationSection section = getLimit(player);
+		ConfigValue remoteCost = getConfigValue(section, "costs.remove.item");
+
+		if (remoteCost == null) {
+			remoteCost = new ConfigValue(10000);
+		}
+
+		if (remoteCost.getValue() instanceof Integer) {
+			Integer cost = (Integer) remoteCost.getValue();
+			return cost.doubleValue();
+		} else {
+			Double cost = (Double) remoteCost.getValue();
+			return cost;
+		}
+	}
+
 	public static double getCreateCost(Player player) {
 		ConfigurationSection section = getLimit(player);
 		ConfigValue createCost = getConfigValue(section, "costs.shop.create");

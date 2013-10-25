@@ -75,6 +75,10 @@ conversation:
         increase: increase
         decrease: decrease
         set: set
+      proceed: It will cost {0} to goto level {1}, proceed?
+      notenoughfunds: You don't have enough funds.
+      raised: Level raised to {0}.
+      lowered: Level lowered to {0}.
     menutext: CitiTraders Admin Menu
     banktypemenu: Choose which type of bank to use.
     bankmenu:

@@ -2,9 +2,11 @@ package com.thedemgel.ultratrader.shop;
 
 import com.thedemgel.ultratrader.InventoryHandler;
 import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.inventory.AdminInventoryInterface;
 import java.util.ArrayList;
 import java.util.List;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.conversations.Conversation;
@@ -93,6 +95,20 @@ public class ShopInventoryView extends InventoryView {
 			doAdmin.setItemMeta(setPriceMeta);
 			this.setItem(InventoryHandler.INVENTORY_ADMIN_SLOT, doAdmin);
 		}
+
+		// Check if limits allow for remote access...
+		if (shop.getCanRemote()) {
+			ItemStack doItemShop = new ItemStack(StoreItem.STORE_ITEM_MATERIAL);
+			StoreItem.linkToShop(shop, doItemShop);
+			ItemMeta meta = doItemShop.getItemMeta();
+			List<String> lore = meta.getLore();
+			lore.set(0, ChatColor.AQUA + "Click to buy Remote Shop Item");
+			lore.add(ChatColor.YELLOW + "Price: " + UltraTrader.getEconomy().format(shop.getRemoteItemCost()));
+			meta.setLore(lore);
+			meta.setDisplayName("Remote Store Item");
+			doItemShop.setItemMeta(meta);
+			this.setItem(InventoryHandler.INVENTORY_CREATE_ITEM_SLOT, doItemShop);
+		}
 	}
 
 	public void buildBuyView() {
@@ -131,24 +147,18 @@ public class ShopInventoryView extends InventoryView {
 		}
 
 		// Check if limits allow for remote access...
-		ItemStack doItemShop = new ItemStack(StoreItem.STORE_ITEM_MATERIAL);
-		StoreItem.linkToShop(shop, doItemShop);
-
-		ItemMeta meta = doItemShop.getItemMeta();
-
-		List<String> lore = meta.getLore();
-		lore.set(0, ChatColor.AQUA + "Click to buy Remote Shop Item");
-		lore.add(ChatColor.YELLOW + "Price: " + 50);
-		meta.setLore(lore);
-		meta.setDisplayName("Remote Store Item");
-		doItemShop.setItemMeta(meta);
-			//ItemMeta setPriceMeta = doAdmin.getItemMeta();
-			//List<String> doAdminText = new ArrayList<>();
-			//doAdminText.add(L.getString("inventory.buyadmin.lore"));
-			//setPriceMeta.setLore(doAdminText);
-			//setPriceMeta.setDisplayName(L.getString("inventory.buyadmin.display"));
-			//doAdmin.setItemMeta(setPriceMeta);
-		this.setItem(InventoryHandler.INVENTORY_CREATE_ITEM_SLOT, doItemShop);
+		if (shop.getCanRemote()) {
+			ItemStack doItemShop = new ItemStack(StoreItem.STORE_ITEM_MATERIAL);
+			StoreItem.linkToShop(shop, doItemShop);
+			ItemMeta meta = doItemShop.getItemMeta();
+			List<String> lore = meta.getLore();
+			lore.set(0, ChatColor.AQUA + "Click to buy Remote Shop Item");
+			lore.add(ChatColor.YELLOW + "Price: " + UltraTrader.getEconomy().format(shop.getRemoteItemCost()));
+			meta.setLore(lore);
+			meta.setDisplayName("Remote Store Item");
+			doItemShop.setItemMeta(meta);
+			this.setItem(InventoryHandler.INVENTORY_CREATE_ITEM_SLOT, doItemShop);
+		}
 	}
 
 	public void buildBuyItemView(ItemStack item) {

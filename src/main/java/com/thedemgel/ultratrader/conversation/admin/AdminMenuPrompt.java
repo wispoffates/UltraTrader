@@ -6,6 +6,7 @@ import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
 import com.thedemgel.ultratrader.conversation.admin.bank.AdminBankMenuPrompt;
+import com.thedemgel.ultratrader.conversation.admin.level.AdminSetLevelPrompt;
 import com.thedemgel.ultratrader.shop.ShopInventoryView;
 import org.bukkit.ChatColor;
 import org.bukkit.conversations.ConversationContext;
@@ -23,7 +24,7 @@ public class AdminMenuPrompt extends FixedIgnoreCaseSetPrompt {
 		addOption(L.getString("conversation.admin.menu.options.bank"), new AdminBankMenuPrompt());
 		addOption(L.getString("conversation.admin.menu.options.inventoryinterface"), new AdminInventoryInterfaceMenuPrompt());
 		addOption(L.getString("conversation.admin.menu.options.transfer"), new AdminTransferPrompt());
-		addOption(L.getString("conversation.admin.menu.options.level"), this);
+		addOption(L.getString("conversation.admin.menu.options.level"), new AdminSetLevelPrompt());
 		addOption(L.getString("general.exit"), new AdminFinishPrompt());
 	}
 

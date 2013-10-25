@@ -1,15 +1,18 @@
 
 package com.thedemgel.ultratrader.conversation.admin.level;
 
+import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.LimitHandler;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
+import com.thedemgel.ultratrader.conversation.admin.AdminConversationPrefix;
 import com.thedemgel.ultratrader.shop.Shop;
 import com.thedemgel.ultratrader.shop.ShopInventoryView;
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
 import org.bukkit.conversations.BooleanPrompt;
 import org.bukkit.conversations.ConversationContext;
+import org.bukkit.conversations.ConversationPrefix;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.entity.Player;
 
@@ -19,6 +22,12 @@ public class AdminSetLevelDecreasePrompt extends BooleanPrompt {
 	private double price;
 	private Shop shop;
 	private int nextlevel;
+
+	private ConversationPrefix prefix;
+
+	public AdminSetLevelDecreasePrompt() {
+		prefix = new AdminConversationPrefix();
+	}
 
 	@Override
 	protected Prompt acceptValidatedInput(ConversationContext context, boolean input) {
@@ -32,9 +41,9 @@ public class AdminSetLevelDecreasePrompt extends BooleanPrompt {
 		if (resp.type.equals(ResponseType.SUCCESS)) {
 		// Increase the level
 			shop.setLevel(nextlevel);
-			player.sendRawMessage("Level decreaesd to: " + nextlevel);
+			player.sendRawMessage(prefix.getPrefix(context) + L.getFormatString("conversation.admin.level.lowered", nextlevel));
 		} else {
-			player.sendRawMessage("Not enough funds (Economy Error)");
+			player.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.admin.level.notenoughfunds"));
 		}
 		return new AdminSetLevelPrompt();
 	}
@@ -49,7 +58,7 @@ public class AdminSetLevelDecreasePrompt extends BooleanPrompt {
 
 		price = LimitHandler.getLevelCost(player, nextlevel);
 
-		return "It will cost " + price + " to goto level " + nextlevel + ", proceed?";
+		return L.getFormatString("conversation.admin.level.proceed", price, nextlevel);
 	}
 
 }

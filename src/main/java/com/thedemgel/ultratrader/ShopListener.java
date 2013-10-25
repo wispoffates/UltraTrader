@@ -81,6 +81,10 @@ public class ShopListener implements Listener {
 
 		switch (view.getStatus()) {
 			case MAIN_SCREEN:
+				if (event.getRawSlot() == InventoryHandler.INVENTORY_CREATE_ITEM_SLOT) {
+					// Make the item here (if the shop can do it)
+				}
+				
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_BACK_ARROW_SLOT) {
 					view.buildBuyView();
 					return;
@@ -149,6 +153,10 @@ public class ShopListener implements Listener {
 				}
 				break;
 			case BUY_SCREEN:
+				if (event.getRawSlot() == InventoryHandler.INVENTORY_CREATE_ITEM_SLOT) {
+					// Make the item here (if the shop can do it)
+				}
+
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_BACK_ARROW_SLOT) {
 					view.buildSellView();
 					return;
