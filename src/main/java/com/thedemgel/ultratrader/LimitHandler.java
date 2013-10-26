@@ -126,6 +126,12 @@ public class LimitHandler {
 		}
 	}
 
+	public static boolean canEnableRemoteAccess(Player player) {
+		ConfigurationSection section = getLimit(player);
+		ConfigValue<Boolean> canRemote = getConfigValue(section, "remote");
+		return canRemote.getValue();
+	}
+
 	public static double getCreateCost(Player player) {
 		ConfigurationSection section = getLimit(player);
 		ConfigValue createCost = getConfigValue(section, "costs.shop.create");

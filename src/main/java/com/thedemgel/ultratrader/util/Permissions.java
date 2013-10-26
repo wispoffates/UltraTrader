@@ -44,6 +44,13 @@ public class Permissions {
 	public static final String LEVEL_INCREASE = "trader.store.level.increase";
 	/**
 	 * START SNIPPET: perm
+	 * ####trader.store.level.transfer
+	 * `Allows a user to transfer his/her shop to another player`
+	 * END SNIPPET: perm
+	 */
+	public static final String LEVEL_TRANSFER = "trader.store.level.transfer";
+	/**
+	 * START SNIPPET: perm
 	 * ####trader.store.level.decrease
 	 * `Allows a user to decrease his/her shop level`
 	 * END SNIPPET: perm
@@ -115,18 +122,18 @@ public class Permissions {
 	/**
 	 * START SNIPPET: perm
 	 * ####trader.inventory.shop
-	 * `Allows a user to set a store's inventory to SHOP.
+	 * `Allows a user to set a store's inventory to SHOP.`
 	 *
-	 * The shop inventory is also the default inventory type`
+	 * `The shop inventory is also the default inventory type`
 	 * END SNIPPET: perm
 	 */
 	public static final String INVENTORY_SHOP = "trader.inventory.shop";
 	/**
 	 * START SNIPPET: perm
 	 * ####trader.inventory.admin
-	 * `Allows a user to set a store's inventory to ADMIN.
+	 * `Allows a user to set a store's inventory to ADMIN.`
 	 *
-	 * This means that inventory is never checked, there is always
+	 * `This means that inventory is never checked, there is always
 	 * items, and items are never received.`
 	 * END SNIPPET: perm
 	 */
