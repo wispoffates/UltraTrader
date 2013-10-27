@@ -86,7 +86,7 @@ public class ItemPrice {
 		if (displayInventoryAmount) {
 			genLore.add(ChatColor.GREEN + L.getString("general.instock") + ": " + stock);
 		}
-		genLore.add(ChatColor.DARK_GRAY + getId());
+		genLore.add(ChatColor.BLACK + getId());
 
 		ItemMeta meta = genItem.getItemMeta();
 		meta.setLore(genLore);

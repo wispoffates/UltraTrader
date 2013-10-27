@@ -4,6 +4,7 @@ package com.thedemgel.ultratrader.shop;
 import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import java.util.List;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -19,6 +20,7 @@ public class StoreItem {
 		List<String> lore = new ArrayList<>();
 		lore.add("Unassigned");
 		lore.add("---");
+		lore.add(ChatColor.GRAY + StoreItemType.STORE.name() + "UltraTrader");
 
 		ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName("Store Item");
@@ -32,13 +34,40 @@ public class StoreItem {
 
 	public static void linkToShop(Shop shop, ItemStack item) {
 		List<String> lore = new ArrayList<>();
-		lore.add("Use to view " + shop.getOwner() + "'s store.");
-		lore.add("Shop Id: " + shop.getId());
+		lore.add(ChatColor.YELLOW + "Use to view " + shop.getOwner() + "'s store.");
+		lore.add(ChatColor.DARK_GRAY + "Shop Id: " + shop.getId());
+		lore.add(ChatColor.BLACK + StoreItemType.STORE.name() + ":" + shop.getId() + ":UltraTrader");
 
 		ItemMeta meta = item.getItemMeta();
-		meta.setDisplayName("Store");
+		meta.setDisplayName(shop.getName());
 		meta.setLore(lore);
 		item.setItemMeta(meta);
+	}
+
+	public static String getItemShopId(ItemStack item) {
+		String shopid = Iterables.getLast(item.getItemMeta().getLore());
+		String[] parts = shopid.split(":");
+
+		return parts[1];
+	}
+
+	public static boolean isUltraTraderItem(ItemStack item) {
+		if (!item.hasItemMeta()) {
+			return false;
+		}
+
+		if (!item.getItemMeta().hasLore()) {
+			return false;
+		}
+
+		String id = Iterables.getLast(item.getItemMeta().getLore());
+		id = id.substring(id.length() - 11);
+
+		if (id.equals("UltraTrader")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public static int getShopId(ItemStack item) {

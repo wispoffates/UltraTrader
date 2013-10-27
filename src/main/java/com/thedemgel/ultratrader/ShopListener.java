@@ -5,6 +5,7 @@ import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.shop.ShopHandler;
 import com.thedemgel.ultratrader.util.Permissions;
 import com.thedemgel.ultratrader.shop.ShopInventoryView;
+import com.thedemgel.ultratrader.shop.StoreItem;
 import java.util.List;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
@@ -83,8 +84,12 @@ public class ShopListener implements Listener {
 			case MAIN_SCREEN:
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_CREATE_ITEM_SLOT) {
 					// Make the item here (if the shop can do it)
+					if (view.getShop().getCanRemote()) {
+						PurchaseHandler.processShopItemPurchase(view.getShop(), player, event.getCurrentItem());
+					}
+					return;
 				}
-				
+
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_BACK_ARROW_SLOT) {
 					view.buildBuyView();
 					return;
@@ -330,7 +335,7 @@ public class ShopListener implements Listener {
 			}
 		}
 
-		if (event.getAction().equals(Action.LEFT_CLICK_AIR) || event.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
+		if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			ItemStack item = event.getItem();
 
 			// after here is all itemsinhand -- if no item in hand. return.
@@ -338,10 +343,16 @@ public class ShopListener implements Listener {
 				return;
 			}
 
-			if (!item.hasItemMeta()) {
-				return;
-			}
+			/*if (!item.hasItemMeta()) {
+			 return;
+			 }*/
 
+			if (StoreItem.isUltraTraderItem(item)) {
+				event.setCancelled(true);
+				String id = StoreItem.getItemShopId(item);
+				UltraTrader.getStoreHandler().getInventoryHandler().createBuyInventoryView(player, UltraTrader.getStoreHandler().getShop(Integer.valueOf(id)));
+				UltraTrader.getStoreHandler().getInventoryHandler().openInventory(player);
+			}
 			/*
 			 * // FUTURE: have to check for null and special lore data before continuing.
 			 switch (item.getItemMeta().getDisplayName()) {
@@ -359,17 +370,17 @@ public class ShopListener implements Listener {
 	}
 
 	/*public void createShop(Player player, ItemStack item, Block block) {
-		if (!player.hasPermission(Permissions.CREATE_STORES)) {
-			player.sendMessage(L.getString("permission.create.deny"));
-			return;
-		}
-		if (item.getItemMeta().hasLore()) {
-			ItemMeta meta = item.getItemMeta();
-			Integer uses = Integer.valueOf(meta.getLore().get(2).split(" ")[0]) - 1;
-			List<String> metas = meta.getLore();
-			metas.set(2, String.valueOf(uses) + " uses left.");
-			meta.setLore(metas);
-			item.setItemMeta(meta);
-		}
-	}*/
+	 if (!player.hasPermission(Permissions.CREATE_STORES)) {
+	 player.sendMessage(L.getString("permission.create.deny"));
+	 return;
+	 }
+	 if (item.getItemMeta().hasLore()) {
+	 ItemMeta meta = item.getItemMeta();
+	 Integer uses = Integer.valueOf(meta.getLore().get(2).split(" ")[0]) - 1;
+	 List<String> metas = meta.getLore();
+	 metas.set(2, String.valueOf(uses) + " uses left.");
+	 meta.setLore(metas);
+	 item.setItemMeta(meta);
+	 }
+	 }*/
 }

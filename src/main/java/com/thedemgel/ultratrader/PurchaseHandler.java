@@ -2,6 +2,7 @@ package com.thedemgel.ultratrader;
 
 import com.thedemgel.ultratrader.shop.ItemPrice;
 import com.thedemgel.ultratrader.shop.Shop;
+import com.thedemgel.ultratrader.shop.StoreItem;
 import com.thedemgel.ultratrader.wallet.Wallet;
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -27,6 +28,23 @@ import org.bukkit.inventory.ItemStack;
  * items to trader inventory.
  */
 public class PurchaseHandler {
+
+	public static void processShopItemPurchase(Shop shop, Player player, ItemStack shopitem) {
+		System.out.println("Attempting to buy shop item" + shopitem);
+
+		double cost = shop.getRemoteItemCost();
+
+		EconomyResponse resp = UltraTrader.getEconomy().withdrawPlayer(player.getName(), player.getWorld().getName(), cost);
+
+		if (!resp.type.equals(ResponseType.SUCCESS)) {
+			player.sendMessage("(Assign RB) Not Enough Funds");
+			return;
+		}
+
+		StoreItem.linkToShop(shop, shopitem);
+
+		player.getInventory().addItem(shopitem);
+	}
 
 	/**
 	 * Process a Sale TO A Player from a Shop.

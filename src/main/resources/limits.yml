@@ -5,11 +5,9 @@ default:
   # Max level the shops can get too.
   maxlevel: 1
   # Can remote access be purchased for this shop
-  # If shops have remote as default this does nothing.
   remote: false
   defaults:
     # Does the shop start with remote access enabled
-    # If this is true, than remote setting above does nothing.
     remote: false
     # What level does this shop start at. 1-4
     # This will decide how many slots are available in the buy and sell
@@ -45,6 +43,7 @@ limits:
     # -1 = unlimited shops
     maxshops: -1
     maxlevel: 4
+    remote: true
     # Optional defaults for permission level
     # This overrides the server defaults.
     defaults:
@@ -57,6 +56,7 @@ limits:
       remote:
         # Cost per item created.
         item: 0
+        activate: 0
   # Permission: trader.limits.donatorlevelone
   # The following demonstrates a limit on donatorlevelone members, it will
   # allow 5 shops to be opened, at a cost of 5000 each, max level of 2 and can

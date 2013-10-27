@@ -44,7 +44,7 @@ public class LimitHandler {
 	private static ConfigurationSection getLimit(Player player) {
 		for (String limit : getLimitsConfigSection().getKeys(false)) {
 			if (player.hasPermission("trader.limit." + limit) && !limit.equals("default")) {
-				System.out.println(limit);
+				//System.out.println(limit);
 				return getLimitsConfigSection().getConfigurationSection(limit);
 			}
 		}
@@ -94,7 +94,7 @@ public class LimitHandler {
 
 	public static double getRemoteActivateCost(Player player) {
 		ConfigurationSection section = getLimit(player);
-		ConfigValue remoteCost = getConfigValue(section, "costs.remove.activate");
+		ConfigValue remoteCost = getConfigValue(section, "costs.remote.activate");
 
 		if (remoteCost == null) {
 			remoteCost = new ConfigValue(10000);
@@ -111,7 +111,7 @@ public class LimitHandler {
 
 	public static double getRemoteItemCost(Player player) {
 		ConfigurationSection section = getLimit(player);
-		ConfigValue remoteCost = getConfigValue(section, "costs.remove.item");
+		ConfigValue remoteCost = getConfigValue(section, "costs.remote.item");
 
 		if (remoteCost == null) {
 			remoteCost = new ConfigValue(10000);
