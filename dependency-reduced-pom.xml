@@ -85,6 +85,16 @@
               <goal>shade</goal>
             </goals>
             <configuration>
+              <relocations>
+                <relocation>
+                  <pattern>com.thedemgel.yamlresourcebundle</pattern>
+                  <shadedPattern>com.ultra.thedemgel.yamlresourcebundle</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>snaq</pattern>
+                  <shadedPattern>net.ultra.snaq</shadedPattern>
+                </relocation>
+              </relocations>
               <artifactSet>
                 <includes>
                   <include>com.thedemgel:YamlResourceBundle</include>
@@ -124,7 +134,7 @@
     <dependency>
       <groupId>org.bukkit</groupId>
       <artifactId>bukkit</artifactId>
-      <version>1.6.4-R1.0</version>
+      <version>1.6.4-R1.1-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     <dependency>

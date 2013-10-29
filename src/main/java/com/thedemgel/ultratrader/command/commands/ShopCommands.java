@@ -7,6 +7,7 @@ import com.thedemgel.ultratrader.command.BukkitCommand;
 import com.thedemgel.ultratrader.command.Commands;
 import com.thedemgel.ultratrader.shop.Shop;
 import com.thedemgel.ultratrader.shop.StoreItem;
+import com.thedemgel.ultratrader.util.PermissionPredicate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -20,6 +21,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.metadata.LazyMetadataValue;
+import org.bukkit.permissions.PermissionAttachmentInfo;
 
 public class ShopCommands extends Commands implements CommandExecutor {
 
@@ -29,18 +31,18 @@ public class ShopCommands extends Commands implements CommandExecutor {
 		//plugin = instance;
 	}
 
-	/*@BukkitCommand(name = "shopitem")
-	public boolean something(CommandSender sender, Command cmd, String label, String[] args) {
-		Player player = (Player) sender;
+	@BukkitCommand(name = "test")
+	public boolean test(final CommandSender sender, Command cmd, String label, String[] args) {
+		PermissionPredicate perm = new PermissionPredicate();
 
-		ItemStack item = new ItemStack(Material.WOOD_AXE, 1);
-		StoreItem storeItem = new StoreItem();
-		storeItem.createLinkedToShop(UltraTrader.getStoreHandler().getShop(1), item);
+		for (PermissionAttachmentInfo info : perm.getPermissions("trader.limit.test", (Player) sender)) {
+			System.out.println(info.getPermission());
+		}
 
-		player.getInventory().addItem(item);
+		System.out.println(perm.getHighestPermissionSet("trader.limit.test", (Player) sender));
 
 		return true;
-	}*/
+	}
 
 	@BukkitCommand(name = "myshops")
 	public boolean getShops(CommandSender sender, Command cmd, String label, String[] args) {
