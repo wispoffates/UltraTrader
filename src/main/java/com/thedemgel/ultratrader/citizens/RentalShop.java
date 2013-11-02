@@ -1,6 +1,8 @@
 package com.thedemgel.ultratrader.citizens;
 
 import com.thedemgel.ultratrader.RentalHandler;
+import com.thedemgel.ultratrader.util.TimeFormat;
+import java.util.concurrent.TimeUnit;
 import net.citizensnpcs.api.persistence.Persist;
 import net.citizensnpcs.api.trait.Trait;
 import org.bukkit.entity.Player;
@@ -18,7 +20,8 @@ public class RentalShop extends Trait {
 
 	// Settings
 	// Time in milliseconds that the trader can be rented
-	@Persist private long term = 0L;
+	@Persist private int term;
+	@Persist private TimeUnit unit = TimeUnit.MINUTES;
 	// Cost per term for the rented shop
 	@Persist private double cost = 0D;
 	// Enable or Disable the shop (so admins can shut them off)
@@ -62,15 +65,19 @@ public class RentalShop extends Trait {
 		return rentedOn;
 	}
 
-	public long getTerm() {
+	public int getTerm() {
 		return term;
 	}
 
-	/*public String getFormatedTerm() {
-		return TimeFormat.getDurationBreakdown(term);
-	}*/
+	public long getTermInMilliseconds() {
+		return unit.toMillis(term);
+	}
 
-	public void setTerm(long term) {
+	public String getFormatedTerm() {
+		return TimeFormat.getDurationBreakdown(getTermInMilliseconds());
+	}
+
+	public void setTerm(int term) {
 		this.term = term;
 	}
 

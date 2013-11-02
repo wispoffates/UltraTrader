@@ -5,10 +5,12 @@ import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.citizens.RentalShop;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
+import com.thedemgel.ultratrader.conversation.rentalshop.admin.RentalAdminPrompt;
 import com.thedemgel.ultratrader.shop.ShopInventoryView;
 import com.thedemgel.ultratrader.util.Permissions;
 import java.util.ResourceBundle;
 import net.citizensnpcs.api.npc.NPC;
+import net.citizensnpcs.api.trait.trait.Owner;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.conversations.ConversationContext;
@@ -32,6 +34,12 @@ public class RentalBeginPrompt extends MessagePrompt {
 
 	@Override
 	protected final Prompt getNextPrompt(ConversationContext context) {
+		Owner owner = n.getTrait(Owner.class);
+
+		if (owner.isOwnedBy(p)) {
+			return new RentalAdminPrompt();
+		}
+
 		if (p.hasPermission(Permissions.NPC_RENT)) {
 			if (!n.getTrait(RentalShop.class).isRentingEnabled()) {
 				// GOTO admin interface if owner...
@@ -50,16 +58,24 @@ public class RentalBeginPrompt extends MessagePrompt {
 
 		RentalShop shop = n.getTrait(RentalShop.class);
 
-		if (p.hasPermission(Permissions.NPC_RENT)) {
-			if (!shop.isRentingEnabled()) {
-				p.sendRawMessage(prefix.getPrefix(context) + "Npc is not open for renting.");
-			} else {
-				p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.rental.begin"));
-			}
-		} else {
-			p.sendRawMessage(prefix.getPrefix(context) + "You don't have permission to rent shops.");
+		Owner owner = n.getTrait(Owner.class);
+
+		if (owner.isOwnedBy(p)) {
+			p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.rental.admin.begin"));
+			return L.getString("conversation.toquit");
 		}
 
-		return L.getString("conversation.toquit");
+		if (p.hasPermission(Permissions.NPC_RENT)) {
+			if (!shop.isRentingEnabled()) {
+				return ChatColor.RED + L.getString("conversation.rental.closed");
+			} else {
+				p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.rental.begin"));
+				return L.getString("conversation.toquit");
+			}
+		} else {
+			return L.getString("permission.rent.deny");
+		}
+
+
 	}
 }

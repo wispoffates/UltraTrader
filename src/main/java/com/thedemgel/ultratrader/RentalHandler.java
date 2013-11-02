@@ -48,11 +48,11 @@ public class RentalHandler {
 	private class RentCheck implements Runnable {
 		@Override
 		public void run() {
-			System.out.println("do this every minute");
+			//System.out.println("do this every minute");
 			for (NPC npc : rentalNPCs) {
 				if (npc.hasTrait(RentalShop.class)) {
 					RentalShop rental = npc.getTrait(RentalShop.class);
-					System.out.println("Checking if rental period is up for " + npc.getFullName());
+					//System.out.println("Checking if rental period is up for " + npc.getFullName());
 				} else {
 					rentalNPCs.remove(npc);
 				}

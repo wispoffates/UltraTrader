@@ -1,59 +1,3 @@
-general:
-  accept: 'Yes'
-  bank: Bank
-  buyprice: 'Buy Price: {0}'
-  decline: 'No'
-  description: Description
-  exit: exit
-  initialized: (Shop Initialized) {0} with id {1}
-  instock: Instock
-  inventory: Inventory
-  name: Name
-  newshopname: No Name Set.
-  notopen:
-    errorloading: Store wasn't loaded properly. (Please report)
-    unassigned: Store not open yet. (No store assinged)
-  price: Price
-  sellprice: 'Sell Price: {0}'
-  wallet:
-    admin: admin
-    bank: bank
-    player: player
-    shop: shop
-permission:
-  create:
-    deny: You do not have permission to create a shop.
-inventory:
-  admin:
-    display: Shop Admin
-    lore: Click to Admin Shop
-  buyadmin:
-    display: Buy Admin
-    lore: Click to Admin Buy Values
-  itemadmin:
-    display: Item Admin
-    lore: Click to set Item Details
-  back:
-    display: Back
-    lore: Click to go Back
-  removestock:
-    display: Remove Stock
-    lore:
-      full: Click to Move all to Inventory
-      empty: Nothing to move to Inventory
-  tobuyscreen:
-    display: Buy Screen
-    lore: Goto Buy Screen
-  tosellscreen:
-    display: Sell Screen
-    lore: Goto Sell Screen
-shops:
-  list:
-    noshops: You don't currently own any shops.
-    yourshops: 'Your current shops:'
-  gotobuy:
-    line1: To sell to shop
-    line2: Move to Buy screen
 conversation:
   abandon: Conversation abandoned.
   admin:
@@ -139,6 +83,9 @@ conversation:
   rental:
     begin: Entering Trader Rental.
     prefix: SHOP RENTAL
+    closed: NPC is not open for Renting.
+    admin:
+      begin: Entering Rental Admin.
   setsellprice:
     prefix: SET SELL PRICE
     setprice: What would you like to charge for {0}?
@@ -164,6 +111,64 @@ conversation:
     notadouble: Value needs to be a number value (2, 12.12)
   options: Options
   toquit: (To force exit type "/quit")
+general:
+  accept: 'Yes'
+  bank: Bank
+  buyprice: 'Buy Price: {0}'
+  decline: 'No'
+  description: Description
+  exit: exit
+  initialized: (Shop Initialized) {0} with id {1}
+  instock: Instock
+  inventory: Inventory
+  name: Name
+  newshopname: No Name Set.
+  notopen:
+    errorloading: Store wasn't loaded properly. (Please report)
+    unassigned: Store not open yet. (No store assinged)
+  price: Price
+  sellprice: 'Sell Price: {0}'
+  wallet:
+    admin: admin
+    bank: bank
+    player: player
+    shop: shop
+permission:
+  create:
+    deny: You do not have permission to create a shop.
+  rent:
+    deny: You do not have permission to rent an NPC.
+inventory:
+  admin:
+    display: Shop Admin
+    lore: Click to Admin Shop
+  buyadmin:
+    display: Buy Admin
+    lore: Click to Admin Buy Values
+  itemadmin:
+    display: Item Admin
+    lore: Click to set Item Details
+  back:
+    display: Back
+    lore: Click to go Back
+  removestock:
+    display: Remove Stock
+    lore:
+      full: Click to Move all to Inventory
+      empty: Nothing to move to Inventory
+  tobuyscreen:
+    display: Buy Screen
+    lore: Goto Buy Screen
+  tosellscreen:
+    display: Sell Screen
+    lore: Goto Sell Screen
+shops:
+  list:
+    noshops: You don't currently own any shops.
+    yourshops: 'Your current shops:'
+  gotobuy:
+    line1: To sell to shop
+    line2: Move to Buy screen
 transaction:
   sale:
     player:

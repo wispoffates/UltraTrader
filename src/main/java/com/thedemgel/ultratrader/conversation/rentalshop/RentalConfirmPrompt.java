@@ -37,7 +37,7 @@ public class RentalConfirmPrompt extends BooleanPrompt {
 
 		p.sendRawMessage(prefix.getPrefix(cc) + "------<[ " + ChatColor.BLUE + prefix.getPrefix(cc) + ChatColor.YELLOW + " ]>------");
 		p.sendRawMessage(prefix.getPrefix(cc) + "Cost per Period: " + UltraTrader.getEconomy().format(rent.getCost()));
-		//p.sendRawMessage(prefix.getPrefix(cc) + "Rental Period: " + rent.getFormatedTerm());
+		p.sendRawMessage(prefix.getPrefix(cc) + "Rental Period: " + rent.getFormatedTerm());
 		return "Are you sure you want to rent this NPC?";
 	}
 
