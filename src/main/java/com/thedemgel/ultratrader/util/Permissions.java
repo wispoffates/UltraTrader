@@ -151,4 +151,25 @@ public class Permissions {
 	 * END SNIPPET: perm
 	 */
 	public static final String INVENTORY_ADMIN = "trader.inventory.admin";
+
+	/* START SNIPPET: perm
+	 * ### Limits
+	 * END SNIPPET: perm
+	 */
+
+	/**
+	 * START SNIPPET: perm
+	 * ####trader.limits.maxlevel
+	 * `Used to set the maxlevel shop a player may have: trader.limits.maxlevel.3`
+	 * END SNIPPET: perm
+	 */
+	public static final String SHOP_LIMIT_MAXLEVEL = "trader.limits.maxlevel";
+
+	/**
+	 * START SNIPPET: perm
+	 * ####trader.limits.createlevel
+	 * `This will set what level a players shop is created at: trader.limits.createlevel.2`
+	 * END SNIPPET: perm
+	 */
+	public static final String SHOP_LIMIT_CREATE_LEVEL = "trader.limits.createlevel";
 }

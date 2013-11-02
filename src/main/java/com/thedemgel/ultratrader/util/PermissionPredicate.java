@@ -13,13 +13,13 @@ public class PermissionPredicate implements Predicate<PermissionAttachmentInfo> 
 		private String test;
 
 		public Collection<PermissionAttachmentInfo> getPermissions(String basePermission, Player player) {
-			this.test = basePermission;
+			test = basePermission;
 			Collection<PermissionAttachmentInfo> perms = Collections2.filter(player.getEffectivePermissions(), this);
 			return perms;
 		}
 
 		public int getHighestPermissionSet(String basePermission, Player player) {
-			this.test = basePermission;
+			test = basePermission;
 			Collection<PermissionAttachmentInfo> perms = Collections2.filter(player.getEffectivePermissions(), this);
 
 			int highest = 0;

@@ -3,6 +3,8 @@ package com.thedemgel.ultratrader;
 
 import com.thedemgel.ultratrader.shop.Shop;
 import com.thedemgel.ultratrader.util.ConfigValue;
+import com.thedemgel.ultratrader.util.PermissionPredicate;
+import com.thedemgel.ultratrader.util.Permissions;
 import java.util.logging.Level;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
@@ -54,12 +56,22 @@ public class LimitHandler {
 	}
 
 	public static int getMaxBuySellSize(Shop shop) {
-		// MaxBuySellSize = current level * 9
 		int size = shop.getLevel() * LimitHandler.INV_INCREASE_PER_LEVEL;
 		return size;
 	}
 
 	public static int getMaxLevel(Player player) {
+
+		// Start player limit override.
+		PermissionPredicate pred = new PermissionPredicate();
+
+		int maxl = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_MAXLEVEL, player);
+
+		if (maxl > 0) {
+			return maxl;
+		}
+		// End player limit override
+
 		ConfigurationSection section = getLimit(player);
 		ConfigValue<Integer> maxlevel = getConfigValue(section, "maxlevel");
 
@@ -71,6 +83,16 @@ public class LimitHandler {
 	}
 
 	public static int getLevelAtCreate(Player player) {
+		// Start player limit override.
+		PermissionPredicate pred = new PermissionPredicate();
+
+		int createlevel = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_CREATE_LEVEL, player);
+
+		if (createlevel > 0) {
+			return createlevel;
+		}
+		// End player limit override
+
 		ConfigurationSection section = getLimit(player);
 		ConfigValue<Integer> level = getConfigValue(section, "defaults.level");
 
