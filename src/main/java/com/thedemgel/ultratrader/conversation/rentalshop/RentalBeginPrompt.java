@@ -33,7 +33,7 @@ public class RentalBeginPrompt extends MessagePrompt {
 	@Override
 	protected final Prompt getNextPrompt(ConversationContext context) {
 		if (p.hasPermission(Permissions.NPC_RENT)) {
-			if (!n.getTrait(RentalShop.class).isEnabled()) {
+			if (!n.getTrait(RentalShop.class).isRentingEnabled()) {
 				// GOTO admin interface if owner...
 				return Prompt.END_OF_CONVERSATION;
 			}
@@ -51,7 +51,7 @@ public class RentalBeginPrompt extends MessagePrompt {
 		RentalShop shop = n.getTrait(RentalShop.class);
 
 		if (p.hasPermission(Permissions.NPC_RENT)) {
-			if (!shop.isEnabled()) {
+			if (!shop.isRentingEnabled()) {
 				p.sendRawMessage(prefix.getPrefix(context) + "Npc is not open for renting.");
 			} else {
 				p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.rental.begin"));

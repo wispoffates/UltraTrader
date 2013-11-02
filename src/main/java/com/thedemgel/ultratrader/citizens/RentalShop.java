@@ -9,8 +9,7 @@ import org.bukkit.entity.Player;
 public class RentalShop extends Trait {
 
 	// Player renting shop
-	//@Persist
-	private String renter = "";
+	@Persist private String renter = "";
 	// Shop id of rented shop
 	//@Persist private Integer shopid = -1;
 	// Time shop was rented
@@ -23,7 +22,7 @@ public class RentalShop extends Trait {
 	// Cost per term for the rented shop
 	@Persist private double cost = 0D;
 	// Enable or Disable the shop (so admins can shut them off)
-	@Persist private boolean enabled = false;
+	@Persist private boolean isRentingEnabled = false;
 
 	public RentalShop() {
 		super("rentalshop");
@@ -83,11 +82,11 @@ public class RentalShop extends Trait {
 		this.cost = cost;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public boolean isRentingEnabled() {
+		return isRentingEnabled;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setRentingEnabled(boolean enabled) {
+		this.isRentingEnabled = enabled;
 	}
 }
