@@ -65,6 +65,19 @@ public class Permissions {
 	public static final String LEVEL_SET = "trader.store.level.set";
 
 	/* START SNIPPET: perm
+	 * ### NPCs
+	 * END SNIPPET: perm
+	 */
+
+	/**
+	 * START SNIPPET: perm
+	 * ####trader.npc.rent
+	 * `Allows a player to rent NPCs for store.`
+	 * END SNIPPET: perm
+	 */
+	public static final String NPC_RENT = "trader.npc.rent";
+
+	/* START SNIPPET: perm
 	 * ### Wallets
 	 * END SNIPPET: perm
 	 */

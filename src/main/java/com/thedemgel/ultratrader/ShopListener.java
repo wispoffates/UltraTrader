@@ -1,5 +1,6 @@
 package com.thedemgel.ultratrader;
 
+import com.thedemgel.ultratrader.citizens.RentalShop;
 import com.thedemgel.ultratrader.citizens.TraderTrait;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.shop.ShopHandler;
@@ -274,15 +275,24 @@ public class ShopListener implements Listener {
 			}
 
 			NPC npc = CitizensAPI.getNPCRegistry().getNPC(entity);
+			
+			if (npc.hasTrait(RentalShop.class)) {
+				RentalShop rentalshop = npc.getTrait(RentalShop.class);
+				if (!rentalshop.isRented()) {
+					Conversation convo = UltraTrader.getConversationHandler().getRentalTrader().buildConversation(player);
+					convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
+					convo.begin();
+					return;
+				}
+			}
 
 			if (npc.hasTrait(TraderTrait.class)) {
 				TraderTrait trait = npc.getTrait(TraderTrait.class);
 
 				Integer shopid = trait.getShopId();
 
-
-
 				if (shopid == ShopHandler.SHOP_NULL) {
+
 					if (npc.getTrait(Owner.class).isOwnedBy(player)) {
 						Conversation convo = UltraTrader.getConversationHandler().getCreateShop().buildConversation(player);
 						convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);

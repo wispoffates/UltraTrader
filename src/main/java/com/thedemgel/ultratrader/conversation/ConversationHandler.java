@@ -11,13 +11,15 @@ import com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemBeginProm
 import com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemConversationPrefix;
 import com.thedemgel.ultratrader.conversation.createshop.CreateShopBeginPrompt;
 import com.thedemgel.ultratrader.conversation.createshop.CreateShopConversationPrefix;
+import com.thedemgel.ultratrader.conversation.rentalshop.RentalBeginPrompt;
+import com.thedemgel.ultratrader.conversation.rentalshop.RentalConversationPrefix;
 import com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemBeginPrompt;
 import com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemConversationPrefix;
 import org.bukkit.conversations.ConversationFactory;
 
 public class ConversationHandler {
 
-	public static final int CONVERSATION_TIMEOUT = 20;
+	public static final int CONVERSATION_TIMEOUT = 30;
 	public static final String CONVERSATION_SESSION_ITEM = "item";
 	public static final String CONVERSATION_SESSION_ITEMPRICE = "itemprice";
 	public static final String CONVERSATION_SESSION_VIEW = "view";
@@ -33,6 +35,7 @@ public class ConversationHandler {
 	private ConversationFactory createShop;
 	private ConversationFactory buyItemAdmin;
 	private ConversationFactory addBuyItem;
+	private ConversationFactory rentalTrader;
 
 	public ConversationHandler(UltraTrader instance) {
 		setSellPrice = new ConversationFactory(instance)
@@ -88,6 +91,15 @@ public class ConversationHandler {
 			.withTimeout(ConversationHandler.CONVERSATION_TIMEOUT)
 			.addConversationAbandonedListener(new AbandonConvo())
 			.thatExcludesNonPlayersWithMessage("No Console Please");
+
+		rentalTrader = new ConversationFactory(instance)
+			.withModality(true)
+			.withPrefix(new RentalConversationPrefix())
+			.withFirstPrompt(new RentalBeginPrompt())
+			.withEscapeSequence("/quit")
+			.withTimeout(ConversationHandler.CONVERSATION_TIMEOUT)
+			.addConversationAbandonedListener(new AbandonConvo())
+			.thatExcludesNonPlayersWithMessage("No Console Please");
 	}
 
 	public ConversationFactory getSetSellPrice() {
@@ -112,5 +124,9 @@ public class ConversationHandler {
 
 	public ConversationFactory getAddBuyItem() {
 		return addBuyItem;
+	}
+
+	public ConversationFactory getRentalTrader() {
+		return rentalTrader;
 	}
 }
