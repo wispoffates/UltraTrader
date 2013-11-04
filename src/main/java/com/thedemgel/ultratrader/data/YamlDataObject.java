@@ -150,7 +150,7 @@ public class YamlDataObject extends DataObject {
 
 		UltraTrader.getStoreHandler().addShop(shop);
 
-		Bukkit.getLogger().log(Level.INFO, L.getFormatString("general.initialized", shop.getName(), shop.getId()));
+		//Bukkit.getLogger().log(Level.INFO, L.getFormatString("general.initialized", shop.getName(), shop.getId()));
 	}
 
 	@Override

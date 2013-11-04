@@ -3,12 +3,15 @@ package com.thedemgel.ultratrader.conversation.admin;
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.LimitHandler;
 import com.thedemgel.ultratrader.UltraTrader;
+import com.thedemgel.ultratrader.citizens.RentalShop;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
 import com.thedemgel.ultratrader.conversation.admin.bank.AdminBankMenuPrompt;
 import com.thedemgel.ultratrader.conversation.admin.level.AdminSetLevelPrompt;
+import com.thedemgel.ultratrader.conversation.rentalshop.RentalEndRentingPrompt;
 import com.thedemgel.ultratrader.shop.ShopInventoryView;
 import com.thedemgel.ultratrader.util.Permissions;
+import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.ChatColor;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.ConversationPrefix;
@@ -31,6 +34,7 @@ public class AdminMenuPrompt extends FixedIgnoreCaseSetPrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
 		Player p = (Player) context.getForWhom();
+		ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
 
 		addOption(L.getString("conversation.admin.menu.options.storename"), new AdminSetNamePrompt());
 		addOption(L.getString("conversation.admin.menu.options.bank"), new AdminBankMenuPrompt());
@@ -40,9 +44,15 @@ public class AdminMenuPrompt extends FixedIgnoreCaseSetPrompt {
 		}
 		addOption(L.getString("conversation.admin.menu.options.level"), new AdminSetLevelPrompt());
 		addOption("remote", new AdminRemotePrompt());
+		if (UltraTrader.getInstance().isCitizens()) {
+			if (view.getTarget() instanceof NPC) {
+				NPC npc = (NPC) view.getTarget();
+				if (npc.hasTrait(RentalShop.class)) {
+					addOption("rental", new RentalEndRentingPrompt());
+				}
+			}
+		}
 		addOption(L.getString("general.exit"), new AdminFinishPrompt());
-
-		ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
 
 		p.sendRawMessage(prefix.getPrefix(context) + "------<[ " + ChatColor.BLUE + "ADMIN" + ChatColor.YELLOW + " ]>------");
 		p.sendRawMessage(prefix.getPrefix(context) + L.getString("general.name") + ": " + ChatColor.WHITE + view.getShop().getName());

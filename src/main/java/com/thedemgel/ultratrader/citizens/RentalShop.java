@@ -65,12 +65,24 @@ public class RentalShop extends Trait {
 		return rentedOn;
 	}
 
+	public void setRentedOn(long time) {
+		rentedOn = time;
+	}
+
 	public int getTerm() {
 		return term;
 	}
 
 	public long getTermInMilliseconds() {
-		return unit.toMillis(term);
+		return term == 0 ? 0 : unit.toMillis(term);
+	}
+
+	public TimeUnit getTermType() {
+		return unit;
+	}
+
+	public void setTermType(TimeUnit unit) {
+		this.unit = unit;
 	}
 
 	public String getFormatedTerm() {

@@ -1,7 +1,27 @@
 #parse( "common" )
 $h2 Limits
-This option is currently not implemented, this is here to display my plans and to
-get implemented as soon as possible. Stay tuned for more information.
+There are 2 ways to set limits in Ultratrader. You can use the limits.yml method, which
+will allow you to set permission groups to assign to players/groups via a permission
+system. Or you can use individual permissions.
+
+$h2 Permissions
+You can assign limit permissions to any player/group via a permissions plugin and it will
+override any permission in the limits.yml. This will allow you to create custom
+permissions for users without the need to create new permissions in limits.yml for
+each different settings.
+
+The permission limits all start with `trader.limits` and the next word is the limit
+`maxshops` so `trader.limits.maxshops` would be the first part of the permission.
+Then you just append the number (shops in this case) that is the limit.
+
+`trader.limits.maxshops.2`
+
+would limit the players max number of shops to 2. Remember this will override the
+limits.yml setting for whatever group this player is in, but not the other settings
+assigned by limits.yml.
+
+All the Permission nodes required setting permission limits can be found here:
+[Limits] (permission.html#Limits)
 
 $h3 Defaults
 A special note about the defaults section. The options can change, but the keys

@@ -275,7 +275,7 @@ public class ShopListener implements Listener {
 			}
 
 			NPC npc = CitizensAPI.getNPCRegistry().getNPC(entity);
-			
+
 			if (npc.hasTrait(RentalShop.class)) {
 				RentalShop rentalshop = npc.getTrait(RentalShop.class);
 				if (!rentalshop.isRented()) {
@@ -292,8 +292,15 @@ public class ShopListener implements Listener {
 				Integer shopid = trait.getShopId();
 
 				if (shopid == ShopHandler.SHOP_NULL) {
-
-					if (npc.getTrait(Owner.class).isOwnedBy(player)) {
+					if (npc.hasTrait(RentalShop.class)) {
+						RentalShop rentalshop = npc.getTrait(RentalShop.class);
+						if (rentalshop.getRenter().equals(player.getName())) {
+							Conversation convo = UltraTrader.getConversationHandler().getCreateShop().buildConversation(player);
+							convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
+							convo.begin();
+							return;
+						}
+					} else if (npc.getTrait(Owner.class).isOwnedBy(player)) {
 						Conversation convo = UltraTrader.getConversationHandler().getCreateShop().buildConversation(player);
 						convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
 						convo.begin();
@@ -313,9 +320,12 @@ public class ShopListener implements Listener {
 					ShopInventoryView view = (ShopInventoryView) handler.getInventoryView(player);
 					if (!view.getShop().getId().equals(shopid)) {
 						handler.createBuyInventoryView(player, UltraTrader.getStoreHandler().getShop(shopid));
+						view.setTarget(npc);
 					}
 				} else {
-					handler.createBuyInventoryView(player, UltraTrader.getStoreHandler().getShop(shopid));
+					handler
+						.createBuyInventoryView(player, UltraTrader.getStoreHandler().getShop(shopid))
+						.setTarget(npc);
 				}
 
 				handler.openInventory(player);

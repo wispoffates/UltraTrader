@@ -27,6 +27,7 @@ public class ShopInventoryView extends InventoryView {
 	private Shop shop;
 	private Status current = Status.NULL;
 	private Conversation convo;
+	private Object target;
 
 	public ShopInventoryView(Inventory invTop, Player player, Shop shop) {
 		top = invTop;
@@ -325,5 +326,13 @@ public class ShopInventoryView extends InventoryView {
 
 	public void setConvo(Conversation value) {
 		convo = value;
+	}
+
+	public Object getTarget() {
+		return target;
+	}
+
+	public void setTarget(Object value) {
+		target = value;
 	}
 }

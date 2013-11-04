@@ -41,7 +41,7 @@ public class InventoryHandler {
 		}
 	}
 
-	public final void createBuyInventoryView(Player player, Shop shop) {
+	public final ShopInventoryView createBuyInventoryView(Player player, Shop shop) {
 		// Clear any old InventoryViews if they exist
 		if (inventories.containsKey(player)) {
 			ShopInventoryView oldview = inventories.get(player);
@@ -59,6 +59,7 @@ public class InventoryHandler {
 		}
 
 		inventories.put(player, view);
+		return view;
 	}
 
 	public final void updateInventory(Player player, Shop shop) {
