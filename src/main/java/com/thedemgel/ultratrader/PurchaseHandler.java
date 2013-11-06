@@ -2,6 +2,7 @@ package com.thedemgel.ultratrader;
 
 import com.thedemgel.ultratrader.shop.ItemPrice;
 import com.thedemgel.ultratrader.shop.Shop;
+import com.thedemgel.ultratrader.shop.ShopInventoryView;
 import com.thedemgel.ultratrader.shop.StoreItem;
 import com.thedemgel.ultratrader.wallet.Wallet;
 import java.math.BigDecimal;
@@ -159,18 +160,7 @@ public class PurchaseHandler {
 
 		Wallet wallet = shop.getWallet();
 
-		//heldFunds = null;
-		//if (wallet.hasFunds(buyStackPrice)) {
 		EconomyResponse heldFunds = wallet.removeFunds(buyStackPrice);
-		//} else {
-			//player.sendMessage(L.getString("transaction.sale.shop.notenoughfunds"));
-			//success = false;
-		//}
-
-		/*if (heldFunds == null) {
-			player.sendMessage(L.getString("transaction.error.economy") + 1);
-			success = false;
-		} else */
 
 		if (!heldFunds.type.equals(ResponseType.SUCCESS)) {
 			player.sendMessage(L.getString("transaction.sale.shop.notenoughfunds"));
@@ -208,5 +198,58 @@ public class PurchaseHandler {
 		player.sendMessage(L.getFormatString("transaction.sale.shop.totalpurchase", UltraTrader.getEconomy().format(heldFunds.amount)));
 
 		shop.save();
+	}
+
+	public static void processTakeAllInventory(ShopInventoryView view, final Player player, final ItemStack item) {
+		Shop shop = view.getShop();
+		String buyStackId = shop.getItemId(item);
+
+		ItemPrice invItem;
+		switch (view.getStatus()) {
+			case BUY_ITEM_SCREEN:
+				invItem = shop.getBuyprices().get(buyStackId);
+				break;
+			case SELL_SCREEN:
+				invItem = shop.getSellprices().get(buyStackId);
+				break;
+			default:
+				return;
+		}
+
+		// Check for availability
+		ItemStack baseItem = invItem.getItemStack();
+		Integer currentInvAmount = shop.getInventoryInterface().getInventoryStock(baseItem);
+
+		if (currentInvAmount <= 0) {
+			player.sendMessage("not enough inventory");
+			return;
+		}
+
+		ItemStack giveItem = baseItem.clone();
+		giveItem.setAmount(currentInvAmount);
+
+		player.getInventory().addItem(giveItem);
+		shop.getInventoryInterface().removeInventory(baseItem, currentInvAmount);
+	}
+
+	public static void processTakeInventory(Shop shop, final Player player, final ItemStack item) {
+		String buyStackId = shop.getItemId(item);
+		ItemPrice invItem = shop.getBuyprices().get(buyStackId);
+		//ItemPrice invItem = shop.getBuyItem(item);
+
+		// Check for availability
+		ItemStack baseItem = invItem.getItemStack();
+		Integer currentInvAmount = shop.getInventoryInterface().getInventoryStock(baseItem);
+
+		if (currentInvAmount <= 0) {
+			player.sendMessage("not enough inventory");
+			return;
+		}
+
+		ItemStack giveItem = baseItem.clone();
+		giveItem.setAmount(item.getAmount());
+
+		player.getInventory().addItem(giveItem);
+		shop.getInventoryInterface().removeInventory(baseItem, item.getAmount());
 	}
 }

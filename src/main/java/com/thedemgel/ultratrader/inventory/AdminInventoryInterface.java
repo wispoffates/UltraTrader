@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 @InventoryPermission(Permissions.INVENTORY_ADMIN)
 @InventoryTypeName("admin")
 public class AdminInventoryInterface extends InventoryInterface {
-	public static final int ADMIN_INVENTORY_STOCK = 128;
+	public static final int ADMIN_INVENTORY_STOCK = 64;
 
 	public AdminInventoryInterface(Shop shop) {
 		super(shop);

@@ -143,6 +143,15 @@ public class ShopListener implements Listener {
 
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_TAKE_ALL_SLOT && view.getShop().getOwner().equals(player.getName())) {
 					// Put all items into inventory
+					if (event.getCurrentItem() != null) {
+						PurchaseHandler.processTakeAllInventory(view, (Player) event.getWhoClicked(), event.getCurrentItem());
+						plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+							@Override
+							public void run() {
+								view.buildItemView(event.getCurrentItem());
+							}
+						}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
+					}
 					return;
 				} else if (event.getRawSlot() == InventoryHandler.INVENTORY_TAKE_ALL_SLOT && !view.getShop().getOwner().equals(player.getName())) {
 					return;
@@ -240,10 +249,27 @@ public class ShopListener implements Listener {
 				}
 
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_TAKE_ALL_SLOT && view.getShop().getOwner().equals(player.getName())) {
-					// Put all items into inventory
+					if (event.getCurrentItem() != null) {
+						PurchaseHandler.processTakeAllInventory(view, (Player) event.getWhoClicked(), event.getCurrentItem());
+						plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+							@Override
+							public void run() {
+								view.buildBuyItemView(event.getCurrentItem());
+							}
+						}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
+					}
 					return;
 				}
 
+				if (event.getCurrentItem() != null) {
+					PurchaseHandler.processTakeInventory(view.getShop(), (Player) event.getWhoClicked(), event.getCurrentItem());
+					plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+						@Override
+						public void run() {
+							view.buildBuyItemView(event.getCurrentItem());
+						}
+					}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
+				}
 				break;
 			default:
 		}

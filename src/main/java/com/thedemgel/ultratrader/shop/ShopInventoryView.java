@@ -6,7 +6,6 @@ import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.inventory.AdminInventoryInterface;
 import java.util.ArrayList;
 import java.util.List;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.conversations.Conversation;
