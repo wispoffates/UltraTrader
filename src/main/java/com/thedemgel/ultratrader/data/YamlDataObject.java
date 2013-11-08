@@ -7,18 +7,18 @@ import com.thedemgel.ultratrader.inventory.InventoryInterfaceHandler;
 import com.thedemgel.ultratrader.shop.ItemPrice;
 import com.thedemgel.ultratrader.shop.Shop;
 import com.thedemgel.ultratrader.util.ConfigValue;
+import com.thedemgel.ultratrader.util.ShopAction;
 import com.thedemgel.ultratrader.util.YamlFilenameFilter;
 import com.thedemgel.ultratrader.wallet.WalletHandler;
 import java.io.File;
 import java.math.BigDecimal;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.logging.Level;
-import org.bukkit.Bukkit;
+import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class YamlDataObject extends DataObject {
@@ -170,6 +170,14 @@ public class YamlDataObject extends DataObject {
 		}
 
 		return ids;
+	}
+
+	@Override
+	public void initLogger(UltraTrader plugin) {
+	}
+
+	@Override
+	public void doLog(Shop shop, Player player, EconomyResponse resp, ShopAction action, String message) {
 	}
 
 	private class SaveShop implements Runnable {

@@ -114,12 +114,17 @@
 									<pattern>snaq</pattern>
 									<shadedPattern>net.ultra.snaq</shadedPattern>
 								</relocation>
+								<relocation>
+									<pattern>org.apache.commons.logging</pattern>
+									<shadedPattern>org.ultra.apache.commons.logging</shadedPattern>
+								</relocation>
 							</relocations>
 							<artifactSet>
 								<includes>
 									<include>com.thedemgel:YamlResourceBundle</include>
 									<include>net.snaq:dbpool</include>
 									<include>org.mcstats.bukkit</include>
+									<include>commons-logging</include>
 								</includes>
 							</artifactSet>
 						</configuration>
@@ -164,6 +169,11 @@
 			<version>R7</version>
 			<scope>compile</scope>
 		</dependency>
+	 <dependency>
+	  <groupId>mysql</groupId>
+	  <artifactId>mysql-connector-java</artifactId>
+	  <version>5.1.26</version>
+	 </dependency>
 	</dependencies>
 	<repositories>
 		<repository>

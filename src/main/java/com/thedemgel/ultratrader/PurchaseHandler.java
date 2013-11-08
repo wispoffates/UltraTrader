@@ -4,6 +4,7 @@ import com.thedemgel.ultratrader.shop.ItemPrice;
 import com.thedemgel.ultratrader.shop.Shop;
 import com.thedemgel.ultratrader.shop.ShopInventoryView;
 import com.thedemgel.ultratrader.shop.StoreItem;
+import com.thedemgel.ultratrader.util.ShopAction;
 import com.thedemgel.ultratrader.wallet.Wallet;
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -45,6 +46,10 @@ public class PurchaseHandler {
 		StoreItem.linkToShop(shop, shopitem);
 
 		player.getInventory().addItem(shopitem);
+
+		if (UltraTrader.isLoggingEnabled()) {
+			UltraTrader.getLogDbObj().doLog(shop, player, resp, ShopAction.SELL, "Player purchased Shop Item.");
+		}
 	}
 
 	/**
@@ -142,6 +147,10 @@ public class PurchaseHandler {
 		}
 
 		shop.save();
+
+		if (UltraTrader.isLoggingEnabled()) {
+			UltraTrader.getLogDbObj().doLog(shop, player, new EconomyResponse(traderDeposit.doubleValue(), 0, ResponseType.SUCCESS, ""), ShopAction.SELL, "Player pruchased " + finalamount + " " + buyStack.getType().name());
+		}
 	}
 
 	/**
@@ -198,6 +207,10 @@ public class PurchaseHandler {
 		player.sendMessage(L.getFormatString("transaction.sale.shop.totalpurchase", UltraTrader.getEconomy().format(heldFunds.amount)));
 
 		shop.save();
+
+		if (UltraTrader.isLoggingEnabled()) {
+			UltraTrader.getLogDbObj().doLog(shop, player, heldFunds, ShopAction.BUY, "Sold " + item.getAmount() + " " + item.getType().name());
+		}
 	}
 
 	public static void processTakeAllInventory(ShopInventoryView view, final Player player, final ItemStack item) {
@@ -230,6 +243,10 @@ public class PurchaseHandler {
 
 		player.getInventory().addItem(giveItem);
 		shop.getInventoryInterface().removeInventory(baseItem, currentInvAmount);
+
+		if (UltraTrader.isLoggingEnabled()) {
+			UltraTrader.getLogDbObj().doLog(shop, player, new EconomyResponse(0, 0, ResponseType.SUCCESS, ""), ShopAction.REMOVE_STOCK, "Owner removed (ALL) " + giveItem.getAmount() + " " + giveItem.getType().name());
+		}
 	}
 
 	public static void processTakeInventory(Shop shop, final Player player, final ItemStack item) {
@@ -251,5 +268,9 @@ public class PurchaseHandler {
 
 		player.getInventory().addItem(giveItem);
 		shop.getInventoryInterface().removeInventory(baseItem, item.getAmount());
+
+		if (UltraTrader.isLoggingEnabled()) {
+			UltraTrader.getLogDbObj().doLog(shop, player, new EconomyResponse(0, 0, ResponseType.SUCCESS, ""), ShopAction.REMOVE_STOCK, "Owner removed " + giveItem.getAmount() + " " + giveItem.getType().name());
+		}
 	}
 }

@@ -6,6 +6,7 @@ import com.thedemgel.ultratrader.command.commands.DebugCommands;
 import com.thedemgel.ultratrader.command.commands.ShopCommands;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.data.DataObject;
+import com.thedemgel.ultratrader.data.MysqlDataObject;
 import com.thedemgel.ultratrader.data.YamlDataObject;
 import com.thedemgel.ultratrader.inventory.AdminInventoryInterface;
 import com.thedemgel.ultratrader.inventory.InventoryInterfaceHandler;
@@ -41,10 +42,12 @@ public class UltraTrader extends JavaPlugin {
 	private static UltraTrader plugin;
 	private static Economy economy;
 	private static DataObject dbObj;
+	private static DataObject logDbObj;
 	private static WalletHandler wallethandler;
 	private static InventoryInterfaceHandler inventoryInterfaceHandler;
 	private static ShopHandler shopHandler;
 	private static RentalHandler rentalHandler;
+	private static boolean isLoggingEnabled = false;
 
 	public static Economy getEconomy() {
 		return economy;
@@ -60,6 +63,14 @@ public class UltraTrader extends JavaPlugin {
 
 	public static DataObject getDbObj() {
 		return dbObj;
+	}
+
+	public static DataObject getLogDbObj() {
+		return logDbObj;
+	}
+
+	public static boolean isLoggingEnabled() {
+		return isLoggingEnabled;
 	}
 
 	public static WalletHandler getWallethandler() {
@@ -117,6 +128,12 @@ public class UltraTrader extends JavaPlugin {
 			.registerInventoryInterface(ShopInventoryInterface.class, "shop");
 
 		dbObj = new YamlDataObject();
+
+		if (getConfig().getBoolean("logging.enabled")) {
+			logDbObj = new MysqlDataObject();
+			logDbObj.initLogger(this);
+			isLoggingEnabled = true;
+		}
 
 		// Verify resources (Vault/CitizensAPI)
 		checkCitizens();

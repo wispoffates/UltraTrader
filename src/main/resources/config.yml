@@ -1,5 +1,13 @@
 # Select the language you wish to use, if selected language is not supported
 # than it will default to english (the default being en)
 language: en
-test: testing
-another: another
+logging:
+  enabled: false
+  database:
+    #mysql is only option right now
+    type: mysql
+    password: password
+    username: username
+    dbname: databasename
+    url: some.url.should.be.localhost
+    port: 3306
