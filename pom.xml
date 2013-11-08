@@ -1,13 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<groupId>com.thedemgel</groupId>
-	<artifactId>UltraTrader</artifactId>
-	<version>0.6-BETA</version>
-	<packaging>jar</packaging>
+	<artifactId>UltraTrader-Common</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	<name>UltraTrader-Common</name>
 
-	<name>UltraTrader</name>
 	<url>http://demgelopensource.github.io/UltraTrader</url>
 	<inceptionYear>2013</inceptionYear>
 	<description>A rewrite of the popular CitiTraders originally by tehBeard and tenowg.</description>
@@ -17,13 +16,6 @@
 		<url>http://demgelopensource.github.io/</url>
 	</organization>
 
-	<distributionManagement>
-		<site>
-			<id>github-project-site</id>
-			<url>gitsite:git@github.com/demgelopensource/UltraTrader.git</url>
-		</site>
-	</distributionManagement>
-
 	<scm>
 		<connection>scm:git:git@github.com:demgelopensource/UltraTrader.git</connection>
 		<developerConnection>scm:git:git@github.com:demgelopensource/UltraTrader.git</developerConnection>
@@ -31,117 +23,51 @@
 		<url>https://github.com/demgelopensource/UltraTrader</url>
 	</scm>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
-				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-				</configuration>
-			</plugin>
-			<!-- test maven site -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>3.3</version>
-				<dependencies>
-					<dependency>
-						<groupId>lt.velykis.maven.skins</groupId>
-						<artifactId>reflow-velocity-tools</artifactId>
-						<version>1.0.0</version>
-					</dependency>
-					<!-- Reflow skin requires Velocity >= 1.7  -->
-					<dependency>
-						<groupId>org.apache.velocity</groupId>
-						<artifactId>velocity</artifactId>
-						<version>1.7</version>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.maven.doxia</groupId>
-						<artifactId>doxia-module-markdown</artifactId>
-						<version>1.4</version>
-					</dependency>
-				</dependencies>
-				<configuration>
-					<generateReports>true</generateReports>
-					<inputEncoding>UTF-8</inputEncoding>
-					<outputEncoding>UTF-8</outputEncoding>
-					<skipDeploy>true</skipDeploy>
-				</configuration>
-			</plugin>
+	<distributionManagement>
+		<site>
+			<id>github-project-site</id>
+			<url>gitsite:git@github.com/demgelopensource/UltraTrader.git</url>
+		</site>
+	</distributionManagement>
 
-			<plugin>
-				<groupId>com.github.github</groupId>
-				<artifactId>site-maven-plugin</artifactId>
-				<version>0.8</version>
-				<executions>
-					<execution>
-						<configuration>
-							<server>github-project-site-new</server>
-							<repositoryName>${project.name}</repositoryName>
-							<repositoryOwner>${githubSiteOwner}</repositoryOwner>
-							<branch>refs/heads/gh-pages</branch>
-							<merge>true</merge>
-							<message>Site for ${project.version}-b${buildNumber}</message>
-						</configuration>
-						<phase>site-deploy</phase>
-						<goals>
-							<goal>site</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>2.1</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<relocations>
-								<relocation>
-									<pattern>com.thedemgel.yamlresourcebundle</pattern>
-									<shadedPattern>com.ultra.thedemgel.yamlresourcebundle</shadedPattern>
-								</relocation>
-								<relocation>
-									<pattern>snaq</pattern>
-									<shadedPattern>net.ultra.snaq</shadedPattern>
-								</relocation>
-								<relocation>
-									<pattern>org.apache.commons.logging</pattern>
-									<shadedPattern>org.ultra.apache.commons.logging</shadedPattern>
-								</relocation>
-							</relocations>
-							<artifactSet>
-								<includes>
-									<include>com.thedemgel:YamlResourceBundle</include>
-									<include>net.snaq:dbpool</include>
-									<include>org.mcstats.bukkit</include>
-									<include>commons-logging</include>
-								</includes>
-							</artifactSet>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
+	<modules>
+		<module>UltraTrader</module>
+	</modules>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.7</source>
+						<target>1.7</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
-			<version>1.6.4-R1.1-SNAPSHOT</version>
+			<version>1.6.4-R2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.snaq</groupId>
+			<artifactId>dbpool</artifactId>
+			<version>5.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.thedemgel</groupId>
+			<artifactId>YamlResourceBundle</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.26</version>
 		</dependency>
 		<dependency>
 			<groupId>net.citizensnpcs</groupId>
@@ -154,26 +80,11 @@
 			<version>1.2.27</version>
 		</dependency>
 		<dependency>
-			<groupId>com.thedemgel</groupId>
-			<artifactId>YamlResourceBundle</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>net.snaq</groupId>
-			<artifactId>dbpool</artifactId>
-			<version>5.1</version>
-		</dependency>
-		<dependency>
 			<groupId>org.mcstats.bukkit</groupId>
 			<artifactId>metrics</artifactId>
 			<version>R7</version>
 			<scope>compile</scope>
 		</dependency>
-	 <dependency>
-	  <groupId>mysql</groupId>
-	  <artifactId>mysql-connector-java</artifactId>
-	  <version>5.1.26</version>
-	 </dependency>
 	</dependencies>
 	<repositories>
 		<repository>
@@ -197,50 +108,4 @@
 			<url>http://repo.mcstats.org/content/repositories/public</url>
 		</repository>
 	</repositories>
-
-	<reporting>
-		<plugins>
-			<plugin>
-				<artifactId>maven-changelog-plugin</artifactId>
-				<version>2.2</version>
-			</plugin>
-			<plugin>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<configuration>
-					<configLocation>${basedir}/src/main/resources/checkstyle.xml</configLocation>
-				</configuration>
-				<version>2.10</version>
-			</plugin>
-			<plugin>
-				<artifactId>maven-jxr-plugin</artifactId>
-				<version>2.3</version>
-			</plugin>
-			<plugin>
-				<artifactId>maven-plugin-plugin</artifactId>
-				<version>3.2</version>
-			</plugin>
-			<plugin>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>2.7</version>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>cim</report>
-							<report>index</report>
-							<report>issue-tracking</report>
-							<report>license</report>
-							<report>project-team</report>
-							<report>scm</report>
-							<report>summary</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>2.5.2</version>
-			</plugin>
-		</plugins>
-	</reporting>
 </project>

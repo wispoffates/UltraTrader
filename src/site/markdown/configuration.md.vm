@@ -1,7 +1,0 @@
-#parse( "common" )
-$h2 Configuration
-Currently configuration is fairly simple.
-
-#set( $snippetFile = "/src/main/resources/config.yml" )
-#set( $snippetName = "" )
-#parse( "snippet" )
