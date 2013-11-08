@@ -4,7 +4,7 @@
   <groupId>com.thedemgel</groupId>
   <artifactId>UltraTrader</artifactId>
   <name>UltraTrader</name>
-  <version>0.5-BETA</version>
+  <version>0.6-BETA</version>
   <description>A rewrite of the popular CitiTraders originally by tehBeard and tenowg.</description>
   <url>http://demgelopensource.github.io/UltraTrader</url>
   <inceptionYear>2013</inceptionYear>
