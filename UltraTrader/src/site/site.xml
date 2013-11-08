@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="UltraTrader" xmlns="http://maven.apache.org/DECORATION/1.3.0"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/DECORATION/1.3.0 http://maven.apache.org/xsd/decoration-1.3.0.xsd">
+
+	<bannerLeft>
+		<!-- Reflow Maven Skin, but with "Reflow" highlighted -->
+		<name>
+			${project.artifactId}
+		</name>
+		<href>${project.url}</href>
+	</bannerLeft>
+	<publishDate position="bottom" format="yyyy-MM-dd" />
+	<version position="bottom" />
+	<skin>
+		<groupId>lt.velykis.maven.skins</groupId>
+		<artifactId>reflow-maven-skin</artifactId>
+		<version>1.0.0</version>
+	</skin>
+	<custom>
+		<reflowSkin>
+			<theme>bootswatch-spacelab</theme>
+			<highlightJs>true</highlightJs>
+			<brand>
+				<name>
+					${project.artifactId}
+				</name>
+				<href>${project.url}</href>
+			</brand>
+			<slogan>${project.description}</slogan>
+			<titleTemplate>%2$s | %1$s</titleTemplate>
+			<toc>top</toc>
+			<topNav>Main|Documentation|reports</topNav>
+			<bottomNav>
+				<column>Main</column>
+				<column>Documentation</column>
+				<column>reports|modules</column>
+			</bottomNav>
+			<bottomDescription>
+				This is a very good project doing interesting and valuable things.
+			</bottomDescription>
+			<pages>
+				<index>
+					<titleTemplate>UltraTrader</titleTemplate>
+					<breadcrumbs>false</breadcrumbs>
+					<toc>false</toc>
+					<sections>
+						<!--<carousel />-->
+						<body />
+						<sidebar />
+					</sections>
+				</index>
+				<developer-info>
+					<toc>sidebar</toc>
+				</developer-info>
+				<integration>
+					<toc>false</toc>
+				</integration>
+				<issue-tracking>
+					<toc>false</toc>
+				</issue-tracking>
+
+
+
+				<command>
+					<toc>sidebar</toc>
+					<breadcrumbs>true</breadcrumbs>
+				</command>
+				<permission>
+					<toc>sidebar</toc>
+					<breadcrumbs>true</breadcrumbs>
+				</permission>
+				<configuration>
+					<toc>sidebar</toc>
+					<breadcrumbs>true</breadcrumbs>
+					<highlightJs>false</highlightJs>
+				</configuration>
+				<localization>
+					<toc>sidebar</toc>
+					<breadcrumbs>true</breadcrumbs>
+					<highlightJs>false</highlightJs>
+				</localization>
+				<createtrader>
+					<toc>sidebar</toc>
+					<breakcrumbs>true</breakcrumbs>
+				</createtrader>
+				<limits>
+					<toc>sidebar</toc>
+					<breakcrumbs>true</breakcrumbs>
+					<highlightJs>false</highlightJs>
+				</limits>
+				<installation>
+					<toc>sidebar</toc>
+					<breadcrumbs>true</breadcrumbs>
+				</installation>
+				<admin>
+					<toc>sidebar</toc>
+					<breadcrumbs>true</breadcrumbs>
+				</admin>
+			</pages>
+		</reflowSkin>
+	</custom>
+	<body>
+		<!-- Add a rel to Google profile for all pages -->
+		<head>
+			<link rel="author" href="https://github.com/tenowg"/>
+		</head>
+
+		<links>
+			<item name="Download" href="download.html" />
+			<!-- <item name="GitHub project" href="http://github.com/tenowg/Regions/" /> -->
+		</links>
+
+		<breadcrumbs>
+			<item name="UltraTrader" href="/" />
+		</breadcrumbs>
+
+		<menu name="Main" inherit="top">
+			<item name="Home" href="./" />
+			<item name="GitHub project" href="${project.scm.url}" />
+			<item name="Release notes" href="changes-report.html" />
+		</menu>
+		<menu name="Download" inherit="top">
+			<item name="Download" href="download.html" />
+			<!-- <item name="License" href="license.html" /> -->
+		</menu>
+		<menu name="Documentation" inherit="bottom">
+			<item name="Localization" href="localization.html"/>
+			<item name="Installation" href="installation.html" />
+			<item name="Setting Shop Limits" href="limits.html" />
+			<item name="Commands" href="command.html" />
+			<item name="Permissions" href="permission.html" />
+			<item name="Configuration" href="configuration.html" />
+			<item name="Create A NPC Trader" href="createtrader.html" />
+			<item name="Administration" href="admin.html" />
+		</menu>
+		<menu name="Contribute" inherit="bottom">
+			<item name="Contribute" href="contribute.html" />
+			<item name="Issues" href="http://github.com/DemgelOpenSource/UltraTrader/issues/" />
+			<item name="Fork on GitHub" href="${project.scm.url}" />
+			<item name="Donate" href="" />
+		</menu>
+		<menu name="Maven Documentation" ref="reports" inherit="bottom"/>
+	</body>
+</project>

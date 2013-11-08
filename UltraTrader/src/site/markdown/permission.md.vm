@@ -1,0 +1,6 @@
+#parse( "common" )
+$h2 Permissions
+
+#set( $snippetFile = "/src/main/java/com/thedemgel/ultratrader/util/Permissions.java" )
+#set( $snippetName = "perm" )
+#parse( "snippet_javadoc" )

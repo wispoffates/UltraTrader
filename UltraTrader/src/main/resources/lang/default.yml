@@ -1,0 +1,184 @@
+conversation:
+  abandon: Conversation abandoned.
+  admin:
+    bankmenu:
+      balance: 'Wallet Balance: {0}'
+      deposit: deposit
+      settype: settype
+      type: 'Wallet Type: {0}'
+      withdraw: withdraw
+    banktypemenu: Choose which type of bank to use.
+    begin: Entering Shop Administration Menu
+    deposit: How much would you like to Deposit?
+    exit: Leaving Admin
+    inventorytypemenu: What type of inventory would you like?
+    level:
+      options:
+        decrease: decrease
+        increase: increase
+        set: set
+      proceed: It will cost {0} to goto level {1}, proceed?
+      notenoughfunds: You don't have enough funds.
+      raised: Level raised to {0}.
+      lowered: Level lowered to {0}.
+    menu:
+      options:
+        bank: bank
+        exit: exit
+        inventoryinterface: inventory
+        level: level
+        storename: storename
+        transfer: transfer
+    menutext: CitiTraders Admin Menu
+    playerwallet:
+      options:
+        anotherplayer: another
+        yourself: yourself
+    prefix: ADMIN
+    setbank: Setting bank to
+    setinventory: Setting inventory to
+    setname:
+      nametolong: Shop names can only be 32 characters or shorter.
+      setname: Name your shop. (32 Characters Max)
+    transfer:
+      needstobeonline: (Player needs to be online)
+      playercantaccept: Player can't accept this shop.
+      towhom: Who would you like to transfer this shop to?
+      transfered: Shop is no longer yours.
+    withdraw: How much would you like to Withdraw?
+  createshop:
+    begin: Entering Createshop Conversation
+    prefix: CREATE SHOP
+    menu:
+      options:
+        create: create
+        assign: assign
+      text:
+        begin: Would you like to
+        create: Create a new shop.
+        assign: Assign an existing shop.
+    create:
+      created: Shop was Created and Assigned to NPC.
+      error: There was an error creating the shop.
+      creating: Attempting to create shop.
+  itemadmin:
+    begin: Entering Item Administration
+    delete:
+      full: There are still some of these Items in the Inventory!
+      warn: If you continue, these items will be deleted!
+      confirm: Are you sure you want to delete this item?
+      deleted: Item Deleted.
+      cancelled: Operation Cancelled.
+    prefix: ITEM ADMIN
+    setprice: What would you like to charge for {0}?
+    setdescription: Give a short description of {0} (type "{1}" for no description).
+    menu:
+      options:
+        price: price
+        description: description
+        delete: delete
+        empty: empty
+        exit: exit
+    none: none
+  rental:
+    begin: Entering Trader Rental.
+    prefix: SHOP RENTAL
+    closed: NPC is not open for Renting.
+    admin:
+      begin: Entering Rental Admin.
+  setsellprice:
+    prefix: SET SELL PRICE
+    setprice: What would you like to charge for {0}?
+  addbuyitem:
+    begin: Begin adding an item to buy.
+    prefix: ADD BUY ITEM
+    setprice: What would you like to pay for [{0}]?
+    setdescription: Give a short description. {0} (type "{1}" for no description).
+    cantaddinventory: You can't add inventory in buy mode.
+    added: Item Added.
+    none: none
+    shopfull: Shop currently is full.
+  additem:
+    begin: Begin adding an item for sale.
+    prefix: ADD SELL ITEM
+    setprice: What would you like to charge for new item [{0}]?
+    setdescription: Give a short description of {0} (type "{1}" for no description).
+    addinventory: Item has been added to inventory.
+    added: Item Added.
+    none: none
+    shopfull: Shop currently is full.
+  error:
+    notadouble: Value needs to be a number value (2, 12.12)
+  options: Options
+  toquit: (To force exit type "/quit")
+general:
+  accept: 'Yes'
+  bank: Bank
+  buyprice: 'Buy Price: {0}'
+  decline: 'No'
+  description: Description
+  exit: exit
+  initialized: (Shop Initialized) {0} with id {1}
+  instock: Instock
+  inventory: Inventory
+  name: Name
+  newshopname: No Name Set.
+  notopen:
+    errorloading: Store wasn't loaded properly. (Please report)
+    unassigned: Store not open yet. (No store assinged)
+  price: Price
+  sellprice: 'Sell Price: {0}'
+  wallet:
+    admin: admin
+    bank: bank
+    player: player
+    shop: shop
+permission:
+  create:
+    deny: You do not have permission to create a shop.
+  rent:
+    deny: You do not have permission to rent an NPC.
+inventory:
+  admin:
+    display: Shop Admin
+    lore: Click to Admin Shop
+  buyadmin:
+    display: Buy Admin
+    lore: Click to Admin Buy Values
+  itemadmin:
+    display: Item Admin
+    lore: Click to set Item Details
+  back:
+    display: Back
+    lore: Click to go Back
+  removestock:
+    display: Remove Stock
+    lore:
+      full: Click to Move all to Inventory
+      empty: Nothing to move to Inventory
+  tobuyscreen:
+    display: Buy Screen
+    lore: Goto Buy Screen
+  tosellscreen:
+    display: Sell Screen
+    lore: Goto Sell Screen
+shops:
+  list:
+    noshops: You don't currently own any shops.
+    yourshops: 'Your current shops:'
+  gotobuy:
+    line1: To sell to shop
+    line2: Move to Buy screen
+transaction:
+  sale:
+    player:
+      notenoughfunds: You do not have the funds for this Transaction.
+    shop:
+      notenoughitems: There are not enough items to purchase. (Store is out of stock)
+      totalpurchase: 'Total Price: {0}'
+      purchase: You bought {0} {1}
+      sale: You sold {0} {1}
+      notenoughfunds: Shop doesn't have the funds for this Transaction.
+  error:
+    economy: There was an error with the economy, please report. (NULL)
+    fundstoshop: There was an error, please report
