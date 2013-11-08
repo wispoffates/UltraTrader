@@ -16,27 +16,27 @@
 <a class="jxr_linenumber" name="6" href="#6">6</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.inventory.AdminInventoryInterface;
 <a class="jxr_linenumber" name="7" href="#7">7</a>   <strong class="jxr_keyword">import</strong> java.util.ArrayList;
 <a class="jxr_linenumber" name="8" href="#8">8</a>   <strong class="jxr_keyword">import</strong> java.util.List;
-<a class="jxr_linenumber" name="9" href="#9">9</a>   <strong class="jxr_keyword">import</strong> org.bukkit.Bukkit;
-<a class="jxr_linenumber" name="10" href="#10">10</a>  <strong class="jxr_keyword">import</strong> org.bukkit.ChatColor;
-<a class="jxr_linenumber" name="11" href="#11">11</a>  <strong class="jxr_keyword">import</strong> org.bukkit.Material;
-<a class="jxr_linenumber" name="12" href="#12">12</a>  <strong class="jxr_keyword">import</strong> org.bukkit.conversations.Conversation;
-<a class="jxr_linenumber" name="13" href="#13">13</a>  <strong class="jxr_keyword">import</strong> org.bukkit.entity.HumanEntity;
-<a class="jxr_linenumber" name="14" href="#14">14</a>  <strong class="jxr_keyword">import</strong> org.bukkit.entity.Player;
-<a class="jxr_linenumber" name="15" href="#15">15</a>  <strong class="jxr_keyword">import</strong> org.bukkit.event.inventory.InventoryType;
-<a class="jxr_linenumber" name="16" href="#16">16</a>  <strong class="jxr_keyword">import</strong> org.bukkit.inventory.Inventory;
-<a class="jxr_linenumber" name="17" href="#17">17</a>  <strong class="jxr_keyword">import</strong> org.bukkit.inventory.InventoryView;
-<a class="jxr_linenumber" name="18" href="#18">18</a>  <strong class="jxr_keyword">import</strong> org.bukkit.inventory.ItemStack;
-<a class="jxr_linenumber" name="19" href="#19">19</a>  <strong class="jxr_keyword">import</strong> org.bukkit.inventory.meta.ItemMeta;
-<a class="jxr_linenumber" name="20" href="#20">20</a>  
-<a class="jxr_linenumber" name="21" href="#21">21</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../com/thedemgel/ultratrader/shop/ShopInventoryView.html">ShopInventoryView</a> <strong class="jxr_keyword">extends</strong> InventoryView {
-<a class="jxr_linenumber" name="22" href="#22">22</a>  
-<a class="jxr_linenumber" name="23" href="#23">23</a>  	<strong class="jxr_keyword">private</strong> Inventory top;
-<a class="jxr_linenumber" name="24" href="#24">24</a>  	<strong class="jxr_keyword">private</strong> Player player;
-<a class="jxr_linenumber" name="25" href="#25">25</a>  	<strong class="jxr_keyword">private</strong> InventoryType type = InventoryType.CHEST;
-<a class="jxr_linenumber" name="26" href="#26">26</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> keepAlive = false;
-<a class="jxr_linenumber" name="27" href="#27">27</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../com/thedemgel/ultratrader/shop/Shop.html">Shop</a> shop;
-<a class="jxr_linenumber" name="28" href="#28">28</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../com/thedemgel/ultratrader/shop/Status.html">Status</a> current = Status.NULL;
-<a class="jxr_linenumber" name="29" href="#29">29</a>  	<strong class="jxr_keyword">private</strong> Conversation convo;
+<a class="jxr_linenumber" name="9" href="#9">9</a>   <strong class="jxr_keyword">import</strong> org.bukkit.ChatColor;
+<a class="jxr_linenumber" name="10" href="#10">10</a>  <strong class="jxr_keyword">import</strong> org.bukkit.Material;
+<a class="jxr_linenumber" name="11" href="#11">11</a>  <strong class="jxr_keyword">import</strong> org.bukkit.conversations.Conversation;
+<a class="jxr_linenumber" name="12" href="#12">12</a>  <strong class="jxr_keyword">import</strong> org.bukkit.entity.HumanEntity;
+<a class="jxr_linenumber" name="13" href="#13">13</a>  <strong class="jxr_keyword">import</strong> org.bukkit.entity.Player;
+<a class="jxr_linenumber" name="14" href="#14">14</a>  <strong class="jxr_keyword">import</strong> org.bukkit.event.inventory.InventoryType;
+<a class="jxr_linenumber" name="15" href="#15">15</a>  <strong class="jxr_keyword">import</strong> org.bukkit.inventory.Inventory;
+<a class="jxr_linenumber" name="16" href="#16">16</a>  <strong class="jxr_keyword">import</strong> org.bukkit.inventory.InventoryView;
+<a class="jxr_linenumber" name="17" href="#17">17</a>  <strong class="jxr_keyword">import</strong> org.bukkit.inventory.ItemStack;
+<a class="jxr_linenumber" name="18" href="#18">18</a>  <strong class="jxr_keyword">import</strong> org.bukkit.inventory.meta.ItemMeta;
+<a class="jxr_linenumber" name="19" href="#19">19</a>  
+<a class="jxr_linenumber" name="20" href="#20">20</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../com/thedemgel/ultratrader/shop/ShopInventoryView.html">ShopInventoryView</a> <strong class="jxr_keyword">extends</strong> InventoryView {
+<a class="jxr_linenumber" name="21" href="#21">21</a>  
+<a class="jxr_linenumber" name="22" href="#22">22</a>  	<strong class="jxr_keyword">private</strong> Inventory top;
+<a class="jxr_linenumber" name="23" href="#23">23</a>  	<strong class="jxr_keyword">private</strong> Player player;
+<a class="jxr_linenumber" name="24" href="#24">24</a>  	<strong class="jxr_keyword">private</strong> InventoryType type = InventoryType.CHEST;
+<a class="jxr_linenumber" name="25" href="#25">25</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> keepAlive = false;
+<a class="jxr_linenumber" name="26" href="#26">26</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../com/thedemgel/ultratrader/shop/Shop.html">Shop</a> shop;
+<a class="jxr_linenumber" name="27" href="#27">27</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../com/thedemgel/ultratrader/shop/Status.html">Status</a> current = Status.NULL;
+<a class="jxr_linenumber" name="28" href="#28">28</a>  	<strong class="jxr_keyword">private</strong> Conversation convo;
+<a class="jxr_linenumber" name="29" href="#29">29</a>  	<strong class="jxr_keyword">private</strong> Object target;
 <a class="jxr_linenumber" name="30" href="#30">30</a>  
 <a class="jxr_linenumber" name="31" href="#31">31</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../com/thedemgel/ultratrader/shop/ShopInventoryView.html">ShopInventoryView</a>(Inventory invTop, Player player, <a href="../../../../com/thedemgel/ultratrader/shop/Shop.html">Shop</a> shop) {
 <a class="jxr_linenumber" name="32" href="#32">32</a>  		top = invTop;
@@ -336,7 +336,15 @@
 <a class="jxr_linenumber" name="326" href="#326">326</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setConvo(Conversation value) {
 <a class="jxr_linenumber" name="327" href="#327">327</a> 		convo = value;
 <a class="jxr_linenumber" name="328" href="#328">328</a> 	}
-<a class="jxr_linenumber" name="329" href="#329">329</a> }
+<a class="jxr_linenumber" name="329" href="#329">329</a> 
+<a class="jxr_linenumber" name="330" href="#330">330</a> 	<strong class="jxr_keyword">public</strong> Object getTarget() {
+<a class="jxr_linenumber" name="331" href="#331">331</a> 		<strong class="jxr_keyword">return</strong> target;
+<a class="jxr_linenumber" name="332" href="#332">332</a> 	}
+<a class="jxr_linenumber" name="333" href="#333">333</a> 
+<a class="jxr_linenumber" name="334" href="#334">334</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setTarget(Object value) {
+<a class="jxr_linenumber" name="335" href="#335">335</a> 		target = value;
+<a class="jxr_linenumber" name="336" href="#336">336</a> 	}
+<a class="jxr_linenumber" name="337" href="#337">337</a> }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>

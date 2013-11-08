@@ -17,18 +17,18 @@
 <a class="jxr_linenumber" name="7" href="#7">7</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.shop.ItemPrice;
 <a class="jxr_linenumber" name="8" href="#8">8</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.shop.Shop;
 <a class="jxr_linenumber" name="9" href="#9">9</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.util.ConfigValue;
-<a class="jxr_linenumber" name="10" href="#10">10</a>  <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.util.YamlFilenameFilter;
-<a class="jxr_linenumber" name="11" href="#11">11</a>  <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.wallet.WalletHandler;
-<a class="jxr_linenumber" name="12" href="#12">12</a>  <strong class="jxr_keyword">import</strong> java.io.File;
-<a class="jxr_linenumber" name="13" href="#13">13</a>  <strong class="jxr_keyword">import</strong> java.math.BigDecimal;
-<a class="jxr_linenumber" name="14" href="#14">14</a>  <strong class="jxr_keyword">import</strong> java.text.MessageFormat;
+<a class="jxr_linenumber" name="10" href="#10">10</a>  <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.util.ShopAction;
+<a class="jxr_linenumber" name="11" href="#11">11</a>  <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.util.YamlFilenameFilter;
+<a class="jxr_linenumber" name="12" href="#12">12</a>  <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.wallet.WalletHandler;
+<a class="jxr_linenumber" name="13" href="#13">13</a>  <strong class="jxr_keyword">import</strong> java.io.File;
+<a class="jxr_linenumber" name="14" href="#14">14</a>  <strong class="jxr_keyword">import</strong> java.math.BigDecimal;
 <a class="jxr_linenumber" name="15" href="#15">15</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
 <a class="jxr_linenumber" name="16" href="#16">16</a>  <strong class="jxr_keyword">import</strong> java.util.List;
 <a class="jxr_linenumber" name="17" href="#17">17</a>  <strong class="jxr_keyword">import</strong> java.util.Map;
 <a class="jxr_linenumber" name="18" href="#18">18</a>  <strong class="jxr_keyword">import</strong> java.util.Map.Entry;
-<a class="jxr_linenumber" name="19" href="#19">19</a>  <strong class="jxr_keyword">import</strong> java.util.logging.Level;
-<a class="jxr_linenumber" name="20" href="#20">20</a>  <strong class="jxr_keyword">import</strong> org.bukkit.Bukkit;
-<a class="jxr_linenumber" name="21" href="#21">21</a>  <strong class="jxr_keyword">import</strong> org.bukkit.configuration.ConfigurationSection;
+<a class="jxr_linenumber" name="19" href="#19">19</a>  <strong class="jxr_keyword">import</strong> net.milkbowl.vault.economy.EconomyResponse;
+<a class="jxr_linenumber" name="20" href="#20">20</a>  <strong class="jxr_keyword">import</strong> org.bukkit.configuration.ConfigurationSection;
+<a class="jxr_linenumber" name="21" href="#21">21</a>  <strong class="jxr_keyword">import</strong> org.bukkit.entity.Player;
 <a class="jxr_linenumber" name="22" href="#22">22</a>  <strong class="jxr_keyword">import</strong> org.bukkit.inventory.ItemStack;
 <a class="jxr_linenumber" name="23" href="#23">23</a>  
 <a class="jxr_linenumber" name="24" href="#24">24</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../com/thedemgel/ultratrader/data/YamlDataObject.html">YamlDataObject</a> <strong class="jxr_keyword">extends</strong> <a href="../../../../com/thedemgel/ultratrader/data/DataObject.html">DataObject</a> {
@@ -160,7 +160,7 @@
 <a class="jxr_linenumber" name="150" href="#150">150</a> 
 <a class="jxr_linenumber" name="151" href="#151">151</a> 		UltraTrader.getStoreHandler().addShop(shop);
 <a class="jxr_linenumber" name="152" href="#152">152</a> 
-<a class="jxr_linenumber" name="153" href="#153">153</a> 		Bukkit.getLogger().log(Level.INFO, L.getFormatString(<span class="jxr_string">"general.initialized"</span>, shop.getName(), shop.getId()));
+<a class="jxr_linenumber" name="153" href="#153">153</a> 		<em class="jxr_comment">//Bukkit.getLogger().log(Level.INFO, L.getFormatString("general.initialized", shop.getName(), shop.getId()));</em>
 <a class="jxr_linenumber" name="154" href="#154">154</a> 	}
 <a class="jxr_linenumber" name="155" href="#155">155</a> 
 <a class="jxr_linenumber" name="156" href="#156">156</a> 	@Override
@@ -182,100 +182,108 @@
 <a class="jxr_linenumber" name="172" href="#172">172</a> 		<strong class="jxr_keyword">return</strong> ids;
 <a class="jxr_linenumber" name="173" href="#173">173</a> 	}
 <a class="jxr_linenumber" name="174" href="#174">174</a> 
-<a class="jxr_linenumber" name="175" href="#175">175</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../com/thedemgel/ultratrader/data/YamlDataObject.html">SaveShop</a> <strong class="jxr_keyword">implements</strong> Runnable {
-<a class="jxr_linenumber" name="176" href="#176">176</a> 
-<a class="jxr_linenumber" name="177" href="#177">177</a> 		<strong class="jxr_keyword">private</strong> <a href="../../../../com/thedemgel/ultratrader/StoreConfig.html">StoreConfig</a> config;
-<a class="jxr_linenumber" name="178" href="#178">178</a> 		<strong class="jxr_keyword">private</strong> <a href="../../../../com/thedemgel/ultratrader/shop/Shop.html">Shop</a> shop;
-<a class="jxr_linenumber" name="179" href="#179">179</a> 
-<a class="jxr_linenumber" name="180" href="#180">180</a> 		<strong class="jxr_keyword">public</strong> <a href="../../../../com/thedemgel/ultratrader/data/YamlDataObject.html">SaveShop</a>(<a href="../../../../com/thedemgel/ultratrader/shop/Shop.html">Shop</a> shop) {
-<a class="jxr_linenumber" name="181" href="#181">181</a> 			config = <strong class="jxr_keyword">new</strong> <a href="../../../../com/thedemgel/ultratrader/StoreConfig.html">StoreConfig</a>(UltraTrader.getInstance(), <strong class="jxr_keyword">new</strong> File(STORE_DIR, shop.getId() + <span class="jxr_string">".yml"</span>));
-<a class="jxr_linenumber" name="182" href="#182">182</a> 			<strong class="jxr_keyword">this</strong>.shop = shop;
-<a class="jxr_linenumber" name="183" href="#183">183</a> 		}
+<a class="jxr_linenumber" name="175" href="#175">175</a> 	@Override
+<a class="jxr_linenumber" name="176" href="#176">176</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> initLogger(<a href="../../../../com/thedemgel/ultratrader/UltraTrader.html">UltraTrader</a> plugin) {
+<a class="jxr_linenumber" name="177" href="#177">177</a> 	}
+<a class="jxr_linenumber" name="178" href="#178">178</a> 
+<a class="jxr_linenumber" name="179" href="#179">179</a> 	@Override
+<a class="jxr_linenumber" name="180" href="#180">180</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> doLog(<a href="../../../../com/thedemgel/ultratrader/shop/Shop.html">Shop</a> shop, Player player, EconomyResponse resp, <a href="../../../../com/thedemgel/ultratrader/util/ShopAction.html">ShopAction</a> action, String message) {
+<a class="jxr_linenumber" name="181" href="#181">181</a> 	}
+<a class="jxr_linenumber" name="182" href="#182">182</a> 
+<a class="jxr_linenumber" name="183" href="#183">183</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../com/thedemgel/ultratrader/data/YamlDataObject.html">SaveShop</a> <strong class="jxr_keyword">implements</strong> Runnable {
 <a class="jxr_linenumber" name="184" href="#184">184</a> 
-<a class="jxr_linenumber" name="185" href="#185">185</a> 		@Override
-<a class="jxr_linenumber" name="186" href="#186">186</a> 		<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> run() {
-<a class="jxr_linenumber" name="187" href="#187">187</a> 			ConfigurationSection sellconfig = config.getConfig().createSection(<span class="jxr_string">"sellprices"</span>);
-<a class="jxr_linenumber" name="188" href="#188">188</a> 
-<a class="jxr_linenumber" name="189" href="#189">189</a> 			<strong class="jxr_keyword">for</strong> (ItemPrice ip : shop.getSellprices().values()) {
-<a class="jxr_linenumber" name="190" href="#190">190</a> 				sellconfig.set(ip.getId() + <span class="jxr_string">".amount"</span>, ip.getAmount());
-<a class="jxr_linenumber" name="191" href="#191">191</a> 				sellconfig.set(ip.getId() + <span class="jxr_string">".description"</span>, ip.getDescription());
-<a class="jxr_linenumber" name="192" href="#192">192</a> 				sellconfig.set(ip.getId() + <span class="jxr_string">".itemStack"</span>, ip.getItemStack());
-<a class="jxr_linenumber" name="193" href="#193">193</a> 				sellconfig.set(ip.getId() + <span class="jxr_string">".price"</span>, ip.getPrice());
-<a class="jxr_linenumber" name="194" href="#194">194</a> 				sellconfig.set(ip.getId() + <span class="jxr_string">".random"</span>, ip.getId());
-<a class="jxr_linenumber" name="195" href="#195">195</a> 			}
+<a class="jxr_linenumber" name="185" href="#185">185</a> 		<strong class="jxr_keyword">private</strong> <a href="../../../../com/thedemgel/ultratrader/StoreConfig.html">StoreConfig</a> config;
+<a class="jxr_linenumber" name="186" href="#186">186</a> 		<strong class="jxr_keyword">private</strong> <a href="../../../../com/thedemgel/ultratrader/shop/Shop.html">Shop</a> shop;
+<a class="jxr_linenumber" name="187" href="#187">187</a> 
+<a class="jxr_linenumber" name="188" href="#188">188</a> 		<strong class="jxr_keyword">public</strong> <a href="../../../../com/thedemgel/ultratrader/data/YamlDataObject.html">SaveShop</a>(<a href="../../../../com/thedemgel/ultratrader/shop/Shop.html">Shop</a> shop) {
+<a class="jxr_linenumber" name="189" href="#189">189</a> 			config = <strong class="jxr_keyword">new</strong> <a href="../../../../com/thedemgel/ultratrader/StoreConfig.html">StoreConfig</a>(UltraTrader.getInstance(), <strong class="jxr_keyword">new</strong> File(STORE_DIR, shop.getId() + <span class="jxr_string">".yml"</span>));
+<a class="jxr_linenumber" name="190" href="#190">190</a> 			<strong class="jxr_keyword">this</strong>.shop = shop;
+<a class="jxr_linenumber" name="191" href="#191">191</a> 		}
+<a class="jxr_linenumber" name="192" href="#192">192</a> 
+<a class="jxr_linenumber" name="193" href="#193">193</a> 		@Override
+<a class="jxr_linenumber" name="194" href="#194">194</a> 		<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> run() {
+<a class="jxr_linenumber" name="195" href="#195">195</a> 			ConfigurationSection sellconfig = config.getConfig().createSection(<span class="jxr_string">"sellprices"</span>);
 <a class="jxr_linenumber" name="196" href="#196">196</a> 
-<a class="jxr_linenumber" name="197" href="#197">197</a> 			ConfigurationSection buyconfig = config.getConfig().createSection(<span class="jxr_string">"buyprices"</span>);
-<a class="jxr_linenumber" name="198" href="#198">198</a> 
-<a class="jxr_linenumber" name="199" href="#199">199</a> 			<strong class="jxr_keyword">for</strong> (ItemPrice ip : shop.getBuyprices().values()) {
-<a class="jxr_linenumber" name="200" href="#200">200</a> 				buyconfig.set(ip.getId() + <span class="jxr_string">".amount"</span>, ip.getAmount());
-<a class="jxr_linenumber" name="201" href="#201">201</a> 				buyconfig.set(ip.getId() + <span class="jxr_string">".description"</span>, ip.getDescription());
-<a class="jxr_linenumber" name="202" href="#202">202</a> 				buyconfig.set(ip.getId() + <span class="jxr_string">".itemStack"</span>, ip.getItemStack());
-<a class="jxr_linenumber" name="203" href="#203">203</a> 				buyconfig.set(ip.getId() + <span class="jxr_string">".price"</span>, ip.getPrice());
-<a class="jxr_linenumber" name="204" href="#204">204</a> 				buyconfig.set(ip.getId() + <span class="jxr_string">".random"</span>, ip.getId());
-<a class="jxr_linenumber" name="205" href="#205">205</a> 			}
+<a class="jxr_linenumber" name="197" href="#197">197</a> 			<strong class="jxr_keyword">for</strong> (ItemPrice ip : shop.getSellprices().values()) {
+<a class="jxr_linenumber" name="198" href="#198">198</a> 				sellconfig.set(ip.getId() + <span class="jxr_string">".amount"</span>, ip.getAmount());
+<a class="jxr_linenumber" name="199" href="#199">199</a> 				sellconfig.set(ip.getId() + <span class="jxr_string">".description"</span>, ip.getDescription());
+<a class="jxr_linenumber" name="200" href="#200">200</a> 				sellconfig.set(ip.getId() + <span class="jxr_string">".itemStack"</span>, ip.getItemStack());
+<a class="jxr_linenumber" name="201" href="#201">201</a> 				sellconfig.set(ip.getId() + <span class="jxr_string">".price"</span>, ip.getPrice());
+<a class="jxr_linenumber" name="202" href="#202">202</a> 				sellconfig.set(ip.getId() + <span class="jxr_string">".random"</span>, ip.getId());
+<a class="jxr_linenumber" name="203" href="#203">203</a> 			}
+<a class="jxr_linenumber" name="204" href="#204">204</a> 
+<a class="jxr_linenumber" name="205" href="#205">205</a> 			ConfigurationSection buyconfig = config.getConfig().createSection(<span class="jxr_string">"buyprices"</span>);
 <a class="jxr_linenumber" name="206" href="#206">206</a> 
-<a class="jxr_linenumber" name="207" href="#207">207</a> 			ConfigurationSection invconfig = config.getConfig().getConfigurationSection(<span class="jxr_string">"inventory"</span>);
-<a class="jxr_linenumber" name="208" href="#208">208</a> 			<strong class="jxr_keyword">if</strong> (invconfig == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="209" href="#209">209</a> 				invconfig = config.getConfig().createSection(<span class="jxr_string">"inventory"</span>);
-<a class="jxr_linenumber" name="210" href="#210">210</a> 			}
-<a class="jxr_linenumber" name="211" href="#211">211</a> 
-<a class="jxr_linenumber" name="212" href="#212">212</a> 			<em class="jxr_comment">// Save Inventory INFO</em>
-<a class="jxr_linenumber" name="213" href="#213">213</a> 			ConfigurationSection inventoryinfoconfig = invconfig.getConfigurationSection(<span class="jxr_string">"info"</span>);
-<a class="jxr_linenumber" name="214" href="#214">214</a> 			<strong class="jxr_keyword">if</strong> (inventoryinfoconfig == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="215" href="#215">215</a> 				inventoryinfoconfig = invconfig.createSection(<span class="jxr_string">"info"</span>);
-<a class="jxr_linenumber" name="216" href="#216">216</a> 				ConfigValue&lt;String&gt; defaultinventory = <strong class="jxr_keyword">new</strong> <a href="../../../../com/thedemgel/ultratrader/util/ConfigValue.html">ConfigValue</a>(InventoryInterfaceHandler.DEFAULT_INVENTORY_TYPE);
-<a class="jxr_linenumber" name="217" href="#217">217</a> 				inventoryinfoconfig.set(<span class="jxr_string">"type"</span>, defaultinventory.getValue());
+<a class="jxr_linenumber" name="207" href="#207">207</a> 			<strong class="jxr_keyword">for</strong> (ItemPrice ip : shop.getBuyprices().values()) {
+<a class="jxr_linenumber" name="208" href="#208">208</a> 				buyconfig.set(ip.getId() + <span class="jxr_string">".amount"</span>, ip.getAmount());
+<a class="jxr_linenumber" name="209" href="#209">209</a> 				buyconfig.set(ip.getId() + <span class="jxr_string">".description"</span>, ip.getDescription());
+<a class="jxr_linenumber" name="210" href="#210">210</a> 				buyconfig.set(ip.getId() + <span class="jxr_string">".itemStack"</span>, ip.getItemStack());
+<a class="jxr_linenumber" name="211" href="#211">211</a> 				buyconfig.set(ip.getId() + <span class="jxr_string">".price"</span>, ip.getPrice());
+<a class="jxr_linenumber" name="212" href="#212">212</a> 				buyconfig.set(ip.getId() + <span class="jxr_string">".random"</span>, ip.getId());
+<a class="jxr_linenumber" name="213" href="#213">213</a> 			}
+<a class="jxr_linenumber" name="214" href="#214">214</a> 
+<a class="jxr_linenumber" name="215" href="#215">215</a> 			ConfigurationSection invconfig = config.getConfig().getConfigurationSection(<span class="jxr_string">"inventory"</span>);
+<a class="jxr_linenumber" name="216" href="#216">216</a> 			<strong class="jxr_keyword">if</strong> (invconfig == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="217" href="#217">217</a> 				invconfig = config.getConfig().createSection(<span class="jxr_string">"inventory"</span>);
 <a class="jxr_linenumber" name="218" href="#218">218</a> 			}
 <a class="jxr_linenumber" name="219" href="#219">219</a> 
-<a class="jxr_linenumber" name="220" href="#220">220</a> 			<strong class="jxr_keyword">for</strong> (Entry&lt;String, ConfigValue&gt; inventoryinfo : shop.getInventoryinfo().entrySet()) {
-<a class="jxr_linenumber" name="221" href="#221">221</a> 				inventoryinfoconfig.set(inventoryinfo.getKey(), inventoryinfo.getValue().getValue());
-<a class="jxr_linenumber" name="222" href="#222">222</a> 			}
-<a class="jxr_linenumber" name="223" href="#223">223</a> 
-<a class="jxr_linenumber" name="224" href="#224">224</a> 			<em class="jxr_comment">// Save Inventory items</em>
-<a class="jxr_linenumber" name="225" href="#225">225</a> 			ConfigurationSection invconf = invconfig.createSection(<span class="jxr_string">"items"</span>);
-<a class="jxr_linenumber" name="226" href="#226">226</a> 
-<a class="jxr_linenumber" name="227" href="#227">227</a> 			Integer count = 0;
-<a class="jxr_linenumber" name="228" href="#228">228</a> 
-<a class="jxr_linenumber" name="229" href="#229">229</a> 			<strong class="jxr_keyword">for</strong> (Map.Entry&lt;ItemStack, Integer&gt; entry : shop.getInventory().entrySet()) {
-<a class="jxr_linenumber" name="230" href="#230">230</a> 				invconf.set(count.toString() + <span class="jxr_string">".itemstack"</span>, entry.getKey());
-<a class="jxr_linenumber" name="231" href="#231">231</a> 				invconf.set(count.toString() + <span class="jxr_string">".amount"</span>, entry.getValue());
-<a class="jxr_linenumber" name="232" href="#232">232</a> 				count++;
-<a class="jxr_linenumber" name="233" href="#233">233</a> 			}
+<a class="jxr_linenumber" name="220" href="#220">220</a> 			<em class="jxr_comment">// Save Inventory INFO</em>
+<a class="jxr_linenumber" name="221" href="#221">221</a> 			ConfigurationSection inventoryinfoconfig = invconfig.getConfigurationSection(<span class="jxr_string">"info"</span>);
+<a class="jxr_linenumber" name="222" href="#222">222</a> 			<strong class="jxr_keyword">if</strong> (inventoryinfoconfig == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="223" href="#223">223</a> 				inventoryinfoconfig = invconfig.createSection(<span class="jxr_string">"info"</span>);
+<a class="jxr_linenumber" name="224" href="#224">224</a> 				ConfigValue&lt;String&gt; defaultinventory = <strong class="jxr_keyword">new</strong> <a href="../../../../com/thedemgel/ultratrader/util/ConfigValue.html">ConfigValue</a>(InventoryInterfaceHandler.DEFAULT_INVENTORY_TYPE);
+<a class="jxr_linenumber" name="225" href="#225">225</a> 				inventoryinfoconfig.set(<span class="jxr_string">"type"</span>, defaultinventory.getValue());
+<a class="jxr_linenumber" name="226" href="#226">226</a> 			}
+<a class="jxr_linenumber" name="227" href="#227">227</a> 
+<a class="jxr_linenumber" name="228" href="#228">228</a> 			<strong class="jxr_keyword">for</strong> (Entry&lt;String, ConfigValue&gt; inventoryinfo : shop.getInventoryinfo().entrySet()) {
+<a class="jxr_linenumber" name="229" href="#229">229</a> 				inventoryinfoconfig.set(inventoryinfo.getKey(), inventoryinfo.getValue().getValue());
+<a class="jxr_linenumber" name="230" href="#230">230</a> 			}
+<a class="jxr_linenumber" name="231" href="#231">231</a> 
+<a class="jxr_linenumber" name="232" href="#232">232</a> 			<em class="jxr_comment">// Save Inventory items</em>
+<a class="jxr_linenumber" name="233" href="#233">233</a> 			ConfigurationSection invconf = invconfig.createSection(<span class="jxr_string">"items"</span>);
 <a class="jxr_linenumber" name="234" href="#234">234</a> 
-<a class="jxr_linenumber" name="235" href="#235">235</a> 			<em class="jxr_comment">// Get wallet information</em>
-<a class="jxr_linenumber" name="236" href="#236">236</a> 			ConfigurationSection walletconfig = config.getConfig().getConfigurationSection(<span class="jxr_string">"wallet"</span>);
-<a class="jxr_linenumber" name="237" href="#237">237</a> 			<strong class="jxr_keyword">if</strong> (walletconfig == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="238" href="#238">238</a> 				walletconfig = config.getConfig().createSection(<span class="jxr_string">"wallet"</span>);
-<a class="jxr_linenumber" name="239" href="#239">239</a> 				walletconfig.set(<span class="jxr_string">"type"</span>, WalletHandler.DEFAULT_WALLET_TYPE);
-<a class="jxr_linenumber" name="240" href="#240">240</a> 			}
-<a class="jxr_linenumber" name="241" href="#241">241</a> 
-<a class="jxr_linenumber" name="242" href="#242">242</a> 			<strong class="jxr_keyword">for</strong> (Entry&lt;String, ConfigValue&gt; walletinfo : shop.getWalletinfo().entrySet()) {
-<a class="jxr_linenumber" name="243" href="#243">243</a> 				walletconfig.set(walletinfo.getKey(), walletinfo.getValue().getValue());
-<a class="jxr_linenumber" name="244" href="#244">244</a> 			}
-<a class="jxr_linenumber" name="245" href="#245">245</a> 
-<a class="jxr_linenumber" name="246" href="#246">246</a> 			ConfigurationSection infoconfig = config.getConfig().getConfigurationSection(<span class="jxr_string">"info"</span>);
-<a class="jxr_linenumber" name="247" href="#247">247</a> 			<strong class="jxr_keyword">if</strong> (infoconfig == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="248" href="#248">248</a> 				infoconfig = config.getConfig().createSection(<span class="jxr_string">"info"</span>);
-<a class="jxr_linenumber" name="249" href="#249">249</a> 				ConfigValue&lt;String&gt; defaultname = <strong class="jxr_keyword">new</strong> <a href="../../../../com/thedemgel/ultratrader/util/ConfigValue.html">ConfigValue</a>(L.getString(<span class="jxr_string">"general.newshopname"</span>));
-<a class="jxr_linenumber" name="250" href="#250">250</a> 				infoconfig.set(<span class="jxr_string">"name"</span>, defaultname);
-<a class="jxr_linenumber" name="251" href="#251">251</a> 			}
-<a class="jxr_linenumber" name="252" href="#252">252</a> 
-<a class="jxr_linenumber" name="253" href="#253">253</a> 			<strong class="jxr_keyword">for</strong> (Entry&lt;String, ConfigValue&gt; info : shop.getInfo().entrySet()) {
-<a class="jxr_linenumber" name="254" href="#254">254</a> 				infoconfig.set(info.getKey(), info.getValue().getValue());
-<a class="jxr_linenumber" name="255" href="#255">255</a> 			}
-<a class="jxr_linenumber" name="256" href="#256">256</a> 			<em class="jxr_comment">/*<em class="jxr_comment">for (String key : walletconfig.getKeys(false)) {</em></em>
-<a class="jxr_linenumber" name="257" href="#257">257</a> <em class="jxr_comment">			 System.out.println(key);</em>
-<a class="jxr_linenumber" name="258" href="#258">258</a> <em class="jxr_comment">			 shop.getInfo().put(key, new ConfigValue(walletconfig.get(key)));</em>
-<a class="jxr_linenumber" name="259" href="#259">259</a> <em class="jxr_comment">			 }</em>
+<a class="jxr_linenumber" name="235" href="#235">235</a> 			Integer count = 0;
+<a class="jxr_linenumber" name="236" href="#236">236</a> 
+<a class="jxr_linenumber" name="237" href="#237">237</a> 			<strong class="jxr_keyword">for</strong> (Map.Entry&lt;ItemStack, Integer&gt; entry : shop.getInventory().entrySet()) {
+<a class="jxr_linenumber" name="238" href="#238">238</a> 				invconf.set(count.toString() + <span class="jxr_string">".itemstack"</span>, entry.getKey());
+<a class="jxr_linenumber" name="239" href="#239">239</a> 				invconf.set(count.toString() + <span class="jxr_string">".amount"</span>, entry.getValue());
+<a class="jxr_linenumber" name="240" href="#240">240</a> 				count++;
+<a class="jxr_linenumber" name="241" href="#241">241</a> 			}
+<a class="jxr_linenumber" name="242" href="#242">242</a> 
+<a class="jxr_linenumber" name="243" href="#243">243</a> 			<em class="jxr_comment">// Get wallet information</em>
+<a class="jxr_linenumber" name="244" href="#244">244</a> 			ConfigurationSection walletconfig = config.getConfig().getConfigurationSection(<span class="jxr_string">"wallet"</span>);
+<a class="jxr_linenumber" name="245" href="#245">245</a> 			<strong class="jxr_keyword">if</strong> (walletconfig == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="246" href="#246">246</a> 				walletconfig = config.getConfig().createSection(<span class="jxr_string">"wallet"</span>);
+<a class="jxr_linenumber" name="247" href="#247">247</a> 				walletconfig.set(<span class="jxr_string">"type"</span>, WalletHandler.DEFAULT_WALLET_TYPE);
+<a class="jxr_linenumber" name="248" href="#248">248</a> 			}
+<a class="jxr_linenumber" name="249" href="#249">249</a> 
+<a class="jxr_linenumber" name="250" href="#250">250</a> 			<strong class="jxr_keyword">for</strong> (Entry&lt;String, ConfigValue&gt; walletinfo : shop.getWalletinfo().entrySet()) {
+<a class="jxr_linenumber" name="251" href="#251">251</a> 				walletconfig.set(walletinfo.getKey(), walletinfo.getValue().getValue());
+<a class="jxr_linenumber" name="252" href="#252">252</a> 			}
+<a class="jxr_linenumber" name="253" href="#253">253</a> 
+<a class="jxr_linenumber" name="254" href="#254">254</a> 			ConfigurationSection infoconfig = config.getConfig().getConfigurationSection(<span class="jxr_string">"info"</span>);
+<a class="jxr_linenumber" name="255" href="#255">255</a> 			<strong class="jxr_keyword">if</strong> (infoconfig == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="256" href="#256">256</a> 				infoconfig = config.getConfig().createSection(<span class="jxr_string">"info"</span>);
+<a class="jxr_linenumber" name="257" href="#257">257</a> 				ConfigValue&lt;String&gt; defaultname = <strong class="jxr_keyword">new</strong> <a href="../../../../com/thedemgel/ultratrader/util/ConfigValue.html">ConfigValue</a>(L.getString(<span class="jxr_string">"general.newshopname"</span>));
+<a class="jxr_linenumber" name="258" href="#258">258</a> 				infoconfig.set(<span class="jxr_string">"name"</span>, defaultname);
+<a class="jxr_linenumber" name="259" href="#259">259</a> 			}
 <a class="jxr_linenumber" name="260" href="#260">260</a> 
-<a class="jxr_linenumber" name="261" href="#261">261</a> <em class="jxr_comment">			 for (Map.Entry&lt;String, ConfigValue&gt; i : shop.getInfo().entrySet()) {</em>
-<a class="jxr_linenumber" name="262" href="#262">262</a> <em class="jxr_comment">			 System.out.println(i.getKey() + " -- " + i.getValue().getValue() + " -- " + i.getValue().getValue().getClass());</em>
-<a class="jxr_linenumber" name="263" href="#263">263</a> <em class="jxr_comment">			 }*/</em>
-<a class="jxr_linenumber" name="264" href="#264">264</a> 
-<a class="jxr_linenumber" name="265" href="#265">265</a> 			config.saveConfig();
-<a class="jxr_linenumber" name="266" href="#266">266</a> 		}
-<a class="jxr_linenumber" name="267" href="#267">267</a> 	}
-<a class="jxr_linenumber" name="268" href="#268">268</a> }
+<a class="jxr_linenumber" name="261" href="#261">261</a> 			<strong class="jxr_keyword">for</strong> (Entry&lt;String, ConfigValue&gt; info : shop.getInfo().entrySet()) {
+<a class="jxr_linenumber" name="262" href="#262">262</a> 				infoconfig.set(info.getKey(), info.getValue().getValue());
+<a class="jxr_linenumber" name="263" href="#263">263</a> 			}
+<a class="jxr_linenumber" name="264" href="#264">264</a> 			<em class="jxr_comment">/*<em class="jxr_comment">for (String key : walletconfig.getKeys(false)) {</em></em>
+<a class="jxr_linenumber" name="265" href="#265">265</a> <em class="jxr_comment">			 System.out.println(key);</em>
+<a class="jxr_linenumber" name="266" href="#266">266</a> <em class="jxr_comment">			 shop.getInfo().put(key, new ConfigValue(walletconfig.get(key)));</em>
+<a class="jxr_linenumber" name="267" href="#267">267</a> <em class="jxr_comment">			 }</em>
+<a class="jxr_linenumber" name="268" href="#268">268</a> 
+<a class="jxr_linenumber" name="269" href="#269">269</a> <em class="jxr_comment">			 for (Map.Entry&lt;String, ConfigValue&gt; i : shop.getInfo().entrySet()) {</em>
+<a class="jxr_linenumber" name="270" href="#270">270</a> <em class="jxr_comment">			 System.out.println(i.getKey() + " -- " + i.getValue().getValue() + " -- " + i.getValue().getValue().getClass());</em>
+<a class="jxr_linenumber" name="271" href="#271">271</a> <em class="jxr_comment">			 }*/</em>
+<a class="jxr_linenumber" name="272" href="#272">272</a> 
+<a class="jxr_linenumber" name="273" href="#273">273</a> 			config.saveConfig();
+<a class="jxr_linenumber" name="274" href="#274">274</a> 		}
+<a class="jxr_linenumber" name="275" href="#275">275</a> 	}
+<a class="jxr_linenumber" name="276" href="#276">276</a> }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>
