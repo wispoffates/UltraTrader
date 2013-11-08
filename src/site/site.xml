@@ -93,6 +93,10 @@
 					<toc>sidebar</toc>
 					<breadcrumbs>true</breadcrumbs>
 				</installation>
+				<admin>
+					<toc>sidebar</toc>
+					<breadcrumbs>true</breadcrumbs>
+				</admin>
 			</pages>
 		</reflowSkin>
 	</custom>
@@ -128,6 +132,7 @@
 			<item name="Permissions" href="permission.html" />
 			<item name="Configuration" href="configuration.html" />
 			<item name="Create A NPC Trader" href="createtrader.html" />
+			<item name="Administration" href="admin.html" />
 		</menu>
 		<menu name="Contribute" inherit="bottom">
 			<item name="Contribute" href="contribute.html" />

@@ -41,3 +41,4 @@ store, think about selling an item that can open your store from afar?
 * [Commands] (command.html "Commands")
 * [Create a Trader](createtrader.html "Create a Trader")
 * [Configuration](configuration.html "Configuration")
+* [Administration](admin.html "Administration")
