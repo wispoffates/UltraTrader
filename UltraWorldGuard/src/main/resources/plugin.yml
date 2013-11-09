@@ -1,0 +1,4 @@
+name: UltraWorldGuard
+main: com.thedemgel.ultrarental.UltraWorldGuard
+version: 1.0.0-SNAPSHOT
+depend: [Vault,Citizens,UltraTrader]

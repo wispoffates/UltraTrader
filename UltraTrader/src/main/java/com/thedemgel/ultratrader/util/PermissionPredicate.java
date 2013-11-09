@@ -3,7 +3,9 @@ package com.thedemgel.ultratrader.util;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 
@@ -16,6 +18,20 @@ public class PermissionPredicate implements Predicate<PermissionAttachmentInfo> 
 			test = basePermission;
 			Collection<PermissionAttachmentInfo> perms = Collections2.filter(player.getEffectivePermissions(), this);
 			return perms;
+		}
+
+		public List<String> getPermissionValues(String basePermission, Player player) {
+			Collection<PermissionAttachmentInfo> perms = getPermissions(basePermission, player);
+
+			List<String> values = new ArrayList<>();
+
+			for (PermissionAttachmentInfo info : perms) {
+				String value = info.getPermission().replaceFirst(basePermission + ".", "");
+				values.add(value);
+			}
+
+			return values;
+
 		}
 
 		public int getHighestPermissionSet(String basePermission, Player player) {

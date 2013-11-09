@@ -56,9 +56,6 @@ public class AdminMenuPrompt extends FixedIgnoreCaseSetPrompt {
 						}
 					}
 				}
-				/*if (npc.hasTrait(RentalShop.class)) {
-					addOption("rental", new RentalEndRentingPrompt());
-				}*/
 			}
 		}
 		addOption(L.getString("general.exit"), new AdminFinishPrompt());

@@ -299,20 +299,10 @@ public class ShopListener implements Listener {
 			}
 
 			NPC npc = CitizensAPI.getNPCRegistry().getNPC(entity);
-Bukkit.getLogger().log(Level.INFO, "Testing");
+
 			if (!UltraTrader.getTraitHandler().processClick(npc, event.getPlayer())) {
 				return;
 			}
-
-			/*if (npc.hasTrait(RentalShop.class)) {
-				RentalShop rentalshop = npc.getTrait(RentalShop.class);
-				if (!rentalshop.isRented()) {
-					Conversation convo = UltraTrader.getConversationHandler().getRentalTrader().buildConversation(player);
-					convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
-					convo.begin();
-					return;
-				}
-			}*/
 
 			if (npc.hasTrait(TraderTrait.class)) {
 				TraderTrait trait = npc.getTrait(TraderTrait.class);
@@ -393,34 +383,6 @@ Bukkit.getLogger().log(Level.INFO, "Testing");
 				UltraTrader.getStoreHandler().getInventoryHandler().createBuyInventoryView(player, UltraTrader.getStoreHandler().getShop(Integer.valueOf(id)));
 				UltraTrader.getStoreHandler().getInventoryHandler().openInventory(player);
 			}
-			/*
-			 * // FUTURE: have to check for null and special lore data before continuing.
-			 switch (item.getItemMeta().getDisplayName()) {
-			 case "Store":
-			 // Open Store
-			 UltraTrader.getStoreHandler().getInventoryHandler().createBuyInventoryView(player, UltraTrader.getStoreHandler().getShop(1));
-			 UltraTrader.getStoreHandler().getInventoryHandler().openInventory(player);
-			 break;
-			 case "Create Shop":
-			 createShop(player, item, event.getClickedBlock());
-			 break;
-			 default:
-			 }*/
 		}
 	}
-
-	/*public void createShop(Player player, ItemStack item, Block block) {
-	 if (!player.hasPermission(Permissions.CREATE_STORES)) {
-	 player.sendMessage(L.getString("permission.create.deny"));
-	 return;
-	 }
-	 if (item.getItemMeta().hasLore()) {
-	 ItemMeta meta = item.getItemMeta();
-	 Integer uses = Integer.valueOf(meta.getLore().get(2).split(" ")[0]) - 1;
-	 List<String> metas = meta.getLore();
-	 metas.set(2, String.valueOf(uses) + " uses left.");
-	 meta.setLore(metas);
-	 item.setItemMeta(meta);
-	 }
-	 }*/
 }

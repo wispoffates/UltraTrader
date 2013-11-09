@@ -172,4 +172,23 @@ public class Permissions {
 	 * END SNIPPET: perm
 	 */
 	public static final String SHOP_LIMIT_CREATE_LEVEL = "trader.limits.createlevel";
+
+	/**
+	 * START SNIPPET: perm
+	 * ####trader.limits.required.sometrait
+	 * `This limit matches the traits.required setting in limits.yml, replace sometrait with the
+	 * required trait. WARNING: this will add to the required traits listed in traits.required unless you
+	 * set trader.limits.required.override`
+	 * END SNIPPET: perm
+	 */
+	public static final String SHOP_LIMIT_TRAITS_REQUIRED = "trader.limits.required";
+
+	/**
+	 * START SNIPPET: perm
+	 * ####trader.limits.required.override
+	 * `This permissions is used to tell Ultratrader to completely override all required traits
+	 * on ultratrader creation with permission requirements instead of limits.yml`
+	 * END SNIPPET: perm
+	 */
+	public static final String SHOP_LIMIT_TRAITS_REQUIRED_OVERRIDE = "trader.limits.required.override";
 }

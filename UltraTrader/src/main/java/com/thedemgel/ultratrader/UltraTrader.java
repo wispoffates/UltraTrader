@@ -82,10 +82,6 @@ public class UltraTrader extends JavaPlugin {
 		return inventoryInterfaceHandler;
 	}
 
-	//public static RentalHandler getRentalHandler() {
-	//	return rentalHandler;
-	//}
-
 	public static TraitHandler getTraitHandler() {
 		return traitHandler;
 	}
@@ -114,7 +110,6 @@ public class UltraTrader extends JavaPlugin {
 		plugin = this;
 
 		traitHandler = new TraitHandler();
-		//rentalHandler = new RentalHandler();
 
 		LimitHandler.init();
 		// Populate config.yml
@@ -177,7 +172,6 @@ public class UltraTrader extends JavaPlugin {
 
 		if (citizens) {
 			CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(TraderTrait.class).withName("ultratrader"));
-			//getTraitHandler().registerTrait(RentalShop.class, "rentalshop");
 		}
 	}
 

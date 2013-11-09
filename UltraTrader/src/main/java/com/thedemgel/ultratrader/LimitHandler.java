@@ -5,6 +5,7 @@ import com.thedemgel.ultratrader.shop.Shop;
 import com.thedemgel.ultratrader.util.ConfigValue;
 import com.thedemgel.ultratrader.util.PermissionPredicate;
 import com.thedemgel.ultratrader.util.Permissions;
+import java.util.List;
 import java.util.logging.Level;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
@@ -225,5 +226,20 @@ public class LimitHandler {
 		}
 
 		return false;
+	}
+
+	public static List<String> getRequiredTraits(Player player) {
+		// Start player limit override.
+		PermissionPredicate pred = new PermissionPredicate();
+
+		List<String> traits = pred.getPermissionValues(Permissions.SHOP_LIMIT_TRAITS_REQUIRED, player);
+
+		if (player.hasPermission(Permissions.SHOP_LIMIT_TRAITS_REQUIRED_OVERRIDE)) {
+			return traits;
+		}
+		// End player limit override
+		ConfigurationSection section = getLimit(player);
+
+		return traits;
 	}
 }

@@ -122,7 +122,6 @@ public class RentalShop extends UltraTrait {
 
 	@Override
 	public boolean onClick(Player player) {
-		System.out.println("I WAS CLICKED, YAY!!!!!");
 		if (!isRented()) {
 			Conversation convo = UltraRental.getRentalTraderConvo().buildConversation(player);
 			convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
