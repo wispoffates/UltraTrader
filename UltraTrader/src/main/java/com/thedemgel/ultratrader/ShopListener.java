@@ -1,16 +1,16 @@
 package com.thedemgel.ultratrader;
 
-import com.thedemgel.ultratrader.citizens.RentalShop;
 import com.thedemgel.ultratrader.citizens.TraderTrait;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.shop.ShopHandler;
 import com.thedemgel.ultratrader.util.Permissions;
 import com.thedemgel.ultratrader.shop.ShopInventoryView;
 import com.thedemgel.ultratrader.shop.StoreItem;
-import java.util.List;
+import java.util.logging.Level;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.api.trait.trait.Owner;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.conversations.Conversation;
@@ -19,14 +19,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 public class ShopListener implements Listener {
 
@@ -301,8 +299,12 @@ public class ShopListener implements Listener {
 			}
 
 			NPC npc = CitizensAPI.getNPCRegistry().getNPC(entity);
+Bukkit.getLogger().log(Level.INFO, "Testing");
+			if (!UltraTrader.getTraitHandler().processClick(npc, event.getPlayer())) {
+				return;
+			}
 
-			if (npc.hasTrait(RentalShop.class)) {
+			/*if (npc.hasTrait(RentalShop.class)) {
 				RentalShop rentalshop = npc.getTrait(RentalShop.class);
 				if (!rentalshop.isRented()) {
 					Conversation convo = UltraTrader.getConversationHandler().getRentalTrader().buildConversation(player);
@@ -310,7 +312,7 @@ public class ShopListener implements Listener {
 					convo.begin();
 					return;
 				}
-			}
+			}*/
 
 			if (npc.hasTrait(TraderTrait.class)) {
 				TraderTrait trait = npc.getTrait(TraderTrait.class);
@@ -318,15 +320,7 @@ public class ShopListener implements Listener {
 				Integer shopid = trait.getShopId();
 
 				if (shopid == ShopHandler.SHOP_NULL) {
-					if (npc.hasTrait(RentalShop.class)) {
-						RentalShop rentalshop = npc.getTrait(RentalShop.class);
-						if (rentalshop.getRenter().equals(player.getName())) {
-							Conversation convo = UltraTrader.getConversationHandler().getCreateShop().buildConversation(player);
-							convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
-							convo.begin();
-							return;
-						}
-					} else if (npc.getTrait(Owner.class).isOwnedBy(player)) {
+					if (npc.getTrait(Owner.class).isOwnedBy(player)) {
 						Conversation convo = UltraTrader.getConversationHandler().getCreateShop().buildConversation(player);
 						convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
 						convo.begin();

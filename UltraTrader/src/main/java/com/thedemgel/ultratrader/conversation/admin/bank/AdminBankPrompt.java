@@ -1,6 +1,7 @@
 package com.thedemgel.ultratrader.conversation.admin.bank;
 
 import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.admin.AdminMenuPrompt;
 import com.thedemgel.ultratrader.shop.ShopInventoryView;
@@ -31,7 +32,12 @@ public class AdminBankPrompt extends MessagePrompt {
 				return prompt;
 			} catch (InstantiationException | IllegalAccessException ex) {
 				System.out.println("Conversation Prompt construction failed: " + convo.value());
+				return Prompt.END_OF_CONVERSATION;
 			}
+		} else {
+			ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
+			view.getShop().setWalletType(type);
+			//wallet = view.getShop().getWallet();
 		}
 
 		return new AdminMenuPrompt();
@@ -40,9 +46,11 @@ public class AdminBankPrompt extends MessagePrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
 		ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
-		view.getShop().setWalletType(type);
-		wallet = view.getShop().getWallet();
-		
+		//view.getShop().setWalletType(type);
+		//wallet = view.getShop().getWallet();
+		wallet = UltraTrader.getWallethandler().getWalletInstance(type, view.getShop());
+		context.setSessionData("wallettype", type);
+
 		return ChatColor.GREEN + L.getString("conversation.admin.setbank") + ": " + type;
 	}
 }

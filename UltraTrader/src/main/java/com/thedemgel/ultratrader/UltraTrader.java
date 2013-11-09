@@ -1,7 +1,7 @@
 package com.thedemgel.ultratrader;
 
-import com.thedemgel.ultratrader.citizens.RentalShop;
 import com.thedemgel.ultratrader.citizens.TraderTrait;
+import com.thedemgel.ultratrader.citizens.TraitHandler;
 import com.thedemgel.ultratrader.command.commands.DebugCommands;
 import com.thedemgel.ultratrader.command.commands.ShopCommands;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
@@ -46,7 +46,8 @@ public class UltraTrader extends JavaPlugin {
 	private static WalletHandler wallethandler;
 	private static InventoryInterfaceHandler inventoryInterfaceHandler;
 	private static ShopHandler shopHandler;
-	private static RentalHandler rentalHandler;
+	//private static RentalHandler rentalHandler;
+	private static TraitHandler traitHandler;
 	private static boolean isLoggingEnabled = false;
 
 	public static Economy getEconomy() {
@@ -81,8 +82,12 @@ public class UltraTrader extends JavaPlugin {
 		return inventoryInterfaceHandler;
 	}
 
-	public static RentalHandler getRentalHandler() {
-		return rentalHandler;
+	//public static RentalHandler getRentalHandler() {
+	//	return rentalHandler;
+	//}
+
+	public static TraitHandler getTraitHandler() {
+		return traitHandler;
 	}
 
 	private boolean citizens;
@@ -108,7 +113,8 @@ public class UltraTrader extends JavaPlugin {
 		}
 		plugin = this;
 
-		rentalHandler = new RentalHandler();
+		traitHandler = new TraitHandler();
+		//rentalHandler = new RentalHandler();
 
 		LimitHandler.init();
 		// Populate config.yml
@@ -171,7 +177,7 @@ public class UltraTrader extends JavaPlugin {
 
 		if (citizens) {
 			CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(TraderTrait.class).withName("ultratrader"));
-			CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(RentalShop.class).withName("rentalshop"));
+			//getTraitHandler().registerTrait(RentalShop.class, "rentalshop");
 		}
 	}
 

@@ -29,9 +29,12 @@ public class BankSetBankPrompt extends StringPrompt {
 
 		EconomyResponse resp = econ.isBankMember(input, player.getName());
 
+		String type = (String) context.getSessionData("wallettype");
+
 		if (resp.type.equals(ResponseType.SUCCESS)) {
 			ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
 			view.getShop().getWallet().setInfo("bank", new ConfigValue(input));
+			view.getShop().setWalletType(type);
 		} else {
 			player.sendRawMessage("(Assign RB) You don't have access to that bank.");
 		}

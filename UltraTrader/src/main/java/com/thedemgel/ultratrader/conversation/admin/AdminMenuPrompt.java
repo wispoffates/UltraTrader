@@ -3,15 +3,16 @@ package com.thedemgel.ultratrader.conversation.admin;
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.LimitHandler;
 import com.thedemgel.ultratrader.UltraTrader;
-import com.thedemgel.ultratrader.citizens.RentalShop;
+import com.thedemgel.ultratrader.citizens.UltraTrait;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
 import com.thedemgel.ultratrader.conversation.admin.bank.AdminBankMenuPrompt;
 import com.thedemgel.ultratrader.conversation.admin.level.AdminSetLevelPrompt;
-import com.thedemgel.ultratrader.conversation.rentalshop.RentalEndRentingPrompt;
+//import com.thedemgel.ultratrader.conversation.rentalshop.RentalEndRentingPrompt;
 import com.thedemgel.ultratrader.shop.ShopInventoryView;
 import com.thedemgel.ultratrader.util.Permissions;
 import net.citizensnpcs.api.npc.NPC;
+import net.citizensnpcs.api.trait.Trait;
 import org.bukkit.ChatColor;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.ConversationPrefix;
@@ -47,9 +48,17 @@ public class AdminMenuPrompt extends FixedIgnoreCaseSetPrompt {
 		if (UltraTrader.getInstance().isCitizens()) {
 			if (view.getTarget() instanceof NPC) {
 				NPC npc = (NPC) view.getTarget();
-				if (npc.hasTrait(RentalShop.class)) {
-					addOption("rental", new RentalEndRentingPrompt());
+				for (Trait trait: npc.getTraits()) {
+					if (trait instanceof UltraTrait) {
+						UltraTrait ultratrait = (UltraTrait) trait;
+						if (ultratrait.hasMenuOption()) {
+							addOption("rental", ultratrait.getMenuPrompt());
+						}
+					}
 				}
+				/*if (npc.hasTrait(RentalShop.class)) {
+					addOption("rental", new RentalEndRentingPrompt());
+				}*/
 			}
 		}
 		addOption(L.getString("general.exit"), new AdminFinishPrompt());

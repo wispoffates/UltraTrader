@@ -11,8 +11,8 @@ import com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemBeginProm
 import com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemConversationPrefix;
 import com.thedemgel.ultratrader.conversation.createshop.CreateShopBeginPrompt;
 import com.thedemgel.ultratrader.conversation.createshop.CreateShopConversationPrefix;
-import com.thedemgel.ultratrader.conversation.rentalshop.RentalBeginPrompt;
-import com.thedemgel.ultratrader.conversation.rentalshop.RentalConversationPrefix;
+//import com.thedemgel.ultratrader.conversation.rentalshop.RentalBeginPrompt;
+//import com.thedemgel.ultratrader.conversation.rentalshop.RentalConversationPrefix;
 import com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemBeginPrompt;
 import com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemConversationPrefix;
 import org.bukkit.conversations.ConversationFactory;
@@ -35,7 +35,7 @@ public class ConversationHandler {
 	private ConversationFactory createShop;
 	private ConversationFactory buyItemAdmin;
 	private ConversationFactory addBuyItem;
-	private ConversationFactory rentalTrader;
+	//private ConversationFactory rentalTrader;
 
 	public ConversationHandler(UltraTrader instance) {
 		setSellPrice = new ConversationFactory(instance)
@@ -92,14 +92,14 @@ public class ConversationHandler {
 			.addConversationAbandonedListener(new AbandonConvo())
 			.thatExcludesNonPlayersWithMessage("No Console Please");
 
-		rentalTrader = new ConversationFactory(instance)
+		/*rentalTrader = new ConversationFactory(instance)
 			.withModality(true)
 			.withPrefix(new RentalConversationPrefix())
 			.withFirstPrompt(new RentalBeginPrompt())
 			.withEscapeSequence("/quit")
 			.withTimeout(ConversationHandler.CONVERSATION_TIMEOUT)
 			.addConversationAbandonedListener(new AbandonConvo())
-			.thatExcludesNonPlayersWithMessage("No Console Please");
+			.thatExcludesNonPlayersWithMessage("No Console Please");*/
 	}
 
 	public ConversationFactory getSetSellPrice() {
@@ -126,7 +126,7 @@ public class ConversationHandler {
 		return addBuyItem;
 	}
 
-	public ConversationFactory getRentalTrader() {
+	/*public ConversationFactory getRentalTrader() {
 		return rentalTrader;
-	}
+	}*/
 }
