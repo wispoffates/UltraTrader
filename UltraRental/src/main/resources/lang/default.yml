@@ -1,0 +1,7 @@
+conversation:
+  rental:
+    begin: Entering Trader Rental.
+    prefix: SHOP RENTAL
+    closed: NPC is not open for Renting.
+    admin:
+      begin: Entering Rental Admin.

@@ -5,6 +5,7 @@ import com.thedemgel.ultratrader.InventoryHandler;
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.LimitHandler;
 import com.thedemgel.ultratrader.citizens.TraderTrait;
+import com.thedemgel.ultratrader.citizens.UltraTrait;
 import com.thedemgel.ultratrader.command.BukkitCommand;
 import com.thedemgel.ultratrader.command.Commands;
 import com.thedemgel.ultratrader.shop.Shop;
@@ -15,6 +16,7 @@ import java.util.Collection;
 import java.util.List;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
+import net.citizensnpcs.api.trait.Trait;
 import net.citizensnpcs.api.trait.trait.Owner;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -34,19 +36,6 @@ public class ShopCommands extends Commands implements CommandExecutor {
 
 	public ShopCommands(UltraTrader instance) {
 		//plugin = instance;
-	}
-
-	@BukkitCommand(name = "test")
-	public boolean test(final CommandSender sender, Command cmd, String label, String[] args) {
-		PermissionPredicate perm = new PermissionPredicate();
-
-		for (PermissionAttachmentInfo info : perm.getPermissions("trader.limit.test", (Player) sender)) {
-			System.out.println(info.getPermission());
-		}
-
-		System.out.println(perm.getHighestPermissionSet("trader.limit.test", (Player) sender));
-
-		return true;
 	}
 
 	@BukkitCommand(name = "myshops")
@@ -84,11 +73,18 @@ public class ShopCommands extends Commands implements CommandExecutor {
 			return true;
 		}
 
-		List<String> traits = LimitHandler.getRequiredTraits((Player) sender);
+		List<String> traits;
+		if (args.length > 1) {
+			traits = LimitHandler.getRequiredTraits((Player) sender, args[1]);
+		} else {
+			traits = LimitHandler.getRequiredTraits((Player) sender);
+		}
 
 		for (String trait : traits) {
-			System.out.println(trait);
-			System.out.println(CitizensAPI.getTraitFactory().getTraitClass("rentalshop"));
+			Class<? extends Trait> traitclass = CitizensAPI.getTraitFactory().getTraitClass(trait);
+			if (traitclass != null && traitclass.getSuperclass().equals(UltraTrait.class)) {
+				System.out.println(trait);
+			}
 		}
 
 		return true;

@@ -12,14 +12,44 @@
 	<version>1.0-SNAPSHOT</version>
 	<name>UltraRental</name>
 	<url>http://maven.apache.org</url>
-    <dependencies>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>UltraTrader</artifactId>
-            <version>0.6-BETA</version>
-        </dependency>
-    </dependencies>
-    <properties>
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>UltraTrader</artifactId>
+			<version>0.6-BETA</version>
+		</dependency>
+	</dependencies>
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.1</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<relocations>
+								<relocation>
+									<pattern>com.thedemgel.yamlresourcebundle</pattern>
+									<shadedPattern>com.ultrarental.thedemgel.yamlresourcebundle</shadedPattern>
+								</relocation>
+							</relocations>
+							<artifactSet>
+								<includes>
+									<include>com.thedemgel:YamlResourceBundle</include>
+								</includes>
+							</artifactSet>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>

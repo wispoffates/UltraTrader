@@ -1,7 +1,7 @@
 package com.thedemgel.ultrarental.conversation.rentalshop;
 
+import com.thedemgel.ultrarental.L;
 import com.thedemgel.ultrarental.RentalShop;
-import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalAdminPrompt;
 import com.thedemgel.ultratrader.util.Permissions;

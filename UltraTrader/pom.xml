@@ -17,58 +17,6 @@
 
 	<build>
 		<plugins>
-			<!-- test maven site -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>3.3</version>
-				<dependencies>
-					<dependency>
-						<groupId>lt.velykis.maven.skins</groupId>
-						<artifactId>reflow-velocity-tools</artifactId>
-						<version>1.0.0</version>
-					</dependency>
-					<!-- Reflow skin requires Velocity >= 1.7  -->
-					<dependency>
-						<groupId>org.apache.velocity</groupId>
-						<artifactId>velocity</artifactId>
-						<version>1.7</version>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.maven.doxia</groupId>
-						<artifactId>doxia-module-markdown</artifactId>
-						<version>1.4</version>
-					</dependency>
-				</dependencies>
-				<configuration>
-					<generateReports>true</generateReports>
-					<inputEncoding>UTF-8</inputEncoding>
-					<outputEncoding>UTF-8</outputEncoding>
-					<skipDeploy>true</skipDeploy>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>com.github.github</groupId>
-				<artifactId>site-maven-plugin</artifactId>
-				<version>0.8</version>
-				<executions>
-					<execution>
-						<configuration>
-							<server>github-project-site-new</server>
-							<repositoryName>${project.name}</repositoryName>
-							<repositoryOwner>${githubSiteOwner}</repositoryOwner>
-							<branch>refs/heads/gh-pages</branch>
-							<merge>true</merge>
-							<message>Site for ${project.version}-b${buildNumber}</message>
-						</configuration>
-						<phase>site-deploy</phase>
-						<goals>
-							<goal>site</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
@@ -111,50 +59,4 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
-	<reporting>
-		<plugins>
-			<plugin>
-				<artifactId>maven-changelog-plugin</artifactId>
-				<version>2.2</version>
-			</plugin>
-			<plugin>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<configuration>
-					<configLocation>${basedir}/src/main/resources/checkstyle.xml</configLocation>
-				</configuration>
-				<version>2.10</version>
-			</plugin>
-			<plugin>
-				<artifactId>maven-jxr-plugin</artifactId>
-				<version>2.3</version>
-			</plugin>
-			<plugin>
-				<artifactId>maven-plugin-plugin</artifactId>
-				<version>3.2</version>
-			</plugin>
-			<plugin>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>2.7</version>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>cim</report>
-							<report>index</report>
-							<report>issue-tracking</report>
-							<report>license</report>
-							<report>project-team</report>
-							<report>scm</report>
-							<report>summary</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>2.5.2</version>
-			</plugin>
-		</plugins>
-	</reporting>
 </project>

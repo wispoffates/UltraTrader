@@ -229,10 +229,15 @@ public class LimitHandler {
 	}
 
 	public static List<String> getRequiredTraits(Player player) {
+		return getRequiredTraits(player, "default");
+	}
+
+	public static List<String> getRequiredTraits(Player player, String group) {
 		// Start player limit override.
 		PermissionPredicate pred = new PermissionPredicate();
 
-		List<String> traits = pred.getPermissionValues(Permissions.SHOP_LIMIT_TRAITS_REQUIRED, player);
+		List<String> traits = pred.getPermissionValues(Permissions.SHOP_LIMIT_TRAITS_REQUIRED + "." + group, player);
+
 
 		if (player.hasPermission(Permissions.SHOP_LIMIT_TRAITS_REQUIRED_OVERRIDE)) {
 			return traits;

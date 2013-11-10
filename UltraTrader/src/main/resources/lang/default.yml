@@ -80,12 +80,6 @@ conversation:
         empty: empty
         exit: exit
     none: none
-  rental:
-    begin: Entering Trader Rental.
-    prefix: SHOP RENTAL
-    closed: NPC is not open for Renting.
-    admin:
-      begin: Entering Rental Admin.
   setsellprice:
     prefix: SET SELL PRICE
     setprice: What would you like to charge for {0}?

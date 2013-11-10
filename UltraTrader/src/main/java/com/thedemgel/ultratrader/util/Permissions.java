@@ -175,10 +175,19 @@ public class Permissions {
 
 	/**
 	 * START SNIPPET: perm
-	 * ####trader.limits.required.sometrait
+	 * ####trader.limits.required.groupname.sometrait
 	 * `This limit matches the traits.required setting in limits.yml, replace sometrait with the
 	 * required trait. WARNING: this will add to the required traits listed in traits.required unless you
 	 * set trader.limits.required.override`
+	 *
+	 * `groupname is the group that the player is attempting to create a trader in. If "/trader create"
+	 * is used without arguments then group "default" is used, if an arguement is passed "/trader create worldguard"
+	 * then the group "worldguard" is used`
+	 *
+	 * `some examples:`
+	 * 
+	 * - `trader.limits.required.default.worldguardowner`
+	 * - `trader.limits.required.worldguard.worldguardowner`
 	 * END SNIPPET: perm
 	 */
 	public static final String SHOP_LIMIT_TRAITS_REQUIRED = "trader.limits.required";
