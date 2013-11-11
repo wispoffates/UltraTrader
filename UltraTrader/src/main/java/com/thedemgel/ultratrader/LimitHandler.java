@@ -214,7 +214,9 @@ public class LimitHandler {
 			return new ConfigValue(section.get(search));
 		}
 
-		Bukkit.getLogger().log(Level.WARNING, "Config value not found in limits.yml in default section: " + search);
+		if(UltraTrader.getInstance().isDebug()) {
+			Bukkit.getLogger().log(Level.WARNING, "Config value not found in limits.yml in default section: " + search);
+		}
 		return null;
 	}
 
@@ -238,12 +240,28 @@ public class LimitHandler {
 
 		List<String> traits = pred.getPermissionValues(Permissions.SHOP_LIMIT_TRAITS_REQUIRED + "." + group, player);
 
-
+		for (String trait : traits) {
+			System.out.println("test1: " + trait);
+		}
 		if (player.hasPermission(Permissions.SHOP_LIMIT_TRAITS_REQUIRED_OVERRIDE)) {
 			return traits;
 		}
+
 		// End player limit override
 		ConfigurationSection section = getLimit(player);
+
+		List<String> traitslist = (List<String>) getConfigValue(section, "traits.required." + group).getValue();
+
+		if (traitslist == null) {
+			return traits;
+		}
+
+		for (String trait : traitslist) {
+			System.out.println("test: " + trait);
+			if (!traits.contains(trait)) {
+				traits.add(trait);
+			}
+		}
 
 		return traits;
 	}

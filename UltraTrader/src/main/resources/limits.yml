@@ -66,6 +66,13 @@ limits:
     maxshops: 5
     maxlevel: 2
     remote: true
+    traits:
+      required:
+        default:
+          - sometrait
+          - rentalshop
+        worldguard:
+          - worldguardowner
     costs:
       shop:
         create: 5000

@@ -28,9 +28,7 @@ public class TraitHandler {
 
 	public boolean processClick(NPC npc, Player player) {
 		for (Class<? extends UltraTrait> trait : ultratraits) {
-			System.out.println(trait);
 			if (npc.hasTrait(trait)) {
-				System.out.println("Checking click...");
 				if (!npc.getTrait(trait).onClick(player)) {
 					return false;
 				}

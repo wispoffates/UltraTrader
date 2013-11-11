@@ -130,8 +130,6 @@ general:
 permission:
   create:
     deny: You do not have permission to create a shop.
-  rent:
-    deny: You do not have permission to rent an NPC.
 inventory:
   admin:
     display: Shop Admin

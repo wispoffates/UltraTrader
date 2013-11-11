@@ -17,6 +17,10 @@ public abstract class UltraTrait extends Trait {
 		return true;
 	}
 
+	public boolean onAssign(Player player) {
+		return true;
+	}
+
 	public boolean onAssign() {
 		return true;
 	}

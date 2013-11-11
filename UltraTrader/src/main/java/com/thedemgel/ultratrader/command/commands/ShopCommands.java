@@ -80,10 +80,29 @@ public class ShopCommands extends Commands implements CommandExecutor {
 			traits = LimitHandler.getRequiredTraits((Player) sender);
 		}
 
+		boolean canceled = false;
+
 		for (String trait : traits) {
+			//System.out.println("error before");
 			Class<? extends Trait> traitclass = CitizensAPI.getTraitFactory().getTraitClass(trait);
+			//System.out.println("error after");
+			//System.out.println(trait);
 			if (traitclass != null && traitclass.getSuperclass().equals(UltraTrait.class)) {
-				System.out.println(trait);
+
+				npc.addTrait(traitclass);
+				UltraTrait ultratrait = (UltraTrait) npc.getTrait(traitclass);
+				if (!ultratrait.onAssign((Player) sender)) {
+					canceled = true;
+				}
+			}
+		}
+
+		if (canceled) {
+			for (String trait : traits) {
+				Class<? extends Trait> traitclass = CitizensAPI.getTraitFactory().getTraitClass(trait);
+				if (npc.hasTrait(traitclass)) {
+					npc.removeTrait(traitclass);
+				}
 			}
 		}
 

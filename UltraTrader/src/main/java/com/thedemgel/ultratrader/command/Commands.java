@@ -29,6 +29,7 @@ public class Commands {
 						return (Boolean) method.invoke(this, sender, cmd, label, args);
 					} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
 						System.out.println(ex);
+						ex.printStackTrace();
 					}
 				}
 
