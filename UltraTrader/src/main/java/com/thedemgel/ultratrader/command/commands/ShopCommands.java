@@ -108,6 +108,9 @@ public class ShopCommands extends Commands implements CommandExecutor {
 				}
 			}
 		} else {
+			if (!npc.hasTrait(TraderTrait.class)) {
+				npc.addTrait(TraderTrait.class);
+			}
 			sender.sendMessage(ChatColor.GREEN + L.getString("general.create.success"));
 		}
 
