@@ -57,11 +57,21 @@ public class RentalShop extends UltraTrait {
 	@Override
 	public void onSpawn() {
 		RentalHandler.registerRentalNPC(npc);
+		if (!npc.hasTrait(TraderTrait.class)) {
+			npc.addTrait(TraderTrait.class);
+		}
 	}
 
 	@Override
 	public void onDespawn() {
 		RentalHandler.unregisterRentalNPC(npc);
+	}
+
+	@Override
+	public void onAttach() {
+		if (!npc.hasTrait(TraderTrait.class)) {
+			npc.addTrait(TraderTrait.class);
+		}
 	}
 
 	public void setRenter(String value) {
