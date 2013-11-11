@@ -10,5 +10,6 @@ public class UltraWorldGuard extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		UltraTrader.getTraitHandler().registerTrait(WorldGuardOwnerTrait.class, "worldguardowner");
+		UltraTrader.getTraitHandler().registerTrait(WorldGuardMemberTrait.class, "worldguardmember");
 	}
 }
