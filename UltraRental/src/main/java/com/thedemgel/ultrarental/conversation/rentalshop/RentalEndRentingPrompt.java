@@ -1,6 +1,7 @@
 
 package com.thedemgel.ultrarental.conversation.rentalshop;
 
+import com.thedemgel.ultrarental.L;
 import com.thedemgel.ultrarental.RentalHandler;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.admin.AdminMenuPrompt;
@@ -28,7 +29,7 @@ public class RentalEndRentingPrompt extends BooleanPrompt {
 
 	@Override
 	public String getPromptText(ConversationContext cc) {
-		return "Do you want to stop renting this NPC? (It will remove this shop from this NPC)";
+		return L.getString("conversation.rental.stoprenting");
 	}
 
 }

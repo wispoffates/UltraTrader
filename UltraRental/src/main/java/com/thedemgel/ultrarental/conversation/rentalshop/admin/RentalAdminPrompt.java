@@ -3,7 +3,7 @@ package com.thedemgel.ultrarental.conversation.rentalshop.admin;
 
 import com.thedemgel.ultrarental.RentalShop;
 import com.thedemgel.ultrarental.conversation.rentalshop.RentalConversationPrefix;
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultrarental.L;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
@@ -30,19 +30,19 @@ public class RentalAdminPrompt extends FixedIgnoreCaseSetPrompt {
 		n = (NPC) cc.getSessionData(ConversationHandler.CONVERSATION_SESSION_NPC);
 		RentalShop rent = n.getTrait(RentalShop.class);
 
-		addOption("term", new RentalSetTermPrompt());
-		addOption("price", new RentalSetTermPricePrompt());
+		addOption(L.getString("conversation.rental.admin.options.term"), new RentalSetTermPrompt());
+		addOption(L.getString("conversation.rental.admin.options.price"), new RentalSetTermPricePrompt());
 		if (rent.isRentingEnabled()) {
-			addOption("disable", new RentalEnableDisablePrompt(false));
+			addOption(L.getString("conversation.rental.admin.options.disable"), new RentalEnableDisablePrompt(false));
 		} else {
-			addOption("enable", new RentalEnableDisablePrompt(true));
+			addOption(L.getString("conversation.rental.admin.options.enable"), new RentalEnableDisablePrompt(true));
 		}
 
 		addOption(L.getString("general.exit"), Prompt.END_OF_CONVERSATION);
 
-		p.sendRawMessage(prefix.getPrefix(cc) + "------<[ " + ChatColor.BLUE + prefix.getPrefix(cc) + ChatColor.YELLOW + " ]>------");
-		p.sendRawMessage(prefix.getPrefix(cc) + "Cost per Period: " + UltraTrader.getEconomy().format(rent.getCost()));
-		p.sendRawMessage(prefix.getPrefix(cc) + "Rental Period: " + rent.getFormatedTerm());
+		p.sendRawMessage(prefix.getPrefix(cc) + "------<" + ChatColor.BLUE + prefix.getPrefix(cc) + ChatColor.YELLOW + ">------");
+		p.sendRawMessage(prefix.getPrefix(cc) + L.getString("conversation.rental.costperperiod") + ": " + ChatColor.WHITE + UltraTrader.getEconomy().format(rent.getCost()));
+		p.sendRawMessage(prefix.getPrefix(cc) + L.getString("conversation.rental.periodlength") + ": " + ChatColor.WHITE + rent.getFormatedTerm());
 		return L.getString("conversation.options") + ": " + this.formatFixedSet();
 	}
 

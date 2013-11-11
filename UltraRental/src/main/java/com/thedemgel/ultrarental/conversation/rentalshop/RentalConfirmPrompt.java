@@ -1,5 +1,6 @@
 package com.thedemgel.ultrarental.conversation.rentalshop;
 
+import com.thedemgel.ultrarental.L;
 import com.thedemgel.ultrarental.RentalHandler;
 import com.thedemgel.ultrarental.RentalShop;
 import com.thedemgel.ultratrader.UltraTrader;
@@ -30,7 +31,7 @@ public class RentalConfirmPrompt extends BooleanPrompt {
 			ResponseObject resp = RentalHandler.rentNPC(n, p);
 			p.sendRawMessage(prefix.getPrefix(cc) + resp.getMessage());
 		} else {
-			p.sendRawMessage(prefix.getPrefix(cc) + "Ok.");
+			p.sendRawMessage(prefix.getPrefix(cc) + L.getString("conversation.rental.rented"));
 		}
 
 		return Prompt.END_OF_CONVERSATION;
@@ -44,8 +45,8 @@ public class RentalConfirmPrompt extends BooleanPrompt {
 		RentalShop rent = n.getTrait(RentalShop.class);
 
 		p.sendRawMessage(prefix.getPrefix(cc) + "------<" + ChatColor.BLUE + prefix.getPrefix(cc) + ChatColor.YELLOW + ">------");
-		p.sendRawMessage(prefix.getPrefix(cc) + "Cost per Period: " + UltraTrader.getEconomy().format(rent.getCost()));
-		p.sendRawMessage(prefix.getPrefix(cc) + "Rental Period: " + rent.getFormatedTerm());
-		return "Are you sure you want to rent this NPC?";
+		p.sendRawMessage(prefix.getPrefix(cc) + L.getString("conversation.rental.costperperiod") + ": " + ChatColor.WHITE + UltraTrader.getEconomy().format(rent.getCost()));
+		p.sendRawMessage(prefix.getPrefix(cc) + L.getString("conversation.rental.periodlength") + ": " + ChatColor.WHITE + rent.getFormatedTerm());
+		return L.getString("conversation.rental.confirmrental");
 	}
 }

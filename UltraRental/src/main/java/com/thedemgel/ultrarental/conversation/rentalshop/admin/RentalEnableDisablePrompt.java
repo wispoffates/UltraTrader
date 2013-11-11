@@ -1,6 +1,7 @@
 
 package com.thedemgel.ultrarental.conversation.rentalshop.admin;
 
+import com.thedemgel.ultrarental.L;
 import com.thedemgel.ultrarental.RentalShop;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import net.citizensnpcs.api.npc.NPC;
@@ -29,7 +30,11 @@ public class RentalEnableDisablePrompt extends BooleanPrompt {
 
 	@Override
 	public String getPromptText(ConversationContext cc) {
-		return "Are you sure you wish to Enable/Disable this RentalShop? (Yes or No)";
+		if (enabled) {
+			return L.getString("conversation.rental.enableshop");
+		} else {
+			return L.getString("conversation.rental.disableshop");
+		}
 	}
 
 }

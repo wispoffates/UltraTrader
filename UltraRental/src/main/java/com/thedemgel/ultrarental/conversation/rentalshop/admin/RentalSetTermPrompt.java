@@ -1,7 +1,7 @@
 
 package com.thedemgel.ultrarental.conversation.rentalshop.admin;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultrarental.L;
 import com.thedemgel.ultrarental.RentalShop;
 import com.thedemgel.ultrarental.conversation.rentalshop.RentalConversationPrefix;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
@@ -34,14 +34,14 @@ public class RentalSetTermPrompt extends FixedIgnoreCaseSetPrompt {
 		n = (NPC) cc.getSessionData(ConversationHandler.CONVERSATION_SESSION_NPC);
 		RentalShop rent = n.getTrait(RentalShop.class);
 
-		addOption("length", new RentalSetTermLengthPrompt());
-		addOption("type", new RentalSetTermTypePrompt());
+		addOption(L.getString("conversation.rental.admin.options.length"), new RentalSetTermLengthPrompt());
+		addOption(L.getString("conversation.rental.admin.options.type"), new RentalSetTermTypePrompt());
 		addOption(L.getString("general.exit"), new RentalAdminPrompt());
 
 		p.sendRawMessage(prefix.getPrefix(cc) + "------<" + ChatColor.BLUE + prefix.getPrefix(cc) + ChatColor.YELLOW + ">------");
-		p.sendRawMessage(prefix.getPrefix(cc) + "Term Length: " + rent.getTerm());
-		p.sendRawMessage(prefix.getPrefix(cc) + "Term Type: " + rent.getTermType().name());
-		p.sendRawMessage(prefix.getPrefix(cc) + "Rental Period: " + rent.getFormatedTerm());
+		p.sendRawMessage(prefix.getPrefix(cc) + L.getString("conversation.rental.termlength") + ": " + ChatColor.WHITE + rent.getTerm());
+		p.sendRawMessage(prefix.getPrefix(cc) + L.getString("conversation.rental.termtype") + ": " + ChatColor.WHITE + rent.getTermType().name());
+		p.sendRawMessage(prefix.getPrefix(cc) + L.getString("conversation.rental.periodlength") + ": " + ChatColor.WHITE + rent.getFormatedTerm());
 		return L.getString("conversation.options") + ": " + this.formatFixedSet();
 	}
 

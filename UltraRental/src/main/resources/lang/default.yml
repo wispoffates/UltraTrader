@@ -1,7 +1,37 @@
 conversation:
+  options: Options
   rental:
     begin: Entering Trader Rental.
     prefix: SHOP RENTAL
     closed: NPC is not open for Renting.
+    costperperiod: Cost per Period
+    periodlength: Rental Period
+    termtype: Term Type
+    confirmrental: Are you sure you want to rent this NPC?
+    enableshop: Are you sure you wish to Enable this RentalShop? (Yes or No)
+    disableshop: Are you sure you wish to Disable this RentalShop? (Yes or No)
+    termlength: Term Length
+    rented: NPC rented.
+    stoprenting: Do you want to stop renting this NPC? (It will remove this shop from this NPC)
     admin:
+      periodcost: How much would you like to charge per Term?
       begin: Entering Rental Admin.
+      setterm: Setting Term to
+      termchoose: Choose the length of each term.
+      termlength: How long is a term?
+      options:
+        term: term
+        price: price
+        disable: disable
+        enable: enable
+        length: length
+        type: type
+        minutes: minutes
+        hours: hours
+        days: days
+  toquit: (To force exit type "/quit")
+general:
+  exit: exit
+permission:
+  rent:
+    deny: You do not have permission to rent an NPC.

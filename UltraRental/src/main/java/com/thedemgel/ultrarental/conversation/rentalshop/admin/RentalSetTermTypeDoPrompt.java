@@ -1,10 +1,12 @@
 
 package com.thedemgel.ultrarental.conversation.rentalshop.admin;
 
+import com.thedemgel.ultrarental.L;
 import com.thedemgel.ultrarental.RentalShop;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import java.util.concurrent.TimeUnit;
 import net.citizensnpcs.api.npc.NPC;
+import org.bukkit.ChatColor;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
 import org.bukkit.conversations.Prompt;
@@ -30,7 +32,7 @@ public class RentalSetTermTypeDoPrompt extends MessagePrompt {
 
 		rent.setTermType(unit);
 
-		return "Setting term to: " + unit.name();
+		return L.getString("conversation.rental.admin.setterm") + ": " + ChatColor.WHITE + unit.name();
 	}
 
 }

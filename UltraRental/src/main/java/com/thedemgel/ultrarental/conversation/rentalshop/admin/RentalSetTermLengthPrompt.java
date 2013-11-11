@@ -1,5 +1,6 @@
 package com.thedemgel.ultrarental.conversation.rentalshop.admin;
 
+import com.thedemgel.ultrarental.L;
 import com.thedemgel.ultrarental.RentalShop;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.NotADoublePrompt;
@@ -28,6 +29,6 @@ public class RentalSetTermLengthPrompt extends StringPrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		return "How long is a term?";
+		return L.getString("conversation.rental.admin.termlength");
 	}
 }
