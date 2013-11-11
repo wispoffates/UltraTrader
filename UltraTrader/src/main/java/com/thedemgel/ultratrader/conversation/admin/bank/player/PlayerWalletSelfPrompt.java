@@ -1,5 +1,6 @@
 package com.thedemgel.ultratrader.conversation.admin.bank.player;
 
+import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.shop.ShopInventoryView;
 import com.thedemgel.ultratrader.util.ConfigValue;
@@ -25,6 +26,6 @@ public class PlayerWalletSelfPrompt extends MessagePrompt {
 		view.getShop().getWallet().setInfo("player", new ConfigValue(p.getName()));
 		String type = (String) context.getSessionData("wallettype");
 		view.getShop().setWalletType(type);
-		return "Setting wallet to yourself";
+		return L.getString("conversation.admin.wallet.player.set.yourself");
 	}
 }

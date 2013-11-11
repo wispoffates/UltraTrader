@@ -11,6 +11,7 @@ import com.thedemgel.ultratrader.command.Commands;
 import com.thedemgel.ultratrader.shop.Shop;
 import com.thedemgel.ultratrader.shop.StoreItem;
 import com.thedemgel.ultratrader.util.PermissionPredicate;
+import com.thedemgel.ultratrader.util.Permissions;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -18,6 +19,7 @@ import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.api.trait.Trait;
 import net.citizensnpcs.api.trait.trait.Owner;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -32,10 +34,7 @@ import org.bukkit.permissions.PermissionAttachmentInfo;
 
 public class ShopCommands extends Commands implements CommandExecutor {
 
-	//private UltraTrader plugin;
-
 	public ShopCommands(UltraTrader instance) {
-		//plugin = instance;
 	}
 
 	@BukkitCommand(name = "myshops")
@@ -56,20 +55,24 @@ public class ShopCommands extends Commands implements CommandExecutor {
 
 	@BukkitCommand(name = "create")
 	public boolean createTrader(CommandSender sender, Command cmd, String label, String[] args) {
+		if (!sender.hasPermission(Permissions.NPC_CREATE)) {
+			sender.sendMessage(ChatColor.RED + L.getString("general.create.nopermission"));
+		}
+
 		NPC npc = CitizensAPI.getDefaultNPCSelector().getSelected(sender);
 
 		if (npc == null) {
-			sender.sendMessage("You must have an NPC selected.");
+			sender.sendMessage(ChatColor.RED + L.getString("general.create.noselected"));
 			return true;
 		}
 
 		if (npc.hasTrait(TraderTrait.class)) {
-			sender.sendMessage("NPC is already a trader.");
+			sender.sendMessage(ChatColor.RED + L.getString("general.create.alreadytrader"));
 			return true;
 		}
 
 		if (!npc.getTrait(Owner.class).isOwnedBy(sender)) {
-			sender.sendMessage("You need to own the NPC to create a trader.");
+			sender.sendMessage(ChatColor.RED + L.getString("general.create.notowner"));
 			return true;
 		}
 
@@ -83,10 +86,8 @@ public class ShopCommands extends Commands implements CommandExecutor {
 		boolean canceled = false;
 
 		for (String trait : traits) {
-			//System.out.println("error before");
 			Class<? extends Trait> traitclass = CitizensAPI.getTraitFactory().getTraitClass(trait);
-			//System.out.println("error after");
-			//System.out.println(trait);
+
 			if (traitclass != null && traitclass.getSuperclass().equals(UltraTrait.class)) {
 
 				npc.addTrait(traitclass);
@@ -100,10 +101,14 @@ public class ShopCommands extends Commands implements CommandExecutor {
 		if (canceled) {
 			for (String trait : traits) {
 				Class<? extends Trait> traitclass = CitizensAPI.getTraitFactory().getTraitClass(trait);
-				if (npc.hasTrait(traitclass)) {
-					npc.removeTrait(traitclass);
+				if (traitclass != null && traitclass.getSuperclass().equals(UltraTrait.class)) {
+					if (npc.hasTrait(traitclass)) {
+						npc.removeTrait(traitclass);
+					}
 				}
 			}
+		} else {
+			sender.sendMessage(ChatColor.GREEN + L.getString("general.create.success"));
 		}
 
 		return true;

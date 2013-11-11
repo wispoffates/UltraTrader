@@ -4,7 +4,6 @@ import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.NotADoublePrompt;
-import com.thedemgel.ultratrader.shop.ItemPrice;
 import com.thedemgel.ultratrader.shop.ShopInventoryView;
 import java.math.BigDecimal;
 import net.milkbowl.vault.economy.Economy;
@@ -40,7 +39,6 @@ public class AdminBankWithDrawPrompt extends StringPrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		//ItemPrice item = (ItemPrice) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEMPRICE);
 		return L.getString("conversation.admin.withdraw");
 	}
 }

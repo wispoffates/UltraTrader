@@ -32,7 +32,7 @@ public class AdminSellItemMenuPrompt extends FixedIgnoreCaseSetPrompt {
 	public String getPromptText(ConversationContext context) {
 		ItemPrice itemprice = (ItemPrice) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEMPRICE);
 		Player p = (Player) context.getForWhom();
-		p.sendRawMessage(prefix.getPrefix(context) + "------<[ " + ChatColor.BLUE + "ITEM ADMIN" + ChatColor.YELLOW + " ]>------");
+		p.sendRawMessage(prefix.getPrefix(context) + "------<" + ChatColor.BLUE + "ITEM ADMIN" + ChatColor.YELLOW + ">------");
 		p.sendRawMessage(prefix.getPrefix(context) + L.getString("general.price") + ": " + ChatColor.WHITE + UltraTrader.getEconomy().format(itemprice.getPrice().doubleValue()));
 		p.sendRawMessage(prefix.getPrefix(context) + L.getString("general.description") + ": " + ChatColor.WHITE + itemprice.getDescription());
 		return L.getString("conversation.options") + ": " + this.formatFixedSet();

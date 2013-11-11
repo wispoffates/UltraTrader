@@ -41,7 +41,6 @@ public class AdminBankDepositPrompt extends StringPrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		//ItemPrice item = (ItemPrice) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEMPRICE);
 		return L.getString("conversation.admin.deposit");
 	}
 }

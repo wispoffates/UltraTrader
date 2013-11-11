@@ -27,7 +27,7 @@ public class CreateShopMenuPrompt extends FixedIgnoreCaseSetPrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
 		Player p = (Player) context.getForWhom();
-		p.sendRawMessage(prefix.getPrefix(context) + "------<[ " + ChatColor.BLUE + "CREATE/ASSIGN" + ChatColor.YELLOW + " ]>------");
+		p.sendRawMessage(prefix.getPrefix(context) + "------<" + ChatColor.BLUE + "CREATE/ASSIGN" + ChatColor.YELLOW + ">------");
 		p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.createshop.menu.text.begin"));
 		p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.createshop.menu.text.create"));
 		p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.createshop.menu.text.assign"));

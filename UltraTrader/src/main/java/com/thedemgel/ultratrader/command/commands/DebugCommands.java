@@ -1,6 +1,7 @@
 
 package com.thedemgel.ultratrader.command.commands;
 
+import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.command.BukkitCommand;
 import com.thedemgel.ultratrader.command.Commands;
@@ -17,14 +18,14 @@ public class DebugCommands extends Commands implements CommandExecutor {
 	@BukkitCommand(name = "debug")
 	public boolean debugOn(CommandSender sender, Command cmd, String label, String[] args) {
 		if (!sender.hasPermission(Permissions.ADMIN_DEBUG)) {
-			sender.sendMessage(ChatColor.RED + "You don't have permissions");
+			sender.sendMessage(ChatColor.RED + L.getString("permission.debug.deny"));
 			return true;
 		}
 		UltraTrader.getInstance().toggleDebug();
 		if (UltraTrader.getInstance().isDebug()) {
-			sender.sendMessage("(Assign RB) Debug Enabled");
+			sender.sendMessage(ChatColor.GREEN + L.getString("debug.enable"));
 		} else {
-			sender.sendMessage("(Assign RB) Debug Disabled");
+			sender.sendMessage(ChatColor.GREEN + L.getString("debug.disable"));
 		}
 		return true;
 	}

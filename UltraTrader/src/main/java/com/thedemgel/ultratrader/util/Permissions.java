@@ -77,6 +77,14 @@ public class Permissions {
 	 */
 	public static final String NPC_RENT = "trader.npc.rent";
 
+	/**
+	 * START SNIPPET: perm
+	 * ####trader.npc.create
+	 * `Allows a player to assign trader traits via "/trader create" command.`
+	 * END SNIPPET: perm
+	 */
+	public static final String NPC_CREATE = "trader.npc.create";
+
 	/* START SNIPPET: perm
 	 * ### Wallets
 	 * END SNIPPET: perm
@@ -185,7 +193,7 @@ public class Permissions {
 	 * then the group "worldguard" is used`
 	 *
 	 * `some examples:`
-	 * 
+	 *
 	 * - `trader.limits.required.default.worldguardowner`
 	 * - `trader.limits.required.worldguard.worldguardowner`
 	 * END SNIPPET: perm

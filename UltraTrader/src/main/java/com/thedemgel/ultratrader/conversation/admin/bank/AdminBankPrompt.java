@@ -37,7 +37,6 @@ public class AdminBankPrompt extends MessagePrompt {
 		} else {
 			ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
 			view.getShop().setWalletType(type);
-			//wallet = view.getShop().getWallet();
 		}
 
 		return new AdminMenuPrompt();
@@ -46,8 +45,6 @@ public class AdminBankPrompt extends MessagePrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
 		ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
-		//view.getShop().setWalletType(type);
-		//wallet = view.getShop().getWallet();
 		wallet = UltraTrader.getWallethandler().getWalletInstance(type, view.getShop());
 		context.setSessionData("wallettype", type);
 
