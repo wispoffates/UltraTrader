@@ -36,7 +36,8 @@
 		<module>UltraFactions</module>
 		<module>UltraWorldGuard</module>
 		<module>UltraRental</module>
-	</modules>
+    <module>UltraFrame</module>
+  </modules>
 	<build>
 		<pluginManagement>
 			<plugins>
