@@ -21,8 +21,6 @@ import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
-import org.bukkit.event.hanging.HangingBreakEvent;
-import org.bukkit.event.hanging.HangingBreakEvent.RemoveCause;
 
 public class UltraFrameTrait extends UltraTrait {
 
@@ -54,6 +52,10 @@ public class UltraFrameTrait extends UltraTrait {
 				if (!owner.isOwnedBy(player.getName())) {
 					event.setCancelled(true);
 				}
+			}
+
+			if (!event.isCancelled()) {
+				frames.remove(frame);
 			}
 		}
 	}
