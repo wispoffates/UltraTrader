@@ -2,20 +2,20 @@
 
 <rss version="0.91">
   <channel>
-    <title>UltraTrader-Common - Checkstyle report</title>
-    <link>http://demgelopensource.github.io/UltraTrader</link>
-    <description>UltraTrader-Common - Checkstyle report</description>
+    <title>UltraTrader - Checkstyle report</title>
+    <link>http://demgelopensource.github.io/UltraTrader/UltraTrader</link>
+    <description>UltraTrader - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2013 Demgel OpenSource Coding</copyright>
     <item>
-      <title>File: 140,
-             Errors: 554,
-             Warnings: 671,
+      <title>File: 115,
+             Errors: 459,
+             Warnings: 564,
              Infos: 1
       </title>
-            <link>http://demgelopensource.github.io/UltraTrader/checkstyle.html</link>
+            <link>http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html</link>
       <description>
-        <p>Click <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html">here</a> for the full Checkstyle report.</p>
+        <p>Click <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html">here</a> for the full Checkstyle report.</p>
 
         <table summary="Files" boder="1">
           <thead>
@@ -29,7 +29,7 @@
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.inventory.annotation.InventoryTypeName.java">com/thedemgel/ultratrader/inventory/annotation/InventoryTypeName.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.inventory.annotation.InventoryTypeName.java">com/thedemgel/ultratrader/inventory/annotation/InventoryTypeName.java</a>
                 </td>
                 <td>
                   0
@@ -43,7 +43,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addbuyitem.AddBuyItemPrompt.java">com/thedemgel/ultratrader/conversation/addbuyitem/AddBuyItemPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addbuyitem.AddBuyItemPrompt.java">com/thedemgel/ultratrader/conversation/addbuyitem/AddBuyItemPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -57,7 +57,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemMenuPrompt.java">com/thedemgel/ultratrader/conversation/buyitemadmin/AdminBuyItemMenuPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemMenuPrompt.java">com/thedemgel/ultratrader/conversation/buyitemadmin/AdminBuyItemMenuPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -71,21 +71,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultrarental.RentalHandler.java">com/thedemgel/ultrarental/RentalHandler.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  11
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.level.AdminSetLevelPrompt.java">com/thedemgel/ultratrader/conversation/admin/level/AdminSetLevelPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.level.AdminSetLevelPrompt.java">com/thedemgel/ultratrader/conversation/admin/level/AdminSetLevelPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -99,7 +85,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.command.commands.DebugCommands.java">com/thedemgel/ultratrader/command/commands/DebugCommands.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.command.commands.DebugCommands.java">com/thedemgel/ultratrader/command/commands/DebugCommands.java</a>
                 </td>
                 <td>
                   0
@@ -113,7 +99,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemSetPricePrompt.java">com/thedemgel/ultratrader/conversation/buyitemadmin/AdminBuyItemSetPricePrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemSetPricePrompt.java">com/thedemgel/ultratrader/conversation/buyitemadmin/AdminBuyItemSetPricePrompt.java</a>
                 </td>
                 <td>
                   0
@@ -127,7 +113,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.util.ResponseObjectType.java">com/thedemgel/ultratrader/util/ResponseObjectType.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.util.ResponseObjectType.java">com/thedemgel/ultratrader/util/ResponseObjectType.java</a>
                 </td>
                 <td>
                   0
@@ -141,7 +127,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addbuyitem.AddBuyItemFinishPrompt.java">com/thedemgel/ultratrader/conversation/addbuyitem/AddBuyItemFinishPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addbuyitem.AddBuyItemFinishPrompt.java">com/thedemgel/ultratrader/conversation/addbuyitem/AddBuyItemFinishPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -155,7 +141,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.AdminBankWithDrawPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/AdminBankWithDrawPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.AdminBankWithDrawPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/AdminBankWithDrawPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -169,7 +155,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addsellitem.AddItemShopFullPrompt.java">com/thedemgel/ultratrader/conversation/addsellitem/AddItemShopFullPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addsellitem.AddItemShopFullPrompt.java">com/thedemgel/ultratrader/conversation/addsellitem/AddItemShopFullPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -183,7 +169,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addsellitem.AddItemConversationPrefix.java">com/thedemgel/ultratrader/conversation/addsellitem/AddItemConversationPrefix.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addsellitem.AddItemConversationPrefix.java">com/thedemgel/ultratrader/conversation/addsellitem/AddItemConversationPrefix.java</a>
                 </td>
                 <td>
                   0
@@ -197,7 +183,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.shop.ShopHandler.java">com/thedemgel/ultratrader/shop/ShopHandler.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.shop.ShopHandler.java">com/thedemgel/ultratrader/shop/ShopHandler.java</a>
                 </td>
                 <td>
                   0
@@ -211,7 +197,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.UltraTrader.java">com/thedemgel/ultratrader/UltraTrader.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.UltraTrader.java">com/thedemgel/ultratrader/UltraTrader.java</a>
                 </td>
                 <td>
                   0
@@ -225,7 +211,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemConversationPrefix.java">com/thedemgel/ultratrader/conversation/buyitemadmin/AdminBuyItemConversationPrefix.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemConversationPrefix.java">com/thedemgel/ultratrader/conversation/buyitemadmin/AdminBuyItemConversationPrefix.java</a>
                 </td>
                 <td>
                   0
@@ -239,7 +225,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.command.commands.LoggingCommands.java">com/thedemgel/ultratrader/command/commands/LoggingCommands.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.command.commands.LoggingCommands.java">com/thedemgel/ultratrader/command/commands/LoggingCommands.java</a>
                 </td>
                 <td>
                   0
@@ -253,7 +239,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.shop.StoreItemType.java">com/thedemgel/ultratrader/shop/StoreItemType.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.shop.StoreItemType.java">com/thedemgel/ultratrader/shop/StoreItemType.java</a>
                 </td>
                 <td>
                   0
@@ -267,21 +253,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultraworldguard.WorldGuardMemberTrait.java">com/thedemgel/ultraworldguard/WorldGuardMemberTrait.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addbuyitem.AddBuyItemDescriptionPrompt.java">com/thedemgel/ultratrader/conversation/addbuyitem/AddBuyItemDescriptionPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addbuyitem.AddBuyItemDescriptionPrompt.java">com/thedemgel/ultratrader/conversation/addbuyitem/AddBuyItemDescriptionPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -295,7 +267,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.data.YamlDataObject.java">com/thedemgel/ultratrader/data/YamlDataObject.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.data.YamlDataObject.java">com/thedemgel/ultratrader/data/YamlDataObject.java</a>
                 </td>
                 <td>
                   0
@@ -309,21 +281,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultrafactions.App.java">com/thedemgel/ultrafactions/App.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  8
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.Wallet.java">com/thedemgel/ultratrader/wallet/Wallet.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.Wallet.java">com/thedemgel/ultratrader/wallet/Wallet.java</a>
                 </td>
                 <td>
                   0
@@ -337,7 +295,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.citizens.TraitHandler.java">com/thedemgel/ultratrader/citizens/TraitHandler.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.citizens.TraitHandler.java">com/thedemgel/ultratrader/citizens/TraitHandler.java</a>
                 </td>
                 <td>
                   0
@@ -351,7 +309,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.inventory.InventoryInterfaceHandler.java">com/thedemgel/ultratrader/inventory/InventoryInterfaceHandler.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.inventory.InventoryInterfaceHandler.java">com/thedemgel/ultratrader/inventory/InventoryInterfaceHandler.java</a>
                 </td>
                 <td>
                   0
@@ -365,21 +323,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.RentalConfirmPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/RentalConfirmPrompt.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.citizens.UltraTrait.java">com/thedemgel/ultratrader/citizens/UltraTrait.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.citizens.UltraTrait.java">com/thedemgel/ultratrader/citizens/UltraTrait.java</a>
                 </td>
                 <td>
                   0
@@ -393,7 +337,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.wallets.PlayerWallet.java">com/thedemgel/ultratrader/wallet/wallets/PlayerWallet.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.wallets.PlayerWallet.java">com/thedemgel/ultratrader/wallet/wallets/PlayerWallet.java</a>
                 </td>
                 <td>
                   0
@@ -407,7 +351,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.util.PermissionPredicate.java">com/thedemgel/ultratrader/util/PermissionPredicate.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.util.PermissionPredicate.java">com/thedemgel/ultratrader/util/PermissionPredicate.java</a>
                 </td>
                 <td>
                   0
@@ -421,7 +365,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.annotation.WalletTypeName.java">com/thedemgel/ultratrader/wallet/annotation/WalletTypeName.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.annotation.WalletTypeName.java">com/thedemgel/ultratrader/wallet/annotation/WalletTypeName.java</a>
                 </td>
                 <td>
                   0
@@ -435,7 +379,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.shop.Status.java">com/thedemgel/ultratrader/shop/Status.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.shop.Status.java">com/thedemgel/ultratrader/shop/Status.java</a>
                 </td>
                 <td>
                   0
@@ -449,7 +393,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.remote.AdminRemoteTogglePrompt.java">com/thedemgel/ultratrader/conversation/admin/remote/AdminRemoteTogglePrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.remote.AdminRemoteTogglePrompt.java">com/thedemgel/ultratrader/conversation/admin/remote/AdminRemoteTogglePrompt.java</a>
                 </td>
                 <td>
                   0
@@ -463,7 +407,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.PlayerEventListener.java">com/thedemgel/ultratrader/PlayerEventListener.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.PlayerEventListener.java">com/thedemgel/ultratrader/PlayerEventListener.java</a>
                 </td>
                 <td>
                   0
@@ -477,21 +421,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermPricePrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalSetTermPricePrompt.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.createshop.CreateShopAssignPrompt.java">com/thedemgel/ultratrader/conversation/createshop/CreateShopAssignPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.createshop.CreateShopAssignPrompt.java">com/thedemgel/ultratrader/conversation/createshop/CreateShopAssignPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -505,21 +435,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultraframe.UltraFrame.java">com/thedemgel/ultraframe/UltraFrame.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.ConfigAccessor.java">com/thedemgel/ultratrader/ConfigAccessor.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.ConfigAccessor.java">com/thedemgel/ultratrader/ConfigAccessor.java</a>
                 </td>
                 <td>
                   0
@@ -533,7 +449,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.annotation.WalletDisplayName.java">com/thedemgel/ultratrader/wallet/annotation/WalletDisplayName.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.annotation.WalletDisplayName.java">com/thedemgel/ultratrader/wallet/annotation/WalletDisplayName.java</a>
                 </td>
                 <td>
                   0
@@ -547,7 +463,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.bank.BankWalletPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/bank/BankWalletPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.bank.BankWalletPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/bank/BankWalletPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -561,7 +477,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.level.AdminSetLevelIncreasePrompt.java">com/thedemgel/ultratrader/conversation/admin/level/AdminSetLevelIncreasePrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.level.AdminSetLevelIncreasePrompt.java">com/thedemgel/ultratrader/conversation/admin/level/AdminSetLevelIncreasePrompt.java</a>
                 </td>
                 <td>
                   0
@@ -575,7 +491,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addsellitem.AddInventoryPrompt.java">com/thedemgel/ultratrader/conversation/addsellitem/AddInventoryPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addsellitem.AddInventoryPrompt.java">com/thedemgel/ultratrader/conversation/addsellitem/AddInventoryPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -589,7 +505,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.util.ConfigValue.java">com/thedemgel/ultratrader/util/ConfigValue.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.util.ConfigValue.java">com/thedemgel/ultratrader/util/ConfigValue.java</a>
                 </td>
                 <td>
                   0
@@ -603,7 +519,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.AdminStringToLongPrompt.java">com/thedemgel/ultratrader/conversation/admin/AdminStringToLongPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.AdminStringToLongPrompt.java">com/thedemgel/ultratrader/conversation/admin/AdminStringToLongPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -617,7 +533,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.citizens.TraderTrait.java">com/thedemgel/ultratrader/citizens/TraderTrait.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.citizens.TraderTrait.java">com/thedemgel/ultratrader/citizens/TraderTrait.java</a>
                 </td>
                 <td>
                   0
@@ -631,7 +547,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.AdminRemotePrompt.java">com/thedemgel/ultratrader/conversation/admin/AdminRemotePrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.AdminRemotePrompt.java">com/thedemgel/ultratrader/conversation/admin/AdminRemotePrompt.java</a>
                 </td>
                 <td>
                   0
@@ -645,7 +561,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.L.java">com/thedemgel/ultratrader/L.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.L.java">com/thedemgel/ultratrader/L.java</a>
                 </td>
                 <td>
                   0
@@ -659,7 +575,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.util.TimeFormat.java">com/thedemgel/ultratrader/util/TimeFormat.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.util.TimeFormat.java">com/thedemgel/ultratrader/util/TimeFormat.java</a>
                 </td>
                 <td>
                   0
@@ -673,7 +589,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemDeletePrompt.java">com/thedemgel/ultratrader/conversation/buyitemadmin/AdminBuyItemDeletePrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemDeletePrompt.java">com/thedemgel/ultratrader/conversation/buyitemadmin/AdminBuyItemDeletePrompt.java</a>
                 </td>
                 <td>
                   0
@@ -687,7 +603,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.createshop.CreateShopMenuPrompt.java">com/thedemgel/ultratrader/conversation/createshop/CreateShopMenuPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.createshop.CreateShopMenuPrompt.java">com/thedemgel/ultratrader/conversation/createshop/CreateShopMenuPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -701,21 +617,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.RentalConversationPrefix.java">com/thedemgel/ultrarental/conversation/rentalshop/RentalConversationPrefix.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.player.PlayerWalletPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/player/PlayerWalletPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.player.PlayerWalletPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/player/PlayerWalletPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -729,7 +631,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.inventory.ShopInventoryInterface.java">com/thedemgel/ultratrader/inventory/ShopInventoryInterface.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.inventory.ShopInventoryInterface.java">com/thedemgel/ultratrader/inventory/ShopInventoryInterface.java</a>
                 </td>
                 <td>
                   0
@@ -743,7 +645,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemConversationPrefix.java">com/thedemgel/ultratrader/conversation/sellitemadmin/AdminSellItemConversationPrefix.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemConversationPrefix.java">com/thedemgel/ultratrader/conversation/sellitemadmin/AdminSellItemConversationPrefix.java</a>
                 </td>
                 <td>
                   0
@@ -757,7 +659,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.shop.StoreItem.java">com/thedemgel/ultratrader/shop/StoreItem.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.shop.StoreItem.java">com/thedemgel/ultratrader/shop/StoreItem.java</a>
                 </td>
                 <td>
                   0
@@ -771,7 +673,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemBeginPrompt.java">com/thedemgel/ultratrader/conversation/buyitemadmin/AdminBuyItemBeginPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemBeginPrompt.java">com/thedemgel/ultratrader/conversation/buyitemadmin/AdminBuyItemBeginPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -785,7 +687,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.PurchaseHandler.java">com/thedemgel/ultratrader/PurchaseHandler.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.PurchaseHandler.java">com/thedemgel/ultratrader/PurchaseHandler.java</a>
                 </td>
                 <td>
                   0
@@ -799,7 +701,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.AdminBankDepositPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/AdminBankDepositPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.AdminBankDepositPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/AdminBankDepositPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -813,7 +715,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.AdminTransferPrompt.java">com/thedemgel/ultratrader/conversation/admin/AdminTransferPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.AdminTransferPrompt.java">com/thedemgel/ultratrader/conversation/admin/AdminTransferPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -827,7 +729,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addbuyitem.AddItemShopFullPrompt.java">com/thedemgel/ultratrader/conversation/addbuyitem/AddItemShopFullPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addbuyitem.AddItemShopFullPrompt.java">com/thedemgel/ultratrader/conversation/addbuyitem/AddItemShopFullPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -841,7 +743,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.AdminMenuPrompt.java">com/thedemgel/ultratrader/conversation/admin/AdminMenuPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.AdminMenuPrompt.java">com/thedemgel/ultratrader/conversation/admin/AdminMenuPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -855,7 +757,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemBeginPrompt.java">com/thedemgel/ultratrader/conversation/sellitemadmin/AdminSellItemBeginPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemBeginPrompt.java">com/thedemgel/ultratrader/conversation/sellitemadmin/AdminSellItemBeginPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -869,7 +771,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.shop.ItemPrice.java">com/thedemgel/ultratrader/shop/ItemPrice.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.shop.ItemPrice.java">com/thedemgel/ultratrader/shop/ItemPrice.java</a>
                 </td>
                 <td>
                   0
@@ -883,35 +785,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermTypeDoPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalSetTermTypeDoPrompt.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  3
-                </td>
-                <td>
-                  3
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalAdminPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalAdminPrompt.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.bank.BankSetBankPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/bank/BankSetBankPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.bank.BankSetBankPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/bank/BankSetBankPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -925,7 +799,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.createshop.CreateShopCreatePrompt.java">com/thedemgel/ultratrader/conversation/createshop/CreateShopCreatePrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.createshop.CreateShopCreatePrompt.java">com/thedemgel/ultratrader/conversation/createshop/CreateShopCreatePrompt.java</a>
                 </td>
                 <td>
                   1
@@ -939,7 +813,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addsellitem.AddItemBeginPrompt.java">com/thedemgel/ultratrader/conversation/addsellitem/AddItemBeginPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addsellitem.AddItemBeginPrompt.java">com/thedemgel/ultratrader/conversation/addsellitem/AddItemBeginPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -953,7 +827,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemFinishPrompt.java">com/thedemgel/ultratrader/conversation/sellitemadmin/AdminSellItemFinishPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemFinishPrompt.java">com/thedemgel/ultratrader/conversation/sellitemadmin/AdminSellItemFinishPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -967,35 +841,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermTypePrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalSetTermTypePrompt.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalSetTermPrompt.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.inventory.annotation.InventoryPermission.java">com/thedemgel/ultratrader/inventory/annotation/InventoryPermission.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.inventory.annotation.InventoryPermission.java">com/thedemgel/ultratrader/inventory/annotation/InventoryPermission.java</a>
                 </td>
                 <td>
                   0
@@ -1009,7 +855,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.wallets.AdminWallet.java">com/thedemgel/ultratrader/wallet/wallets/AdminWallet.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.wallets.AdminWallet.java">com/thedemgel/ultratrader/wallet/wallets/AdminWallet.java</a>
                 </td>
                 <td>
                   0
@@ -1023,7 +869,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemSetPricePrompt.java">com/thedemgel/ultratrader/conversation/sellitemadmin/AdminSellItemSetPricePrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemSetPricePrompt.java">com/thedemgel/ultratrader/conversation/sellitemadmin/AdminSellItemSetPricePrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1037,7 +883,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.ConversationHandler.java">com/thedemgel/ultratrader/conversation/ConversationHandler.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.ConversationHandler.java">com/thedemgel/ultratrader/conversation/ConversationHandler.java</a>
                 </td>
                 <td>
                   0
@@ -1051,7 +897,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addbuyitem.AddBuyItemBeginPrompt.java">com/thedemgel/ultratrader/conversation/addbuyitem/AddBuyItemBeginPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addbuyitem.AddBuyItemBeginPrompt.java">com/thedemgel/ultratrader/conversation/addbuyitem/AddBuyItemBeginPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1065,7 +911,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.data.DataObject.java">com/thedemgel/ultratrader/data/DataObject.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.data.DataObject.java">com/thedemgel/ultratrader/data/DataObject.java</a>
                 </td>
                 <td>
                   0
@@ -1079,7 +925,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.shop.Shop.java">com/thedemgel/ultratrader/shop/Shop.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.shop.Shop.java">com/thedemgel/ultratrader/shop/Shop.java</a>
                 </td>
                 <td>
                   0
@@ -1093,7 +939,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.player.PlayerWalletMenuPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/player/PlayerWalletMenuPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.player.PlayerWalletMenuPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/player/PlayerWalletMenuPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1107,7 +953,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.NotADoublePrompt.java">com/thedemgel/ultratrader/conversation/NotADoublePrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.NotADoublePrompt.java">com/thedemgel/ultratrader/conversation/NotADoublePrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1121,7 +967,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.util.ShopAction.java">com/thedemgel/ultratrader/util/ShopAction.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.util.ShopAction.java">com/thedemgel/ultratrader/util/ShopAction.java</a>
                 </td>
                 <td>
                   0
@@ -1135,7 +981,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemDescriptionPrompt.java">com/thedemgel/ultratrader/conversation/sellitemadmin/AdminSellItemDescriptionPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemDescriptionPrompt.java">com/thedemgel/ultratrader/conversation/sellitemadmin/AdminSellItemDescriptionPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1149,7 +995,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.shop.ShopInventoryView.java">com/thedemgel/ultratrader/shop/ShopInventoryView.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.shop.ShopInventoryView.java">com/thedemgel/ultratrader/shop/ShopInventoryView.java</a>
                 </td>
                 <td>
                   0
@@ -1163,7 +1009,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.AdminBankMenuPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/AdminBankMenuPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.AdminBankMenuPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/AdminBankMenuPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1177,7 +1023,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemFinishPrompt.java">com/thedemgel/ultratrader/conversation/buyitemadmin/AdminBuyItemFinishPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemFinishPrompt.java">com/thedemgel/ultratrader/conversation/buyitemadmin/AdminBuyItemFinishPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1191,21 +1037,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultrarental.RentalShop.java">com/thedemgel/ultrarental/RentalShop.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  24
-                </td>
-                <td>
-                  28
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.WalletHandler.java">com/thedemgel/ultratrader/wallet/WalletHandler.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.WalletHandler.java">com/thedemgel/ultratrader/wallet/WalletHandler.java</a>
                 </td>
                 <td>
                   0
@@ -1219,7 +1051,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.player.PlayerWalletSelfPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/player/PlayerWalletSelfPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.player.PlayerWalletSelfPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/player/PlayerWalletSelfPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1233,7 +1065,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt.java">com/thedemgel/ultratrader/conversation/FixedIgnoreCaseSetPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt.java">com/thedemgel/ultratrader/conversation/FixedIgnoreCaseSetPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1247,7 +1079,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.level.AdminSetLevelDecreasePrompt.java">com/thedemgel/ultratrader/conversation/admin/level/AdminSetLevelDecreasePrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.level.AdminSetLevelDecreasePrompt.java">com/thedemgel/ultratrader/conversation/admin/level/AdminSetLevelDecreasePrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1261,7 +1093,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.inventoryinterface.AdminInventoryInterfacePrompt.java">com/thedemgel/ultratrader/conversation/admin/inventoryinterface/AdminInventoryInterfacePrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.inventoryinterface.AdminInventoryInterfacePrompt.java">com/thedemgel/ultratrader/conversation/admin/inventoryinterface/AdminInventoryInterfacePrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1275,21 +1107,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermLengthPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalSetTermLengthPrompt.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.wallets.BankWallet.java">com/thedemgel/ultratrader/wallet/wallets/BankWallet.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.wallets.BankWallet.java">com/thedemgel/ultratrader/wallet/wallets/BankWallet.java</a>
                 </td>
                 <td>
                   0
@@ -1303,7 +1121,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.annotation.WalletPermission.java">com/thedemgel/ultratrader/wallet/annotation/WalletPermission.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.annotation.WalletPermission.java">com/thedemgel/ultratrader/wallet/annotation/WalletPermission.java</a>
                 </td>
                 <td>
                   0
@@ -1317,35 +1135,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratowny.App.java">com/thedemgel/ultratowny/App.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  8
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalEnableDisablePrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalEnableDisablePrompt.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  3
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.AdminInventoryInterfaceMenuPrompt.java">com/thedemgel/ultratrader/conversation/admin/AdminInventoryInterfaceMenuPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.AdminInventoryInterfaceMenuPrompt.java">com/thedemgel/ultratrader/conversation/admin/AdminInventoryInterfaceMenuPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1359,7 +1149,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.AdminBankTypeMenuPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/AdminBankTypeMenuPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.AdminBankTypeMenuPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/AdminBankTypeMenuPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1373,7 +1163,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.util.Permissions.java">com/thedemgel/ultratrader/util/Permissions.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.util.Permissions.java">com/thedemgel/ultratrader/util/Permissions.java</a>
                 </td>
                 <td>
                   0
@@ -1387,7 +1177,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.AdminFinishPrompt.java">com/thedemgel/ultratrader/conversation/admin/AdminFinishPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.AdminFinishPrompt.java">com/thedemgel/ultratrader/conversation/admin/AdminFinishPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1401,7 +1191,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.createshop.CreateShopBeginPrompt.java">com/thedemgel/ultratrader/conversation/createshop/CreateShopBeginPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.createshop.CreateShopBeginPrompt.java">com/thedemgel/ultratrader/conversation/createshop/CreateShopBeginPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1415,7 +1205,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.StoreConfig.java">com/thedemgel/ultratrader/StoreConfig.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.StoreConfig.java">com/thedemgel/ultratrader/StoreConfig.java</a>
                 </td>
                 <td>
                   0
@@ -1429,49 +1219,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.RentalBeginPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/RentalBeginPrompt.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultraframe.FrameHandler.java">com/thedemgel/ultraframe/FrameHandler.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  8
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.RentalEndRentingPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/RentalEndRentingPrompt.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemDeleteConfirmPrompt.java">com/thedemgel/ultratrader/conversation/buyitemadmin/AdminBuyItemDeleteConfirmPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemDeleteConfirmPrompt.java">com/thedemgel/ultratrader/conversation/buyitemadmin/AdminBuyItemDeleteConfirmPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1485,7 +1233,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.wallets.ShopWallet.java">com/thedemgel/ultratrader/wallet/wallets/ShopWallet.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.wallets.ShopWallet.java">com/thedemgel/ultratrader/wallet/wallets/ShopWallet.java</a>
                 </td>
                 <td>
                   0
@@ -1499,21 +1247,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultraframe.UltraFrameTrait.java">com/thedemgel/ultraframe/UltraFrameTrait.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  7
-                </td>
-                <td>
-                  8
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.inventory.InventoryInterface.java">com/thedemgel/ultratrader/inventory/InventoryInterface.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.inventory.InventoryInterface.java">com/thedemgel/ultratrader/inventory/InventoryInterface.java</a>
                 </td>
                 <td>
                   0
@@ -1527,7 +1261,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.LimitHandler.java">com/thedemgel/ultratrader/LimitHandler.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.LimitHandler.java">com/thedemgel/ultratrader/LimitHandler.java</a>
                 </td>
                 <td>
                   0
@@ -1541,7 +1275,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.util.ResponseObject.java">com/thedemgel/ultratrader/util/ResponseObject.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.util.ResponseObject.java">com/thedemgel/ultratrader/util/ResponseObject.java</a>
                 </td>
                 <td>
                   0
@@ -1555,7 +1289,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.inventory.AdminInventoryInterface.java">com/thedemgel/ultratrader/inventory/AdminInventoryInterface.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.inventory.AdminInventoryInterface.java">com/thedemgel/ultratrader/inventory/AdminInventoryInterface.java</a>
                 </td>
                 <td>
                   0
@@ -1569,21 +1303,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultrarental.UltraRental.java">com/thedemgel/ultrarental/UltraRental.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  7
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.data.MysqlDataObject.java">com/thedemgel/ultratrader/data/MysqlDataObject.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.data.MysqlDataObject.java">com/thedemgel/ultratrader/data/MysqlDataObject.java</a>
                 </td>
                 <td>
                   0
@@ -1597,21 +1317,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultraworldguard.Permissions.java">com/thedemgel/ultraworldguard/Permissions.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.command.BukkitCommand.java">com/thedemgel/ultratrader/command/BukkitCommand.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.command.BukkitCommand.java">com/thedemgel/ultratrader/command/BukkitCommand.java</a>
                 </td>
                 <td>
                   0
@@ -1625,21 +1331,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultraframe.FrameListener.java">com/thedemgel/ultraframe/FrameListener.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  6
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.annotation.AssignConversation.java">com/thedemgel/ultratrader/wallet/annotation/AssignConversation.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.annotation.AssignConversation.java">com/thedemgel/ultratrader/wallet/annotation/AssignConversation.java</a>
                 </td>
                 <td>
                   0
@@ -1653,7 +1345,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addbuyitem.AddBuyItemCantAddInventoryPrompt.java">com/thedemgel/ultratrader/conversation/addbuyitem/AddBuyItemCantAddInventoryPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addbuyitem.AddBuyItemCantAddInventoryPrompt.java">com/thedemgel/ultratrader/conversation/addbuyitem/AddBuyItemCantAddInventoryPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1667,7 +1359,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addsellitem.AddItemFinishPrompt.java">com/thedemgel/ultratrader/conversation/addsellitem/AddItemFinishPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addsellitem.AddItemFinishPrompt.java">com/thedemgel/ultratrader/conversation/addsellitem/AddItemFinishPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1681,7 +1373,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemMenuPrompt.java">com/thedemgel/ultratrader/conversation/sellitemadmin/AdminSellItemMenuPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemMenuPrompt.java">com/thedemgel/ultratrader/conversation/sellitemadmin/AdminSellItemMenuPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1695,21 +1387,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultraworldguard.WorldGuardOwnerTrait.java">com/thedemgel/ultraworldguard/WorldGuardOwnerTrait.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addsellitem.AddItemPrompt.java">com/thedemgel/ultratrader/conversation/addsellitem/AddItemPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addsellitem.AddItemPrompt.java">com/thedemgel/ultratrader/conversation/addsellitem/AddItemPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1723,7 +1401,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemDescriptionPrompt.java">com/thedemgel/ultratrader/conversation/buyitemadmin/AdminBuyItemDescriptionPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemDescriptionPrompt.java">com/thedemgel/ultratrader/conversation/buyitemadmin/AdminBuyItemDescriptionPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1737,7 +1415,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addbuyitem.AddBuyItemConversationPrefix.java">com/thedemgel/ultratrader/conversation/addbuyitem/AddBuyItemConversationPrefix.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addbuyitem.AddBuyItemConversationPrefix.java">com/thedemgel/ultratrader/conversation/addbuyitem/AddBuyItemConversationPrefix.java</a>
                 </td>
                 <td>
                   0
@@ -1751,21 +1429,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultrarental.L.java">com/thedemgel/ultrarental/L.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.AbandonConvo.java">com/thedemgel/ultratrader/conversation/AbandonConvo.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.AbandonConvo.java">com/thedemgel/ultratrader/conversation/AbandonConvo.java</a>
                 </td>
                 <td>
                   0
@@ -1779,7 +1443,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.InventoryHandler.java">com/thedemgel/ultratrader/InventoryHandler.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.InventoryHandler.java">com/thedemgel/ultratrader/InventoryHandler.java</a>
                 </td>
                 <td>
                   0
@@ -1793,7 +1457,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.AdminConversationPrefix.java">com/thedemgel/ultratrader/conversation/admin/AdminConversationPrefix.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.AdminConversationPrefix.java">com/thedemgel/ultratrader/conversation/admin/AdminConversationPrefix.java</a>
                 </td>
                 <td>
                   0
@@ -1807,7 +1471,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.inventory.annotation.InventoryDisplayName.java">com/thedemgel/ultratrader/inventory/annotation/InventoryDisplayName.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.inventory.annotation.InventoryDisplayName.java">com/thedemgel/ultratrader/inventory/annotation/InventoryDisplayName.java</a>
                 </td>
                 <td>
                   0
@@ -1821,7 +1485,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemDeletePrompt.java">com/thedemgel/ultratrader/conversation/sellitemadmin/AdminSellItemDeletePrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemDeletePrompt.java">com/thedemgel/ultratrader/conversation/sellitemadmin/AdminSellItemDeletePrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1835,7 +1499,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.createshop.CreateShopConversationPrefix.java">com/thedemgel/ultratrader/conversation/createshop/CreateShopConversationPrefix.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.createshop.CreateShopConversationPrefix.java">com/thedemgel/ultratrader/conversation/createshop/CreateShopConversationPrefix.java</a>
                 </td>
                 <td>
                   0
@@ -1849,7 +1513,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.command.Commands.java">com/thedemgel/ultratrader/command/Commands.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.command.Commands.java">com/thedemgel/ultratrader/command/Commands.java</a>
                 </td>
                 <td>
                   0
@@ -1863,21 +1527,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultraworldguard.UltraWorldGuard.java">com/thedemgel/ultraworldguard/UltraWorldGuard.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.AdminBankPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/AdminBankPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.AdminBankPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/AdminBankPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1891,7 +1541,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.ShopListener.java">com/thedemgel/ultratrader/ShopListener.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.ShopListener.java">com/thedemgel/ultratrader/ShopListener.java</a>
                 </td>
                 <td>
                   0
@@ -1905,7 +1555,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.AdminSetNamePrompt.java">com/thedemgel/ultratrader/conversation/admin/AdminSetNamePrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.AdminSetNamePrompt.java">com/thedemgel/ultratrader/conversation/admin/AdminSetNamePrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1919,7 +1569,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.command.commands.ShopCommands.java">com/thedemgel/ultratrader/command/commands/ShopCommands.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.command.commands.ShopCommands.java">com/thedemgel/ultratrader/command/commands/ShopCommands.java</a>
                 </td>
                 <td>
                   0
@@ -1933,7 +1583,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemDeleteConfirmPrompt.java">com/thedemgel/ultratrader/conversation/sellitemadmin/AdminSellItemDeleteConfirmPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemDeleteConfirmPrompt.java">com/thedemgel/ultratrader/conversation/sellitemadmin/AdminSellItemDeleteConfirmPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1947,7 +1597,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.AdminBeginPrompt.java">com/thedemgel/ultratrader/conversation/admin/AdminBeginPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.AdminBeginPrompt.java">com/thedemgel/ultratrader/conversation/admin/AdminBeginPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -1961,7 +1611,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.util.YamlFilenameFilter.java">com/thedemgel/ultratrader/util/YamlFilenameFilter.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.util.YamlFilenameFilter.java">com/thedemgel/ultratrader/util/YamlFilenameFilter.java</a>
                 </td>
                 <td>
                   0
@@ -1975,7 +1625,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addsellitem.AddItemDescriptionPrompt.java">com/thedemgel/ultratrader/conversation/addsellitem/AddItemDescriptionPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addsellitem.AddItemDescriptionPrompt.java">com/thedemgel/ultratrader/conversation/addsellitem/AddItemDescriptionPrompt.java</a>
                 </td>
                 <td>
                   0
