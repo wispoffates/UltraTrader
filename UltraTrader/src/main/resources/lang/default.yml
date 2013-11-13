@@ -119,6 +119,7 @@ conversation:
     shopfull: Shop currently is full.
   error:
     notadouble: Value needs to be a number value (2, 12.12)
+    inconvo: Please exit your current conversation.
   options: Options
   toquit: (To force exit type "/quit")
 debug:

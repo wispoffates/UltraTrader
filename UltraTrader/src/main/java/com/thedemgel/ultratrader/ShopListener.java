@@ -6,11 +6,10 @@ import com.thedemgel.ultratrader.shop.ShopHandler;
 import com.thedemgel.ultratrader.util.Permissions;
 import com.thedemgel.ultratrader.shop.ShopInventoryView;
 import com.thedemgel.ultratrader.shop.StoreItem;
-import java.util.logging.Level;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.api.trait.trait.Owner;
-import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.conversations.Conversation;
@@ -68,8 +67,6 @@ public class ShopListener implements Listener {
 			default:
 		}
 
-		//System.out.println(event.getAction());
-
 		final ShopInventoryView view = (ShopInventoryView) event.getView();
 
 		// Nothing needs to be dragged anymore...
@@ -95,9 +92,13 @@ public class ShopListener implements Listener {
 				}
 
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && view.getShop().getOwner().equals(player.getName())) {
-					Conversation convo = UltraTrader.getConversationHandler().getAdminConversation().buildConversation(player);
-					view.setConvo(convo);
-					convo.begin();
+					if (!player.isConversing()) {
+						Conversation convo = UltraTrader.getConversationHandler().getAdminConversation().buildConversation(player);
+						view.setConvo(convo);
+						convo.begin();
+					} else {
+						player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+					}
 					return;
 				} else if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && !view.getShop().getOwner().equals(player.getName())) {
 					return;
@@ -111,13 +112,17 @@ public class ShopListener implements Listener {
 					view.buildItemView(event.getCurrentItem());
 				} else if (event.getCursor().getData().getItemType().equals(Material.AIR)) {
 				} else if (view.getShop().isOwner(player)) {
-					event.setCancelled(false);
-					ItemStack inhand = event.getCursor().clone();
-					Conversation convo = UltraTrader.getConversationHandler().getAddSellItem().buildConversation(player);
-					convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, inhand);
-					convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
-					view.setConvo(convo);
-					convo.begin();
+					if (!player.isConversing()) {
+						event.setCancelled(false);
+						ItemStack inhand = event.getCursor().clone();
+						Conversation convo = UltraTrader.getConversationHandler().getAddSellItem().buildConversation(player);
+						convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, inhand);
+						convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
+						view.setConvo(convo);
+						convo.begin();
+					} else {
+						player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+					}
 				} else {
 					player.sendMessage(L.getString("shops.gotobuy.line1"));
 					player.sendMessage(L.getString("shops.gotobuy.line2"));
@@ -130,10 +135,14 @@ public class ShopListener implements Listener {
 				}
 
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && view.getShop().getOwner().equals(player.getName())) {
-					Conversation convo = UltraTrader.getConversationHandler().getSetSellPrice().buildConversation(player);
-					convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, event.getCurrentItem());
-					view.setConvo(convo);
-					convo.begin();
+					if (!player.isConversing()) {
+						Conversation convo = UltraTrader.getConversationHandler().getSetSellPrice().buildConversation(player);
+						convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, event.getCurrentItem());
+						view.setConvo(convo);
+						convo.begin();
+					} else {
+						player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+					}
 					return;
 				} else if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && !view.getShop().getOwner().equals(player.getName())) {
 					return;
@@ -168,6 +177,10 @@ public class ShopListener implements Listener {
 			case BUY_SCREEN:
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_CREATE_ITEM_SLOT) {
 					// Make the item here (if the shop can do it)
+					if (view.getShop().getCanRemote()) {
+						PurchaseHandler.processShopItemPurchase(view.getShop(), player, event.getCurrentItem());
+					}
+					return;
 				}
 
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_BACK_ARROW_SLOT) {
@@ -176,9 +189,13 @@ public class ShopListener implements Listener {
 				}
 
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && view.getShop().getOwner().equals(player.getName())) {
-					Conversation convo = UltraTrader.getConversationHandler().getAdminConversation().buildConversation(player);
-					view.setConvo(convo);
-					convo.begin();
+					if (!player.isConversing()) {
+						Conversation convo = UltraTrader.getConversationHandler().getAdminConversation().buildConversation(player);
+						view.setConvo(convo);
+						convo.begin();
+					} else {
+						player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+					}
 					return;
 				} else if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && !view.getShop().getOwner().equals(player.getName())) {
 					return;
@@ -198,19 +215,22 @@ public class ShopListener implements Listener {
 				} else if (view.getShop().isOwner(player)) {
 					ItemStack inhand = event.getCursor().clone();
 					if (!inhand.getType().equals(Material.AIR)) {
-						event.setCancelled(false);
-						plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-							@Override
-							public void run() {
-								ItemStack placedItem = view.getItem(event.getRawSlot());
-								Conversation convo = UltraTrader.getConversationHandler().getAddBuyItem().buildConversation((Player) event.getWhoClicked());
-								convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, placedItem);
-								convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
-								view.setConvo(convo);
-								convo.begin();
-							}
-						}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
-
+						if (!player.isConversing()) {
+							event.setCancelled(false);
+							plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+								@Override
+								public void run() {
+									ItemStack placedItem = view.getItem(event.getRawSlot());
+									Conversation convo = UltraTrader.getConversationHandler().getAddBuyItem().buildConversation((Player) event.getWhoClicked());
+									convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, placedItem);
+									convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
+									view.setConvo(convo);
+									convo.begin();
+								}
+							}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
+						} else {
+							player.sendMessage("conversation.error.inconvo");
+						}
 
 					}
 				} else if (!event.getCursor().getData().getItemType().equals(Material.AIR)) {
@@ -237,10 +257,14 @@ public class ShopListener implements Listener {
 				}
 
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && view.getShop().getOwner().equals(player.getName())) {
-					Conversation convo = UltraTrader.getConversationHandler().getBuyItemAdmin().buildConversation(player);
-					convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, event.getCurrentItem());
-					view.setConvo(convo);
-					convo.begin();
+					if (!player.isConversing()) {
+						Conversation convo = UltraTrader.getConversationHandler().getBuyItemAdmin().buildConversation(player);
+						convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, event.getCurrentItem());
+						view.setConvo(convo);
+						convo.begin();
+					} else {
+						player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+					}
 					return;
 				} else if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && !view.getShop().getOwner().equals(player.getName())) {
 					return;
@@ -311,16 +335,20 @@ public class ShopListener implements Listener {
 
 				if (shopid == ShopHandler.SHOP_NULL) {
 					if (npc.getTrait(Owner.class).isOwnedBy(player)) {
-						Conversation convo = UltraTrader.getConversationHandler().getCreateShop().buildConversation(player);
-						convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
-						convo.begin();
+						if (!player.isConversing()) {
+							Conversation convo = UltraTrader.getConversationHandler().getCreateShop().buildConversation(player);
+							convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
+							convo.begin();
+						} else {
+							player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+						}
 						return;
 					} else {
-						player.sendMessage(L.getString("general.notopen.unassigned"));
+						player.sendMessage(ChatColor.YELLOW + L.getString("general.notopen.unassigned"));
 						return;
 					}
 				} else if (UltraTrader.getStoreHandler().getShop(shopid) == null) {
-					player.sendMessage(L.getString("general.notopen.errorloading"));
+					player.sendMessage(ChatColor.RED + L.getString("general.notopen.errorloading"));
 					return;
 				}
 
@@ -333,8 +361,7 @@ public class ShopListener implements Listener {
 						view.setTarget(npc);
 					}
 				} else {
-					handler
-						.createBuyInventoryView(player, UltraTrader.getStoreHandler().getShop(shopid))
+					handler.createBuyInventoryView(player, UltraTrader.getStoreHandler().getShop(shopid))
 						.setTarget(npc);
 				}
 

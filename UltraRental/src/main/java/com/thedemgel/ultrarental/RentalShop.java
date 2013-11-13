@@ -9,6 +9,9 @@ import com.thedemgel.ultratrader.shop.ShopHandler;
 import com.thedemgel.ultratrader.util.TimeFormat;
 import java.util.concurrent.TimeUnit;
 import net.citizensnpcs.api.persistence.Persist;
+import net.citizensnpcs.api.trait.trait.Owner;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.conversations.Conversation;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.entity.Player;
@@ -18,8 +21,7 @@ public class RentalShop extends UltraTrait {
 	// Player renting shop
 	@Persist
 	private String renter = "";
-	// Shop id of rented shop
-	//@Persist private Integer shopid = -1;
+
 	// Time shop was rented
 	// 0 if not rented
 	@Persist
@@ -132,14 +134,32 @@ public class RentalShop extends UltraTrait {
 
 	@Override
 	public boolean onClick(Player player) {
-		if (!isRented()) {
-			Conversation convo = UltraRental.getRentalTraderConvo().buildConversation(player);
-			convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
-			convo.begin();
+		Owner owner = npc.getTrait(Owner.class);
+
+		if (owner.isOwnedBy(player) && player.getItemInHand().getType().equals(Material.STICK)) {
+			if (!player.isConversing()) {
+				// Open up rental conversation
+				Conversation convo = UltraRental.getRentalTraderConvo().buildConversation(player);
+				convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
+				convo.begin();
+			} else {
+				player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+			}
 			return false;
 		}
 
-		TraderTrait trader = npc.getTrait(TraderTrait.class);
+		if (!isRented()) {
+			if (!player.isConversing()) {
+				Conversation convo = UltraRental.getRentalTraderConvo().buildConversation(player);
+				convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
+				convo.begin();
+			} else {
+				player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+			}
+			return false;
+		}
+
+		/*TraderTrait trader = npc.getTrait(TraderTrait.class);
 
 		if (trader.getShopId().equals(ShopHandler.SHOP_NULL)) {
 			if (getRenter().equals(player.getName())) {
@@ -147,8 +167,10 @@ public class RentalShop extends UltraTrait {
 				convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
 				convo.begin();
 				return false;
+			} else {
+				// send message shop isn't open yet.
 			}
-		}
+		}*/
 
 		return true;
 	}
