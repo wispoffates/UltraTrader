@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>UltraRental - FindBugs Bug Detector Report</title>
+    <title>UltraFrame - FindBugs Bug Detector Report</title>
     <style type="text/css" media="all">
       @import url("./css/maven-base.css");
       @import url("./css/maven-theme.css");
@@ -17,7 +17,7 @@
   <body class="composite">
     <div id="banner">
                     <div id="bannerLeft">
-                UltraRental
+                UltraFrame
                 </div>
                     <div class="clear">
         <hr/>
@@ -30,7 +30,7 @@
         <span id="publishDate">Last Published: 2013-11-12</span>
                   &nbsp;| <span id="projectVersion">Version: 1.0-SNAPSHOT</span>
                       </div>
-            <div class="xright">                    <a href="./" title="UltraRental">UltraRental</a>
+            <div class="xright">                    <a href="./" title="UltraFrame">UltraFrame</a>
               
                     
       </div>
@@ -101,8 +101,8 @@
 <th>Errors</th>
 <th>Missing Classes</th></tr>
 <tr class="b">
-<td>17</td>
-<td>5</td>
+<td>4</td>
+<td>0</td>
 <td>0</td>
 <td>0</td></tr></table></div>
 <div class="section">
@@ -110,73 +110,7 @@
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Class</th>
-<th>Bugs</th></tr>
-<tr class="b">
-<td><a href="#com.thedemgel.ultrarental.RentalHandler$RentCheck">com.thedemgel.ultrarental.RentalHandler$RentCheck</a></td>
-<td>1</td></tr>
-<tr class="a">
-<td><a href="#com.thedemgel.ultrarental.UltraRental">com.thedemgel.ultrarental.UltraRental</a></td>
-<td>3</td></tr>
-<tr class="b">
-<td><a href="#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermTypePrompt">com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermTypePrompt</a></td>
-<td>1</td></tr></table></div><a name="com.thedemgel.ultrarental.RentalHandlerRentCheck"></a>
-<div class="section">
-<h3>com.thedemgel.ultrarental.RentalHandler$RentCheck<a name="com.thedemgel.ultrarental.RentalHandlerRentCheck"></a></h3>
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Bug</th>
-<th>Category</th>
-<th>Details</th>
-<th>Line</th>
-<th>Priority</th></tr>
-<tr class="b">
-<td>Should com.thedemgel.ultrarental.RentalHandler$RentCheck be a _static_ inner class?</td>
-<td>PERFORMANCE</td>
-<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#SIC_INNER_SHOULD_BE_STATIC">SIC_INNER_SHOULD_BE_STATIC</a></td>
-<td><a href="./xref/com/thedemgel/ultrarental/RentalHandler.html#100">100-126</a></td>
-<td>Medium</td></tr></table></div><a name="com.thedemgel.ultrarental.UltraRental"></a>
-<div class="section">
-<h3>com.thedemgel.ultrarental.UltraRental<a name="com.thedemgel.ultrarental.UltraRental"></a></h3>
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Bug</th>
-<th>Category</th>
-<th>Details</th>
-<th>Line</th>
-<th>Priority</th></tr>
-<tr class="b">
-<td>Write to static field com.thedemgel.ultrarental.UltraRental.instance from instance method com.thedemgel.ultrarental.UltraRental.onEnable()</td>
-<td>STYLE</td>
-<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
-<td><a href="./xref/com/thedemgel/ultrarental/UltraRental.html#28">28</a></td>
-<td>High</td></tr>
-<tr class="a">
-<td>Write to static field com.thedemgel.ultrarental.UltraRental.rentalHandler from instance method com.thedemgel.ultrarental.UltraRental.onEnable()</td>
-<td>STYLE</td>
-<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
-<td><a href="./xref/com/thedemgel/ultrarental/UltraRental.html#30">30</a></td>
-<td>High</td></tr>
-<tr class="b">
-<td>Write to static field com.thedemgel.ultrarental.UltraRental.rentalTrader from instance method com.thedemgel.ultrarental.UltraRental.onEnable()</td>
-<td>STYLE</td>
-<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
-<td><a href="./xref/com/thedemgel/ultrarental/UltraRental.html#32">32</a></td>
-<td>High</td></tr></table></div><a name="com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermTypePrompt"></a>
-<div class="section">
-<h3>com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermTypePrompt<a name="com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermTypePrompt"></a></h3>
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Bug</th>
-<th>Category</th>
-<th>Details</th>
-<th>Line</th>
-<th>Priority</th></tr>
-<tr class="b">
-<td>Unread field: com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermTypePrompt.n</td>
-<td>PERFORMANCE</td>
-<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#URF_UNREAD_FIELD">URF_UNREAD_FIELD</a></td>
-<td><a href="./xref/com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalSetTermTypePrompt.html#33">33</a></td>
-<td>Medium</td></tr></table></div>
+<th>Bugs</th></tr></table></div>
       </div>
     </div>
     <div class="clear">
