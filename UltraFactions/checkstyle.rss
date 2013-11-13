@@ -3,7 +3,7 @@
 <rss version="0.91">
   <channel>
     <title>UltraFactions - Checkstyle report</title>
-    <link>http://maven.apache.org</link>
+    <link>http://demgelopensource.github.io/UltraTrader/UltraFactions</link>
     <description>UltraFactions - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2013 Demgel OpenSource Coding</copyright>
@@ -13,9 +13,9 @@
              Warnings: 1,
              Infos: 0
       </title>
-            <link>http://maven.apache.org/checkstyle.html</link>
+            <link>http://demgelopensource.github.io/UltraTrader/UltraFactions/checkstyle.html</link>
       <description>
-        <p>Click <a href="http://maven.apache.org/checkstyle.html">here</a> for the full Checkstyle report.</p>
+        <p>Click <a href="http://demgelopensource.github.io/UltraTrader/UltraFactions/checkstyle.html">here</a> for the full Checkstyle report.</p>
 
         <table summary="Files" boder="1">
           <thead>
@@ -29,7 +29,7 @@
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultrafactions.App.java">com/thedemgel/ultrafactions/App.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraFactions/checkstyle.html#com.thedemgel.ultrafactions.App.java">com/thedemgel/ultrafactions/App.java</a>
                 </td>
                 <td>
                   0
