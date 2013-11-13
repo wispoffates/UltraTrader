@@ -3,7 +3,7 @@
 <rss version="0.91">
   <channel>
     <title>UltraRental - Checkstyle report</title>
-    <link>http://maven.apache.org</link>
+    <link>http://demgelopensource.github.io/UltraTrader/UltraRental</link>
     <description>UltraRental - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2013 Demgel OpenSource Coding</copyright>
@@ -13,9 +13,9 @@
              Warnings: 80,
              Infos: 0
       </title>
-            <link>http://maven.apache.org/checkstyle.html</link>
+            <link>http://demgelopensource.github.io/UltraTrader/UltraRental/checkstyle.html</link>
       <description>
-        <p>Click <a href="http://maven.apache.org/checkstyle.html">here</a> for the full Checkstyle report.</p>
+        <p>Click <a href="http://demgelopensource.github.io/UltraTrader/UltraRental/checkstyle.html">here</a> for the full Checkstyle report.</p>
 
         <table summary="Files" boder="1">
           <thead>
@@ -29,7 +29,7 @@
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.RentalBeginPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/RentalBeginPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraRental/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.RentalBeginPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/RentalBeginPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -43,7 +43,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.RentalEndRentingPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/RentalEndRentingPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraRental/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.RentalEndRentingPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/RentalEndRentingPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -57,7 +57,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultrarental.RentalShop.java">com/thedemgel/ultrarental/RentalShop.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraRental/checkstyle.html#com.thedemgel.ultrarental.RentalShop.java">com/thedemgel/ultrarental/RentalShop.java</a>
                 </td>
                 <td>
                   0
@@ -71,7 +71,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermTypeDoPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalSetTermTypeDoPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraRental/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermTypeDoPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalSetTermTypeDoPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -85,7 +85,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalAdminPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalAdminPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraRental/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalAdminPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalAdminPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -99,7 +99,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.RentalConfirmPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/RentalConfirmPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraRental/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.RentalConfirmPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/RentalConfirmPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -113,7 +113,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultrarental.RentalHandler.java">com/thedemgel/ultrarental/RentalHandler.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraRental/checkstyle.html#com.thedemgel.ultrarental.RentalHandler.java">com/thedemgel/ultrarental/RentalHandler.java</a>
                 </td>
                 <td>
                   0
@@ -127,7 +127,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermLengthPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalSetTermLengthPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraRental/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermLengthPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalSetTermLengthPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -141,7 +141,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalSetTermPrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraRental/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermPrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalSetTermPrompt.java</a>
                 </td>
                 <td>
                   0
@@ -155,7 +155,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermTypePrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalSetTermTypePrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraRental/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermTypePrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalSetTermTypePrompt.java</a>
                 </td>
                 <td>
                   0
@@ -169,7 +169,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermPricePrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalSetTermPricePrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraRental/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalSetTermPricePrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalSetTermPricePrompt.java</a>
                 </td>
                 <td>
                   0
@@ -183,7 +183,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalEnableDisablePrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalEnableDisablePrompt.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraRental/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.admin.RentalEnableDisablePrompt.java">com/thedemgel/ultrarental/conversation/rentalshop/admin/RentalEnableDisablePrompt.java</a>
                 </td>
                 <td>
                   0
@@ -197,7 +197,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.RentalConversationPrefix.java">com/thedemgel/ultrarental/conversation/rentalshop/RentalConversationPrefix.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraRental/checkstyle.html#com.thedemgel.ultrarental.conversation.rentalshop.RentalConversationPrefix.java">com/thedemgel/ultrarental/conversation/rentalshop/RentalConversationPrefix.java</a>
                 </td>
                 <td>
                   0
@@ -211,7 +211,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultrarental.UltraRental.java">com/thedemgel/ultrarental/UltraRental.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraRental/checkstyle.html#com.thedemgel.ultrarental.UltraRental.java">com/thedemgel/ultrarental/UltraRental.java</a>
                 </td>
                 <td>
                   0
@@ -225,7 +225,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultrarental.L.java">com/thedemgel/ultrarental/L.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraRental/checkstyle.html#com.thedemgel.ultrarental.L.java">com/thedemgel/ultrarental/L.java</a>
                 </td>
                 <td>
                   0
