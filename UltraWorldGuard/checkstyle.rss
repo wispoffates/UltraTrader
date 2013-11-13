@@ -3,7 +3,7 @@
 <rss version="0.91">
   <channel>
     <title>UltraWorldGuard - Checkstyle report</title>
-    <link>http://maven.apache.org</link>
+    <link>http://demgelopensource.github.io/UltraTrader/UltraWorldGuard</link>
     <description>UltraWorldGuard - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2013 Demgel OpenSource Coding</copyright>
@@ -13,9 +13,9 @@
              Warnings: 7,
              Infos: 0
       </title>
-            <link>http://maven.apache.org/checkstyle.html</link>
+            <link>http://demgelopensource.github.io/UltraTrader/UltraWorldGuard/checkstyle.html</link>
       <description>
-        <p>Click <a href="http://maven.apache.org/checkstyle.html">here</a> for the full Checkstyle report.</p>
+        <p>Click <a href="http://demgelopensource.github.io/UltraTrader/UltraWorldGuard/checkstyle.html">here</a> for the full Checkstyle report.</p>
 
         <table summary="Files" boder="1">
           <thead>
@@ -29,7 +29,7 @@
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultraworldguard.WorldGuardMemberTrait.java">com/thedemgel/ultraworldguard/WorldGuardMemberTrait.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraWorldGuard/checkstyle.html#com.thedemgel.ultraworldguard.WorldGuardMemberTrait.java">com/thedemgel/ultraworldguard/WorldGuardMemberTrait.java</a>
                 </td>
                 <td>
                   0
@@ -43,7 +43,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultraworldguard.UltraWorldGuard.java">com/thedemgel/ultraworldguard/UltraWorldGuard.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraWorldGuard/checkstyle.html#com.thedemgel.ultraworldguard.UltraWorldGuard.java">com/thedemgel/ultraworldguard/UltraWorldGuard.java</a>
                 </td>
                 <td>
                   0
@@ -57,7 +57,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultraworldguard.WorldGuardOwnerTrait.java">com/thedemgel/ultraworldguard/WorldGuardOwnerTrait.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraWorldGuard/checkstyle.html#com.thedemgel.ultraworldguard.WorldGuardOwnerTrait.java">com/thedemgel/ultraworldguard/WorldGuardOwnerTrait.java</a>
                 </td>
                 <td>
                   0
@@ -71,7 +71,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultraworldguard.Permissions.java">com/thedemgel/ultraworldguard/Permissions.java</a>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraWorldGuard/checkstyle.html#com.thedemgel.ultraworldguard.Permissions.java">com/thedemgel/ultraworldguard/Permissions.java</a>
                 </td>
                 <td>
                   0
