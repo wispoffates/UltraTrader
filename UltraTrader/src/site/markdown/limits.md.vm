@@ -23,6 +23,34 @@ assigned by limits.yml.
 All the Permission nodes required setting permission limits can be found here:
 [Limits] (permission.html#Limits)
 
+$h3 Required Traits
+It is possible to require that some traits be present on NPCs when a player
+creates them, if they are not present then they will be added automatically.
+
+To let Ultratrader know that some traits are required to you will use the either
+limits.yml or permissions. In this case the permissions are far more flexeble than
+the limits.yml method.
+
+`trader.limits.required.groupname.traitname`
+
+Groupname is the group the special group the player is in (usually this would
+likely be `default`, or `trader.limits.required.default.traitname` but if you use
+more than one system of protections or limits then you would want to give out different
+groups of requirements.
+
+$h4 Why would I set required Traits
+Required traits are a way of controlling an NPCs location, or actions. With the addition
+of External Plugins to extend Ultratrader there is now the possibility of many
+additional traits that can be assigned to an NPC. Many of the traits will work as
+flags.
+
+`worldguardowner` or `worldguardmember`
+
+If you use the UltraWorldGuard plugin with Ultratrader, then you will use those two
+traits. If you set either to required traits, then if the NPC being created/used will
+not be created/used if the NPC is not within a regions the owner of the NPC is a member
+or owner of.
+
 $h3 Defaults
 A special note about the defaults section. The options can change, but the keys
 and sections need to stay the same. Most of these settings are what a player
