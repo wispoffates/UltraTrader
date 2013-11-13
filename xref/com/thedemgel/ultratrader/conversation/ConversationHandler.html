@@ -21,8 +21,8 @@
 <a class="jxr_linenumber" name="11" href="#11">11</a>  <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemConversationPrefix;
 <a class="jxr_linenumber" name="12" href="#12">12</a>  <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.conversation.createshop.CreateShopBeginPrompt;
 <a class="jxr_linenumber" name="13" href="#13">13</a>  <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.conversation.createshop.CreateShopConversationPrefix;
-<a class="jxr_linenumber" name="14" href="#14">14</a>  <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.conversation.rentalshop.RentalBeginPrompt;
-<a class="jxr_linenumber" name="15" href="#15">15</a>  <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.conversation.rentalshop.RentalConversationPrefix;
+<a class="jxr_linenumber" name="14" href="#14">14</a>  <em class="jxr_comment">//import com.thedemgel.ultratrader.conversation.rentalshop.RentalBeginPrompt;</em>
+<a class="jxr_linenumber" name="15" href="#15">15</a>  <em class="jxr_comment">//import com.thedemgel.ultratrader.conversation.rentalshop.RentalConversationPrefix;</em>
 <a class="jxr_linenumber" name="16" href="#16">16</a>  <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemBeginPrompt;
 <a class="jxr_linenumber" name="17" href="#17">17</a>  <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemConversationPrefix;
 <a class="jxr_linenumber" name="18" href="#18">18</a>  <strong class="jxr_keyword">import</strong> org.bukkit.conversations.ConversationFactory;
@@ -45,7 +45,7 @@
 <a class="jxr_linenumber" name="35" href="#35">35</a>  	<strong class="jxr_keyword">private</strong> ConversationFactory createShop;
 <a class="jxr_linenumber" name="36" href="#36">36</a>  	<strong class="jxr_keyword">private</strong> ConversationFactory buyItemAdmin;
 <a class="jxr_linenumber" name="37" href="#37">37</a>  	<strong class="jxr_keyword">private</strong> ConversationFactory addBuyItem;
-<a class="jxr_linenumber" name="38" href="#38">38</a>  	<strong class="jxr_keyword">private</strong> ConversationFactory rentalTrader;
+<a class="jxr_linenumber" name="38" href="#38">38</a>  	<em class="jxr_comment">//private ConversationFactory rentalTrader;</em>
 <a class="jxr_linenumber" name="39" href="#39">39</a>  
 <a class="jxr_linenumber" name="40" href="#40">40</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../com/thedemgel/ultratrader/conversation/ConversationHandler.html">ConversationHandler</a>(<a href="../../../../com/thedemgel/ultratrader/UltraTrader.html">UltraTrader</a> instance) {
 <a class="jxr_linenumber" name="41" href="#41">41</a>  		setSellPrice = <strong class="jxr_keyword">new</strong> ConversationFactory(instance)
@@ -102,14 +102,14 @@
 <a class="jxr_linenumber" name="92" href="#92">92</a>  			.addConversationAbandonedListener(<strong class="jxr_keyword">new</strong> <a href="../../../../com/thedemgel/ultratrader/conversation/AbandonConvo.html">AbandonConvo</a>())
 <a class="jxr_linenumber" name="93" href="#93">93</a>  			.thatExcludesNonPlayersWithMessage(<span class="jxr_string">"No Console Please"</span>);
 <a class="jxr_linenumber" name="94" href="#94">94</a>  
-<a class="jxr_linenumber" name="95" href="#95">95</a>  		rentalTrader = <strong class="jxr_keyword">new</strong> ConversationFactory(instance)
-<a class="jxr_linenumber" name="96" href="#96">96</a>  			.withModality(<strong class="jxr_keyword">true</strong>)
-<a class="jxr_linenumber" name="97" href="#97">97</a>  			.withPrefix(<strong class="jxr_keyword">new</strong> <a href="../../../../com/thedemgel/ultratrader/conversation/rentalshop/RentalConversationPrefix.html">RentalConversationPrefix</a>())
-<a class="jxr_linenumber" name="98" href="#98">98</a>  			.withFirstPrompt(<strong class="jxr_keyword">new</strong> <a href="../../../../com/thedemgel/ultratrader/conversation/rentalshop/RentalBeginPrompt.html">RentalBeginPrompt</a>())
-<a class="jxr_linenumber" name="99" href="#99">99</a>  			.withEscapeSequence(<span class="jxr_string">"/quit"</span>)
-<a class="jxr_linenumber" name="100" href="#100">100</a> 			.withTimeout(ConversationHandler.CONVERSATION_TIMEOUT)
-<a class="jxr_linenumber" name="101" href="#101">101</a> 			.addConversationAbandonedListener(<strong class="jxr_keyword">new</strong> <a href="../../../../com/thedemgel/ultratrader/conversation/AbandonConvo.html">AbandonConvo</a>())
-<a class="jxr_linenumber" name="102" href="#102">102</a> 			.thatExcludesNonPlayersWithMessage(<span class="jxr_string">"No Console Please"</span>);
+<a class="jxr_linenumber" name="95" href="#95">95</a>  		<em class="jxr_comment">/*<em class="jxr_comment">rentalTrader = new ConversationFactory(instance)</em></em>
+<a class="jxr_linenumber" name="96" href="#96">96</a>  <em class="jxr_comment">			.withModality(true)</em>
+<a class="jxr_linenumber" name="97" href="#97">97</a>  <em class="jxr_comment">			.withPrefix(new RentalConversationPrefix())</em>
+<a class="jxr_linenumber" name="98" href="#98">98</a>  <em class="jxr_comment">			.withFirstPrompt(new RentalBeginPrompt())</em>
+<a class="jxr_linenumber" name="99" href="#99">99</a>  <em class="jxr_comment">			.withEscapeSequence("/quit")</em>
+<a class="jxr_linenumber" name="100" href="#100">100</a> <em class="jxr_comment">			.withTimeout(ConversationHandler.CONVERSATION_TIMEOUT)</em>
+<a class="jxr_linenumber" name="101" href="#101">101</a> <em class="jxr_comment">			.addConversationAbandonedListener(new AbandonConvo())</em>
+<a class="jxr_linenumber" name="102" href="#102">102</a> <em class="jxr_comment">			.thatExcludesNonPlayersWithMessage("No Console Please");*/</em>
 <a class="jxr_linenumber" name="103" href="#103">103</a> 	}
 <a class="jxr_linenumber" name="104" href="#104">104</a> 
 <a class="jxr_linenumber" name="105" href="#105">105</a> 	<strong class="jxr_keyword">public</strong> ConversationFactory getSetSellPrice() {
@@ -136,9 +136,9 @@
 <a class="jxr_linenumber" name="126" href="#126">126</a> 		<strong class="jxr_keyword">return</strong> addBuyItem;
 <a class="jxr_linenumber" name="127" href="#127">127</a> 	}
 <a class="jxr_linenumber" name="128" href="#128">128</a> 
-<a class="jxr_linenumber" name="129" href="#129">129</a> 	<strong class="jxr_keyword">public</strong> ConversationFactory getRentalTrader() {
-<a class="jxr_linenumber" name="130" href="#130">130</a> 		<strong class="jxr_keyword">return</strong> rentalTrader;
-<a class="jxr_linenumber" name="131" href="#131">131</a> 	}
+<a class="jxr_linenumber" name="129" href="#129">129</a> 	<em class="jxr_comment">/*<em class="jxr_comment">public ConversationFactory getRentalTrader() {</em></em>
+<a class="jxr_linenumber" name="130" href="#130">130</a> <em class="jxr_comment">		return rentalTrader;</em>
+<a class="jxr_linenumber" name="131" href="#131">131</a> <em class="jxr_comment">	}*/</em>
 <a class="jxr_linenumber" name="132" href="#132">132</a> }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>

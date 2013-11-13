@@ -37,7 +37,7 @@
 <a class="jxr_linenumber" name="27" href="#27">27</a>  	@Override
 <a class="jxr_linenumber" name="28" href="#28">28</a>  	<strong class="jxr_keyword">public</strong> String getPromptText(ConversationContext context) {
 <a class="jxr_linenumber" name="29" href="#29">29</a>  		Player p = (Player) context.getForWhom();
-<a class="jxr_linenumber" name="30" href="#30">30</a>  		p.sendRawMessage(prefix.getPrefix(context) + <span class="jxr_string">"------&lt;[ "</span> + ChatColor.BLUE + <span class="jxr_string">"CREATE/ASSIGN"</span> + ChatColor.YELLOW + <span class="jxr_string">" ]&gt;------"</span>);
+<a class="jxr_linenumber" name="30" href="#30">30</a>  		p.sendRawMessage(prefix.getPrefix(context) + <span class="jxr_string">"------&lt;"</span> + ChatColor.BLUE + <span class="jxr_string">"CREATE/ASSIGN"</span> + ChatColor.YELLOW + <span class="jxr_string">"&gt;------"</span>);
 <a class="jxr_linenumber" name="31" href="#31">31</a>  		p.sendRawMessage(prefix.getPrefix(context) + L.getString(<span class="jxr_string">"conversation.createshop.menu.text.begin"</span>));
 <a class="jxr_linenumber" name="32" href="#32">32</a>  		p.sendRawMessage(prefix.getPrefix(context) + L.getString(<span class="jxr_string">"conversation.createshop.menu.text.create"</span>));
 <a class="jxr_linenumber" name="33" href="#33">33</a>  		p.sendRawMessage(prefix.getPrefix(context) + L.getString(<span class="jxr_string">"conversation.createshop.menu.text.assign"</span>));
