@@ -21,6 +21,7 @@ import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 
 public class UltraFrameTrait extends UltraTrait {
 
@@ -29,6 +30,19 @@ public class UltraFrameTrait extends UltraTrait {
 
 	public UltraFrameTrait() {
 		super("ultraframe");
+	}
+
+	@EventHandler
+	public void onEntityInteract(PlayerInteractEntityEvent event) {
+		if (!(event.getRightClicked() instanceof ItemFrame)) {
+			return;
+		}
+
+		ItemFrame frame = (ItemFrame) event.getRightClicked();
+
+		if (frames.contains(frame)) {
+			event.setCancelled(true);
+		}
 	}
 
 	@EventHandler

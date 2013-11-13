@@ -11,7 +11,15 @@
 	<artifactId>UltraWorldGuard</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<name>UltraWorldGuard</name>
-	<url>http://maven.apache.org</url>
+	<description>An Extension of UltraTrader to give WorldGuard funcationality.</description>
+
+	<distributionManagement>
+		<site>
+			<id>github-project-site</id>
+			<url>${project.name}</url>
+		</site>
+	</distributionManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>

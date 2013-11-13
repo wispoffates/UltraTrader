@@ -15,6 +15,13 @@
 
 	<name>UltraTrader</name>
 
+	<distributionManagement>
+		<site>
+			<id>github-project-site</id>
+			<url>${project.name}</url>
+		</site>
+	</distributionManagement>
+
 	<build>
 		<plugins>
 			<plugin>

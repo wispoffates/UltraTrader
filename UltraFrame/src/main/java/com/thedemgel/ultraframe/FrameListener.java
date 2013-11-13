@@ -1,18 +1,14 @@
 
 package com.thedemgel.ultraframe;
 
-import com.thedemgel.ultratrader.L;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityInteractEvent;
-import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.event.hanging.HangingPlaceEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 
 
 public class FrameListener implements Listener {
@@ -31,7 +27,6 @@ public class FrameListener implements Listener {
 			return;
 		}
 
-System.out.println(event.getEntity());
 		if (event.getEntity() instanceof ItemFrame) {
 			ItemFrame frame = (ItemFrame) event.getEntity();
 
@@ -44,5 +39,4 @@ System.out.println(event.getEntity());
 			}
 		}
 	}
-
 }

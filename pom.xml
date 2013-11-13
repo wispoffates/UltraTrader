@@ -26,7 +26,8 @@
 	<distributionManagement>
 		<site>
 			<id>github-project-site</id>
-			<url>gitsite:git@github.com/demgelopensource/UltraTrader.git</url>
+			<!--<url>gitsite:git@github.com/demgelopensource/UltraTrader.git</url>-->
+			<url></url>
 		</site>
 	</distributionManagement>
 
@@ -36,8 +37,8 @@
 		<module>UltraFactions</module>
 		<module>UltraWorldGuard</module>
 		<module>UltraRental</module>
-    <module>UltraFrame</module>
-  </modules>
+		<module>UltraFrame</module>
+	</modules>
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -93,6 +94,7 @@
 							<repositoryName>${project.name}</repositoryName>
 							<repositoryOwner>${githubSiteOwner}</repositoryOwner>
 							<branch>refs/heads/gh-pages</branch>
+							<path>${project.distributionManagement.site.url}</path>
 							<merge>true</merge>
 							<message>Site for ${project.version}-b${buildNumber}</message>
 						</configuration>
