@@ -105,7 +105,7 @@
 			<div class="span12">
 				<div class="pull-left">
 					<a href="./" id="bannerLeft"><h1>UltraWorldGuard</h1></a>
-					<p class="lead">A rewrite of the popular CitiTraders originally by tehBeard and tenowg.</p>
+					<p class="lead">An Extension of UltraTrader to give WorldGuard funcationality.</p>
 				</div>
 				<div class="pull-right">
 				</div>
@@ -119,30 +119,20 @@
 			<div class="body-content">
 				<div class="section"> 
  <div class="page-header">
-  <h2 id="UltraTrader">UltraTrader</h2>
+  <h2 id="UltraWorldGuard">UltraWorldGuard</h2>
  </div> 
  <div class="section"> 
-  <h3 id="What_is_UltraTrader">What is UltraTrader</h3> 
-  <p>CitiTraders was a popular bukkit plugin that works with Citizens to create very flexible traders/shops with NPCs. UltraTrader is a re-write of this plugin from the ground up. Originally written by tehBeard, and maintained by tenowg, I have decided to re-write it from the ground up with 100% new code.</p> 
+  <h3 id="What_is_UltraWorldGuard">What is UltraWorldGuard</h3> 
  </div> 
  <div class="section"> 
   <h3 id="Dependencies">Dependencies</h3> 
   <ul> 
-   <li>Vault (required to handle all Economy functions) 
-    <ul> 
-     <li>Will eventually handle external banks.</li> 
-     <li>Player banks</li> 
-    </ul></li> 
-   <li>(Optional) Citizens 2, although shops will function the same they will only be able to be attached to blocks and item, to use NPCs you will need Citizens 2.</li> 
+   <li>UltraTrader</li> 
+   <li>Citizens 2</li> 
   </ul> 
  </div> 
  <div class="section"> 
   <h3 id="How_it_Works">How it Works</h3> 
-  <p>First off, I have taken some lessons on how this was done in CitiTraders, and hopefully have learned how to do this 1000% more efficiently than before.</p> 
-  <p>By taking shops/stores and separating them from the containers that hold them. Each shop/store is its own instance, not relying on the object that is supporting it. What does this do? It makes it so that anything can be a shop as long as there is some way to persist the data.</p> 
-  <p>A Block will be able to be a clickable shop because I can save the location information into a Map, or reload metadata on startup, an Item can be a shop (right click on anything not already a shop) and it will open a shop, because I can save the shop information in Lore data, same goes for NPCs, I can just save the only piece of important information on the NPC, SHOP ID.</p> 
-  <p>The Shop ID is all I use to signify a shop.</p> 
-  <p>This allows for many different options, such as Multiple NPCs opening the same store (think MCDonald’s Chain) in this case tho, they all use the same wallet, same settings, same price lists, and same inventory. It allows for Item’s and NPCs to open the same store, think about selling an item that can open your store from afar?</p> 
  </div> 
 </div>
 			</div>
@@ -152,13 +142,7 @@
 	<h3 id="Documentation">Documentation</h3>
 <ul> 
  <li><a href="installation.html" title="Installation">Installation</a></li> 
- <li><a href="localization.html" title="Localization">Localization</a></li> 
- <li><a href="limits.html" title="Setting Shop Limits">Setting Shop Limits</a></li> 
  <li><a href="permission.html" title="Permissions">Permissions</a></li> 
- <li><a href="command.html" title="Commands">Commands</a></li> 
- <li><a href="createtrader.html" title="Create a Trader">Create a Trader</a></li> 
- <li><a href="configuration.html" title="Configuration">Configuration</a></li> 
- <li><a href="admin.html" title="Administration">Administration</a></li> 
 </ul>
 			</div>
 		</div>
