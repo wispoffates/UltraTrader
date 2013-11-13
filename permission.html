@@ -8,7 +8,7 @@
 
 	<head>
 		<meta charset="UTF-8" />
-		<title>Permissions | UltraTrader</title>
+		<title>Permissions | UltraWorldGuard</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content="" />
 		<meta http-equiv="content-language" content="en" />
@@ -33,7 +33,7 @@
 <link rel="author" href="https://github.com/tenowg"/>
 	</head>
 
-	<body class="page-permission project-ultratrader" data-spy="scroll" data-offset="60" data-target="#toc-scroll-target">
+	<body class="page-permission project-ultraworldguard" data-spy="scroll" data-offset="60" data-target="#toc-scroll-target">
 
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
@@ -43,7 +43,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</a>
-					<a class="brand" href="./">UltraTrader</a>
+					<a class="brand" href="./">UltraWorldGuard</a>
 					<div class="nav-collapse">
 						<ul class="nav pull-right">
 							<li><a href="download.html" title="Download">Download </a></li>
@@ -51,21 +51,15 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Main <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li><a href="./" title="Home">Home </a></li>
-									<li><a href="https://github.com/demgelopensource/UltraTrader/UltraTrader" title="GitHub project" class="externalLink">GitHub project </a></li>
+									<li><a href="https://github.com/demgelopensource/UltraTrader/UltraWorldGuard" title="GitHub project" class="externalLink">GitHub project </a></li>
 									<li><a href="changes-report.html" title="Release notes">Release notes </a></li>
 								</ul>
 							</li>
 							<li class="dropdown active">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li><a href="localization.html" title="Localization">Localization </a></li>
 									<li><a href="installation.html" title="Installation">Installation </a></li>
-									<li><a href="limits.html" title="Setting Shop Limits">Setting Shop Limits </a></li>
-									<li><a href="command.html" title="Commands">Commands </a></li>
 									<li class="active"><a href="" title="Permissions">Permissions </a></li>
-									<li><a href="configuration.html" title="Configuration">Configuration </a></li>
-									<li><a href="createtrader.html" title="Create A NPC Trader">Create A NPC Trader </a></li>
-									<li><a href="admin.html" title="Administration">Administration </a></li>
 								</ul>
 							</li>
 							<li class="dropdown">
@@ -110,7 +104,7 @@
 		<div class="row" id="banner">
 			<div class="span12">
 				<div class="pull-left">
-					<a href="./" id="bannerLeft"><h1>UltraTrader</h1></a>
+					<a href="./" id="bannerLeft"><h1>UltraWorldGuard</h1></a>
 					<p class="lead">A rewrite of the popular CitiTraders originally by tehBeard and tenowg.</p>
 				</div>
 				<div class="pull-right">
@@ -119,7 +113,7 @@
 		</div>
 		<div>
 			<ul class="breadcrumb">
-				<li><a href="./" title="UltraTrader">UltraTrader </a></li>
+				<li><a href="./" title="UltraWorldGuard">UltraWorldGuard </a></li>
 				<li class="divider">/</li>
 				<li>Permissions</li>
 			</ul>
@@ -134,113 +128,6 @@
  <div class="page-header">
   <h2 id="Permissions">Permissions</h2>
  </div> 
- <div class="section"> 
-  <h3 id="Admin">Admin</h3> 
-  <div class="section"> 
-   <h4 id="traderadmindebug">trader.admin.debug</h4> 
-   <p><tt>Allows a player to use the &quot;/traderdebug&quot; command</tt></p> 
-  </div> 
- </div> 
- <div class="section"> 
-  <h3 id="Stores_or_Shops">Stores or Shops</h3> 
-  <div class="section"> 
-   <h4 id="traderstoreuse">trader.store.use</h4> 
-   <p><tt>Allows the use of stores</tt></p> 
-  </div> 
-  <div class="section"> 
-   <h4 id="traderstorecreate">trader.store.create</h4> 
-   <p><tt>Allows a user to create stores</tt></p> 
-  </div> 
-  <div class="section"> 
-   <h4 id="traderstorelevelincrease">trader.store.level.increase</h4> 
-   <p><tt>Allows a user to increase his/her shop level</tt></p> 
-  </div> 
-  <div class="section"> 
-   <h4 id="traderstoreleveltransfer">trader.store.level.transfer</h4> 
-   <p><tt>Allows a user to transfer his/her shop to another player</tt></p> 
-  </div> 
-  <div class="section"> 
-   <h4 id="traderstoreleveldecrease">trader.store.level.decrease</h4> 
-   <p><tt>Allows a user to decrease his/her shop level</tt></p> 
-  </div> 
-  <div class="section"> 
-   <h4 id="traderstorelevelset">trader.store.level.set</h4> 
-   <p><tt>Allows a user to set his/her shop level. This will not charge a player the level change fee.</tt></p> 
-  </div> 
- </div> 
- <div class="section"> 
-  <h3 id="NPCs">NPCs</h3> 
-  <div class="section"> 
-   <h4 id="tradernpcrent">trader.npc.rent</h4> 
-   <p><tt>Allows a player to rent NPCs for store.</tt></p> 
-  </div> 
-  <div class="section"> 
-   <h4 id="tradernpccreate">trader.npc.create</h4> 
-   <p><tt>Allows a player to assign trader traits via &quot;/trader create&quot; command.</tt></p> 
-  </div> 
- </div> 
- <div class="section"> 
-  <h3 id="Wallets">Wallets</h3> 
-  <div class="section"> 
-   <h4 id="traderwalletadmin">trader.wallet.admin</h4> 
-   <p><tt>Allows a user to set a store's wallet to ADMIN. Allowing infinite money and infinite items.</tt></p> 
-  </div> 
-  <div class="section"> 
-   <h4 id="traderwalletshop">trader.wallet.shop</h4> 
-   <p><tt>Allows a user to set a store's wallet to SHOP. Uses the internal Wallet of the shop to store and keep balance.</tt></p> 
-  </div> 
-  <div class="section"> 
-   <h4 id="traderwalletplayersetother">trader.wallet.player.setother</h4> 
-   <p><tt>Player with this permission is allowed to set other players to a wallet in any store.</tt></p> 
-  </div> 
-  <div class="section"> 
-   <h4 id="traderwalletplayer">trader.wallet.player</h4> 
-   <p><tt>Allows a user to set a store's wallet to PLAYER. Uses the economy plugin to use a players account.</tt></p> 
-  </div> 
-  <div class="section"> 
-   <h4 id="traderwalletbank">trader.wallet.bank</h4> 
-   <p><tt>Allows a user to set a store's wallet to BANK. Uses the economy plugin if it supports banks.</tt></p> 
-   <p><tt>If the plugin does not support bank this option will not show. Shops set to this option after a economy is removed that supported banks will disable this bank until manual editing.</tt></p> 
-  </div> 
- </div> 
- <div class="section"> 
-  <h3 id="Inventories">Inventories</h3> 
-  <div class="section"> 
-   <h4 id="traderinventoryshop">trader.inventory.shop</h4> 
-   <p><tt>Allows a user to set a store's inventory to SHOP.</tt></p> 
-   <p><tt>The shop inventory is also the default inventory type</tt></p> 
-  </div> 
-  <div class="section"> 
-   <h4 id="traderinventoryadmin">trader.inventory.admin</h4> 
-   <p><tt>Allows a user to set a store's inventory to ADMIN.</tt></p> 
-   <p><tt>This means that inventory is never checked, there is always items, and items are never received.</tt></p> 
-  </div> 
- </div> 
- <div class="section"> 
-  <h3 id="Limits">Limits</h3> 
-  <div class="section"> 
-   <h4 id="traderlimitsmaxlevel">trader.limits.maxlevel</h4> 
-   <p><tt>Used to set the maxlevel shop a player may have: trader.limits.maxlevel.3</tt></p> 
-  </div> 
-  <div class="section"> 
-   <h4 id="traderlimitscreatelevel">trader.limits.createlevel</h4> 
-   <p><tt>This will set what level a players shop is created at: trader.limits.createlevel.2</tt></p> 
-  </div> 
-  <div class="section"> 
-   <h4 id="traderlimitsrequiredgroupnamesometrait">trader.limits.required.groupname.sometrait</h4> 
-   <p><tt>This limit matches the traits.required setting in limits.yml, replace sometrait with the required trait. WARNING: this will add to the required traits listed in traits.required unless you set trader.limits.required.override</tt></p> 
-   <p><tt>groupname is the group that the player is attempting to create a trader in. If &quot;/trader create&quot; is used without arguments then group &quot;default&quot; is used, if an arguement is passed &quot;/trader create worldguard&quot; then the group &quot;worldguard&quot; is used</tt></p> 
-   <p><tt>some examples:</tt></p> 
-   <ul> 
-    <li><tt>trader.limits.required.default.worldguardowner</tt></li> 
-    <li> <p><tt>trader.limits.required.worldguard.worldguardowner</tt></p></li> 
-   </ul> 
-  </div> 
-  <div class="section"> 
-   <h4 id="traderlimitsrequiredoverride">trader.limits.required.override</h4> 
-   <tt>This permissions is used to tell Ultratrader to completely override all required traits on ultratrader creation with permission requirements instead of limits.yml</tt> 
-  </div> 
- </div> 
 </div>
 			</div>
 		</div>
@@ -249,60 +136,7 @@
 				<div class="well">
 					<ul class="nav nav-list">
 						<li class="nav-header">Table of Contents</li>
-		<li class="dropdown"><a href="#Permissions" title="Permissions">Permissions <b class="caret"></b></a>
-			<ul class="nav nav-list">
-		<li class="dropdown"><a href="#Admin" title="Admin">Admin <b class="caret"></b></a>
-			<ul class="nav nav-list">
-		<li><a href="#traderadmindebug" title="trader.admin.debug">trader.admin.debug</a>
-				<li class="divider"></li>
-			</ul>
-		</li>
-		<li class="dropdown"><a href="#Stores_or_Shops" title="Stores or Shops">Stores or Shops <b class="caret"></b></a>
-			<ul class="nav nav-list">
-		<li><a href="#traderstoreuse" title="trader.store.use">trader.store.use</a>
-		<li><a href="#traderstorecreate" title="trader.store.create">trader.store.create</a>
-		<li><a href="#traderstorelevelincrease" title="trader.store.level.increase">trader.store.level.increase</a>
-		<li><a href="#traderstoreleveltransfer" title="trader.store.level.transfer">trader.store.level.transfer</a>
-		<li><a href="#traderstoreleveldecrease" title="trader.store.level.decrease">trader.store.level.decrease</a>
-		<li><a href="#traderstorelevelset" title="trader.store.level.set">trader.store.level.set</a>
-				<li class="divider"></li>
-			</ul>
-		</li>
-		<li class="dropdown"><a href="#NPCs" title="NPCs">NPCs <b class="caret"></b></a>
-			<ul class="nav nav-list">
-		<li><a href="#tradernpcrent" title="trader.npc.rent">trader.npc.rent</a>
-		<li><a href="#tradernpccreate" title="trader.npc.create">trader.npc.create</a>
-				<li class="divider"></li>
-			</ul>
-		</li>
-		<li class="dropdown"><a href="#Wallets" title="Wallets">Wallets <b class="caret"></b></a>
-			<ul class="nav nav-list">
-		<li><a href="#traderwalletadmin" title="trader.wallet.admin">trader.wallet.admin</a>
-		<li><a href="#traderwalletshop" title="trader.wallet.shop">trader.wallet.shop</a>
-		<li><a href="#traderwalletplayersetother" title="trader.wallet.player.setother">trader.wallet.player.setother</a>
-		<li><a href="#traderwalletplayer" title="trader.wallet.player">trader.wallet.player</a>
-		<li><a href="#traderwalletbank" title="trader.wallet.bank">trader.wallet.bank</a>
-				<li class="divider"></li>
-			</ul>
-		</li>
-		<li class="dropdown"><a href="#Inventories" title="Inventories">Inventories <b class="caret"></b></a>
-			<ul class="nav nav-list">
-		<li><a href="#traderinventoryshop" title="trader.inventory.shop">trader.inventory.shop</a>
-		<li><a href="#traderinventoryadmin" title="trader.inventory.admin">trader.inventory.admin</a>
-				<li class="divider"></li>
-			</ul>
-		</li>
-		<li class="dropdown"><a href="#Limits" title="Limits">Limits <b class="caret"></b></a>
-			<ul class="nav nav-list">
-		<li><a href="#traderlimitsmaxlevel" title="trader.limits.maxlevel">trader.limits.maxlevel</a>
-		<li><a href="#traderlimitscreatelevel" title="trader.limits.createlevel">trader.limits.createlevel</a>
-		<li><a href="#traderlimitsrequiredgroupnamesometrait" title="trader.limits.required.groupname.sometrait">trader.limits.required.groupname.sometrait</a>
-		<li><a href="#traderlimitsrequiredoverride" title="trader.limits.required.override">trader.limits.required.override</a>
-				<li class="divider"></li>
-			</ul>
-		</li>
-			</ul>
-		</li>
+		<li><a href="#Permissions" title="Permissions">Permissions</a>
 					</ul>
 				</div>
 			</div>
@@ -324,7 +158,7 @@
 							<a href="./" title="Home">Home </a>
 						</li>
 						<li>
-							<a href="https://github.com/demgelopensource/UltraTrader/UltraTrader" title="GitHub project" class="externalLink">GitHub project </a>
+							<a href="https://github.com/demgelopensource/UltraTrader/UltraWorldGuard" title="GitHub project" class="externalLink">GitHub project </a>
 						</li>
 						<li>
 							<a href="changes-report.html" title="Release notes">Release notes </a>
@@ -335,28 +169,10 @@
 					<ul class="nav nav-list">
 						<li class="nav-header">Documentation</li>
 						<li>
-							<a href="localization.html" title="Localization">Localization </a>
-						</li>
-						<li>
 							<a href="installation.html" title="Installation">Installation </a>
-						</li>
-						<li>
-							<a href="limits.html" title="Setting Shop Limits">Setting Shop Limits </a>
-						</li>
-						<li>
-							<a href="command.html" title="Commands">Commands </a>
 						</li>
 						<li class="active">
 							<a href="#" title="Permissions">Permissions </a>
-						</li>
-						<li>
-							<a href="configuration.html" title="Configuration">Configuration </a>
-						</li>
-						<li>
-							<a href="createtrader.html" title="Create A NPC Trader">Create A NPC Trader </a>
-						</li>
-						<li>
-							<a href="admin.html" title="Administration">Administration </a>
 						</li>
 					</ul>
 				</div>
@@ -383,7 +199,7 @@
 			<div class="span12">
 				<p class="pull-right"><a href="#">Back to top</a></p>
 				<p class="copyright">Copyright &copy;2013 <a href="http://demgelopensource.github.io/">Demgel OpenSource Coding</a>. All Rights Reserved.</p>
-				<p class="version-date"><span class="projectVersion">Version: 0.6-BETA. </span><span class="publishDate">Last Published: 2013-11-12. </span></p>
+				<p class="version-date"><span class="projectVersion">Version: 1.0-SNAPSHOT. </span><span class="publishDate">Last Published: 2013-11-12. </span></p>
 				<p><a href="http://github.com/andriusvelykis/reflow-maven-skin" title="Reflow Maven skin">Reflow Maven skin</a> by <a href="http://andrius.velykis.lt" target="_blank" title="Andrius Velykis">Andrius Velykis</a>.</p>
 			</div>
 		</div>
