@@ -45,7 +45,7 @@
 <a class="jxr_linenumber" name="35" href="#35">35</a>  			.withFirstPrompt(<strong class="jxr_keyword">new</strong> <a href="../../../com/thedemgel/ultrarental/conversation/rentalshop/RentalBeginPrompt.html">RentalBeginPrompt</a>())
 <a class="jxr_linenumber" name="36" href="#36">36</a>  			.withEscapeSequence(<span class="jxr_string">"/quit"</span>)
 <a class="jxr_linenumber" name="37" href="#37">37</a>  			.withTimeout(ConversationHandler.CONVERSATION_TIMEOUT)
-<a class="jxr_linenumber" name="38" href="#38">38</a>  			.addConversationAbandonedListener(<strong class="jxr_keyword">new</strong> <a href="../../../com/thedemgel/ultratrader/conversation/AbandonConvo.html">AbandonConvo</a>())
+<a class="jxr_linenumber" name="38" href="#38">38</a>  			.addConversationAbandonedListener(<strong class="jxr_keyword">new</strong> AbandonConvo())
 <a class="jxr_linenumber" name="39" href="#39">39</a>  			.thatExcludesNonPlayersWithMessage(<span class="jxr_string">"No Console Please"</span>);
 <a class="jxr_linenumber" name="40" href="#40">40</a>  
 <a class="jxr_linenumber" name="41" href="#41">41</a>  		UltraTrader.getTraitHandler().registerTrait(RentalShop.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"rentalshop"</span>);
