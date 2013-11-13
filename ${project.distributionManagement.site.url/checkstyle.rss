@@ -2,15 +2,15 @@
 
 <rss version="0.91">
   <channel>
-    <title>UltraFactions - Checkstyle report</title>
+    <title>UltraWorldGuard - Checkstyle report</title>
     <link>http://maven.apache.org</link>
-    <description>UltraFactions - Checkstyle report</description>
+    <description>UltraWorldGuard - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2013 Demgel OpenSource Coding</copyright>
     <item>
-      <title>File: 1,
-             Errors: 8,
-             Warnings: 1,
+      <title>File: 4,
+             Errors: 7,
+             Warnings: 7,
              Infos: 0
       </title>
             <link>http://maven.apache.org/checkstyle.html</link>
@@ -29,7 +29,21 @@
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultrafactions.App.java">com/thedemgel/ultrafactions/App.java</a>
+                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultraworldguard.WorldGuardMemberTrait.java">com/thedemgel/ultraworldguard/WorldGuardMemberTrait.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultraworldguard.UltraWorldGuard.java">com/thedemgel/ultraworldguard/UltraWorldGuard.java</a>
                 </td>
                 <td>
                   0
@@ -38,7 +52,35 @@
                   1
                 </td>
                 <td>
-                  8
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultraworldguard.WorldGuardOwnerTrait.java">com/thedemgel/ultraworldguard/WorldGuardOwnerTrait.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://maven.apache.org/checkstyle.html#com.thedemgel.ultraworldguard.Permissions.java">com/thedemgel/ultraworldguard/Permissions.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  2
                 </td>
               </tr>
                       </tbody>
