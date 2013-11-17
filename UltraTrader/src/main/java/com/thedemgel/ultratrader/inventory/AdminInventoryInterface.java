@@ -42,7 +42,7 @@ public class AdminInventoryInterface extends InventoryInterface {
 
 	@Override
 	public boolean displayItemToPlayer(Player player) {
-		return true;
+		return getShop().getOwner().equals(player.getName());
 	}
 
 }

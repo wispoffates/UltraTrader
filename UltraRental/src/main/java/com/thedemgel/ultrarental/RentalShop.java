@@ -150,9 +150,13 @@ public class RentalShop extends UltraTrait {
 
 		if (!isRented()) {
 			if (!player.isConversing()) {
-				Conversation convo = UltraRental.getRentalTraderConvo().buildConversation(player);
-				convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
-				convo.begin();
+				if (!player.isConversing()) {
+					Conversation convo = UltraRental.getRentalTraderConvo().buildConversation(player);
+					convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
+					convo.begin();
+				} else {
+					player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+				}
 			} else {
 				player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
 			}
@@ -161,17 +165,16 @@ public class RentalShop extends UltraTrait {
 
 		/*TraderTrait trader = npc.getTrait(TraderTrait.class);
 
-		if (trader.getShopId().equals(ShopHandler.SHOP_NULL)) {
-			if (getRenter().equals(player.getName())) {
-				Conversation convo = UltraTrader.getConversationHandler().getCreateShop().buildConversation(player);
-				convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
-				convo.begin();
-				return false;
-			} else {
-				// send message shop isn't open yet.
-			}
-		}*/
-
+		 if (trader.getShopId().equals(ShopHandler.SHOP_NULL)) {
+		 if (getRenter().equals(player.getName())) {
+		 Conversation convo = UltraTrader.getConversationHandler().getCreateShop().buildConversation(player);
+		 convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
+		 convo.begin();
+		 return false;
+		 } else {
+		 // send message shop isn't open yet.
+		 }
+		 }*/
 		return true;
 	}
 

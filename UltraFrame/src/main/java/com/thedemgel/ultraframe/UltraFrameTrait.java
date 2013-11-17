@@ -111,7 +111,7 @@ public class UltraFrameTrait extends UltraTrait {
 	public void load(DataKey key) throws NPCLoadException {
 		try {
 			frames = parseFrames(key);
-		} catch (Exception e) {
+		} catch (NPCLoadException e) {
 			e.printStackTrace();
 		}
 	}
