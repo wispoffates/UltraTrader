@@ -42,3 +42,8 @@ This video was created when UltraTrader was CitiTradersRE, just change `cititrad
 #set( $title = "Creating a Trader in UltraTrader" )
 #set( $showCaption = "false" )
 #parse( "vimeo" )
+
+$h3 Create Admin Shop
+To create an admin shop, all you need to do is set the inventory type and the wallet type
+to admin. This can easily be done from within the Admin conversation started when you
+click the `book and quill` in either of the buy or sell screens.

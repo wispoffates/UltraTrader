@@ -19,7 +19,7 @@ public class PlayerWalletMenuPrompt extends FixedIgnoreCaseSetPrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
 		Prompt ret = (Prompt) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_RETURN);
-		addOption(L.getString("conversation.admin.playerwallet.options.anotherplayer"), new PlayerWalletSelfPrompt());
+		addOption(L.getString("conversation.admin.playerwallet.options.anotherplayer"), new PlayerWalletAnotherPrompt());
 		addOption(L.getString("conversation.admin.playerwallet.options.yourself"), new PlayerWalletSelfPrompt());
 		addOption(L.getString("general.exit"), ret);
 
