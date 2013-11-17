@@ -160,41 +160,44 @@
 <a class="jxr_linenumber" name="150" href="#150">150</a> 
 <a class="jxr_linenumber" name="151" href="#151">151</a> 		<strong class="jxr_keyword">if</strong> (!isRented()) {
 <a class="jxr_linenumber" name="152" href="#152">152</a> 			<strong class="jxr_keyword">if</strong> (!player.isConversing()) {
-<a class="jxr_linenumber" name="153" href="#153">153</a> 				Conversation convo = UltraRental.getRentalTraderConvo().buildConversation(player);
-<a class="jxr_linenumber" name="154" href="#154">154</a> 				convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
-<a class="jxr_linenumber" name="155" href="#155">155</a> 				convo.begin();
-<a class="jxr_linenumber" name="156" href="#156">156</a> 			} <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="157" href="#157">157</a> 				player.sendRawMessage(ChatColor.RED + L.getString(<span class="jxr_string">"conversation.error.inconvo"</span>));
-<a class="jxr_linenumber" name="158" href="#158">158</a> 			}
-<a class="jxr_linenumber" name="159" href="#159">159</a> 			<strong class="jxr_keyword">return</strong> false;
-<a class="jxr_linenumber" name="160" href="#160">160</a> 		}
-<a class="jxr_linenumber" name="161" href="#161">161</a> 
-<a class="jxr_linenumber" name="162" href="#162">162</a> 		<em class="jxr_comment">/*<em class="jxr_comment">TraderTrait trader = npc.getTrait(TraderTrait.class);</em></em>
-<a class="jxr_linenumber" name="163" href="#163">163</a> 
-<a class="jxr_linenumber" name="164" href="#164">164</a> <em class="jxr_comment">		if (trader.getShopId().equals(ShopHandler.SHOP_NULL)) {</em>
-<a class="jxr_linenumber" name="165" href="#165">165</a> <em class="jxr_comment">			if (getRenter().equals(player.getName())) {</em>
-<a class="jxr_linenumber" name="166" href="#166">166</a> <em class="jxr_comment">				Conversation convo = UltraTrader.getConversationHandler().getCreateShop().buildConversation(player);</em>
-<a class="jxr_linenumber" name="167" href="#167">167</a> <em class="jxr_comment">				convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);</em>
-<a class="jxr_linenumber" name="168" href="#168">168</a> <em class="jxr_comment">				convo.begin();</em>
-<a class="jxr_linenumber" name="169" href="#169">169</a> <em class="jxr_comment">				return false;</em>
-<a class="jxr_linenumber" name="170" href="#170">170</a> <em class="jxr_comment">			} else {</em>
-<a class="jxr_linenumber" name="171" href="#171">171</a> <em class="jxr_comment">				// send message shop isn't open yet.</em>
-<a class="jxr_linenumber" name="172" href="#172">172</a> <em class="jxr_comment">			}</em>
-<a class="jxr_linenumber" name="173" href="#173">173</a> <em class="jxr_comment">		}*/</em>
-<a class="jxr_linenumber" name="174" href="#174">174</a> 
-<a class="jxr_linenumber" name="175" href="#175">175</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
-<a class="jxr_linenumber" name="176" href="#176">176</a> 	}
-<a class="jxr_linenumber" name="177" href="#177">177</a> 
-<a class="jxr_linenumber" name="178" href="#178">178</a> 	@Override
-<a class="jxr_linenumber" name="179" href="#179">179</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> hasMenuOption() {
-<a class="jxr_linenumber" name="180" href="#180">180</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
-<a class="jxr_linenumber" name="181" href="#181">181</a> 	}
-<a class="jxr_linenumber" name="182" href="#182">182</a> 
-<a class="jxr_linenumber" name="183" href="#183">183</a> 	@Override
-<a class="jxr_linenumber" name="184" href="#184">184</a> 	<strong class="jxr_keyword">public</strong> Prompt getMenuPrompt() {
-<a class="jxr_linenumber" name="185" href="#185">185</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/thedemgel/ultrarental/conversation/rentalshop/RentalEndRentingPrompt.html">RentalEndRentingPrompt</a>();
-<a class="jxr_linenumber" name="186" href="#186">186</a> 	}
-<a class="jxr_linenumber" name="187" href="#187">187</a> }
+<a class="jxr_linenumber" name="153" href="#153">153</a> 				<strong class="jxr_keyword">if</strong> (!player.isConversing()) {
+<a class="jxr_linenumber" name="154" href="#154">154</a> 					Conversation convo = UltraRental.getRentalTraderConvo().buildConversation(player);
+<a class="jxr_linenumber" name="155" href="#155">155</a> 					convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
+<a class="jxr_linenumber" name="156" href="#156">156</a> 					convo.begin();
+<a class="jxr_linenumber" name="157" href="#157">157</a> 				} <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="158" href="#158">158</a> 					player.sendRawMessage(ChatColor.RED + L.getString(<span class="jxr_string">"conversation.error.inconvo"</span>));
+<a class="jxr_linenumber" name="159" href="#159">159</a> 				}
+<a class="jxr_linenumber" name="160" href="#160">160</a> 			} <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="161" href="#161">161</a> 				player.sendRawMessage(ChatColor.RED + L.getString(<span class="jxr_string">"conversation.error.inconvo"</span>));
+<a class="jxr_linenumber" name="162" href="#162">162</a> 			}
+<a class="jxr_linenumber" name="163" href="#163">163</a> 			<strong class="jxr_keyword">return</strong> false;
+<a class="jxr_linenumber" name="164" href="#164">164</a> 		}
+<a class="jxr_linenumber" name="165" href="#165">165</a> 
+<a class="jxr_linenumber" name="166" href="#166">166</a> 		<em class="jxr_comment">/*<em class="jxr_comment">TraderTrait trader = npc.getTrait(TraderTrait.class);</em></em>
+<a class="jxr_linenumber" name="167" href="#167">167</a> 
+<a class="jxr_linenumber" name="168" href="#168">168</a> <em class="jxr_comment">		 if (trader.getShopId().equals(ShopHandler.SHOP_NULL)) {</em>
+<a class="jxr_linenumber" name="169" href="#169">169</a> <em class="jxr_comment">		 if (getRenter().equals(player.getName())) {</em>
+<a class="jxr_linenumber" name="170" href="#170">170</a> <em class="jxr_comment">		 Conversation convo = UltraTrader.getConversationHandler().getCreateShop().buildConversation(player);</em>
+<a class="jxr_linenumber" name="171" href="#171">171</a> <em class="jxr_comment">		 convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);</em>
+<a class="jxr_linenumber" name="172" href="#172">172</a> <em class="jxr_comment">		 convo.begin();</em>
+<a class="jxr_linenumber" name="173" href="#173">173</a> <em class="jxr_comment">		 return false;</em>
+<a class="jxr_linenumber" name="174" href="#174">174</a> <em class="jxr_comment">		 } else {</em>
+<a class="jxr_linenumber" name="175" href="#175">175</a> <em class="jxr_comment">		 // send message shop isn't open yet.</em>
+<a class="jxr_linenumber" name="176" href="#176">176</a> <em class="jxr_comment">		 }</em>
+<a class="jxr_linenumber" name="177" href="#177">177</a> <em class="jxr_comment">		 }*/</em>
+<a class="jxr_linenumber" name="178" href="#178">178</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="179" href="#179">179</a> 	}
+<a class="jxr_linenumber" name="180" href="#180">180</a> 
+<a class="jxr_linenumber" name="181" href="#181">181</a> 	@Override
+<a class="jxr_linenumber" name="182" href="#182">182</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> hasMenuOption() {
+<a class="jxr_linenumber" name="183" href="#183">183</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="184" href="#184">184</a> 	}
+<a class="jxr_linenumber" name="185" href="#185">185</a> 
+<a class="jxr_linenumber" name="186" href="#186">186</a> 	@Override
+<a class="jxr_linenumber" name="187" href="#187">187</a> 	<strong class="jxr_keyword">public</strong> Prompt getMenuPrompt() {
+<a class="jxr_linenumber" name="188" href="#188">188</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/thedemgel/ultrarental/conversation/rentalshop/RentalEndRentingPrompt.html">RentalEndRentingPrompt</a>();
+<a class="jxr_linenumber" name="189" href="#189">189</a> 	}
+<a class="jxr_linenumber" name="190" href="#190">190</a> }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>
