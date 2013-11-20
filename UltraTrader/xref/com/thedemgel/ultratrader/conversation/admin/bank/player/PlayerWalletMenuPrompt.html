@@ -29,7 +29,7 @@
 <a class="jxr_linenumber" name="19" href="#19">19</a>  	@Override
 <a class="jxr_linenumber" name="20" href="#20">20</a>  	<strong class="jxr_keyword">public</strong> String getPromptText(ConversationContext context) {
 <a class="jxr_linenumber" name="21" href="#21">21</a>  		Prompt ret = (Prompt) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_RETURN);
-<a class="jxr_linenumber" name="22" href="#22">22</a>  		addOption(L.getString(<span class="jxr_string">"conversation.admin.playerwallet.options.anotherplayer"</span>), <strong class="jxr_keyword">new</strong> <a href="../../../../../../../com/thedemgel/ultratrader/conversation/admin/bank/player/PlayerWalletSelfPrompt.html">PlayerWalletSelfPrompt</a>());
+<a class="jxr_linenumber" name="22" href="#22">22</a>  		addOption(L.getString(<span class="jxr_string">"conversation.admin.playerwallet.options.anotherplayer"</span>), <strong class="jxr_keyword">new</strong> <a href="../../../../../../../com/thedemgel/ultratrader/conversation/admin/bank/player/PlayerWalletAnotherPrompt.html">PlayerWalletAnotherPrompt</a>());
 <a class="jxr_linenumber" name="23" href="#23">23</a>  		addOption(L.getString(<span class="jxr_string">"conversation.admin.playerwallet.options.yourself"</span>), <strong class="jxr_keyword">new</strong> <a href="../../../../../../../com/thedemgel/ultratrader/conversation/admin/bank/player/PlayerWalletSelfPrompt.html">PlayerWalletSelfPrompt</a>());
 <a class="jxr_linenumber" name="24" href="#24">24</a>  		addOption(L.getString(<span class="jxr_string">"general.exit"</span>), ret);
 <a class="jxr_linenumber" name="25" href="#25">25</a>  

@@ -13,7 +13,7 @@
 <a class="jxr_linenumber" name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.UltraTrader;
 <a class="jxr_linenumber" name="4" href="#4">4</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.L;
 <a class="jxr_linenumber" name="5" href="#5">5</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.conversation.ConversationHandler;
-<a class="jxr_linenumber" name="6" href="#6">6</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.shop.ShopInventoryView;
+<a class="jxr_linenumber" name="6" href="#6">6</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.inventory.ShopInventoryView;
 <a class="jxr_linenumber" name="7" href="#7">7</a>   <strong class="jxr_keyword">import</strong> org.bukkit.Bukkit;
 <a class="jxr_linenumber" name="8" href="#8">8</a>   <strong class="jxr_keyword">import</strong> org.bukkit.conversations.ConversationContext;
 <a class="jxr_linenumber" name="9" href="#9">9</a>   <strong class="jxr_keyword">import</strong> org.bukkit.conversations.MessagePrompt;
@@ -30,7 +30,7 @@
 <a class="jxr_linenumber" name="20" href="#20">20</a>  
 <a class="jxr_linenumber" name="21" href="#21">21</a>  	@Override
 <a class="jxr_linenumber" name="22" href="#22">22</a>  	<strong class="jxr_keyword">public</strong> String getPromptText(ConversationContext context) {
-<a class="jxr_linenumber" name="23" href="#23">23</a>  		<strong class="jxr_keyword">final</strong> <a href="../../../../../com/thedemgel/ultratrader/shop/ShopInventoryView.html">ShopInventoryView</a> view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
+<a class="jxr_linenumber" name="23" href="#23">23</a>  		<strong class="jxr_keyword">final</strong> <a href="../../../../../com/thedemgel/ultratrader/inventory/ShopInventoryView.html">ShopInventoryView</a> view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
 <a class="jxr_linenumber" name="24" href="#24">24</a>  		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
 <a class="jxr_linenumber" name="25" href="#25">25</a>  		view.getShop().getInventoryInterface().addInventory(item);
 <a class="jxr_linenumber" name="26" href="#26">26</a>  		view.setKeepAlive(false);

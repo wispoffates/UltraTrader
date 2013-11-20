@@ -8,9 +8,9 @@
     <language>en-us</language>
     <copyright>&#169;2013 Demgel OpenSource Coding</copyright>
     <item>
-      <title>File: 115,
-             Errors: 461,
-             Warnings: 564,
+      <title>File: 117,
+             Errors: 475,
+             Warnings: 582,
              Infos: 1
       </title>
             <link>http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html</link>
@@ -67,6 +67,20 @@
                 </td>
                 <td>
                   2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.inventory.AdminItemPlacementView.java">com/thedemgel/ultratrader/inventory/AdminItemPlacementView.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  11
+                </td>
+                <td>
+                  10
                 </td>
               </tr>
                           <tr>
@@ -491,6 +505,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.player.PlayerWalletAnotherPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/player/PlayerWalletAnotherPrompt.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addsellitem.AddInventoryPrompt.java">com/thedemgel/ultratrader/conversation/addsellitem/AddInventoryPrompt.java</a>
                 </td>
                 <td>
@@ -777,10 +805,10 @@
                   0
                 </td>
                 <td>
-                  28
+                  31
                 </td>
                 <td>
-                  23
+                  24
                 </td>
               </tr>
                           <tr>
@@ -991,20 +1019,6 @@
                 </td>
                 <td>
                   2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.shop.ShopInventoryView.java">com/thedemgel/ultratrader/shop/ShopInventoryView.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  22
-                </td>
-                <td>
-                  18
                 </td>
               </tr>
                           <tr>
@@ -1331,6 +1345,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.inventory.ShopInventoryView.java">com/thedemgel/ultratrader/inventory/ShopInventoryView.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  23
+                </td>
+                <td>
+                  19
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.wallet.annotation.AssignConversation.java">com/thedemgel/ultratrader/wallet/annotation/AssignConversation.java</a>
                 </td>
                 <td>
@@ -1449,7 +1477,7 @@
                   0
                 </td>
                 <td>
-                  16
+                  17
                 </td>
                 <td>
                   1
@@ -1527,6 +1555,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.ShopListener.java">com/thedemgel/ultratrader/ShopListener.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  8
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.AdminBankPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/AdminBankPrompt.java</a>
                 </td>
                 <td>
@@ -1537,20 +1579,6 @@
                 </td>
                 <td>
                   2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.ShopListener.java">com/thedemgel/ultratrader/ShopListener.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  8
-                </td>
-                <td>
-                  9
                 </td>
               </tr>
                           <tr>
