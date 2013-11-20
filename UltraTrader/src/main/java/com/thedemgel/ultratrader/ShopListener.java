@@ -193,6 +193,14 @@ public class ShopListener implements Listener {
 					return;
 				}
 
+				if (event.getRawSlot() == InventoryHandler.INVENTORY_ARRANGE_SLOT && view.getShop().getOwner().equals(player.getName())) {
+					view.setKeepAlive(true);
+					player.closeInventory();
+					AdminItemPlacementView newview = new AdminItemPlacementView(player, view.getShop(), view.getStatus());
+					player.openInventory(newview);
+					return;
+				}
+				
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_BACK_ARROW_SLOT) {
 					view.buildSellView();
 					return;

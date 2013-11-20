@@ -149,9 +149,9 @@ public class ShopInventoryView extends InventoryView {
 			ItemStack doArrange = new ItemStack(Material.BOOKSHELF);
 			ItemMeta setArrangeMeta = doArrange.getItemMeta();
 			List<String> doArrangeText = new ArrayList<>();
-			doArrangeText.add(L.getString("inventory.admin.lore"));
+			doArrangeText.add(L.getString("inventory.arrange.lore"));
 			setArrangeMeta.setLore(doArrangeText);
-			setArrangeMeta.setDisplayName(L.getString("inventory.admin.display"));
+			setArrangeMeta.setDisplayName(L.getString("inventory.arrange.display"));
 			doArrange.setItemMeta(setArrangeMeta);
 			this.setItem(InventoryHandler.INVENTORY_ARRANGE_SLOT, doArrange);
 		}
@@ -243,6 +243,15 @@ public class ShopInventoryView extends InventoryView {
 			setPriceMeta.setDisplayName(L.getString("inventory.buyadmin.display"));
 			doAdmin.setItemMeta(setPriceMeta);
 			this.setItem(InventoryHandler.INVENTORY_ADMIN_SLOT, doAdmin);
+
+			ItemStack doArrange = new ItemStack(Material.BOOKSHELF);
+			ItemMeta setArrangeMeta = doArrange.getItemMeta();
+			List<String> doArrangeText = new ArrayList<>();
+			doArrangeText.add(L.getString("inventory.arrange.lore"));
+			setArrangeMeta.setLore(doArrangeText);
+			setArrangeMeta.setDisplayName(L.getString("inventory.arrange.display"));
+			doArrange.setItemMeta(setArrangeMeta);
+			this.setItem(InventoryHandler.INVENTORY_ARRANGE_SLOT, doArrange);
 		}
 
 		// Check if limits allow for remote access...

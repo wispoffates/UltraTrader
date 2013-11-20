@@ -182,6 +182,9 @@ inventory:
   tosellscreen:
     display: Sell Screen
     lore: Goto Sell Screen
+  arrange:
+    display: Arrange Inventory
+    lore: Click to set Inventory Arrangement.
 shops:
   list:
     noshops: You don't currently own any shops.
