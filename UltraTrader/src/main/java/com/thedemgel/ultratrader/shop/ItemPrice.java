@@ -14,14 +14,13 @@ public class ItemPrice {
 
 	private ItemStack itemStack;
 	private BigDecimal price;
-	private Integer amount;
+	private int amount;
 	private String random;
 	private String description;
+	private int slot = -1;
 
 	public ItemPrice() {
 	}
-
-	;
 
 	public ItemPrice(ItemStack item) {
 		itemStack = item.clone();
@@ -60,9 +59,11 @@ public class ItemPrice {
 				genLore = genItem.getItemMeta().getLore();
 			} else {
 				genLore = new ArrayList<>();
+				//genLore = ObjectPool.getList();
 			}
 		} else {
 			genLore = new ArrayList<>();
+			//genLore = ObjectPool.getList();
 		}
 
 		if (getDescription().length() > 0) {
@@ -90,6 +91,7 @@ public class ItemPrice {
 
 		ItemMeta meta = genItem.getItemMeta();
 		meta.setLore(genLore);
+
 		genItem.setItemMeta(meta);
 
 		genItem.setAmount(stackAmount);
@@ -126,7 +128,7 @@ public class ItemPrice {
 		this.price = price;
 	}
 
-	public Integer getAmount() {
+	public int getAmount() {
 		return amount;
 	}
 
@@ -140,5 +142,13 @@ public class ItemPrice {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public int getSlot() {
+		return slot;
+	}
+
+	public void setSlot(int rawslot) {
+		slot = rawslot;
 	}
 }

@@ -2,7 +2,7 @@ package com.thedemgel.ultratrader.conversation.addsellitem;
 
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
-import com.thedemgel.ultratrader.shop.ShopInventoryView;
+import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import java.math.BigDecimal;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;

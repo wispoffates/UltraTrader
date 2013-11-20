@@ -1,7 +1,7 @@
 package com.thedemgel.ultratrader.conversation.admin.bank.player;
 
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
-import com.thedemgel.ultratrader.shop.ShopInventoryView;
+import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import com.thedemgel.ultratrader.util.ConfigValue;
 import com.thedemgel.ultratrader.util.Permissions;
 import org.bukkit.conversations.ConversationContext;

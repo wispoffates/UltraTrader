@@ -2,7 +2,7 @@ package com.thedemgel.ultratrader.conversation;
 
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.L;
-import com.thedemgel.ultratrader.shop.ShopInventoryView;
+import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import org.bukkit.Bukkit;
 import org.bukkit.conversations.ConversationAbandonedEvent;
 import org.bukkit.conversations.ConversationAbandonedListener;

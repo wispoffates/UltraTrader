@@ -4,7 +4,7 @@ import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.NotADoublePrompt;
-import com.thedemgel.ultratrader.shop.ShopInventoryView;
+import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import java.math.BigDecimal;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;

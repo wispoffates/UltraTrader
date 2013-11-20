@@ -1,9 +1,12 @@
-package com.thedemgel.ultratrader.shop;
+package com.thedemgel.ultratrader.inventory;
 
 import com.thedemgel.ultratrader.InventoryHandler;
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.UltraTrader;
-import com.thedemgel.ultratrader.inventory.AdminInventoryInterface;
+import com.thedemgel.ultratrader.shop.ItemPrice;
+import com.thedemgel.ultratrader.shop.Shop;
+import com.thedemgel.ultratrader.shop.Status;
+import com.thedemgel.ultratrader.shop.StoreItem;
 import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.ChatColor;
@@ -19,11 +22,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class ShopInventoryView extends InventoryView {
 
-	private Inventory top;
-	private Player player;
-	private InventoryType type = InventoryType.CHEST;
+	private final Inventory top;
+	private final Player player;
+	private final InventoryType type = InventoryType.CHEST;
 	private boolean keepAlive = false;
-	private Shop shop;
+	private final Shop shop;
 	private Status current = Status.NULL;
 	private Conversation convo;
 	private Object target;
@@ -59,19 +62,67 @@ public class ShopInventoryView extends InventoryView {
 		return getPlayer().getInventory();
 	}
 
+	public final void refreshView() {
+		switch (current) {
+			case MAIN_SCREEN:
+				buildSellView();
+				break;
+			case BUY_SCREEN:
+				buildBuyView();
+				break;
+		}
+	}
+
 	public final void buildSellView() {
 		current = Status.MAIN_SCREEN;
 
 		top.clear();
 		boolean displayAdmin = shop.getInventoryInterface().displayItemToPlayer(player);
+		List<ItemPrice> itemqueue = new ArrayList<>();
 		for (ItemPrice item : getShop().getSellprices().values()) {
 			int currentInvAmount = shop.getInventoryInterface().getInventoryStock(item);
 
 			if (currentInvAmount > 0 || shop.isOwner(player)) {
 				if (displayAdmin) {
-					this.getTopInventory().addItem(item.generateLore(1, true, currentInvAmount, current));
+					if (item.getSlot() == -1) {
+						itemqueue.add(item);
+					} else {
+						ItemStack slot = getTopInventory().getItem(item.getSlot());
+
+						if (slot != null) {
+							itemqueue.add(item);
+						} else {
+							getTopInventory().setItem(item.getSlot(), item.generateLore(1, true, currentInvAmount, current));
+						}
+					}
 				} else {
-					this.getTopInventory().addItem(item.generateLore(current));
+					if (item.getSlot() == -1) {
+						itemqueue.add(item);
+					} else {
+						ItemStack slot = getTopInventory().getItem(item.getSlot());
+
+						if (slot != null) {
+							itemqueue.add(item);
+						} else {
+							this.getTopInventory().setItem(item.getSlot(), item.generateLore(current));
+						}
+					}
+				}
+			}
+		}
+
+		for (ItemPrice item : itemqueue) {
+			int currentInvAmount = shop.getInventoryInterface().getInventoryStock(item);
+
+			if (currentInvAmount > 0 || shop.isOwner(player)) {
+				if (displayAdmin) {
+					int slot = getTopInventory().firstEmpty();
+					item.setSlot(slot);
+					this.getTopInventory().setItem(item.getSlot(), item.generateLore(1, true, currentInvAmount, current));
+				} else {
+					int slot = getTopInventory().firstEmpty();
+					item.setSlot(slot);
+					this.getTopInventory().setItem(item.getSlot(), item.generateLore(current));
 				}
 			}
 		}
@@ -94,6 +145,15 @@ public class ShopInventoryView extends InventoryView {
 			setPriceMeta.setDisplayName(L.getString("inventory.admin.display"));
 			doAdmin.setItemMeta(setPriceMeta);
 			this.setItem(InventoryHandler.INVENTORY_ADMIN_SLOT, doAdmin);
+
+			ItemStack doArrange = new ItemStack(Material.BOOKSHELF);
+			ItemMeta setArrangeMeta = doArrange.getItemMeta();
+			List<String> doArrangeText = new ArrayList<>();
+			doArrangeText.add(L.getString("inventory.admin.lore"));
+			setArrangeMeta.setLore(doArrangeText);
+			setArrangeMeta.setDisplayName(L.getString("inventory.admin.display"));
+			doArrange.setItemMeta(setArrangeMeta);
+			this.setItem(InventoryHandler.INVENTORY_ARRANGE_SLOT, doArrange);
 		}
 
 		// Check if limits allow for remote access...
@@ -116,13 +176,52 @@ public class ShopInventoryView extends InventoryView {
 		top.clear();
 
 		boolean displayAdmin = shop.getInventoryInterface().displayItemToPlayer(player);
+		List<ItemPrice> itemqueue = new ArrayList<>();
 		for (ItemPrice item : getShop().getBuyprices().values()) {
 			int currentInvAmount = shop.getInventoryInterface().getInventoryStock(item);
 
-			if (displayAdmin) {
-				this.getTopInventory().addItem(item.generateLore(1, true, currentInvAmount, current));
-			} else {
-				this.getTopInventory().addItem(item.generateLore(current));
+			if (currentInvAmount > 0 || shop.isOwner(player)) {
+				if (displayAdmin) {
+					if (item.getSlot() == -1) {
+						itemqueue.add(item);
+					} else {
+						ItemStack slot = getTopInventory().getItem(item.getSlot());
+
+						if (slot != null) {
+							itemqueue.add(item);
+						} else {
+							getTopInventory().setItem(item.getSlot(), item.generateLore(1, true, currentInvAmount, current));
+						}
+					}
+				} else {
+					if (item.getSlot() == -1) {
+						itemqueue.add(item);
+					} else {
+						ItemStack slot = getTopInventory().getItem(item.getSlot());
+
+						if (slot != null) {
+							itemqueue.add(item);
+						} else {
+							this.getTopInventory().setItem(item.getSlot(), item.generateLore(current));
+						}
+					}
+				}
+			}
+		}
+
+		for (ItemPrice item : itemqueue) {
+			int currentInvAmount = shop.getInventoryInterface().getInventoryStock(item);
+
+			if (currentInvAmount > 0 || shop.isOwner(player)) {
+				if (displayAdmin) {
+					int slot = getTopInventory().firstEmpty();
+					item.setSlot(slot);
+					this.getTopInventory().setItem(item.getSlot(), item.generateLore(1, true, currentInvAmount, current));
+				} else {
+					int slot = getTopInventory().firstEmpty();
+					item.setSlot(slot);
+					this.getTopInventory().setItem(item.getSlot(), item.generateLore(current));
+				}
 			}
 		}
 

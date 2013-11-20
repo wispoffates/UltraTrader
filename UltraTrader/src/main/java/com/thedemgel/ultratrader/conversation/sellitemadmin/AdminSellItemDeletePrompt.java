@@ -4,7 +4,7 @@ import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
 import com.thedemgel.ultratrader.shop.ItemPrice;
-import com.thedemgel.ultratrader.shop.ShopInventoryView;
+import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import org.bukkit.ChatColor;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.ConversationPrefix;

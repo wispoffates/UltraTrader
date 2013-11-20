@@ -96,6 +96,7 @@ public class YamlDataObject extends DataObject {
 			item.setItemStack(itemconfig.getItemStack("itemStack"));
 			item.setPrice(BigDecimal.valueOf(itemconfig.getDouble("price")));
 			item.setRandom(itemconfig.getString("random"));
+			item.setSlot(itemconfig.getInt("slot"));
 			shop.getSellprices().put(item.getId(), item);
 		}
 
@@ -115,6 +116,7 @@ public class YamlDataObject extends DataObject {
 			item.setItemStack(itemconfig.getItemStack("itemStack"));
 			item.setPrice(BigDecimal.valueOf(itemconfig.getDouble("price")));
 			item.setRandom(itemconfig.getString("random"));
+			item.setSlot(itemconfig.getInt("slot"));
 			shop.getBuyprices().put(item.getId(), item);
 		}
 
@@ -200,6 +202,7 @@ public class YamlDataObject extends DataObject {
 				sellconfig.set(ip.getId() + ".itemStack", ip.getItemStack());
 				sellconfig.set(ip.getId() + ".price", ip.getPrice());
 				sellconfig.set(ip.getId() + ".random", ip.getId());
+				sellconfig.set(ip.getId() + ".slot", ip.getSlot());
 			}
 
 			ConfigurationSection buyconfig = config.getConfig().createSection("buyprices");
@@ -210,6 +213,7 @@ public class YamlDataObject extends DataObject {
 				buyconfig.set(ip.getId() + ".itemStack", ip.getItemStack());
 				buyconfig.set(ip.getId() + ".price", ip.getPrice());
 				buyconfig.set(ip.getId() + ".random", ip.getId());
+				buyconfig.set(ip.getId() + ".slot", ip.getSlot());
 			}
 
 			ConfigurationSection invconfig = config.getConfig().getConfigurationSection("inventory");

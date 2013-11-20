@@ -1,7 +1,7 @@
 package com.thedemgel.ultratrader;
 
 import com.thedemgel.ultratrader.shop.Shop;
-import com.thedemgel.ultratrader.shop.ShopInventoryView;
+import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import org.bukkit.entity.Player;
@@ -21,9 +21,10 @@ public class InventoryHandler {
 	public static final int INVENTORY_TAKE_ALL_SLOT = 50;
 	public static final int INVENTORY_BACK_ARROW_SLOT = 45;
 	public static final int INVENTORY_CREATE_ITEM_SLOT = 51;
+	public static final int INVENTORY_ARRANGE_SLOT = 52;
 	public static final int MAX_SELL_BUY_ITEMS = 36;
 
-	private Map<Player, ShopInventoryView> inventories = new ConcurrentHashMap<>();
+	private final Map<Player, ShopInventoryView> inventories = new ConcurrentHashMap<>();
 	private final UltraTrader plugin;
 
 	public InventoryHandler(UltraTrader instance) {

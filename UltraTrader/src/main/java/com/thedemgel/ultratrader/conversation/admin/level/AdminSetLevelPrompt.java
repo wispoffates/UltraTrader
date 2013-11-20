@@ -11,7 +11,7 @@ import com.thedemgel.ultratrader.conversation.admin.AdminMenuPrompt;
 import com.thedemgel.ultratrader.conversation.admin.AdminSetNamePrompt;
 import com.thedemgel.ultratrader.conversation.admin.AdminTransferPrompt;
 import com.thedemgel.ultratrader.conversation.admin.bank.AdminBankMenuPrompt;
-import com.thedemgel.ultratrader.shop.ShopInventoryView;
+import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import com.thedemgel.ultratrader.util.Permissions;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.Prompt;

@@ -3,7 +3,7 @@ package com.thedemgel.ultratrader.conversation.admin.bank.player;
 
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
-import com.thedemgel.ultratrader.shop.ShopInventoryView;
+import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import com.thedemgel.ultratrader.util.ConfigValue;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.PlayerNamePrompt;

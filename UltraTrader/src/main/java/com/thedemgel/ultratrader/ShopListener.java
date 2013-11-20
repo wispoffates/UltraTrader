@@ -2,17 +2,17 @@ package com.thedemgel.ultratrader;
 
 import com.thedemgel.ultratrader.citizens.TraderTrait;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
+import com.thedemgel.ultratrader.inventory.AdminItemPlacementView;
 import com.thedemgel.ultratrader.shop.ShopHandler;
 import com.thedemgel.ultratrader.util.Permissions;
-import com.thedemgel.ultratrader.shop.ShopInventoryView;
+import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import com.thedemgel.ultratrader.shop.StoreItem;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.api.trait.trait.Owner;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Effect;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.conversations.Conversation;
 import org.bukkit.entity.Entity;
@@ -90,6 +90,14 @@ public class ShopListener implements Listener {
 
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_BACK_ARROW_SLOT) {
 					view.buildBuyView();
+					return;
+				}
+
+				if (event.getRawSlot() == InventoryHandler.INVENTORY_ARRANGE_SLOT && view.getShop().getOwner().equals(player.getName())) {
+					view.setKeepAlive(true);
+					player.closeInventory();
+					AdminItemPlacementView newview = new AdminItemPlacementView(player, view.getShop(), view.getStatus());
+					player.openInventory(newview);
 					return;
 				}
 
@@ -307,10 +315,31 @@ public class ShopListener implements Listener {
 				UltraTrader.getStoreHandler().getInventoryHandler().removeInventoryView((Player) event.getPlayer());
 			}
 		}
+
+		if (event.getView() instanceof AdminItemPlacementView) {
+			final Player player = (Player) event.getPlayer();
+
+			Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+
+				@Override
+				public void run() {
+					InventoryHandler handler = UltraTrader.getStoreHandler().getInventoryHandler();
+
+					if (handler.hasInventoryView(player)) {
+						ShopInventoryView view = (ShopInventoryView) handler.getInventoryView(player);
+						view.setKeepAlive(false);
+						view.refreshView();
+						player.openInventory(view);
+					}
+				}
+			}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
+		}
+
 	}
 
 	@EventHandler
-	public void onPlayerInteractEntityEvent(PlayerInteractEntityEvent event) {
+	public void onPlayerInteractEntityEvent(PlayerInteractEntityEvent event
+	) {
 		Entity entity = event.getRightClicked();
 		Player player = event.getPlayer();
 
@@ -379,7 +408,8 @@ public class ShopListener implements Listener {
 	 * @param event
 	 */
 	@EventHandler
-	public void onPlayerInteractEvent(PlayerInteractEvent event) {
+	public void onPlayerInteractEvent(PlayerInteractEvent event
+	) {
 		Player player = event.getPlayer();
 
 		// Check if player can even access stores
@@ -405,7 +435,6 @@ public class ShopListener implements Listener {
 			/*if (!item.hasItemMeta()) {
 			 return;
 			 }*/
-
 			if (StoreItem.isUltraTraderItem(item)) {
 				event.setCancelled(true);
 				String id = StoreItem.getItemShopId(item);

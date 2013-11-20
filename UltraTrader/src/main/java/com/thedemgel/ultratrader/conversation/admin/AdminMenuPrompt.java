@@ -9,7 +9,7 @@ import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
 import com.thedemgel.ultratrader.conversation.admin.bank.AdminBankMenuPrompt;
 import com.thedemgel.ultratrader.conversation.admin.level.AdminSetLevelPrompt;
 //import com.thedemgel.ultratrader.conversation.rentalshop.RentalEndRentingPrompt;
-import com.thedemgel.ultratrader.shop.ShopInventoryView;
+import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import com.thedemgel.ultratrader.util.Permissions;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.api.trait.Trait;

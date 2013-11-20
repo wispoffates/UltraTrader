@@ -2,7 +2,7 @@ package com.thedemgel.ultratrader;
 
 import com.thedemgel.ultratrader.shop.ItemPrice;
 import com.thedemgel.ultratrader.shop.Shop;
-import com.thedemgel.ultratrader.shop.ShopInventoryView;
+import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import com.thedemgel.ultratrader.shop.StoreItem;
 import com.thedemgel.ultratrader.util.ShopAction;
 import com.thedemgel.ultratrader.wallet.Wallet;

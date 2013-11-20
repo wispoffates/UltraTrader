@@ -8,7 +8,7 @@ import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
 import com.thedemgel.ultratrader.conversation.admin.AdminConversationPrefix;
 import com.thedemgel.ultratrader.conversation.admin.AdminMenuPrompt;
 import com.thedemgel.ultratrader.inventory.InventoryInterface;
-import com.thedemgel.ultratrader.shop.ShopInventoryView;
+import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import com.thedemgel.ultratrader.wallet.Wallet;
 import java.math.BigDecimal;
 import org.bukkit.ChatColor;
