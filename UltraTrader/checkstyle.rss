@@ -9,8 +9,8 @@
     <copyright>&#169;2013 Demgel OpenSource Coding</copyright>
     <item>
       <title>File: 117,
-             Errors: 475,
-             Warnings: 582,
+             Errors: 482,
+             Warnings: 590,
              Infos: 1
       </title>
             <link>http://demgelopensource.github.io/UltraTrader/UltraTrader/checkstyle.html</link>
@@ -371,10 +371,10 @@
                   0
                 </td>
                 <td>
-                  5
+                  9
                 </td>
                 <td>
-                  5
+                  9
                 </td>
               </tr>
                           <tr>
@@ -1183,7 +1183,7 @@
                   0
                 </td>
                 <td>
-                  15
+                  19
                 </td>
                 <td>
                   1
@@ -1284,7 +1284,7 @@
                   22
                 </td>
                 <td>
-                  10
+                  13
                 </td>
               </tr>
                           <tr>
