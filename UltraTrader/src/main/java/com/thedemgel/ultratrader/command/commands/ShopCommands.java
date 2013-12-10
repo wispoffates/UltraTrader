@@ -1,36 +1,26 @@
 package com.thedemgel.ultratrader.command.commands;
 
-import com.thedemgel.ultratrader.UltraTrader;
-import com.thedemgel.ultratrader.InventoryHandler;
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.LimitHandler;
+import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.citizens.TraderTrait;
 import com.thedemgel.ultratrader.citizens.UltraTrait;
 import com.thedemgel.ultratrader.command.BukkitCommand;
 import com.thedemgel.ultratrader.command.Commands;
 import com.thedemgel.ultratrader.shop.Shop;
-import com.thedemgel.ultratrader.shop.StoreItem;
-import com.thedemgel.ultratrader.util.PermissionPredicate;
 import com.thedemgel.ultratrader.util.Permissions;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.api.trait.Trait;
 import net.citizensnpcs.api.trait.trait.Owner;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.InventoryView;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.metadata.LazyMetadataValue;
-import org.bukkit.permissions.PermissionAttachmentInfo;
+
+import java.util.Collection;
+import java.util.List;
 
 public class ShopCommands extends Commands implements CommandExecutor {
 
@@ -86,12 +76,12 @@ public class ShopCommands extends Commands implements CommandExecutor {
 		boolean canceled = false;
 
 		for (String trait : traits) {
-			Class<? extends Trait> traitclass = CitizensAPI.getTraitFactory().getTraitClass(trait);
+			Class<? extends Trait> traitClass = CitizensAPI.getTraitFactory().getTraitClass(trait);
 
-			if (traitclass != null && traitclass.getSuperclass().equals(UltraTrait.class)) {
+			if (traitClass != null && traitClass.getSuperclass().equals(UltraTrait.class)) {
 
-				npc.addTrait(traitclass);
-				UltraTrait ultratrait = (UltraTrait) npc.getTrait(traitclass);
+				npc.addTrait(traitClass);
+				UltraTrait ultratrait = (UltraTrait) npc.getTrait(traitClass);
 				if (!ultratrait.onAssign((Player) sender)) {
 					canceled = true;
 				}
@@ -100,11 +90,11 @@ public class ShopCommands extends Commands implements CommandExecutor {
 
 		if (canceled) {
 			for (String trait : traits) {
-				Class<? extends Trait> traitclass = CitizensAPI.getTraitFactory().getTraitClass(trait);
-				if (traitclass != null && traitclass.getSuperclass().equals(UltraTrait.class)) {
-					if (npc.hasTrait(traitclass)) {
-						npc.removeTrait(traitclass);
-					}
+				Class<? extends Trait> traitClass = CitizensAPI.getTraitFactory().getTraitClass(trait);
+				if (traitClass != null && traitClass.getSuperclass().equals(UltraTrait.class)) {
+					if (npc.hasTrait(traitClass)) {
+                        npc.removeTrait(traitClass);
+                    }
 				}
 			}
 		} else {

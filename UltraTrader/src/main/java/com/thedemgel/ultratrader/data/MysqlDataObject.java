@@ -3,6 +3,7 @@ package com.thedemgel.ultratrader.data;
 
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.shop.Shop;
+import com.thedemgel.ultratrader.util.ConfigString;
 import com.thedemgel.ultratrader.util.ShopAction;
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -29,21 +30,17 @@ public class MysqlDataObject extends DataObject {
 			DriverManager.registerDriver(driver);
 		} catch (ClassNotFoundException ex) {
 			Bukkit.getLogger().log(Level.SEVERE, "Class not found: {0}", ex);
-		} catch (InstantiationException ex) {
-			Logger.getLogger(MysqlDataObject.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			Logger.getLogger(MysqlDataObject.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (SQLException ex) {
+		} catch (InstantiationException | IllegalAccessException | SQLException ex) {
 			Logger.getLogger(MysqlDataObject.class.getName()).log(Level.SEVERE, null, ex);
 		}
-	}
+    }
 
 	@Override
 	public void initLogger(UltraTrader plugin) {
 		String url = "jdbc:mysql://"
-			+ plugin.getConfig().getString("logging.database.url") + ":"
-			+ plugin.getConfig().getInt("logging.database.port")
-			+ "/" + plugin.getConfig().getString("logging.database.dbname")
+			+ plugin.getConfig().getString(ConfigString.LOGGING_DATABASE_URL) + ":"
+			+ plugin.getConfig().getInt(ConfigString.LOGGING_DATABASE_PORT)
+			+ "/" + plugin.getConfig().getString(ConfigString.LOGGING_DATABASE_DBNAME)
 			+ "?zeroDateTimeBehavior=convertToNull";
 
 		logpool = new ConnectionPool("ultralog",
@@ -52,11 +49,11 @@ public class MysqlDataObject extends DataObject {
 			30,
 			180000,
 			url,
-			plugin.getConfig().getString("logging.database.username"),
-			plugin.getConfig().getString("logging.database.password"));
+			plugin.getConfig().getString(ConfigString.LOGGING_DATABASE_USERNAME),
+			plugin.getConfig().getString(ConfigString.LOGGING_DATABASE_PASSWORD));
 
 
-		String inittable = "CREATE TABLE IF NOT EXISTS `ultralog` ("
+		String initTable = "CREATE TABLE IF NOT EXISTS `ultralog` ("
 					+ "`id` int(11) NOT NULL AUTO_INCREMENT,"
 					+ "`player` varchar(45) NOT NULL,"
 					+ "`shopid` int(11) NOT NULL,"
@@ -69,7 +66,7 @@ public class MysqlDataObject extends DataObject {
 
 		try (Connection con = logpool.getConnection(3000)) {
 			Statement statement = con.createStatement();
-			statement.execute(inittable);
+			statement.execute(initTable);
 		} catch (SQLException ex) {
 			Logger.getLogger(MysqlDataObject.class.getName()).log(Level.SEVERE, null, ex);
 		}
