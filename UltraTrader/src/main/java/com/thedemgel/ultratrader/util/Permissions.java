@@ -166,12 +166,44 @@ public class Permissions {
 	 */
 
 	/**
-	 * START SNIPPET: perm
-	 * ####trader.limits.maxlevel
-	 * `Used to set the maxlevel shop a player may have: trader.limits.maxlevel.3`
-	 * END SNIPPET: perm
-	 */
-	public static final String SHOP_LIMIT_MAXLEVEL = "trader.limits.maxlevel";
+     * START SNIPPET: perm
+     * ####trader.limits.maxlevel
+     * `Used to set the maxlevel shop a player may have: trader.limits.maxlevel.3`
+     * END SNIPPET: perm
+     */
+    public static final String SHOP_LIMIT_MAXLEVEL = "trader.limits.maxlevel";
+
+    /**
+     * START SNIPPET: perm
+     * ####trader.limits.maxshops
+     * `Used to set the max number of shops a player may have: trader.limits.maxshops.3`
+     * END SNIPPET: perm
+     */
+    public static final String SHOP_LIMIT_MAXSHOPS = "trader.limits.maxshops";
+
+    /**
+     * START SNIPPET: perm
+     * ####trader.limits.itemactivatecost
+     * `This is the cost to activate selling remote shop items in a store: trader.limits.itemactivatecost.10000`
+     * END SNIPPET: perm
+     */
+    public static final String SHOP_LIMIT_ITEM_ACTIVATE_COST = "trader.limits.itemactivatecost";
+
+    /**
+     * START SNIPPET: perm
+     * ####trader.limits.remoteitemcost
+     * `This value sets the cost a shop will sell its remote item for: trader.limits.remoteitemcost.500`
+     * END SNIPPET: perm
+     */
+    public static final String SHOP_LIMIT_REMOTE_ITEM_COST = "trader.limits.remoteitemcost";
+
+    /**
+     * START SNIPPET: perm
+     * ####trader.limits.enableremote
+     * `This permission sets whether a player can enable remote access to his shop: trader.limits.enableremote`
+     * END SNIPPET: perm
+     */
+    public static final String SHOP_LIMIT_ENABLE_REMOTE = "trader.limits.enableremote";
 
 	/**
 	 * START SNIPPET: perm

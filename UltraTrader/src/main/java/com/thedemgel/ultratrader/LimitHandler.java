@@ -57,8 +57,7 @@ public class LimitHandler {
 	}
 
 	public static int getMaxBuySellSize(Shop shop) {
-		int size = shop.getLevel() * LimitHandler.INV_INCREASE_PER_LEVEL;
-		return size;
+		return shop.getLevel() * LimitHandler.INV_INCREASE_PER_LEVEL;
 	}
 
 	public static int getMaxLevel(Player player) {
@@ -105,6 +104,16 @@ public class LimitHandler {
 	}
 
 	public static int getMaxShops(Player player) {
+        // Start player limit override.
+        PermissionPredicate pred = new PermissionPredicate();
+
+        int maxshop = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_MAXSHOPS, player);
+
+        if (maxshop > 0) {
+            return maxshop;
+        }
+        // End player limit override
+
 		ConfigurationSection section = getLimit(player);
 		ConfigValue<Integer> maxshops = getConfigValue(section, "maxshops");
 
@@ -116,6 +125,16 @@ public class LimitHandler {
 	}
 
 	public static double getRemoteActivateCost(Player player) {
+        // Start player limit override.
+        PermissionPredicate pred = new PermissionPredicate();
+
+        int remoteitemcost = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_ITEM_ACTIVATE_COST, player);
+
+        if (remoteitemcost > 0) {
+            return remoteitemcost;
+        }
+        // End player limit override
+
 		ConfigurationSection section = getLimit(player);
 		ConfigValue remoteCost = getConfigValue(section, "costs.remote.activate");
 
@@ -126,30 +145,44 @@ public class LimitHandler {
 		if (remoteCost.getValue() instanceof Integer) {
 			Integer cost = (Integer) remoteCost.getValue();
 			return cost.doubleValue();
-		} else {
-			Double cost = (Double) remoteCost.getValue();
-			return cost;
-		}
+		} else return (Double) remoteCost.getValue();
 	}
 
 	public static double getRemoteItemCost(Player player) {
+        // Start player limit override.
+        PermissionPredicate pred = new PermissionPredicate();
+
+        double itemcost = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_REMOTE_ITEM_COST, player);
+
+        if (itemcost > 0) {
+            return itemcost;
+        }
+        // End player limit override
+
 		ConfigurationSection section = getLimit(player);
 		ConfigValue remoteCost = getConfigValue(section, "costs.remote.item");
 
 		if (remoteCost == null) {
-			remoteCost = new ConfigValue(10000);
+			remoteCost = new ConfigValue(500);
 		}
 
 		if (remoteCost.getValue() instanceof Integer) {
 			Integer cost = (Integer) remoteCost.getValue();
 			return cost.doubleValue();
-		} else {
-			Double cost = (Double) remoteCost.getValue();
-			return cost;
-		}
+		} else return (Double) remoteCost.getValue();
 	}
 
 	public static boolean canEnableRemoteAccess(Player player) {
+        // Start player limit override.
+        PermissionPredicate pred = new PermissionPredicate();
+
+        Boolean enableRemote = pred.getBooleanPermission(Permissions.SHOP_LIMIT_ENABLE_REMOTE, player);
+
+        if (enableRemote != null) {
+            return enableRemote;
+        }
+        // End player limit override
+
 		ConfigurationSection section = getLimit(player);
 		ConfigValue<Boolean> canRemote = getConfigValue(section, "remote");
 		return canRemote.getValue();
@@ -166,10 +199,7 @@ public class LimitHandler {
 		if (createCost.getValue() instanceof Integer) {
 			Integer cost = (Integer) createCost.getValue();
 			return cost.doubleValue();
-		} else {
-			Double cost = (Double) createCost.getValue();
-			return cost;
-		}
+		} else return (Double) createCost.getValue();
 	}
 
 	public static double getLevelCost(Player player, int level) {
@@ -192,13 +222,9 @@ public class LimitHandler {
 	public static boolean canCreate(Player player) {
 		int shopcount = UltraTrader.getStoreHandler().getShopsByOwner(player).size();
 
-		if (getMaxShops(player) == -1) {
-			return true;
-		} else if (shopcount < getMaxShops(player)) {
-			return true;
-		} else {
-			return false;
-		}
+		if (getMaxShops(player) == -1) return true;
+
+        return shopcount < getMaxShops(player);
 	}
 
 	private static ConfigValue getConfigValue(ConfigurationSection section, String search) {
@@ -223,7 +249,7 @@ public class LimitHandler {
 	public static boolean canOwnShop(Shop shop, Player player) {
 		int maxlevel = getMaxLevel(player);
 
-		if (canCreate(player) && shop.getLevel() <= maxlevel) {
+		if (canCreate(player) && (shop.getLevel() <= maxlevel)) {
 			return true;
 		}
 
