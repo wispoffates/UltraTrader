@@ -5,7 +5,7 @@ import com.thedemgel.ultrarental.L;
 import com.thedemgel.ultrarental.RentalHandler;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.admin.AdminMenuPrompt;
-import com.thedemgel.ultratrader.shop.ShopInventoryView;
+import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.conversations.BooleanPrompt;
 import org.bukkit.conversations.ConversationContext;

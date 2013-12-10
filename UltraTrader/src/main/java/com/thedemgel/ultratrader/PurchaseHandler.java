@@ -32,14 +32,13 @@ import org.bukkit.inventory.ItemStack;
 public class PurchaseHandler {
 
 	public static void processShopItemPurchase(Shop shop, Player player, ItemStack shopitem) {
-		System.out.println("Attempting to buy shop item" + shopitem);
 
 		double cost = shop.getRemoteItemCost();
 
 		EconomyResponse resp = UltraTrader.getEconomy().withdrawPlayer(player.getName(), player.getWorld().getName(), cost);
 
 		if (!resp.type.equals(ResponseType.SUCCESS)) {
-			player.sendMessage("(Assign RB) Not Enough Funds");
+			player.sendMessage(L.getString("transaction.sale.player.notenoughfunds"));
 			return;
 		}
 
