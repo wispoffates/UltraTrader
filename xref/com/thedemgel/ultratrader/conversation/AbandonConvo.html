@@ -12,7 +12,7 @@
 <a class="jxr_linenumber" name="2" href="#2">2</a>   
 <a class="jxr_linenumber" name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.UltraTrader;
 <a class="jxr_linenumber" name="4" href="#4">4</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.L;
-<a class="jxr_linenumber" name="5" href="#5">5</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.shop.ShopInventoryView;
+<a class="jxr_linenumber" name="5" href="#5">5</a>   <strong class="jxr_keyword">import</strong> com.thedemgel.ultratrader.inventory.ShopInventoryView;
 <a class="jxr_linenumber" name="6" href="#6">6</a>   <strong class="jxr_keyword">import</strong> org.bukkit.Bukkit;
 <a class="jxr_linenumber" name="7" href="#7">7</a>   <strong class="jxr_keyword">import</strong> org.bukkit.conversations.ConversationAbandonedEvent;
 <a class="jxr_linenumber" name="8" href="#8">8</a>   <strong class="jxr_keyword">import</strong> org.bukkit.conversations.ConversationAbandonedListener;
@@ -42,7 +42,7 @@
 <a class="jxr_linenumber" name="32" href="#32">32</a>  		} <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="33" href="#33">33</a>  			<strong class="jxr_keyword">final</strong> Player player = (Player) abandonedEvent.getContext().getForWhom();
 <a class="jxr_linenumber" name="34" href="#34">34</a>  			<strong class="jxr_keyword">if</strong> (UltraTrader.getStoreHandler().getInventoryHandler().hasInventoryView(player)) {
-<a class="jxr_linenumber" name="35" href="#35">35</a>  				<strong class="jxr_keyword">final</strong> <a href="../../../../com/thedemgel/ultratrader/shop/ShopInventoryView.html">ShopInventoryView</a> view = (ShopInventoryView) UltraTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
+<a class="jxr_linenumber" name="35" href="#35">35</a>  				<strong class="jxr_keyword">final</strong> <a href="../../../../com/thedemgel/ultratrader/inventory/ShopInventoryView.html">ShopInventoryView</a> view = (ShopInventoryView) UltraTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
 <a class="jxr_linenumber" name="36" href="#36">36</a>  
 <a class="jxr_linenumber" name="37" href="#37">37</a>  				view.setKeepAlive(false);
 <a class="jxr_linenumber" name="38" href="#38">38</a>  
