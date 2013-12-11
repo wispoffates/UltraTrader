@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 
 
 public class LimitHandler {
-	public static final int INV_INCREASE_PER_LEVEL = 9;
+	private static final int INV_INCREASE_PER_LEVEL = 9;
 	private static final ConfigAccessor config;
 
 	static {
@@ -22,9 +22,9 @@ public class LimitHandler {
 		config.saveConfig();
 	}
 
-	public static void init() {}
+	//public static void init() {}
 
-	public static ConfigurationSection getLimitsConfigSection() {
+	private static ConfigurationSection getLimitsConfigSection() {
 		if (config.getConfig().isConfigurationSection("limits")) {
 			return config.getConfig().getConfigurationSection("limits");
 		} else {
@@ -32,7 +32,7 @@ public class LimitHandler {
 		}
 	}
 
-	public static ConfigurationSection getDefaultsSection() {
+	private static ConfigurationSection getDefaultsSection() {
 		if (config.getConfig().isConfigurationSection("default")) {
 			return config.getConfig().getConfigurationSection("default");
 		} else {
@@ -47,7 +47,6 @@ public class LimitHandler {
 	private static ConfigurationSection getLimit(Player player) {
 		for (String limit : getLimitsConfigSection().getKeys(false)) {
 			if (player.hasPermission("trader.limit." + limit) && !limit.equals("default")) {
-				//System.out.println(limit);
 				return getLimitsConfigSection().getConfigurationSection(limit);
 			}
 		}
@@ -107,21 +106,21 @@ public class LimitHandler {
         // Start player limit override.
         PermissionPredicate pred = new PermissionPredicate();
 
-        int maxshop = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_MAXSHOPS, player);
+        Integer maxShop = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_MAXSHOPS, player);
 
-        if (maxshop > 0) {
-            return maxshop;
+        if (maxShop != null) {
+            return maxShop;
         }
         // End player limit override
 
 		ConfigurationSection section = getLimit(player);
-		ConfigValue<Integer> maxshops = getConfigValue(section, "maxshops");
+		ConfigValue<Integer> maxShops = getConfigValue(section, "maxshops");
 
-		if (maxshops == null) {
-			maxshops = new ConfigValue(1);
+		if (maxShops == null) {
+			maxShops = new ConfigValue(1);
 		}
 
-		return maxshops.getValue();
+		return maxShops.getValue();
 	}
 
 	public static double getRemoteActivateCost(Player player) {
@@ -214,18 +213,15 @@ public class LimitHandler {
 			Integer cost = (Integer) levelCost.getValue();
 			return cost.doubleValue();
 		} else {
-			Double cost = (Double) levelCost.getValue();
-			return cost;
+            return (Double) levelCost.getValue();
 		}
 	}
 
 	public static boolean canCreate(Player player) {
-		int shopcount = UltraTrader.getStoreHandler().getShopsByOwner(player).size();
+		int shopCount = UltraTrader.getStoreHandler().getShopsByOwner(player).size();
 
-		if (getMaxShops(player) == -1) return true;
-
-        return shopcount < getMaxShops(player);
-	}
+        return getMaxShops(player) == -1 || shopCount < getMaxShops(player);
+    }
 
 	private static ConfigValue getConfigValue(ConfigurationSection section, String search) {
 		if (section.contains(search)) {
@@ -249,12 +245,8 @@ public class LimitHandler {
 	public static boolean canOwnShop(Shop shop, Player player) {
 		int maxlevel = getMaxLevel(player);
 
-		if (canCreate(player) && (shop.getLevel() <= maxlevel)) {
-			return true;
-		}
-
-		return false;
-	}
+        return canCreate(player) && (shop.getLevel() <= maxlevel);
+    }
 
 	public static List<String> getRequiredTraits(Player player) {
 		return getRequiredTraits(player, "default");

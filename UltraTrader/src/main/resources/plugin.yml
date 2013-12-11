@@ -6,9 +6,15 @@ softdepend: [Citizens]
 
 commands:
    trader:
-      description: This is a demo command.
-      usage: /<command> [player]
+      description: Main UltraTrader command.
+      usage: /<command> [subcommand]
       permission-message: You don't have <permission>
    traderadmin:
       description: Utility commands I will remove later
+      usage: /<command> [subcommand]
+   traderlog:
+      description: Admin command to view player/shop logs.
+      usage: /<command> [player/shopid/selected] [subcommand]
+   traderplayer:
+      description: Specific non-trader related player commands.
       usage: /<command> [subcommand]

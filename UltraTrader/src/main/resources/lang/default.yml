@@ -129,6 +129,9 @@ general:
   accept: 'Yes'
   bank: Bank
   buyprice: 'Buy Price: {0}'
+  commandnotfound: Command not found.
+  consoleonly: Must be a player to use this command.
+  requiresubcommand: Requires a sub-command.
   decline: 'No'
   description: Description
   exit: exit

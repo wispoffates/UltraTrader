@@ -21,6 +21,11 @@ public class WorldGuardOwnerTrait extends UltraTrait {
 		return false;
 	}
 
+    @Override
+    public boolean onAssign(Player player) {
+        return onClick(player);
+    }
+
 	@Override
 	public boolean onClick(Player player) {
 		Location npcloc = npc.getEntity().getLocation();

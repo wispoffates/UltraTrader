@@ -3,6 +3,8 @@ package com.thedemgel.ultratrader;
 import com.thedemgel.ultratrader.citizens.TraderTrait;
 import com.thedemgel.ultratrader.citizens.TraitHandler;
 import com.thedemgel.ultratrader.command.commands.DebugCommands;
+import com.thedemgel.ultratrader.command.commands.LoggingCommands;
+import com.thedemgel.ultratrader.command.commands.PlayerCommands;
 import com.thedemgel.ultratrader.command.commands.ShopCommands;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.data.DataObject;
@@ -17,17 +19,11 @@ import com.thedemgel.ultratrader.wallet.wallets.AdminWallet;
 import com.thedemgel.ultratrader.wallet.wallets.BankWallet;
 import com.thedemgel.ultratrader.wallet.wallets.PlayerWallet;
 import com.thedemgel.ultratrader.wallet.wallets.ShopWallet;
-import com.thedemgel.yamlresourcebundle.YamlResourceBundle;
 import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.trait.TraitInfo;
 import net.milkbowl.vault.economy.Economy;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.mcstats.Metrics;
@@ -46,7 +42,6 @@ public class UltraTrader extends JavaPlugin {
 	private static WalletHandler wallethandler;
 	private static InventoryInterfaceHandler inventoryInterfaceHandler;
 	private static ShopHandler shopHandler;
-	//private static RentalHandler rentalHandler;
 	private static TraitHandler traitHandler;
 	private static boolean isLoggingEnabled = false;
 
@@ -111,7 +106,7 @@ public class UltraTrader extends JavaPlugin {
 
 		traitHandler = new TraitHandler();
 
-		LimitHandler.init();
+		//LimitHandler.init();
 		// Populate config.yml
 		getConfig().options().copyDefaults(true);
 		this.saveConfig();
@@ -147,6 +142,9 @@ public class UltraTrader extends JavaPlugin {
 
 		getCommand("trader").setExecutor(new ShopCommands(this));
 		getCommand("traderadmin").setExecutor(new DebugCommands());
+        getCommand("traderlog").setExecutor(new LoggingCommands());
+        getCommand("traderplayer").setExecutor(new PlayerCommands());
+
 		getServer().getPluginManager().registerEvents(new ShopListener(this), this);
 		this.getLogger().log(Level.INFO, "UltraTrader Enabled...");
 	}
@@ -163,7 +161,7 @@ public class UltraTrader extends JavaPlugin {
 	}
 
 	private void checkCitizens() {
-		if (getServer().getPluginManager().getPlugin("Citizens") == null || getServer().getPluginManager().getPlugin("Citizens").isEnabled() == false) {
+		if (getServer().getPluginManager().getPlugin("Citizens") == null || !getServer().getPluginManager().getPlugin("Citizens").isEnabled()) {
 			getLogger().log(Level.WARNING, "Citizens 2.0 not found or not enabled");
 			citizens = false;
 		} else {
@@ -180,7 +178,7 @@ public class UltraTrader extends JavaPlugin {
 	}
 
 	private void checkVault() {
-		if (getServer().getPluginManager().getPlugin("Vault") == null || getServer().getPluginManager().getPlugin("Vault").isEnabled() == false) {
+		if (getServer().getPluginManager().getPlugin("Vault") == null || !getServer().getPluginManager().getPlugin("Vault").isEnabled()) {
 			getLogger().log(Level.WARNING, "Vault not found or not enabled");
 			vault = false;
 		} else {

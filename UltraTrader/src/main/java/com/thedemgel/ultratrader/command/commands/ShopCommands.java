@@ -32,9 +32,9 @@ public class ShopCommands extends Commands implements CommandExecutor {
 		Collection<Shop> shops = UltraTrader.getStoreHandler().getShopsByOwner((Player) sender);
 
 		if (shops.isEmpty()) {
-			sender.sendMessage(L.getString("shops.list.noshops"));
+			sender.sendMessage(ChatColor.GREEN + L.getString("shops.list.noshops"));
 		} else {
-			sender.sendMessage(L.getString("shops.list.yourshops"));
+			sender.sendMessage(ChatColor.YELLOW + L.getString("shops.list.yourshops"));
 			for (Shop shop : shops) {
 				sender.sendMessage(shop.getId() + ": " + shop.getName());
 			}
@@ -47,6 +47,7 @@ public class ShopCommands extends Commands implements CommandExecutor {
 	public boolean createTrader(CommandSender sender, Command cmd, String label, String[] args) {
 		if (!sender.hasPermission(Permissions.NPC_CREATE)) {
 			sender.sendMessage(ChatColor.RED + L.getString("general.create.nopermission"));
+            return true;
 		}
 
 		NPC npc = CitizensAPI.getDefaultNPCSelector().getSelected(sender);

@@ -21,12 +21,14 @@ public class DebugCommands extends Commands implements CommandExecutor {
 			sender.sendMessage(ChatColor.RED + L.getString("permission.debug.deny"));
 			return true;
 		}
+
 		UltraTrader.getInstance().toggleDebug();
 		if (UltraTrader.getInstance().isDebug()) {
 			sender.sendMessage(ChatColor.GREEN + L.getString("debug.enable"));
 		} else {
 			sender.sendMessage(ChatColor.GREEN + L.getString("debug.disable"));
 		}
+
 		return true;
 	}
 
