@@ -61,7 +61,11 @@ public class StoreItem {
 		}
 
 		String id = Iterables.getLast(item.getItemMeta().getLore());
-		id = id.substring(id.length() - 11);
+        try {
+		    id = id.substring(id.length() - 11);
+        } catch (StringIndexOutOfBoundsException ex) {
+            return false;
+        }
 
 		if (id.equals("UltraTrader")) {
 			return true;
