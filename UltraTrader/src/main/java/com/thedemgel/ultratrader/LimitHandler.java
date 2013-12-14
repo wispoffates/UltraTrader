@@ -64,9 +64,9 @@ public class LimitHandler {
 		// Start player limit override.
 		PermissionPredicate pred = new PermissionPredicate();
 
-		int maxl = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_MAXLEVEL, player);
+		Integer maxl = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_MAXLEVEL, player);
 
-		if (maxl > 0) {
+		if (maxl != null) {
 			return maxl;
 		}
 		// End player limit override
@@ -85,10 +85,10 @@ public class LimitHandler {
 		// Start player limit override.
 		PermissionPredicate pred = new PermissionPredicate();
 
-		int createlevel = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_CREATE_LEVEL, player);
+		Integer createLevel = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_CREATE_LEVEL, player);
 
-		if (createlevel > 0) {
-			return createlevel;
+		if (createLevel != null) {
+			return createLevel;
 		}
 		// End player limit override
 
@@ -127,10 +127,10 @@ public class LimitHandler {
         // Start player limit override.
         PermissionPredicate pred = new PermissionPredicate();
 
-        int remoteitemcost = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_ITEM_ACTIVATE_COST, player);
+        Integer remoteItemCost = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_ITEM_ACTIVATE_COST, player);
 
-        if (remoteitemcost > 0) {
-            return remoteitemcost;
+        if (remoteItemCost != null) {
+            return remoteItemCost;
         }
         // End player limit override
 
@@ -151,10 +151,10 @@ public class LimitHandler {
         // Start player limit override.
         PermissionPredicate pred = new PermissionPredicate();
 
-        double itemcost = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_REMOTE_ITEM_COST, player);
+        Integer itemCost = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_REMOTE_ITEM_COST, player);
 
-        if (itemcost > 0) {
-            return itemcost;
+        if (itemCost != null) {
+            return itemCost.doubleValue();
         }
         // End player limit override
 
@@ -188,6 +188,7 @@ public class LimitHandler {
 	}
 
 	public static double getCreateCost(Player player) {
+        // TODO: permissions override
 		ConfigurationSection section = getLimit(player);
 		ConfigValue createCost = getConfigValue(section, "costs.shop.create");
 
@@ -202,6 +203,7 @@ public class LimitHandler {
 	}
 
 	public static double getLevelCost(Player player, int level) {
+        // TODO: permissions override
 		ConfigurationSection section = getLimit(player);
 		ConfigValue levelCost = getConfigValue(section, "costs.level." + level);
 
@@ -268,13 +270,13 @@ public class LimitHandler {
 		// End player limit override
 		ConfigurationSection section = getLimit(player);
 
-		List<String> traitslist = (List<String>) getConfigValue(section, "traits.required." + group).getValue();
+		List<String> traitsList = (List<String>) getConfigValue(section, "traits.required." + group).getValue();
 
-		if (traitslist == null) {
+		if (traitsList == null) {
 			return traits;
 		}
 
-		for (String trait : traitslist) {
+		for (String trait : traitsList) {
 			System.out.println("test: " + trait);
 			if (!traits.contains(trait)) {
 				traits.add(trait);

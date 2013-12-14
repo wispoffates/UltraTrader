@@ -2,16 +2,17 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
 	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<groupId>com.thedemgel</groupId>
 		<artifactId>UltraTrader-Common</artifactId>
 		<version>1.0</version>
 	</parent>
-	<groupId>com.thedemgel</groupId>
+
 	<artifactId>UltraWorldGuard</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<name>UltraWorldGuard</name>
-	<description>An Extension of UltraTrader to give WorldGuard funcationality.</description>
+	<description>An Extension of UltraTrader to give WorldGuard functionality.</description>
 
 	<distributionManagement>
 		<site>
@@ -32,12 +33,14 @@
 			<version>5.8.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
+
 	<repositories>
 		<repository>
 			<id>sk89q-repo</id>
 			<url>http://maven.sk89q.com/repo/</url>
 		</repository>
 	</repositories>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>

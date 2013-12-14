@@ -3,14 +3,16 @@
 	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
+
 		<groupId>com.thedemgel</groupId>
 		<artifactId>UltraTrader-Common</artifactId>
 		<version>1.0</version>
 	</parent>
-	<groupId>com.thedemgel</groupId>
+
 	<artifactId>UltraFrame</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<name>UltraFrame</name>
+    <description>An Extension of UltraTrader to give ItemFrames to shop for display.</description>
 
 	<distributionManagement>
 		<site>
@@ -26,6 +28,7 @@
 			<version>0.8-BETA</version>
 		</dependency>
 	</dependencies>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
