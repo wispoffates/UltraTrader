@@ -213,6 +213,22 @@ public class Permissions {
 	 */
 	public static final String SHOP_LIMIT_CREATE_LEVEL = "trader.limits.createlevel";
 
+    /**
+     * START SNIPPET: perm
+     * ####trader.limits.createcost
+     * `This will set how much it costs to create a shop: trader.limits.createshop.1000`
+     * END SNIPPET: perm
+     */
+    public static final String SHOP_LIMIT_CREATE_COST = "trader.limits.createshop";
+
+    /**
+     * START SNIPPET: perm
+     * ####trader.limits.levelcost
+     * `This will set the cost a player must pay to increase or decrease from a level: trader.limits.levelcost.1.1000 ... trader.limits.levelcost.4.1000`
+     * END SNIPPET: perm
+     */
+    public static final String SHOP_LIMIT_LEVEL_COST = "trader.limits.levelcost";
+
 	/**
 	 * START SNIPPET: perm
 	 * ####trader.limits.required.groupname.sometrait

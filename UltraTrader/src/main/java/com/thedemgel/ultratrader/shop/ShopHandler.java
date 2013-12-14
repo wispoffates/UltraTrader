@@ -8,6 +8,7 @@ import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.LimitHandler;
 import com.thedemgel.ultratrader.StoreConfig;
 import com.thedemgel.ultratrader.inventory.InventoryInterfaceHandler;
+import com.thedemgel.ultratrader.util.Permissions;
 import com.thedemgel.ultratrader.wallet.WalletHandler;
 import java.io.File;
 import java.util.Collection;
@@ -16,6 +17,7 @@ import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class ShopHandler {
@@ -66,8 +68,13 @@ public class ShopHandler {
 	}
 
 	public Shop createShop(Player player) {
+        if (!player.hasPermission(Permissions.CREATE_STORES)) {
+            player.sendRawMessage(ChatColor.RED + "You don't have permission to create Stores.");
+            return null;
+        }
+
 		if (!LimitHandler.canCreate(player)) {
-			player.sendRawMessage("You already have to many shops.");
+			player.sendRawMessage(ChatColor.RED + "You already have to many shops.");
 			return null;
 		}
 
@@ -75,7 +82,7 @@ public class ShopHandler {
 		double cost = LimitHandler.getCreateCost(player);
 		boolean has = UltraTrader.getEconomy().has(player.getName(), player.getWorld().getName(), cost);
 		if (!has) {
-			player.sendRawMessage("Not enough funds.");
+			player.sendRawMessage(ChatColor.RED + "Not enough funds.");
 			return null;
 		}
 

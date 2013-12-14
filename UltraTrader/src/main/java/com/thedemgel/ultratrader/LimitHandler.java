@@ -162,7 +162,7 @@ public class LimitHandler {
 		ConfigValue remoteCost = getConfigValue(section, "costs.remote.item");
 
 		if (remoteCost == null) {
-			remoteCost = new ConfigValue(500);
+			remoteCost = new ConfigValue<>(500);
 		}
 
 		if (remoteCost.getValue() instanceof Integer) {
@@ -188,7 +188,16 @@ public class LimitHandler {
 	}
 
 	public static double getCreateCost(Player player) {
-        // TODO: permissions override
+        // Start player limit override.
+        PermissionPredicate pred = new PermissionPredicate();
+
+        Integer storeCreateCost = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_CREATE_COST, player);
+
+        if (storeCreateCost != null) {
+            return storeCreateCost.doubleValue();
+        }
+        // End player limit override
+
 		ConfigurationSection section = getLimit(player);
 		ConfigValue createCost = getConfigValue(section, "costs.shop.create");
 
@@ -203,7 +212,16 @@ public class LimitHandler {
 	}
 
 	public static double getLevelCost(Player player, int level) {
-        // TODO: permissions override
+        // Start player limit override.
+        PermissionPredicate pred = new PermissionPredicate();
+
+        Integer storeLevelCost = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_LEVEL_COST + level, player);
+
+        if (storeLevelCost != null) {
+            return storeLevelCost.doubleValue();
+        }
+        // End player limit override
+
 		ConfigurationSection section = getLimit(player);
 		ConfigValue levelCost = getConfigValue(section, "costs.level." + level);
 

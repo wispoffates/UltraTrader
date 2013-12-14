@@ -1,6 +1,6 @@
 name: UltraTrader
 main: com.thedemgel.ultratrader.UltraTrader
-version: .8 BETA
+version: .9 BETA
 depend: [Vault]
 softdepend: [Citizens]
 
