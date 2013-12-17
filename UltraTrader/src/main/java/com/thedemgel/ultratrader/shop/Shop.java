@@ -3,29 +3,33 @@ package com.thedemgel.ultratrader.shop;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
+import com.thedemgel.ultratrader.BlockShopHandler;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.StoreConfig;
 import com.thedemgel.ultratrader.inventory.InventoryInterface;
 import com.thedemgel.ultratrader.inventory.InventoryInterfaceHandler;
-import com.thedemgel.ultratrader.inventory.ShopInventoryInterface;
 import com.thedemgel.ultratrader.util.ConfigValue;
 import com.thedemgel.ultratrader.wallet.Wallet;
 import java.math.BigDecimal;
-import java.util.Collection;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
 
 public class Shop {
 
-	private ConcurrentMap<String, ItemPrice> buyprices = new ConcurrentHashMap<>();
-	private ConcurrentMap<String, ItemPrice> sellprices = new ConcurrentHashMap<>();
+	private ConcurrentMap<String, ItemPrice> buyPrices = new ConcurrentHashMap<>();
+	private ConcurrentMap<String, ItemPrice> sellPrices = new ConcurrentHashMap<>();
 	private ConcurrentMap<ItemStack, Integer> inventory = new ConcurrentHashMap<>();
 	private ConcurrentMap<String, ConfigValue> info = new ConcurrentHashMap<>();
 	private ConcurrentMap<String, ConfigValue> walletinfo = new ConcurrentHashMap<>();
 	private ConcurrentMap<String, ConfigValue> inventoryinfo = new ConcurrentHashMap<>();
-	private Wallet wallet;
+    private List<Location> blockShops = new ArrayList<>();
+    private Wallet wallet;
 	private InventoryInterface inv;
 
 	public Shop(StoreConfig shopconfig) {
@@ -47,7 +51,7 @@ public class Shop {
 				return item.getItemStack().equals(checkItem.getItemStack());
 			}
 		};
-		Collection<ItemPrice> sellItems = Collections2.filter(getSellprices().values(), itemPredicate);
+		Collection<ItemPrice> sellItems = Collections2.filter(getSellPrices().values(), itemPredicate);
 
 		return sellItems.size() > 0;
 	}
@@ -66,7 +70,7 @@ public class Shop {
 				return item.getItemStack().equals(check);
 			}
 		};
-		Collection<ItemPrice> buyItems = Collections2.filter(getBuyprices().values(), itemPredicate);
+		Collection<ItemPrice> buyItems = Collections2.filter(getBuyPrices().values(), itemPredicate);
 
 		if (buyItems.size() > 0) {
 			return (ItemPrice) buyItems.toArray()[0];
@@ -82,7 +86,7 @@ public class Shop {
 				return item.getItemStack().equals(checkItem.getItemStack());
 			}
 		};
-		Collection<ItemPrice> buyItems = Collections2.filter(getBuyprices().values(), itemPredicate);
+		Collection<ItemPrice> buyItems = Collections2.filter(getBuyPrices().values(), itemPredicate);
 
 		return buyItems.size() > 0;
 	}
@@ -96,10 +100,10 @@ public class Shop {
 		}
 
 		String random = invItem.setRandom();
-		while (getSellprices().containsKey(random)) {
+		while (getSellPrices().containsKey(random)) {
 			random = invItem.setRandom();
 		}
-		getSellprices().put(random, invItem);
+		getSellPrices().put(random, invItem);
 		return true;
 	}
 
@@ -111,15 +115,24 @@ public class Shop {
 		}
 
 		String random = invItem.setRandom();
-		while (getBuyprices().containsKey(random)) {
+		while (getBuyPrices().containsKey(random)) {
 			random = invItem.setRandom();
 		}
-		getBuyprices().put(random, invItem);
+		getBuyPrices().put(random, invItem);
 		return true;
 	}
 
-	private void setMetaData() {
+	public void setMetaData() {
 		// Decide whether to set metadata (not if item store) and then set it.
+        if (!blockShops.isEmpty()) {
+            Iterator<Location> blocks = blockShops.iterator();
+            while (blocks.hasNext()) {
+                Location loc = blocks.next();
+
+                loc.getBlock().setMetadata(BlockShopHandler.SHOP_METADATA_KEY, new FixedMetadataValue(UltraTrader.getInstance(), getId()));
+                loc.getBlock().setMetadata(BlockShopHandler.SHOP_OWNER_KEY, new FixedMetadataValue(UltraTrader.getInstance(), getOwner()));
+            }
+        }
 	}
 
 	public String getItemId(ItemStack item) {
@@ -128,12 +141,12 @@ public class Shop {
 		return id;
 	}
 
-	public ConcurrentMap<String, ItemPrice> getBuyprices() {
-		return buyprices;
+	public ConcurrentMap<String, ItemPrice> getBuyPrices() {
+		return buyPrices;
 	}
 
-	public ConcurrentMap<String, ItemPrice> getSellprices() {
-		return sellprices;
+	public ConcurrentMap<String, ItemPrice> getSellPrices() {
+		return sellPrices;
 	}
 
 	/*public InventoryInterface getInventoryInterface() {
@@ -141,8 +154,8 @@ public class Shop {
 	}*/
 
 	public final void initWallet() {
-		ConfigValue<String> wallettype = getWalletinfo().get("type");
-		setWallet(UltraTrader.getWallethandler().getWalletInstance(wallettype.getValue(), this));
+		ConfigValue<String> walletType = getWalletinfo().get("type");
+		setWallet(UltraTrader.getWallethandler().getWalletInstance(walletType.getValue(), this));
 	}
 
 	public Wallet getWallet() {
@@ -150,7 +163,7 @@ public class Shop {
 	}
 
 	public void setWalletType(String type) {
-		walletinfo.put("type", new ConfigValue(type));
+		walletinfo.put("type", new ConfigValue<>(type));
 		initWallet();
 	}
 
@@ -166,8 +179,8 @@ public class Shop {
 	}
 
 	public final void initInventoryInterface() {
-		ConfigValue<String> interfacetype = getInventoryinfo().get("type");
-		setInventoryInterface(UltraTrader.getInventoryInterfaceHandler().getInventoryInterfaceInstance(interfacetype.getValue(), this));
+		ConfigValue<String> interfaceType = getInventoryinfo().get("type");
+		setInventoryInterface(UltraTrader.getInventoryInterfaceHandler().getInventoryInterfaceInstance(interfaceType.getValue(), this));
 	}
 
 	public void setInventoryInterface(InventoryInterface inventoryInterface) {
@@ -297,4 +310,8 @@ public class Shop {
 	public ConcurrentMap<String, ConfigValue> getWalletinfo() {
 		return walletinfo;
 	}
+
+    public List<Location> getBlockShops() {
+        return blockShops;
+    }
 }

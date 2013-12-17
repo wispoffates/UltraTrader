@@ -106,7 +106,6 @@ public class UltraTrader extends JavaPlugin {
 
 		traitHandler = new TraitHandler();
 
-		//LimitHandler.init();
 		// Populate config.yml
 		getConfig().options().copyDefaults(true);
 		this.saveConfig();
@@ -146,6 +145,7 @@ public class UltraTrader extends JavaPlugin {
         getCommand("traderplayer").setExecutor(new PlayerCommands());
 
 		getServer().getPluginManager().registerEvents(new ShopListener(this), this);
+        getServer().getPluginManager().registerEvents(new BlockListener(), this);
 		this.getLogger().log(Level.INFO, "UltraTrader Enabled...");
 	}
 

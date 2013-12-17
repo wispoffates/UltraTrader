@@ -26,6 +26,9 @@ import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.MetadataValue;
+
+import java.util.List;
 
 public class ShopListener implements Listener {
 
@@ -377,6 +380,7 @@ public class ShopListener implements Listener {
 						if (!player.isConversing()) {
 							Conversation convo = UltraTrader.getConversationHandler().getCreateShop().buildConversation(player);
 							convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
+                            convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_IS_BLOCK, false);
 							convo.begin();
 						} else {
 							player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
@@ -425,15 +429,57 @@ public class ShopListener implements Listener {
 			return;
 		}
 
+        ItemStack item = event.getItem();
+
 		if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			Block block = event.getClickedBlock();
-			if (block.hasMetadata("shop")) {
-				return;
+
+			if (block.hasMetadata(BlockShopHandler.SHOP_METADATA_KEY)) {
+                // TODO: open shop
+                int shopId = block.getMetadata(BlockShopHandler.SHOP_METADATA_KEY).get(0).asInt();
+
+                if (shopId == ShopHandler.SHOP_NULL  || item.getType().equals(Material.PAPER)) {
+                    if(BlockShopHandler.assignShopConvo(event.getPlayer(), block)) {
+                        return;
+                    }
+                }
+
+                InventoryHandler handler = UltraTrader.getStoreHandler().getInventoryHandler();
+                // Open Store
+                if (handler.hasInventoryView(player)) {
+                    ShopInventoryView view = (ShopInventoryView) handler.getInventoryView(player);
+                    if (!view.getShop().getId().equals(shopId)) {
+                        handler.createBuyInventoryView(player, UltraTrader.getStoreHandler().getShop(shopId));
+                        // TODO: change to BLOCK
+                        //view.setTarget(npc);
+                    }
+                } else {
+                    handler.createBuyInventoryView(player, UltraTrader.getStoreHandler().getShop(shopId));
+                    // TODO: change to BLOCK
+                    //.setTarget(npc);
+                }
+
+                handler.openInventory(player);
+
+                //System.out.println(block.getMetadata(BlockShopHandler.SHOP_METADATA_KEY));
+                //List<MetadataValue> meta = block.getMetadata(BlockShopHandler.SHOP_METADATA_KEY);
+
+                //for (MetadataValue value : meta) {
+                //    System.out.println(value.value());
+                //}
+				//return;
 			}
+
+            // Check if item in hand is create block shop item
+            if (item != null && item.getType().equals(Material.PAPER)) {
+                if (BlockShopHandler.createBlockShop(player, event.getClickedBlock())) {
+                    return;
+                }
+            }
 		}
 
 		if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-			ItemStack item = event.getItem();
+			item = event.getItem();
 
 			// after here is all itemsinhand -- if no item in hand. return.
 			if (item == null) {

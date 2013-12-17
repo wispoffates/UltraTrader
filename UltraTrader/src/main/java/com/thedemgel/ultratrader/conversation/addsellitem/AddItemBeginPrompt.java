@@ -29,7 +29,7 @@ public class AddItemBeginPrompt extends MessagePrompt {
 			return new AddInventoryPrompt();
 		}
 
-		if (view.getShop().getSellprices().size() >= LimitHandler.getMaxBuySellSize(view.getShop())) {
+		if (view.getShop().getSellPrices().size() >= LimitHandler.getMaxBuySellSize(view.getShop())) {
 			return new AddItemShopFullPrompt();
 		}
 

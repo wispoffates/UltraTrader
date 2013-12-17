@@ -41,10 +41,10 @@ public class AdminItemPlacementView extends InventoryView implements Listener {
 
 		switch (status) {
 			case MAIN_SCREEN:
-				items = shop.getSellprices();
+				items = shop.getSellPrices();
 				break;
 			case BUY_SCREEN:
-				items = shop.getBuyprices();
+				items = shop.getBuyPrices();
 				break;
 			default:
 				items = null;

@@ -28,6 +28,8 @@ public class ConversationHandler {
 	public static final String CONVERSATION_SESSION_PRICE = "price";
 	public static final String CONVERSATION_SESSION_RETURN = "return";
 	public static final String CONVERSATION_SESSION_SLOT = "slot";
+    public static final String CONVERSATION_SESSION_IS_BLOCK = "isblock";
+    public static final String CONVERSATION_SESSION_BLOCK = "block";
 	public static final int CONVERSATION_MAX_SHOP_NAME = 32;
 	private ConversationFactory setSellPrice;
 	private ConversationFactory addSellItem;

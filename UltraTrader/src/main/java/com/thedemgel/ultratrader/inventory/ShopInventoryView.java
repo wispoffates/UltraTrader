@@ -79,7 +79,7 @@ public class ShopInventoryView extends InventoryView {
 		top.clear();
 		boolean displayAdmin = shop.getInventoryInterface().displayItemToPlayer(player);
 		List<ItemPrice> itemqueue = new ArrayList<>();
-		for (ItemPrice item : getShop().getSellprices().values()) {
+		for (ItemPrice item : getShop().getSellPrices().values()) {
 			int currentInvAmount = shop.getInventoryInterface().getInventoryStock(item);
 
 			if (currentInvAmount > 0 || shop.isOwner(player)) {
@@ -177,7 +177,7 @@ public class ShopInventoryView extends InventoryView {
 
 		boolean displayAdmin = shop.getInventoryInterface().displayItemToPlayer(player);
 		List<ItemPrice> itemqueue = new ArrayList<>();
-		for (ItemPrice item : getShop().getBuyprices().values()) {
+		for (ItemPrice item : getShop().getBuyPrices().values()) {
 			int currentInvAmount = shop.getInventoryInterface().getInventoryStock(item);
 
 			if (currentInvAmount > 0 || shop.isOwner(player)) {
@@ -276,8 +276,8 @@ public class ShopInventoryView extends InventoryView {
 		String id = getShop().getItemId(item);
 
 		ItemPrice invItem;
-		if (getShop().getBuyprices().containsKey(id)) {
-			invItem = getShop().getBuyprices().get(id);
+		if (getShop().getBuyPrices().containsKey(id)) {
+			invItem = getShop().getBuyPrices().get(id);
 		} else {
 			buildBuyView();
 			return;
@@ -347,8 +347,8 @@ public class ShopInventoryView extends InventoryView {
 		String id = getShop().getItemId(item);
 
 		ItemPrice invItem;
-		if (getShop().getSellprices().containsKey(id)) {
-			invItem = getShop().getSellprices().get(id);
+		if (getShop().getSellPrices().containsKey(id)) {
+			invItem = getShop().getSellPrices().get(id);
 		} else {
 			buildSellView();
 			return;

@@ -34,6 +34,7 @@ public class ShopHandler {
 
 	public void addShop(Shop shop) {
 		shops.put(shop.getId(), shop);
+        shop.setMetaData();
 	}
 
 	public void initShops() {

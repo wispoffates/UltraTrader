@@ -52,7 +52,7 @@ public class AdminMenuPrompt extends FixedIgnoreCaseSetPrompt {
 					if (trait instanceof UltraTrait) {
 						UltraTrait ultratrait = (UltraTrait) trait;
 						if (ultratrait.hasMenuOption()) {
-							addOption("rental", ultratrait.getMenuPrompt());
+							addOption(ultratrait.getMenuOption(), ultratrait.getMenuPrompt());
 						}
 					}
 				}

@@ -12,11 +12,13 @@ import com.thedemgel.ultratrader.util.YamlFilenameFilter;
 import com.thedemgel.ultratrader.wallet.WalletHandler;
 import java.io.File;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 import net.milkbowl.vault.economy.EconomyResponse;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -97,7 +99,7 @@ public class YamlDataObject extends DataObject {
 			item.setPrice(BigDecimal.valueOf(itemconfig.getDouble("price")));
 			item.setRandom(itemconfig.getString("random"));
 			item.setSlot(itemconfig.getInt("slot"));
-			shop.getSellprices().put(item.getId(), item);
+			shop.getSellPrices().put(item.getId(), item);
 		}
 
 		// Load all BuyPrices
@@ -117,7 +119,7 @@ public class YamlDataObject extends DataObject {
 			item.setPrice(BigDecimal.valueOf(itemconfig.getDouble("price")));
 			item.setRandom(itemconfig.getString("random"));
 			item.setSlot(itemconfig.getInt("slot"));
-			shop.getBuyprices().put(item.getId(), item);
+			shop.getBuyPrices().put(item.getId(), item);
 		}
 
 		// Load the Wallet
@@ -149,6 +151,33 @@ public class YamlDataObject extends DataObject {
 		for (String key : infoconfig.getKeys(false)) {
 			shop.getInfo().put(key, new ConfigValue(infoconfig.get(key)));
 		}
+
+        ConfigurationSection blockConfig = config.getConfig().getConfigurationSection("blocks");
+        if (blockConfig == null) {
+            blockConfig = config.getConfig().createSection("blocks");
+        }
+
+        //blockConfig.set("blocklocation", shop.getBlockShops());
+        //if (blockConfig.contains("blocklocation")) {
+            ConfigurationSection blockLoc = blockConfig.getConfigurationSection("blocklocation");
+
+        if (blockLoc == null) {
+            blockLoc = blockConfig.createSection("blocklocation");
+        }
+
+        Set<String> keys = blockLoc.getKeys(false);
+
+        for (String key : keys) {
+            int x = blockLoc.getInt(key + ".x");
+            int y = blockLoc.getInt(key + ".y");
+            int z = blockLoc.getInt(key + ".z");
+            String world = blockLoc.getString(key + ".world");
+
+            World world1 = Bukkit.getWorld(world);
+            Location loc = new Location(world1, x, y, z);
+
+            shop.getBlockShops().add(loc);
+        }
 
 		UltraTrader.getStoreHandler().addShop(shop);
 
@@ -194,47 +223,47 @@ public class YamlDataObject extends DataObject {
 
 		@Override
 		public void run() {
-			ConfigurationSection sellconfig = config.getConfig().createSection("sellprices");
+			ConfigurationSection sellConfig = config.getConfig().createSection("sellprices");
 
-			for (ItemPrice ip : shop.getSellprices().values()) {
-				sellconfig.set(ip.getId() + ".amount", ip.getAmount());
-				sellconfig.set(ip.getId() + ".description", ip.getDescription());
-				sellconfig.set(ip.getId() + ".itemStack", ip.getItemStack());
-				sellconfig.set(ip.getId() + ".price", ip.getPrice());
-				sellconfig.set(ip.getId() + ".random", ip.getId());
-				sellconfig.set(ip.getId() + ".slot", ip.getSlot());
+			for (ItemPrice ip : shop.getSellPrices().values()) {
+				sellConfig.set(ip.getId() + ".amount", ip.getAmount());
+				sellConfig.set(ip.getId() + ".description", ip.getDescription());
+				sellConfig.set(ip.getId() + ".itemStack", ip.getItemStack());
+				sellConfig.set(ip.getId() + ".price", ip.getPrice());
+				sellConfig.set(ip.getId() + ".random", ip.getId());
+				sellConfig.set(ip.getId() + ".slot", ip.getSlot());
 			}
 
-			ConfigurationSection buyconfig = config.getConfig().createSection("buyprices");
+			ConfigurationSection buyConfig = config.getConfig().createSection("buyprices");
 
-			for (ItemPrice ip : shop.getBuyprices().values()) {
-				buyconfig.set(ip.getId() + ".amount", ip.getAmount());
-				buyconfig.set(ip.getId() + ".description", ip.getDescription());
-				buyconfig.set(ip.getId() + ".itemStack", ip.getItemStack());
-				buyconfig.set(ip.getId() + ".price", ip.getPrice());
-				buyconfig.set(ip.getId() + ".random", ip.getId());
-				buyconfig.set(ip.getId() + ".slot", ip.getSlot());
+			for (ItemPrice ip : shop.getBuyPrices().values()) {
+				buyConfig.set(ip.getId() + ".amount", ip.getAmount());
+				buyConfig.set(ip.getId() + ".description", ip.getDescription());
+				buyConfig.set(ip.getId() + ".itemStack", ip.getItemStack());
+				buyConfig.set(ip.getId() + ".price", ip.getPrice());
+				buyConfig.set(ip.getId() + ".random", ip.getId());
+				buyConfig.set(ip.getId() + ".slot", ip.getSlot());
 			}
 
-			ConfigurationSection invconfig = config.getConfig().getConfigurationSection("inventory");
-			if (invconfig == null) {
-				invconfig = config.getConfig().createSection("inventory");
+			ConfigurationSection invConfig = config.getConfig().getConfigurationSection("inventory");
+			if (invConfig == null) {
+				invConfig = config.getConfig().createSection("inventory");
 			}
 
 			// Save Inventory INFO
-			ConfigurationSection inventoryinfoconfig = invconfig.getConfigurationSection("info");
-			if (inventoryinfoconfig == null) {
-				inventoryinfoconfig = invconfig.createSection("info");
+			ConfigurationSection inventoryInfoConfig = invConfig.getConfigurationSection("info");
+			if (inventoryInfoConfig == null) {
+				inventoryInfoConfig = invConfig.createSection("info");
 				ConfigValue<String> defaultinventory = new ConfigValue(InventoryInterfaceHandler.DEFAULT_INVENTORY_TYPE);
-				inventoryinfoconfig.set("type", defaultinventory.getValue());
+				inventoryInfoConfig.set("type", defaultinventory.getValue());
 			}
 
 			for (Entry<String, ConfigValue> inventoryinfo : shop.getInventoryinfo().entrySet()) {
-				inventoryinfoconfig.set(inventoryinfo.getKey(), inventoryinfo.getValue().getValue());
+				inventoryInfoConfig.set(inventoryinfo.getKey(), inventoryinfo.getValue().getValue());
 			}
 
 			// Save Inventory items
-			ConfigurationSection invconf = invconfig.createSection("items");
+			ConfigurationSection invconf = invConfig.createSection("items");
 
 			Integer count = 0;
 
@@ -258,21 +287,30 @@ public class YamlDataObject extends DataObject {
 			ConfigurationSection infoconfig = config.getConfig().getConfigurationSection("info");
 			if (infoconfig == null) {
 				infoconfig = config.getConfig().createSection("info");
-				ConfigValue<String> defaultname = new ConfigValue(L.getString("general.newshopname"));
-				infoconfig.set("name", defaultname);
+				//ConfigValue<String> defaultname = new ConfigValue(L.getString("general.newshopname"));
+				infoconfig.set("name", new ConfigValue(L.getString("general.newshopname")));
 			}
 
 			for (Entry<String, ConfigValue> info : shop.getInfo().entrySet()) {
 				infoconfig.set(info.getKey(), info.getValue().getValue());
 			}
-			/*for (String key : walletconfig.getKeys(false)) {
-			 System.out.println(key);
-			 shop.getInfo().put(key, new ConfigValue(walletconfig.get(key)));
-			 }
 
-			 for (Map.Entry<String, ConfigValue> i : shop.getInfo().entrySet()) {
-			 System.out.println(i.getKey() + " -- " + i.getValue().getValue() + " -- " + i.getValue().getValue().getClass());
-			 }*/
+            // TODO: get Block location info
+			ConfigurationSection blockConfig = config.getConfig().getConfigurationSection("blocks");
+            if (blockConfig == null) {
+                blockConfig = config.getConfig().createSection("blocks");
+            }
+
+            ConfigurationSection blocks = blockConfig.createSection("blocklocation");
+
+            int i = 0;
+            for (Location loc : shop.getBlockShops()) {
+                blocks.set(i + ".world", loc.getWorld().getName());
+                blocks.set(i + ".x", loc.getBlockX());
+                blocks.set(i + ".y", loc.getBlockY());
+                blocks.set(i + ".z", loc.getBlockZ());
+                i++;
+            }
 
 			config.saveConfig();
 		}

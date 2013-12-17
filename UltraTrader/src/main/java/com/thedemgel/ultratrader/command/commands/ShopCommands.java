@@ -45,6 +45,11 @@ public class ShopCommands extends Commands implements CommandExecutor {
 
 	@BukkitCommand(name = "create")
 	public boolean createTrader(CommandSender sender, Command cmd, String label, String[] args) {
+        if (!UltraTrader.getInstance().isCitizens()) {
+            sender.sendMessage(ChatColor.RED + "This command only works with Citizens.");
+            return true;
+        }
+
 		if (!sender.hasPermission(Permissions.NPC_CREATE)) {
 			sender.sendMessage(ChatColor.RED + L.getString("general.create.nopermission"));
             return true;

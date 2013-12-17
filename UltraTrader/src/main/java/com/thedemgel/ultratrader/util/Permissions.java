@@ -64,6 +64,19 @@ public class Permissions {
 	 */
 	public static final String LEVEL_SET = "trader.store.level.set";
 
+    /* START SNIPPET: perm
+	 * ### Blocks
+	 * END SNIPPET: perm
+	 */
+
+    /**
+     * START SNIPPET: perm
+     * ####trader.block.create
+     * `Allows player to create a block to hold a shop (by default uses PAPER to click the block)`
+     * END SNIPPET: perm
+     */
+    public static final String BLOCK_CREATE = "trader.block.create";
+
 	/* START SNIPPET: perm
 	 * ### NPCs
 	 * END SNIPPET: perm

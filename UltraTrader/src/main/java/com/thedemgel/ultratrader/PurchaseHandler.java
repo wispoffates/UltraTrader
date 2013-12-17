@@ -66,7 +66,7 @@ public class PurchaseHandler {
 		}
 
 		String buyStackId = shop.getItemId(buyStack);
-		ItemPrice invItem = shop.getSellprices().get(buyStackId);
+		ItemPrice invItem = shop.getSellPrices().get(buyStackId);
 		BigDecimal buyStackPriceEach = invItem.getPrice();
 
 		BigDecimal buyStackPrice = buyStackPriceEach.multiply(BigDecimal.valueOf(buyStack.getAmount()));
@@ -219,10 +219,10 @@ public class PurchaseHandler {
 		ItemPrice invItem;
 		switch (view.getStatus()) {
 			case BUY_ITEM_SCREEN:
-				invItem = shop.getBuyprices().get(buyStackId);
+				invItem = shop.getBuyPrices().get(buyStackId);
 				break;
 			case SELL_SCREEN:
-				invItem = shop.getSellprices().get(buyStackId);
+				invItem = shop.getSellPrices().get(buyStackId);
 				break;
 			default:
 				return;
@@ -250,7 +250,7 @@ public class PurchaseHandler {
 
 	public static void processTakeInventory(Shop shop, final Player player, final ItemStack item) {
 		String buyStackId = shop.getItemId(item);
-		ItemPrice invItem = shop.getBuyprices().get(buyStackId);
+		ItemPrice invItem = shop.getBuyPrices().get(buyStackId);
 		//ItemPrice invItem = shop.getBuyItem(item);
 
 		// Check for availability

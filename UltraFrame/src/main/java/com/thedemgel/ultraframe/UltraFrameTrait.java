@@ -94,7 +94,7 @@ public class UltraFrameTrait extends UltraTrait {
 
 				if (!trader.getShopId().equals(ShopHandler.SHOP_NULL)) {
 					Shop shop = UltraTrader.getStoreHandler().getShop(trader.getShopId());
-					Object[] items = shop.getSellprices().values().toArray();
+					Object[] items = shop.getSellPrices().values().toArray();
 
 					for (ItemFrame frame : frames) {
 						ItemPrice item = (ItemPrice) items[rnd.nextInt(items.length)];

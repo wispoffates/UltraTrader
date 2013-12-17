@@ -40,7 +40,7 @@ public class AdminBuyItemDeleteConfirmPrompt extends MessagePrompt {
 				shop.getInventoryInterface().removeInventory(itemprice.getItemStack(), -1);
 			}
 			String id = shop.getItemId(item);
-			shop.getBuyprices().remove(id);
+			shop.getBuyPrices().remove(id);
 			view.buildBuyItemView(item);
 			return L.getString("conversation.itemadmin.delete.deleted");
 		} else {
