@@ -17,9 +17,11 @@ import org.bukkit.block.Block;
 import org.bukkit.conversations.Conversation;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
@@ -413,6 +415,14 @@ public class ShopListener implements Listener {
 		}
 	}
 
+    @EventHandler
+    public void onBlockPlaceEvent(BlockPlaceEvent event) {
+        Block against = event.getBlockAgainst();
+
+        if (against.hasMetadata(BlockShopHandler.SHOP_METADATA_KEY)) {
+            event.setBuild(false);
+        }
+    }
 	/**
 	 * Checks when a player interacts with a block or item (in hand) to see
 	 * if it is a store.
@@ -420,8 +430,7 @@ public class ShopListener implements Listener {
 	 * @param event
 	 */
 	@EventHandler
-	public void onPlayerInteractEvent(PlayerInteractEvent event
-	) {
+	public void onPlayerInteractEvent(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
 
 		// Check if player can even access stores
@@ -460,14 +469,6 @@ public class ShopListener implements Listener {
                 }
 
                 handler.openInventory(player);
-
-                //System.out.println(block.getMetadata(BlockShopHandler.SHOP_METADATA_KEY));
-                //List<MetadataValue> meta = block.getMetadata(BlockShopHandler.SHOP_METADATA_KEY);
-
-                //for (MetadataValue value : meta) {
-                //    System.out.println(value.value());
-                //}
-				//return;
 			}
 
             // Check if item in hand is create block shop item
