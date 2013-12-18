@@ -136,6 +136,22 @@ public class Shop {
 	}
 
 	public String getItemId(ItemStack item) {
+        if (item == null) {
+            return "000000";
+        }
+
+        if (item.hasItemMeta()) {
+            if(!item.getItemMeta().hasLore()) {
+                return "000000";
+            }
+
+            if (item.getItemMeta().getLore().size() == 0) {
+                return "000000";
+            }
+        } else {
+            return "000000";
+        }
+
 		String id = Iterables.getLast(item.getItemMeta().getLore());
 		id = id.substring(id.length() - 8);
 		return id;

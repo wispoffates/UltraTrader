@@ -3,6 +3,7 @@ package com.thedemgel.ultratrader;
 import com.thedemgel.ultratrader.citizens.TraderTrait;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.inventory.AdminItemPlacementView;
+import com.thedemgel.ultratrader.shop.ItemPrice;
 import com.thedemgel.ultratrader.shop.ShopHandler;
 import com.thedemgel.ultratrader.util.Permissions;
 import com.thedemgel.ultratrader.inventory.ShopInventoryView;
@@ -16,6 +17,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.conversations.Conversation;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
@@ -27,10 +29,12 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.MetadataValue;
 
 import java.util.List;
+import java.util.concurrent.ConcurrentMap;
 
 public class ShopListener implements Listener {
 
@@ -60,7 +64,7 @@ public class ShopListener implements Listener {
 
 	@EventHandler
 	public void onInventoryClickEvent(final InventoryClickEvent event) {
-		Player player = (Player) event.getWhoClicked();
+		final Player player = (Player) event.getWhoClicked();
 
 		if (!(event.getView() instanceof ShopInventoryView)) {
 			return;
@@ -81,8 +85,15 @@ public class ShopListener implements Listener {
 			return;
 		} else {
 			event.setCancelled(true);
-		}
+            Bukkit.getScheduler().runTaskLater(plugin, new Runnable(){
 
+                @Override
+                public void run() {
+                    player.setItemOnCursor(new ItemStack(Material.AIR));
+                }
+            }, UltraTrader.BUKKIT_SCHEDULER_DELAY);
+		}
+         System.out.println(event.isCancelled());
 		switch (view.getStatus()) {
 			case MAIN_SCREEN:
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_CREATE_ITEM_SLOT) {
@@ -321,12 +332,38 @@ public class ShopListener implements Listener {
 	}
 
 	@EventHandler
-	public void onInventoryCloseEvent(InventoryCloseEvent event) {
+	public void onInventoryCloseEvent(final InventoryCloseEvent event) {
 		if (event.getView() instanceof ShopInventoryView) {
-			ShopInventoryView view = (ShopInventoryView) event.getView();
-			if (!view.isKeepAlive()) {
-				UltraTrader.getStoreHandler().getInventoryHandler().removeInventoryView((Player) event.getPlayer());
-			}
+			final ShopInventoryView view = (ShopInventoryView) event.getView();
+
+            final HumanEntity player = event.getPlayer();
+
+            Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                @Override
+                public void run() {
+                    ConcurrentMap<String, ItemPrice> buyitems = view.getShop().getBuyPrices();
+                    ConcurrentMap<String, ItemPrice> sellitems = view.getShop().getSellPrices();
+
+                    for (ItemStack item : player.getInventory()) {
+                        String id = view.getShop().getItemId(item);
+                        boolean remove = false;
+                        if (id != "000000") {
+                            if (buyitems.containsKey(id)) {
+                                remove = true;
+                            } else if (sellitems.containsKey(id)) {
+                                remove = true;
+                            }
+                            if (remove) {
+                                player.getInventory().remove(item);
+                            }
+                        }
+                    }
+
+                    if (!view.isKeepAlive()) {
+                        UltraTrader.getStoreHandler().getInventoryHandler().removeInventoryView((Player) event.getPlayer());
+                    }
+                }
+            }, UltraTrader.BUKKIT_SCHEDULER_DELAY);
 		}
 
 		if (event.getView() instanceof AdminItemPlacementView) {
@@ -415,14 +452,6 @@ public class ShopListener implements Listener {
 		}
 	}
 
-    @EventHandler
-    public void onBlockPlaceEvent(BlockPlaceEvent event) {
-        Block against = event.getBlockAgainst();
-
-        if (against.hasMetadata(BlockShopHandler.SHOP_METADATA_KEY)) {
-            event.setBuild(false);
-        }
-    }
 	/**
 	 * Checks when a player interacts with a block or item (in hand) to see
 	 * if it is a store.
