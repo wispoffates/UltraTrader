@@ -440,6 +440,10 @@ public class ShopListener implements Listener {
 
         ItemStack item = event.getItem();
 
+        if (item == null) {
+            item = new ItemStack(Material.AIR);
+        }
+
 		if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			Block block = event.getClickedBlock();
 
