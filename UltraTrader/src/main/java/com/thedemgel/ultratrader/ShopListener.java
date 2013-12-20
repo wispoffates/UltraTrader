@@ -85,15 +85,8 @@ public class ShopListener implements Listener {
 			return;
 		} else {
 			event.setCancelled(true);
-            Bukkit.getScheduler().runTaskLater(plugin, new Runnable(){
+        }
 
-                @Override
-                public void run() {
-                    player.setItemOnCursor(new ItemStack(Material.AIR));
-                }
-            }, UltraTrader.BUKKIT_SCHEDULER_DELAY);
-		}
-         System.out.println(event.isCancelled());
 		switch (view.getStatus()) {
 			case MAIN_SCREEN:
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_CREATE_ITEM_SLOT) {
