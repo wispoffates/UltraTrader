@@ -29,4 +29,6 @@ public abstract class DataObject {
 
 	public abstract void initLogger(UltraTrader plugin);
 	public abstract void doLog(Shop shop, Player player, EconomyResponse resp, ShopAction action, String message);
+
+    public abstract void removeShopFile(int shopId);
 }

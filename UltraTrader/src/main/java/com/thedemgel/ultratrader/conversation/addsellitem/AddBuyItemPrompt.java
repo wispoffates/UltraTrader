@@ -1,14 +1,15 @@
-package com.thedemgel.ultratrader.conversation.addbuyitem;
+package com.thedemgel.ultratrader.conversation.addsellitem;
 
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.NotADoublePrompt;
-import java.math.BigDecimal;
-import java.text.MessageFormat;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.conversations.StringPrompt;
 import org.bukkit.inventory.ItemStack;
+
+import java.math.BigDecimal;
+import java.text.MessageFormat;
 
 public class AddBuyItemPrompt extends StringPrompt {
 
@@ -23,7 +24,7 @@ public class AddBuyItemPrompt extends StringPrompt {
 			return new NotADoublePrompt();
 		}
 		context.setSessionData(ConversationHandler.CONVERSATION_SESSION_PRICE, BigDecimal.valueOf(price));
-		return new AddBuyItemDescriptionPrompt();
+		return new AddItemDescriptionPrompt();
 	}
 
 	@Override

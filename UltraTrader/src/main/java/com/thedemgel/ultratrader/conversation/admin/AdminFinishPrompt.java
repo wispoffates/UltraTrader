@@ -17,7 +17,7 @@ public class AdminFinishPrompt extends MessagePrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
 		ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
-		view.buildSellView();
+		view.buildCategoryView();
 
 		return L.getString("conversation.admin.exit");
 	}

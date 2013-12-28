@@ -22,8 +22,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 
 public class Shop {
 
-	private ConcurrentMap<String, ItemPrice> buyPrices = new ConcurrentHashMap<>();
-	private ConcurrentMap<String, ItemPrice> sellPrices = new ConcurrentHashMap<>();
+    private ConcurrentMap<String, ItemPrice> priceList = new ConcurrentHashMap<>();
 	private ConcurrentMap<ItemStack, Integer> inventory = new ConcurrentHashMap<>();
 	private ConcurrentMap<String, ConfigValue> info = new ConcurrentHashMap<>();
 	private ConcurrentMap<String, ConfigValue> walletinfo = new ConcurrentHashMap<>();
@@ -31,6 +30,8 @@ public class Shop {
     private List<Location> blockShops = new ArrayList<>();
     private Wallet wallet;
 	private InventoryInterface inv;
+
+    private ConcurrentMap<String, CategoryItem> categoryItems = new ConcurrentHashMap<>();
 
 	public Shop(StoreConfig shopconfig) {
 		//inv = new ShopInventoryInterface(this);
@@ -44,7 +45,7 @@ public class Shop {
 		return inventory;
 	}
 
-	public boolean hasSellItem(final ItemPrice checkItem) {
+	/*public boolean hasSellItem(final ItemPrice checkItem) {
 		Predicate<ItemPrice> itemPredicate = new Predicate<ItemPrice>() {
 			@Override
 			public boolean apply(ItemPrice item) {
@@ -56,11 +57,11 @@ public class Shop {
 		return sellItems.size() > 0;
 	}
 
-	public boolean hasBuyItem(final ItemStack checkItem) {
+	/*public boolean hasBuyItem(final ItemStack checkItem) {
 		return getBuyItem(checkItem) != null;
 	}
 
-	public ItemPrice getBuyItem(final ItemStack checkItem) {
+	public ItemPrice getBuyItem(ItemStack checkItem) {
 		final ItemStack check = checkItem.clone();
 		check.setAmount(1);
 
@@ -77,23 +78,45 @@ public class Shop {
 		} else {
 			return null;
 		}
-	}
+	}*/
 
-	public boolean hasBuyItem(final ItemPrice checkItem) {
+    public ItemPrice getItemPrice(ItemStack checkItem) {
+        String id = getItemId(checkItem);
+
+        return getPriceList().get(id);
+        /*final ItemStack check = checkItem.clone();
+        check.setAmount(1);
+
+        Predicate<ItemPrice> itemPredicate = new Predicate<ItemPrice>() {
+            @Override
+            public boolean apply(ItemPrice item) {
+                return item.getItemStack().equals(check);
+            }
+        };
+        Collection<ItemPrice> priceItems = Collections2.filter(getPriceList().values(), itemPredicate);
+
+        if (priceItems.size() > 0) {
+            return (ItemPrice) priceItems.toArray()[0];
+        } else {
+            return null;
+        }*/
+    }
+
+	public boolean hasItem(final ItemPrice checkItem) {
 		Predicate<ItemPrice> itemPredicate = new Predicate<ItemPrice>() {
 			@Override
 			public boolean apply(ItemPrice item) {
 				return item.getItemStack().equals(checkItem.getItemStack());
 			}
 		};
-		Collection<ItemPrice> buyItems = Collections2.filter(getBuyPrices().values(), itemPredicate);
+		Collection<ItemPrice> buyItems = Collections2.filter(getPriceList().values(), itemPredicate);
 
 		return buyItems.size() > 0;
 	}
 
-	public boolean addSellItem(ItemStack item, BigDecimal price, Integer quantity, String description) {
+	/*public boolean addSellItem(ItemStack item, BigDecimal sellPrice, String description) {
 
-		ItemPrice invItem = new ItemPrice(item, price, quantity, description);
+		ItemPrice invItem = new ItemPrice(item, sellPrice, BigDecimal.ZERO, description);
 
 		if (hasSellItem(invItem)) {
 			return false;
@@ -105,20 +128,23 @@ public class Shop {
 		}
 		getSellPrices().put(random, invItem);
 		return true;
-	}
+	}*/
 
-	public boolean addBuyItem(ItemStack item, BigDecimal price, Integer quantity, String description) {
-		ItemPrice invItem = new ItemPrice(item, price, quantity, description);
+	public boolean addItem(ItemStack item, BigDecimal sellPrice, BigDecimal buyPrice, String description, String category) {
+		ItemPrice invItem = new ItemPrice(item, sellPrice, buyPrice, description);
 
-		if (hasBuyItem(invItem)) {
+		if (hasItem(invItem)) {
 			return false;
 		}
 
 		String random = invItem.setRandom();
-		while (getBuyPrices().containsKey(random)) {
+		while (getPriceList().containsKey(random)) {
 			random = invItem.setRandom();
 		}
-		getBuyPrices().put(random, invItem);
+
+        invItem.setCategoryId(category);
+
+		getPriceList().put(random, invItem);
 		return true;
 	}
 
@@ -157,13 +183,13 @@ public class Shop {
 		return id;
 	}
 
-	public ConcurrentMap<String, ItemPrice> getBuyPrices() {
-		return buyPrices;
-	}
+	//public ConcurrentMap<String, ItemPrice> getBuyPrices() {
+	//	return buyPrices;
+	//}
 
-	public ConcurrentMap<String, ItemPrice> getSellPrices() {
-		return sellPrices;
-	}
+	//public ConcurrentMap<String, ItemPrice> getSellPrices() {
+	//	return sellPrices;
+	//}
 
 	/*public InventoryInterface getInventoryInterface() {
 		return inv;
@@ -329,5 +355,13 @@ public class Shop {
 
     public List<Location> getBlockShops() {
         return blockShops;
+    }
+
+    public ConcurrentMap<String, ItemPrice> getPriceList() {
+        return priceList;
+    }
+
+    public ConcurrentMap<String, CategoryItem> getCategoryItem() {
+        return categoryItems;
     }
 }

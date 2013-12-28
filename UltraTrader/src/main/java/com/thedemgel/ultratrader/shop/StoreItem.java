@@ -45,8 +45,8 @@ public class StoreItem {
 	}
 
 	public static String getItemShopId(ItemStack item) {
-		String shopid = Iterables.getLast(item.getItemMeta().getLore());
-		String[] parts = shopid.split(":");
+		String shopId = Iterables.getLast(item.getItemMeta().getLore());
+		String[] parts = shopId.split(":");
 
 		return parts[1];
 	}

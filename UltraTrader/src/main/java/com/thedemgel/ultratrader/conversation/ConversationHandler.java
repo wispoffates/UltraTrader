@@ -1,8 +1,8 @@
 package com.thedemgel.ultratrader.conversation;
 
 import com.thedemgel.ultratrader.UltraTrader;
-import com.thedemgel.ultratrader.conversation.addbuyitem.AddBuyItemBeginPrompt;
-import com.thedemgel.ultratrader.conversation.addbuyitem.AddBuyItemConversationPrefix;
+import com.thedemgel.ultratrader.conversation.addcategoryitem.AddCategoryItemBeginPrompt;
+import com.thedemgel.ultratrader.conversation.addcategoryitem.AddCategoryItemConversationPrefix;
 import com.thedemgel.ultratrader.conversation.addsellitem.AddItemBeginPrompt;
 import com.thedemgel.ultratrader.conversation.addsellitem.AddItemConversationPrefix;
 import com.thedemgel.ultratrader.conversation.admin.AdminBeginPrompt;
@@ -22,6 +22,7 @@ public class ConversationHandler {
 	public static final int CONVERSATION_TIMEOUT = 30;
 	public static final String CONVERSATION_SESSION_ITEM = "item";
 	public static final String CONVERSATION_SESSION_ITEMPRICE = "itemprice";
+    public static final String CONVERSATION_SESSION_CATEGORYITEM = "categoryitem";
 	public static final String CONVERSATION_SESSION_VIEW = "view";
 	public static final String CONVERSATION_SESSION_DESCRIPTION = "description";
 	public static final String CONVERSATION_SESSION_NPC = "npc";
@@ -35,9 +36,8 @@ public class ConversationHandler {
 	private ConversationFactory addSellItem;
 	private ConversationFactory adminConversation;
 	private ConversationFactory createShop;
-	private ConversationFactory buyItemAdmin;
-	private ConversationFactory addBuyItem;
-	//private ConversationFactory rentalTrader;
+	//private ConversationFactory buyItemAdmin;
+	private ConversationFactory addCategoryItem;
 
 	public ConversationHandler(UltraTrader instance) {
 		setSellPrice = new ConversationFactory(instance)
@@ -49,14 +49,14 @@ public class ConversationHandler {
 			.addConversationAbandonedListener(new AbandonConvo())
 			.thatExcludesNonPlayersWithMessage("No Console Please");
 
-		buyItemAdmin = new ConversationFactory(instance)
+		/*buyItemAdmin = new ConversationFactory(instance)
 			.withModality(true)
 			.withPrefix(new AdminBuyItemConversationPrefix())
 			.withFirstPrompt(new AdminBuyItemBeginPrompt())
 			.withEscapeSequence("/quit")
 			.withTimeout(ConversationHandler.CONVERSATION_TIMEOUT)
 			.addConversationAbandonedListener(new AbandonConvo())
-			.thatExcludesNonPlayersWithMessage("No Console Please");
+			.thatExcludesNonPlayersWithMessage("No Console Please"); */
 
 		addSellItem = new ConversationFactory(instance)
 			.withModality(true)
@@ -67,10 +67,10 @@ public class ConversationHandler {
 			.addConversationAbandonedListener(new AbandonConvo())
 			.thatExcludesNonPlayersWithMessage("No Console Please");
 
-		addBuyItem = new ConversationFactory(instance)
+		addCategoryItem = new ConversationFactory(instance)
 			.withModality(true)
-			.withPrefix(new AddBuyItemConversationPrefix())
-			.withFirstPrompt(new AddBuyItemBeginPrompt())
+			.withPrefix(new AddCategoryItemConversationPrefix())
+			.withFirstPrompt(new AddCategoryItemBeginPrompt())
 			.withEscapeSequence("/quit")
 			.withTimeout(ConversationHandler.CONVERSATION_TIMEOUT)
 			.addConversationAbandonedListener(new AbandonConvo())
@@ -93,15 +93,6 @@ public class ConversationHandler {
 			.withTimeout(ConversationHandler.CONVERSATION_TIMEOUT)
 			.addConversationAbandonedListener(new AbandonConvo())
 			.thatExcludesNonPlayersWithMessage("No Console Please");
-
-		/*rentalTrader = new ConversationFactory(instance)
-			.withModality(true)
-			.withPrefix(new RentalConversationPrefix())
-			.withFirstPrompt(new RentalBeginPrompt())
-			.withEscapeSequence("/quit")
-			.withTimeout(ConversationHandler.CONVERSATION_TIMEOUT)
-			.addConversationAbandonedListener(new AbandonConvo())
-			.thatExcludesNonPlayersWithMessage("No Console Please");*/
 	}
 
 	public ConversationFactory getSetSellPrice() {
@@ -120,15 +111,8 @@ public class ConversationHandler {
 		return createShop;
 	}
 
-	public ConversationFactory getBuyItemAdmin() {
-		return buyItemAdmin;
+	public ConversationFactory getAddCategoryItem() {
+		return addCategoryItem;
 	}
 
-	public ConversationFactory getAddBuyItem() {
-		return addBuyItem;
-	}
-
-	/*public ConversationFactory getRentalTrader() {
-		return rentalTrader;
-	}*/
 }

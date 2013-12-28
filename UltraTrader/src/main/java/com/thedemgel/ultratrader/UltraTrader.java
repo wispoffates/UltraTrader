@@ -13,6 +13,7 @@ import com.thedemgel.ultratrader.data.YamlDataObject;
 import com.thedemgel.ultratrader.inventory.AdminInventoryInterface;
 import com.thedemgel.ultratrader.inventory.InventoryInterfaceHandler;
 import com.thedemgel.ultratrader.inventory.ShopInventoryInterface;
+import com.thedemgel.ultratrader.shop.CategoryItem;
 import com.thedemgel.ultratrader.shop.ShopHandler;
 import com.thedemgel.ultratrader.wallet.WalletHandler;
 import com.thedemgel.ultratrader.wallet.wallets.AdminWallet;
@@ -24,6 +25,7 @@ import java.util.logging.Level;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.trait.TraitInfo;
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.mcstats.Metrics;
@@ -80,6 +82,10 @@ public class UltraTrader extends JavaPlugin {
 	public static TraitHandler getTraitHandler() {
 		return traitHandler;
 	}
+
+    public UltraTrader() {
+        ConfigurationSerialization.registerClass(CategoryItem.class);
+    }
 
 	private boolean citizens;
 	private boolean vault;

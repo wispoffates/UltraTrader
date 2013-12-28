@@ -129,4 +129,22 @@ public class ShopHandler {
 		shops.put(tempShop.getId(), tempShop);
 		return tempShop;
 	}
+
+    public void deleteShop(int shopId) {
+        Shop shop = getShop(shopId);
+
+        if (shop == null) {
+            return;
+        }
+
+        deleteShop(shop);
+    }
+
+    public void deleteShop(Shop shop) {
+        if (shops.containsKey(shop.getId())) {
+            shops.remove(shop.getId());
+        }
+
+        UltraTrader.getDbObj().removeShopFile(shop.getId());
+    }
 }

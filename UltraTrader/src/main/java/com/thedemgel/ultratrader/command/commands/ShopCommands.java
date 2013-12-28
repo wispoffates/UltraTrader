@@ -112,4 +112,36 @@ public class ShopCommands extends Commands implements CommandExecutor {
 
 		return true;
 	}
+
+    @BukkitCommand(name = "delete")
+    public boolean deleteShop(CommandSender sender, Command cmd, String label, String[] args) {
+        int shopId;
+
+        if (args.length < 2) {
+            sender.sendMessage("ShopID is required.");
+            return true;
+        } else {
+            try {
+                shopId = Integer.valueOf(args[1]);
+            } catch (Exception e) {
+                e.printStackTrace();
+                sender.sendMessage("ShopID needs to be a number");
+                return true;
+            }
+        }
+
+        Shop shop = UltraTrader.getStoreHandler().getShop(shopId);
+
+        if (shop == null) {
+            sender.sendMessage("Shop does not exist with ID " + shopId);
+            return true;
+        } else if (!shop.getOwner().equals(sender.getName()) && !sender.isOp()) {
+            sender.sendMessage("You need to be Owner to delete a shop.");
+            return true;
+        }
+
+        // TODO make this a conversation
+        UltraTrader.getStoreHandler().deleteShop(shop);
+        return true;
+    }
 }

@@ -23,7 +23,8 @@ public class AddItemPrompt extends StringPrompt {
 			return new NotADoublePrompt();
 		}
 		context.setSessionData(ConversationHandler.CONVERSATION_SESSION_PRICE, BigDecimal.valueOf(price));
-		return new AddItemDescriptionPrompt();
+		//return new AddItemDescriptionPrompt();
+        return new AddBuyItemPrompt();
 	}
 
 	@Override

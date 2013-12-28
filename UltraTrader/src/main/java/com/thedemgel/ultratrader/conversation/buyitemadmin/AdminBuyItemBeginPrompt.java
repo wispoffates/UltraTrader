@@ -33,7 +33,7 @@ public class AdminBuyItemBeginPrompt extends MessagePrompt {
 
 		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
 		String id = view.getShop().getItemId(item);
-		ItemPrice itemprice = view.getShop().getBuyPrices().get(id);
+		ItemPrice itemprice = view.getShop().getPriceList().get(id);
 
 		context.setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEMPRICE, itemprice);
 

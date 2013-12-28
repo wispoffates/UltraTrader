@@ -13,28 +13,32 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class ItemPrice {
 
 	private ItemStack itemStack;
-	private BigDecimal price;
-	private int amount;
+	private BigDecimal sellPrice;
+    private BigDecimal buyPrice;
 	private String random;
 	private String description;
 	private int slot = -1;
+    private String categoryId = "";
 
 	public ItemPrice() {
+        sellPrice = BigDecimal.ZERO;
+        buyPrice = BigDecimal.ZERO;
+        description = "";
 	}
 
 	public ItemPrice(ItemStack item) {
 		itemStack = item.clone();
 		itemStack.setAmount(1);
-		price = BigDecimal.ZERO;
-		amount = 0;
+		sellPrice = BigDecimal.ZERO;
+        buyPrice = BigDecimal.ZERO;
 		description = "";
 	}
 
-	public ItemPrice(ItemStack item, BigDecimal price, Integer amount, String lore) {
+	public ItemPrice(ItemStack item, BigDecimal sellPrice2, BigDecimal buyPrice3, String lore) {
 		itemStack = item.clone();
 		itemStack.setAmount(1);
-		this.price = price;
-		this.amount = amount;
+		sellPrice = sellPrice2;
+        buyPrice = buyPrice3;
 		description = lore;
 	}
 
@@ -59,11 +63,9 @@ public class ItemPrice {
 				genLore = genItem.getItemMeta().getLore();
 			} else {
 				genLore = new ArrayList<>();
-				//genLore = ObjectPool.getList();
 			}
 		} else {
 			genLore = new ArrayList<>();
-			//genLore = ObjectPool.getList();
 		}
 
 		if (getDescription().length() > 0) {
@@ -71,15 +73,15 @@ public class ItemPrice {
 		}
 
 		switch (status) {
-			case BUY_SCREEN:
 			case BUY_ITEM_SCREEN:
-				genLore.add(ChatColor.GOLD + L.getFormatString("general.buyprice", UltraTrader.getEconomy().format(price.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
+				genLore.add(ChatColor.GOLD + L.getFormatString("general.buypriceview", stackAmount, buyPrice, UltraTrader.getEconomy().format(buyPrice.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
 				break;
-			case MAIN_SCREEN:
-			case SELL_SCREEN:
-				genLore.add(ChatColor.BLUE + L.getFormatString("general.sellprice", UltraTrader.getEconomy().format(price.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
+			case SELL_ITEM_SCREEN:
+				genLore.add(ChatColor.BLUE + L.getFormatString("general.sellpriceview", stackAmount, sellPrice, UltraTrader.getEconomy().format(sellPrice.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
 				break;
 			default:
+                genLore.add(ChatColor.BLUE + L.getString("general.left") + " " + L.getFormatString("general.sellprice", UltraTrader.getEconomy().format(sellPrice.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
+                genLore.add(ChatColor.GOLD + L.getString("general.right") + " " + L.getFormatString("general.buyprice", UltraTrader.getEconomy().format(buyPrice.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
 		}
 		// Will need to figure for discounts
 		// If there is a discount... add a message here
@@ -120,21 +122,29 @@ public class ItemPrice {
 		this.itemStack = itemStack;
 	}
 
-	public BigDecimal getPrice() {
-		return price;
+	public BigDecimal getSellPrice() {
+		return sellPrice;
 	}
 
-	public void setPrice(BigDecimal price) {
-		this.price = price;
+	public void setSellPrice(BigDecimal price) {
+		this.sellPrice = price;
 	}
 
-	public int getAmount() {
+    public BigDecimal getBuyPrice() {
+        return buyPrice;
+    }
+
+    public void setBuyPrice(BigDecimal price) {
+        this.buyPrice = price;
+    }
+
+	/*public int getAmount() {
 		return amount;
 	}
 
 	public void setAmount(Integer amount) {
 		this.amount = amount;
-	}
+	}*/
 
 	public String getDescription() {
 		return description;
@@ -151,4 +161,12 @@ public class ItemPrice {
 	public void setSlot(int rawslot) {
 		slot = rawslot;
 	}
+
+    public void setCategoryId(String id) {
+        this.categoryId = id;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
 }

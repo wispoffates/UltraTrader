@@ -8,6 +8,8 @@ import com.thedemgel.ultratrader.util.ShopAction;
 import com.thedemgel.ultratrader.wallet.Wallet;
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.Map;
+
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
 import org.bukkit.Bukkit;
@@ -66,8 +68,8 @@ public class PurchaseHandler {
 		}
 
 		String buyStackId = shop.getItemId(buyStack);
-		ItemPrice invItem = shop.getSellPrices().get(buyStackId);
-		BigDecimal buyStackPriceEach = invItem.getPrice();
+		ItemPrice invItem = shop.getPriceList().get(buyStackId);
+		BigDecimal buyStackPriceEach = invItem.getSellPrice();
 
 		BigDecimal buyStackPrice = buyStackPriceEach.multiply(BigDecimal.valueOf(buyStack.getAmount()));
 
@@ -160,8 +162,8 @@ public class PurchaseHandler {
 	 * @param item The itemstack of the item being purchased.
 	 */
 	public static void processSale(Shop shop, final Player player, final ItemStack item) {
-		ItemPrice invItem = shop.getBuyItem(item);
-		BigDecimal buyStackPriceEach = invItem.getPrice();
+		ItemPrice invItem = shop.getItemPrice(item);
+		BigDecimal buyStackPriceEach = invItem.getBuyPrice();
 		BigDecimal buyStackPrice = buyStackPriceEach.multiply(BigDecimal.valueOf(item.getAmount()));
 
 		boolean success = true;
@@ -175,20 +177,29 @@ public class PurchaseHandler {
 			success = false;
 		}
 
+        ItemStack removeStack = invItem.getItemStack().clone();
+        removeStack.setAmount(item.getAmount());
+
+        if (player.getInventory().containsAtLeast(invItem.getItemStack(), item.getAmount())) {
+            player.getInventory().removeItem(removeStack);
+        } else {
+            success = false;
+        }
+
 		if (!success) {
-			Bukkit.getScheduler().scheduleSyncDelayedTask(UltraTrader.getInstance(), new Runnable() {
+			/*Bukkit.getScheduler().scheduleSyncDelayedTask(UltraTrader.getInstance(), new Runnable() {
 
 				@Override
 				public void run() {
 					player.getInventory().addItem(item);
 				}
-			}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
+			}, UltraTrader.BUKKIT_SCHEDULER_DELAY);*/
 
 			return;
 		}
 
 		// Add the Item to Trader Inventory
-		shop.getInventoryInterface().addInventory(item);
+		shop.getInventoryInterface().addInventory(removeStack);
 
 		EconomyResponse depResponse = UltraTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), heldFunds.amount);
 
@@ -217,12 +228,13 @@ public class PurchaseHandler {
 		String buyStackId = shop.getItemId(item);
 
 		ItemPrice invItem;
+        // TODO: clean up
 		switch (view.getStatus()) {
 			case BUY_ITEM_SCREEN:
-				invItem = shop.getBuyPrices().get(buyStackId);
+				invItem = shop.getPriceList().get(buyStackId);
 				break;
-			case SELL_SCREEN:
-				invItem = shop.getSellPrices().get(buyStackId);
+			case SELL_ITEM_SCREEN:
+				invItem = shop.getPriceList().get(buyStackId);
 				break;
 			default:
 				return;
@@ -250,7 +262,7 @@ public class PurchaseHandler {
 
 	public static void processTakeInventory(Shop shop, final Player player, final ItemStack item) {
 		String buyStackId = shop.getItemId(item);
-		ItemPrice invItem = shop.getBuyPrices().get(buyStackId);
+		ItemPrice invItem = shop.getPriceList().get(buyStackId);
 		//ItemPrice invItem = shop.getBuyItem(item);
 
 		// Check for availability

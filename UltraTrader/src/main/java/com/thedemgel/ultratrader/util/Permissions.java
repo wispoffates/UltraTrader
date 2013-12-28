@@ -173,6 +173,18 @@ public class Permissions {
 	 */
 	public static final String INVENTORY_ADMIN = "trader.inventory.admin";
 
+    /**
+     * START SNIPPET: perm
+     * ### Category
+     */
+
+    /**
+     * START SNIPPET: perm
+     * ####trader.category.create
+     * `Used to allow a player to create new categories in his/her shop`
+     */
+    public static final String SHOP_CATEGORY_CREATE = "trader.category.create";
+
 	/* START SNIPPET: perm
 	 * ### Limits
 	 * END SNIPPET: perm

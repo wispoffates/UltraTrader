@@ -4,6 +4,7 @@ import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.StoreConfig;
 import com.thedemgel.ultratrader.inventory.InventoryInterfaceHandler;
+import com.thedemgel.ultratrader.shop.CategoryItem;
 import com.thedemgel.ultratrader.shop.ItemPrice;
 import com.thedemgel.ultratrader.shop.Shop;
 import com.thedemgel.ultratrader.util.ConfigValue;
@@ -17,9 +18,10 @@ import java.util.Map.Entry;
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -35,6 +37,17 @@ public class YamlDataObject extends DataObject {
 	public void save(Shop shop) {
 		getPool().execute(new SaveShop(shop));
 	}
+
+    @Override
+    public void removeShopFile(int shopId) {
+        File file = new File(STORE_DIR, shopId + ".yml");
+
+        if (!file.exists()) {
+            return;
+        }
+
+        file.delete();
+    }
 
 	@Override
 	public void load(int shopid) {
@@ -82,45 +95,112 @@ public class YamlDataObject extends DataObject {
 			shop.getInventory().put(item, amount);
 		}
 
-		// Load all SellPrices
-		// Find or create configuration section
-		ConfigurationSection sellconfig = config.getConfig().getConfigurationSection("sellprices");
-		if (sellconfig == null) {
-			sellconfig = config.getConfig().createSection("sellprices");
-		}
+        ConfigurationSection categoryConfigSection = config.getConfig().getConfigurationSection("category");
+        if (categoryConfigSection == null) {
+            categoryConfigSection = config.getConfig().createSection("category");
+        }
 
-		// Load all sell prices
-		for (String id : sellconfig.getKeys(false)) {
-			ConfigurationSection itemconfig = sellconfig.getConfigurationSection(id);
-			ItemPrice item = new ItemPrice();
-			item.setAmount(itemconfig.getInt("amount"));
-			item.setDescription(itemconfig.getString("description"));
-			item.setItemStack(itemconfig.getItemStack("itemStack"));
-			item.setPrice(BigDecimal.valueOf(itemconfig.getDouble("price")));
-			item.setRandom(itemconfig.getString("random"));
-			item.setSlot(itemconfig.getInt("slot"));
-			shop.getSellPrices().put(item.getId(), item);
-		}
+        for (String id : categoryConfigSection.getKeys(false)) {
+            ConfigurationSection catConfig = categoryConfigSection.getConfigurationSection(id);
+            //CategoryItem categoryItem = new CategoryItem();
+            CategoryItem categoryItem = new CategoryItem((CategoryItem) catConfig.get("itemStack"));
+
+            categoryItem.setItemStack(((CategoryItem) catConfig.get("itemStack")).getType());
+            categoryItem.setCategoryId(catConfig.getString("id"));
+            categoryItem.setSlot(catConfig.getInt("slot"));
+            categoryItem.setLore(catConfig.getStringList("lore"));
+
+            shop.getCategoryItem().put(categoryItem.getCategoryId(), categoryItem);
+        }
+
+        ConfigurationSection itemPricesSection = config.getConfig().getConfigurationSection("priceList");
+        if (itemPricesSection == null) {
+            itemPricesSection = config.getConfig().createSection("priceList");
+        }
+
+        // Load all sell prices
+        for (String id : itemPricesSection.getKeys(false)) {
+            ConfigurationSection itemConfig = itemPricesSection.getConfigurationSection(id);
+            ItemPrice itemPrice = new ItemPrice();
+
+            itemPrice.setDescription(itemConfig.getString("description"));
+            itemPrice.setCategoryId(itemConfig.getString("category"));
+            itemPrice.setItemStack(itemConfig.getItemStack("itemStack"));
+            itemPrice.setSellPrice(BigDecimal.valueOf(itemConfig.getDouble("sellPrice")));
+            itemPrice.setBuyPrice(BigDecimal.valueOf(itemConfig.getDouble("buyPrice")));
+            itemPrice.setRandom(itemConfig.getString("random"));
+            itemPrice.setSlot(itemConfig.getInt("slot"));
+
+            shop.getPriceList().put(itemPrice.getId(), itemPrice);
+        }
+
+		ConfigurationSection sellConfig = config.getConfig().getConfigurationSection("sellprices");
+		if (sellConfig != null) {
+		    // Load all sell prices
+		    for (String id : sellConfig.getKeys(false)) {
+			    ConfigurationSection itemConfig = sellConfig.getConfigurationSection(id);
+			    ItemPrice item = new ItemPrice();
+
+			    item.setDescription(itemConfig.getString("description"));
+			    item.setItemStack(itemConfig.getItemStack("itemStack"));
+			    item.setSellPrice(BigDecimal.valueOf(itemConfig.getDouble("price")));
+			    item.setRandom(itemConfig.getString("random"));
+			    item.setSlot(itemConfig.getInt("slot"));
+
+                ItemPrice itemPrice = shop.getItemPrice(item.getItemStack());
+
+                if (itemPrice == null) {
+                    item.setCategoryId(CategoryItem.DEFAULT_CAT_SELL);
+			        shop.getPriceList().put(item.getId(), item);
+
+                    if (!shop.getCategoryItem().containsKey(CategoryItem.DEFAULT_CAT_SELL)) {
+                        CategoryItem categoryItem = new CategoryItem(new ItemStack(Material.GOLD_INGOT));
+                        categoryItem.setDisplayName("Default Category (Old Sell Items)");
+                        categoryItem.setCategoryId(CategoryItem.DEFAULT_CAT_SELL);
+
+                        shop.getCategoryItem().put(categoryItem.getCategoryId(), categoryItem);
+                    }
+                } else if (itemPrice.getSellPrice().equals(BigDecimal.ZERO)){
+                    itemPrice.setSellPrice(item.getSellPrice());
+                }
+		    }
+        }
 
 		// Load all BuyPrices
 		// Find or create configuration section
 		ConfigurationSection buyconfig = config.getConfig().getConfigurationSection("buyprices");
-		if (buyconfig == null) {
-			buyconfig = config.getConfig().createSection("buyprices");
-		}
+		if (buyconfig != null) {
 
-		// Load all sell prices
-		for (String id : buyconfig.getKeys(false)) {
-			ConfigurationSection itemconfig = buyconfig.getConfigurationSection(id);
-			ItemPrice item = new ItemPrice();
-			item.setAmount(itemconfig.getInt("amount"));
-			item.setDescription(itemconfig.getString("description"));
-			item.setItemStack(itemconfig.getItemStack("itemStack"));
-			item.setPrice(BigDecimal.valueOf(itemconfig.getDouble("price")));
-			item.setRandom(itemconfig.getString("random"));
-			item.setSlot(itemconfig.getInt("slot"));
-			shop.getBuyPrices().put(item.getId(), item);
-		}
+    		// Load all buy prices
+		    for (String id : buyconfig.getKeys(false)) {
+			    ConfigurationSection itemConfig = buyconfig.getConfigurationSection(id);
+			    ItemPrice item = new ItemPrice();
+
+			    item.setDescription(itemConfig.getString("description"));
+			    item.setItemStack(itemConfig.getItemStack("itemStack"));
+			    item.setBuyPrice(BigDecimal.valueOf(itemConfig.getDouble("price")));
+			    item.setRandom(itemConfig.getString("random"));
+			    item.setSlot(itemConfig.getInt("slot"));
+			    //shop.getBuyPrices().put(item.getId(), item);
+
+                ItemPrice itemPrice = shop.getItemPrice(item.getItemStack());
+                System.out.println(itemPrice.getBuyPrice());
+                if (itemPrice == null) {
+                    item.setCategoryId(CategoryItem.DEFAULT_CAT_BUY);
+                    shop.getPriceList().put(item.getId(), item);
+
+                    if (!shop.getCategoryItem().containsKey(CategoryItem.DEFAULT_CAT_BUY)) {
+                        CategoryItem categoryItem = new CategoryItem(new ItemStack(Material.IRON_INGOT));
+                        categoryItem.setDisplayName("Default Category (Old Buy Items)");
+                        categoryItem.setCategoryId(CategoryItem.DEFAULT_CAT_BUY);
+
+                        shop.getCategoryItem().put(categoryItem.getCategoryId(), categoryItem);
+                    }
+                } else if (itemPrice.getBuyPrice().equals(BigDecimal.ZERO)){
+                    itemPrice.setBuyPrice(item.getBuyPrice());
+                }
+		    }
+        }
 
 		// Load the Wallet
 		// Find or create wallet Configuration Section
@@ -157,9 +237,7 @@ public class YamlDataObject extends DataObject {
             blockConfig = config.getConfig().createSection("blocks");
         }
 
-        //blockConfig.set("blocklocation", shop.getBlockShops());
-        //if (blockConfig.contains("blocklocation")) {
-            ConfigurationSection blockLoc = blockConfig.getConfigurationSection("blocklocation");
+        ConfigurationSection blockLoc = blockConfig.getConfigurationSection("blocklocation");
 
         if (blockLoc == null) {
             blockLoc = blockConfig.createSection("blocklocation");
@@ -180,8 +258,6 @@ public class YamlDataObject extends DataObject {
         }
 
 		UltraTrader.getStoreHandler().addShop(shop);
-
-		//Bukkit.getLogger().log(Level.INFO, L.getFormatString("general.initialized", shop.getName(), shop.getId()));
 	}
 
 	@Override
@@ -223,27 +299,27 @@ public class YamlDataObject extends DataObject {
 
 		@Override
 		public void run() {
-			ConfigurationSection sellConfig = config.getConfig().createSection("sellprices");
+            ConfigurationSerialization.registerClass(CategoryItem.class);
+            ConfigurationSection catSection = config.getConfig().createSection("category");
 
-			for (ItemPrice ip : shop.getSellPrices().values()) {
-				sellConfig.set(ip.getId() + ".amount", ip.getAmount());
-				sellConfig.set(ip.getId() + ".description", ip.getDescription());
-				sellConfig.set(ip.getId() + ".itemStack", ip.getItemStack());
-				sellConfig.set(ip.getId() + ".price", ip.getPrice());
-				sellConfig.set(ip.getId() + ".random", ip.getId());
-				sellConfig.set(ip.getId() + ".slot", ip.getSlot());
-			}
+            for (CategoryItem categoryItem : shop.getCategoryItem().values()) {
+                catSection.set(categoryItem.getCategoryId() + ".id", categoryItem.getCategoryId());
+                catSection.set(categoryItem.getCategoryId() + ".itemStack", categoryItem);
+                catSection.set(categoryItem.getCategoryId() + ".slot", categoryItem.getSlot());
+                catSection.set(categoryItem.getCategoryId() + ".lore", categoryItem.getLore());
+            }
 
-			ConfigurationSection buyConfig = config.getConfig().createSection("buyprices");
+            ConfigurationSection priceConfig = config.getConfig().createSection("priceList");
 
-			for (ItemPrice ip : shop.getBuyPrices().values()) {
-				buyConfig.set(ip.getId() + ".amount", ip.getAmount());
-				buyConfig.set(ip.getId() + ".description", ip.getDescription());
-				buyConfig.set(ip.getId() + ".itemStack", ip.getItemStack());
-				buyConfig.set(ip.getId() + ".price", ip.getPrice());
-				buyConfig.set(ip.getId() + ".random", ip.getId());
-				buyConfig.set(ip.getId() + ".slot", ip.getSlot());
-			}
+            for (ItemPrice priceList : shop.getPriceList().values()) {
+                priceConfig.set(priceList.getId() + ".description", priceList.getDescription());
+                priceConfig.set(priceList.getId() + ".category", priceList.getCategoryId());
+                priceConfig.set(priceList.getId() + ".itemStack", priceList.getItemStack());
+                priceConfig.set(priceList.getId() + ".sellPrice", priceList.getSellPrice());
+                priceConfig.set(priceList.getId() + ".buyPrice", priceList.getBuyPrice());
+                priceConfig.set(priceList.getId() + ".random", priceList.getId());
+                priceConfig.set(priceList.getId() + ".slot", priceList.getSlot());
+            }
 
 			ConfigurationSection invConfig = config.getConfig().getConfigurationSection("inventory");
 			if (invConfig == null) {
@@ -295,7 +371,6 @@ public class YamlDataObject extends DataObject {
 				infoconfig.set(info.getKey(), info.getValue().getValue());
 			}
 
-            // TODO: get Block location info
 			ConfigurationSection blockConfig = config.getConfig().getConfigurationSection("blocks");
             if (blockConfig == null) {
                 blockConfig = config.getConfig().createSection("blocks");

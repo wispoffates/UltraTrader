@@ -2,7 +2,9 @@ package com.thedemgel.ultratrader;
 
 import com.thedemgel.ultratrader.citizens.TraderTrait;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
+import com.thedemgel.ultratrader.inventory.AdminCategoryPlacementView;
 import com.thedemgel.ultratrader.inventory.AdminItemPlacementView;
+import com.thedemgel.ultratrader.shop.CategoryItem;
 import com.thedemgel.ultratrader.shop.ItemPrice;
 import com.thedemgel.ultratrader.shop.ShopHandler;
 import com.thedemgel.ultratrader.util.Permissions;
@@ -88,7 +90,7 @@ public class ShopListener implements Listener {
         }
 
 		switch (view.getStatus()) {
-			case MAIN_SCREEN:
+			case CATEGORY_SCREEN:
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_CREATE_ITEM_SLOT) {
 					// Make the item here (if the shop can do it)
 					if (view.getShop().getCanRemote()) {
@@ -97,15 +99,10 @@ public class ShopListener implements Listener {
 					return;
 				}
 
-				if (event.getRawSlot() == InventoryHandler.INVENTORY_BACK_ARROW_SLOT) {
-					view.buildBuyView();
-					return;
-				}
-
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_ARRANGE_SLOT && view.getShop().getOwner().equals(player.getName())) {
 					view.setKeepAlive(true);
 					player.closeInventory();
-					AdminItemPlacementView newview = new AdminItemPlacementView(player, view.getShop(), view.getStatus());
+					AdminCategoryPlacementView newview = new AdminCategoryPlacementView(player, view.getShop(), view.getStatus());
 					player.openInventory(newview);
 					return;
 				}
@@ -128,28 +125,77 @@ public class ShopListener implements Listener {
 						player.getInventory().addItem(event.getCursor());
 						player.setItemOnCursor(new ItemStack(Material.AIR));
 					}
-					view.buildItemView(event.getCurrentItem());
+
+                    String id = CategoryItem.getCategoryId(event.getCurrentItem());
+                    if (!view.getShop().getCategoryItem().containsKey(id)) {
+                        return;
+                    }
+                    view.setCategory(id);
+					view.buildCategoryItemView();
 				} else if (event.getCursor().getData().getItemType().equals(Material.AIR)) {
 				} else if (view.getShop().isOwner(player)) {
+                    // TODO: Change to add Category conversation
 					if (!player.isConversing()) {
 						event.setCancelled(false);
-						ItemStack inhand = event.getCursor().clone();
-						Conversation convo = UltraTrader.getConversationHandler().getAddSellItem().buildConversation(player);
-						convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, inhand);
+						ItemStack inHand = event.getCursor().clone();
+						Conversation convo = UltraTrader.getConversationHandler().getAddCategoryItem().buildConversation(player);
+						convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, inHand);
 						convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
 						view.setConvo(convo);
 						convo.begin();
 					} else {
 						player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
 					}
-				} else {
-					player.sendMessage(L.getString("shops.gotobuy.line1"));
-					player.sendMessage(L.getString("shops.gotobuy.line2"));
 				}
 				break;
-			case SELL_SCREEN:
+            case ITEM_SCREEN:
+                if (event.getRawSlot() == InventoryHandler.INVENTORY_BACK_ARROW_SLOT) {
+                    view.buildCategoryView();
+                    return;
+                }
+
+                if (event.getRawSlot() == InventoryHandler.INVENTORY_ARRANGE_SLOT && view.getShop().getOwner().equals(player.getName())) {
+                    view.setKeepAlive(true);
+                    player.closeInventory();
+                    AdminItemPlacementView newView = new AdminItemPlacementView(player, view.getShop(), view.getCategory());
+                    player.openInventory(newView);
+                    return;
+                }
+
+                if (!event.getCursor().getData().getItemType().equals(Material.AIR)) {
+                    if (view.getShop().isOwner(player)) {
+                        if (!player.isConversing()) {
+                            event.setCancelled(false);
+                            ItemStack inHand = event.getCursor().clone();
+                            Conversation convo = UltraTrader.getConversationHandler().getAddSellItem().buildConversation(player);
+                            convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, inHand);
+                            convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
+                            view.setConvo(convo);
+                            convo.begin();
+                        } else {
+                            player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+                        }
+                    }
+                }
+
+                if (event.getCurrentItem() == null) {
+                    return;
+                }
+
+                switch (event.getClick()) {
+                    case RIGHT:
+                        view.buildBuyItemView(event.getCurrentItem());
+                        break;
+                    case LEFT:
+                        view.buildItemView(event.getCurrentItem());
+                        break;
+                    default:
+                        break;
+                }
+                break;
+			case SELL_ITEM_SCREEN:
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_BACK_ARROW_SLOT) {
-					view.buildSellView();
+					view.buildCategoryItemView();
 					return;
 				}
 
@@ -193,99 +239,15 @@ public class ShopListener implements Listener {
 					}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
 				}
 				break;
-			case BUY_SCREEN:
-				if (event.getRawSlot() == InventoryHandler.INVENTORY_CREATE_ITEM_SLOT) {
-					// Make the item here (if the shop can do it)
-					if (view.getShop().getCanRemote()) {
-						PurchaseHandler.processShopItemPurchase(view.getShop(), player, event.getCurrentItem());
-					}
-					return;
-				}
-
-				if (event.getRawSlot() == InventoryHandler.INVENTORY_ARRANGE_SLOT && view.getShop().getOwner().equals(player.getName())) {
-					view.setKeepAlive(true);
-					player.closeInventory();
-					AdminItemPlacementView newview = new AdminItemPlacementView(player, view.getShop(), view.getStatus());
-					player.openInventory(newview);
-					return;
-				}
-				
-				if (event.getRawSlot() == InventoryHandler.INVENTORY_BACK_ARROW_SLOT) {
-					view.buildSellView();
-					return;
-				}
-
-				if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && view.getShop().getOwner().equals(player.getName())) {
-					if (!player.isConversing()) {
-						Conversation convo = UltraTrader.getConversationHandler().getAdminConversation().buildConversation(player);
-						view.setConvo(convo);
-						convo.begin();
-					} else {
-						player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
-					}
-					return;
-				} else if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && !view.getShop().getOwner().equals(player.getName())) {
-					return;
-				}
-
-				if (event.getCurrentItem() != null && view.getShop().isOwner(player)) {
-					if (!event.getCursor().getType().equals(Material.AIR)) {
-						player.getInventory().addItem(event.getCursor());
-						player.setItemOnCursor(new ItemStack(Material.AIR));
-					}
-					view.buildBuyItemView(event.getCurrentItem());
-				} else if (event.getCurrentItem() != null) {
-					if (!event.getCursor().getType().equals(Material.AIR)) {
-						player.sendMessage("Place in Empty Slot.");
-						event.setCancelled(true);
-					}
-				} else if (view.getShop().isOwner(player)) {
-					ItemStack inhand = event.getCursor().clone();
-					if (!inhand.getType().equals(Material.AIR)) {
-						if (!player.isConversing()) {
-							event.setCancelled(false);
-							plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-								@Override
-								public void run() {
-									ItemStack placedItem = view.getItem(event.getRawSlot());
-									Conversation convo = UltraTrader.getConversationHandler().getAddBuyItem().buildConversation((Player) event.getWhoClicked());
-									convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, placedItem);
-									convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
-									view.setConvo(convo);
-									convo.begin();
-								}
-							}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
-						} else {
-							player.sendMessage("conversation.error.inconvo");
-						}
-
-					}
-				} else if (!event.getCursor().getData().getItemType().equals(Material.AIR)) {
-					// Buy the items if you want them...
-					ItemStack inhand = event.getCursor().clone();
-					final int slot = event.getRawSlot();
-					if (view.getShop().hasBuyItem(inhand)) {
-						event.setCancelled(false);
-						plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-							@Override
-							public void run() {
-								ItemStack buyItem = view.getItem(slot);
-								PurchaseHandler.processSale(view.getShop(), (Player) event.getWhoClicked(), buyItem);
-								view.buildBuyView();
-							}
-						}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
-					}
-				}
-				break;
 			case BUY_ITEM_SCREEN:
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_BACK_ARROW_SLOT) {
-					view.buildBuyView();
+                    view.buildCategoryItemView();
 					return;
 				}
 
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && view.getShop().getOwner().equals(player.getName())) {
 					if (!player.isConversing()) {
-						Conversation convo = UltraTrader.getConversationHandler().getBuyItemAdmin().buildConversation(player);
+						Conversation convo = UltraTrader.getConversationHandler().getSetSellPrice().buildConversation(player);
 						convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, event.getCurrentItem());
 						view.setConvo(convo);
 						convo.begin();
@@ -311,7 +273,8 @@ public class ShopListener implements Listener {
 				}
 
 				if (event.getCurrentItem() != null) {
-					PurchaseHandler.processTakeInventory(view.getShop(), (Player) event.getWhoClicked(), event.getCurrentItem());
+                    PurchaseHandler.processSale(view.getShop(), (Player) event.getWhoClicked(), event.getCurrentItem());
+					//PurchaseHandler.processTakeInventory(view.getShop(), (Player) event.getWhoClicked(), event.getCurrentItem());
 					plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 						@Override
 						public void run() {
@@ -334,16 +297,14 @@ public class ShopListener implements Listener {
             Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
                 @Override
                 public void run() {
-                    ConcurrentMap<String, ItemPrice> buyitems = view.getShop().getBuyPrices();
-                    ConcurrentMap<String, ItemPrice> sellitems = view.getShop().getSellPrices();
+                    ConcurrentMap<String, ItemPrice> items = view.getShop().getPriceList();
+                    //ConcurrentMap<String, ItemPrice> sellitems = view.getShop().getSellPrices();
 
                     for (ItemStack item : player.getInventory()) {
                         String id = view.getShop().getItemId(item);
                         boolean remove = false;
                         if (id != "000000") {
-                            if (buyitems.containsKey(id)) {
-                                remove = true;
-                            } else if (sellitems.containsKey(id)) {
+                            if (items.containsKey(id)) {
                                 remove = true;
                             }
                             if (remove) {
@@ -359,7 +320,7 @@ public class ShopListener implements Listener {
             }, UltraTrader.BUKKIT_SCHEDULER_DELAY);
 		}
 
-		if (event.getView() instanceof AdminItemPlacementView) {
+		if (event.getView() instanceof AdminItemPlacementView || event.getView() instanceof AdminCategoryPlacementView) {
 			final Player player = (Player) event.getPlayer();
 
 			Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {

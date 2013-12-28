@@ -36,7 +36,7 @@ public class AdminSellItemDeletePrompt extends FixedIgnoreCaseSetPrompt {
 			invCount = view.getShop().getInventoryInterface().getInventoryStock(itemprice.getItemStack());
 		}
 
-		if (invCount > 0 && !view.getShop().hasBuyItem(itemprice)) {
+		if (invCount > 0 && !view.getShop().hasItem(itemprice)) {
 			p.sendRawMessage(prefix.getPrefix(context) + ChatColor.RED + L.getString("conversation.itemadmin.delete.full"));
 			p.sendRawMessage(prefix.getPrefix(context) + ChatColor.RED + L.getString("conversation.itemadmin.delete.warn"));
 		}

@@ -4,13 +4,10 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.thedemgel.ultratrader.InventoryHandler;
 import com.thedemgel.ultratrader.UltraTrader;
+import com.thedemgel.ultratrader.shop.CategoryItem;
 import com.thedemgel.ultratrader.shop.ItemPrice;
 import com.thedemgel.ultratrader.shop.Shop;
 import com.thedemgel.ultratrader.shop.Status;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.concurrent.ConcurrentMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -28,31 +25,30 @@ import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
-public class AdminItemPlacementView extends InventoryView implements Listener {
+public class AdminCategoryPlacementView extends InventoryView implements Listener {
 
 	private final Player player;
 	private final Shop shop;
 	private final Inventory top;
-    private final Collection<ItemPrice> items;
+	private final Status status;
+	//private final ConcurrentMap<String, ItemPrice> items;
+    private final Collection<CategoryItem> items;
 
 	@SuppressWarnings("LeakingThisInConstructor")
-	public AdminItemPlacementView(Player player, Shop shop, final String category) {
+	public AdminCategoryPlacementView(Player player, Shop shop, Status viewStatus) {
 		this.player = player;
 		this.shop = shop;
 		this.top = Bukkit.createInventory(null, InventoryHandler.MAX_SELL_BUY_ITEMS, "Arrange your inventory.");
+		status = viewStatus;
 
-        Predicate<ItemPrice> itemPricePredicate = new Predicate<ItemPrice>() {
-            @Override
-            public boolean apply(@Nullable ItemPrice itemPrice) {
-                return itemPrice.getCategoryId().equals(category);
-            }
-        };
+        items = shop.getCategoryItem().values();
 
-        items = Collections2.filter(shop.getPriceList().values(), itemPricePredicate);
-
-		List<ItemPrice> itemQueue = new ArrayList<>();
-		for (ItemPrice item : items) {
+		List<CategoryItem> itemQueue = new ArrayList<>();
+		for (CategoryItem item : items) {
 			if (item.getSlot() == -1) {
 				itemQueue.add(item);
 			} else {
@@ -61,15 +57,15 @@ public class AdminItemPlacementView extends InventoryView implements Listener {
 				if (slot != null) {
 					itemQueue.add(item);
 				} else {
-					getTopInventory().setItem(item.getSlot(), item.generateLore(1, Status.ITEM_SCREEN));
+					getTopInventory().setItem(item.getSlot(), item.clone());
 				}
 			}
 		}
 
-		for (ItemPrice item : itemQueue) {
+		for (CategoryItem item : itemQueue) {
 			int slot = getTopInventory().firstEmpty();
 			item.setSlot(slot);
-			this.getTopInventory().setItem(item.getSlot(), item.generateLore(1, Status.ITEM_SCREEN));
+			this.getTopInventory().setItem(item.getSlot(), item.clone());
 		}
 
 		Bukkit.getPluginManager().registerEvents(this, UltraTrader.getInstance());
@@ -118,6 +114,8 @@ public class AdminItemPlacementView extends InventoryView implements Listener {
 			event.setCancelled(true);
 		}
 
+        System.out.println(event.getAction());
+
 	}
 
 	@EventHandler
@@ -136,14 +134,14 @@ public class AdminItemPlacementView extends InventoryView implements Listener {
 			// Update if everything is ok
 			for (int i = 0; i < 36; i++) {
 				ItemStack item = getTopInventory().getItem(i);
-
+                System.out.println(item);
 				if (item == null) {
 					continue;
 				}
 
-				String id = shop.getItemId(item);
-				ItemPrice itemprice = shop.getPriceList().get(id);
-				itemprice.setSlot(i);
+				String id = CategoryItem.getCategoryId(item);
+				CategoryItem categoryItem = shop.getCategoryItem().get(id);
+				categoryItem.setSlot(i);
 			}
 
 			shop.save();

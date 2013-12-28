@@ -30,17 +30,17 @@ public class AdminSellItemDeleteConfirmPrompt extends MessagePrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
 
-
+        // TODO: Combine into one prompt for removing buy/Sell
 		if (delete) {
 			ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
 			ItemPrice itemprice = (ItemPrice) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEMPRICE);
 			ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
 			Shop shop = view.getShop();
-			if (!shop.hasBuyItem(itemprice)) {
+			if (!shop.hasItem(itemprice)) {
 				shop.getInventoryInterface().removeInventory(itemprice.getItemStack(), -1);
 			}
 			String id = shop.getItemId(item);
-			shop.getSellPrices().remove(id);
+			shop.getPriceList().remove(id);
 			view.buildItemView(item);
 			return L.getString("conversation.itemadmin.delete.deleted");
 		} else {

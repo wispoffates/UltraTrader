@@ -7,6 +7,7 @@ import com.thedemgel.ultratrader.citizens.UltraTrait;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
 import com.thedemgel.ultratrader.conversation.admin.bank.AdminBankMenuPrompt;
+import com.thedemgel.ultratrader.conversation.admin.category.AdminCategoryMenuPrompt;
 import com.thedemgel.ultratrader.conversation.admin.level.AdminSetLevelPrompt;
 //import com.thedemgel.ultratrader.conversation.rentalshop.RentalEndRentingPrompt;
 import com.thedemgel.ultratrader.inventory.ShopInventoryView;
@@ -40,6 +41,8 @@ public class AdminMenuPrompt extends FixedIgnoreCaseSetPrompt {
 		addOption(L.getString("conversation.admin.menu.options.storename"), new AdminSetNamePrompt());
 		addOption(L.getString("conversation.admin.menu.options.bank"), new AdminBankMenuPrompt());
 		addOption(L.getString("conversation.admin.menu.options.inventoryinterface"), new AdminInventoryInterfaceMenuPrompt());
+        // TODO: add language
+        addOption("category", new AdminCategoryMenuPrompt());
 		if (p.hasPermission(Permissions.LEVEL_TRANSFER)) {
 			addOption(L.getString("conversation.admin.menu.options.transfer"), new AdminTransferPrompt());
 		}
@@ -64,6 +67,7 @@ public class AdminMenuPrompt extends FixedIgnoreCaseSetPrompt {
 		p.sendRawMessage(prefix.getPrefix(context) + L.getString("general.name") + ": " + ChatColor.WHITE + view.getShop().getName());
 		p.sendRawMessage(prefix.getPrefix(context) + L.getString("general.bank") + ": " + ChatColor.WHITE + view.getShop().getWalletType());
 		p.sendRawMessage(prefix.getPrefix(context) + L.getString("general.inventory") + ": " + ChatColor.WHITE + view.getShop().getInventoryInterfaceType());
+        // TODO: add language
 		p.sendRawMessage(prefix.getPrefix(context) + "Level: " + ChatColor.WHITE + view.getShop().getLevel() + ChatColor.YELLOW + " Shops: " + ChatColor.WHITE + UltraTrader.getStoreHandler().getShopsByOwner(p).size() + ChatColor.YELLOW + "/" + ChatColor.WHITE + LimitHandler.getMaxShops(p) + ChatColor.YELLOW + " MaxBuySell: " + ChatColor.WHITE + LimitHandler.getMaxBuySellSize(view.getShop()));
 		p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.admin.menutext"));
 		return L.getString("conversation.options") + ": " + this.formatFixedSet();

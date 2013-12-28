@@ -36,11 +36,11 @@ public class AdminBuyItemDeleteConfirmPrompt extends MessagePrompt {
 			ItemPrice itemprice = (ItemPrice) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEMPRICE);
 			ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
 			Shop shop = view.getShop();
-			if (!shop.hasSellItem(itemprice)) {
+			if (!shop.hasItem(itemprice)) {
 				shop.getInventoryInterface().removeInventory(itemprice.getItemStack(), -1);
 			}
 			String id = shop.getItemId(item);
-			shop.getBuyPrices().remove(id);
+			shop.getPriceList().remove(id);
 			view.buildBuyItemView(item);
 			return L.getString("conversation.itemadmin.delete.deleted");
 		} else {

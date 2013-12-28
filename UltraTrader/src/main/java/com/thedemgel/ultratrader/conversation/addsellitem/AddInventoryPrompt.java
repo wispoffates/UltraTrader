@@ -24,12 +24,11 @@ public class AddInventoryPrompt extends MessagePrompt {
 		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
 		view.getShop().getInventoryInterface().addInventory(item);
 		view.setKeepAlive(false);
-		//view.buildView();
 
 		Bukkit.getScheduler().scheduleSyncDelayedTask(UltraTrader.getInstance(), new Runnable() {
 			@Override
 			public void run() {
-				view.buildSellView();
+				view.buildCategoryItemView();
 			}
 		}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
 

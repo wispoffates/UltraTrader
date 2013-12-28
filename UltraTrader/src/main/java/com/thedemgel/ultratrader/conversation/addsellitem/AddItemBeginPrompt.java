@@ -24,12 +24,12 @@ public class AddItemBeginPrompt extends MessagePrompt {
 		ShopInventoryView view = (ShopInventoryView) UltraTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
 		context.setSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW, view);
 		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
-		ItemPrice itemprice = new ItemPrice(item);
-		if (view.getShop().hasSellItem(itemprice)) {
+		ItemPrice itemPrice = new ItemPrice(item);
+		if (view.getShop().hasItem(itemPrice)) {
 			return new AddInventoryPrompt();
 		}
 
-		if (view.getShop().getSellPrices().size() >= LimitHandler.getMaxBuySellSize(view.getShop())) {
+		if (view.getShop().getPriceList().size() >= LimitHandler.getMaxBuySellSize(view.getShop())) {
 			return new AddItemShopFullPrompt();
 		}
 

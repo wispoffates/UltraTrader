@@ -30,7 +30,7 @@ public class AddBuyItemCantAddInventoryPrompt extends MessagePrompt {
 			@Override
 			public void run() {
 				view.getBottomInventory().addItem(item);
-				view.buildBuyView();
+				view.buildCategoryView();
 			}
 		}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
 

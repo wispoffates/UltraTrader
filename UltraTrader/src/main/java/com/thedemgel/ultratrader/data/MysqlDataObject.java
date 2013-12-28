@@ -99,6 +99,7 @@ public class MysqlDataObject extends DataObject {
 	public void initShops() {
 	}
 
-
+    @Override
+    public void removeShopFile(int shopId) {}
 
 }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.FixedSetPrompt;
@@ -54,6 +55,8 @@ public abstract class FixedIgnoreCaseSetPrompt extends FixedSetPrompt {
 	 */
 	@Override
 	protected String formatFixedSet() {
-		return ChatColor.YELLOW + "[" + ChatColor.WHITE + StringUtils.join(fixedSet, ChatColor.YELLOW + ", " + ChatColor.WHITE) + ChatColor.YELLOW + "]";
+		String selection = ChatColor.YELLOW + "[" + ChatColor.WHITE + StringUtils.join(fixedSet, ChatColor.YELLOW + ", " + ChatColor.WHITE) + ChatColor.YELLOW + "]";
+        //String brokenSelection = WordUtils.wrap(selection, 40, System.lineSeparator(), false);
+        return selection;
 	}
 }

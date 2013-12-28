@@ -1,17 +1,19 @@
-package com.thedemgel.ultratrader.conversation.addbuyitem;
+package com.thedemgel.ultratrader.conversation.addcategoryitem;
 
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import java.math.BigDecimal;
+
+import com.thedemgel.ultratrader.shop.CategoryItem;
 import org.bukkit.Bukkit;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.inventory.ItemStack;
 
-public class AddBuyItemFinishPrompt extends MessagePrompt {
+public class AddCategoryItemFinishPrompt extends MessagePrompt {
 
 	@Override
 	protected Prompt getNextPrompt(ConversationContext context) {
@@ -20,16 +22,15 @@ public class AddBuyItemFinishPrompt extends MessagePrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
+        try {
 		final ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
 
-		String description = (String) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_DESCRIPTION);
 		final ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
-		BigDecimal price = (BigDecimal) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_PRICE);
 
-		view.getShop().addBuyItem(item, price, 1, description);
-		//view.getShop().getInventoryInterface().addInventory(item);
+        CategoryItem categoryItem = (CategoryItem) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_CATEGORYITEM);
+        view.getShop().getCategoryItem().put(categoryItem.getCategoryId(), categoryItem);
 
-		view.buildBuyView();
+		view.buildCategoryView();
 
 		Bukkit.getScheduler().scheduleSyncDelayedTask(UltraTrader.getInstance(), new Runnable() {
 			@Override
@@ -37,7 +38,9 @@ public class AddBuyItemFinishPrompt extends MessagePrompt {
 				view.getBottomInventory().addItem(item);
 			}
 		}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
-
-		return L.getString("conversation.addbuyitem.added");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+		return "Category Added";
 	}
 }

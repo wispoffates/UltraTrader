@@ -22,7 +22,7 @@ public class AdminSellItemSetPricePrompt extends StringPrompt {
 			return new NotADoublePrompt();
 		}
 		ItemPrice item = (ItemPrice) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEMPRICE);
-		item.setPrice(BigDecimal.valueOf(price));
+		item.setSellPrice(BigDecimal.valueOf(price));
 		return new AdminSellItemMenuPrompt();
 	}
 
