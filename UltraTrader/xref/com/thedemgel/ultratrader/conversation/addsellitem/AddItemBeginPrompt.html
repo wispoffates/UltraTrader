@@ -34,12 +34,12 @@
 <a class="jxr_linenumber" name="24" href="#24">24</a>  		ShopInventoryView view = (ShopInventoryView) UltraTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
 <a class="jxr_linenumber" name="25" href="#25">25</a>  		context.setSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW, view);
 <a class="jxr_linenumber" name="26" href="#26">26</a>  		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
-<a class="jxr_linenumber" name="27" href="#27">27</a>  		ItemPrice itemprice = <strong class="jxr_keyword">new</strong> <a href="../../../../../com/thedemgel/ultratrader/shop/ItemPrice.html">ItemPrice</a>(item);
-<a class="jxr_linenumber" name="28" href="#28">28</a>  		<strong class="jxr_keyword">if</strong> (view.getShop().hasSellItem(itemprice)) {
+<a class="jxr_linenumber" name="27" href="#27">27</a>  		ItemPrice itemPrice = <strong class="jxr_keyword">new</strong> <a href="../../../../../com/thedemgel/ultratrader/shop/ItemPrice.html">ItemPrice</a>(item);
+<a class="jxr_linenumber" name="28" href="#28">28</a>  		<strong class="jxr_keyword">if</strong> (view.getShop().hasItem(itemPrice)) {
 <a class="jxr_linenumber" name="29" href="#29">29</a>  			<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../com/thedemgel/ultratrader/conversation/addsellitem/AddInventoryPrompt.html">AddInventoryPrompt</a>();
 <a class="jxr_linenumber" name="30" href="#30">30</a>  		}
 <a class="jxr_linenumber" name="31" href="#31">31</a>  
-<a class="jxr_linenumber" name="32" href="#32">32</a>  		<strong class="jxr_keyword">if</strong> (view.getShop().getSellprices().size() &gt;= LimitHandler.getMaxBuySellSize(view.getShop())) {
+<a class="jxr_linenumber" name="32" href="#32">32</a>  		<strong class="jxr_keyword">if</strong> (view.getShop().getPriceList().size() &gt;= LimitHandler.getMaxBuySellSize(view.getShop())) {
 <a class="jxr_linenumber" name="33" href="#33">33</a>  			<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../com/thedemgel/ultratrader/conversation/addsellitem/AddItemShopFullPrompt.html">AddItemShopFullPrompt</a>();
 <a class="jxr_linenumber" name="34" href="#34">34</a>  		}
 <a class="jxr_linenumber" name="35" href="#35">35</a>  

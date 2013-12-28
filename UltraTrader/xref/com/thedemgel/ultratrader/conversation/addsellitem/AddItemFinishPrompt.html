@@ -34,10 +34,10 @@
 <a class="jxr_linenumber" name="24" href="#24">24</a>  		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
 <a class="jxr_linenumber" name="25" href="#25">25</a>  		BigDecimal price = (BigDecimal) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_PRICE);
 <a class="jxr_linenumber" name="26" href="#26">26</a>  
-<a class="jxr_linenumber" name="27" href="#27">27</a>  		view.getShop().addSellItem(item, price, 1, description);
+<a class="jxr_linenumber" name="27" href="#27">27</a>  		view.getShop().addItem(item, price, BigDecimal.ZERO, description, view.getCategory());
 <a class="jxr_linenumber" name="28" href="#28">28</a>  		view.getShop().getInventoryInterface().addInventory(item);
 <a class="jxr_linenumber" name="29" href="#29">29</a>  
-<a class="jxr_linenumber" name="30" href="#30">30</a>  		view.buildSellView();
+<a class="jxr_linenumber" name="30" href="#30">30</a>  		view.buildCategoryItemView();
 <a class="jxr_linenumber" name="31" href="#31">31</a>  
 <a class="jxr_linenumber" name="32" href="#32">32</a>  		<strong class="jxr_keyword">return</strong> L.getString(<span class="jxr_string">"conversation.additem.added"</span>);
 <a class="jxr_linenumber" name="33" href="#33">33</a>  	}
