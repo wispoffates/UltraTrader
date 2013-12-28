@@ -104,7 +104,7 @@
 <a class="jxr_linenumber" name="94" href="#94">94</a>  
 <a class="jxr_linenumber" name="95" href="#95">95</a>  				<strong class="jxr_keyword">if</strong> (!trader.getShopId().equals(ShopHandler.SHOP_NULL)) {
 <a class="jxr_linenumber" name="96" href="#96">96</a>  					Shop shop = UltraTrader.getStoreHandler().getShop(trader.getShopId());
-<a class="jxr_linenumber" name="97" href="#97">97</a>  					Object[] items = shop.getSellprices().values().toArray();
+<a class="jxr_linenumber" name="97" href="#97">97</a>  					Object[] items = shop.getPriceList().values().toArray();
 <a class="jxr_linenumber" name="98" href="#98">98</a>  
 <a class="jxr_linenumber" name="99" href="#99">99</a>  					<strong class="jxr_keyword">for</strong> (ItemFrame frame : frames) {
 <a class="jxr_linenumber" name="100" href="#100">100</a> 						ItemPrice item = (ItemPrice) items[rnd.nextInt(items.length)];

@@ -40,17 +40,17 @@
 <a class="jxr_linenumber" name="30" href="#30">30</a>  	@Override
 <a class="jxr_linenumber" name="31" href="#31">31</a>  	<strong class="jxr_keyword">public</strong> String getPromptText(ConversationContext context) {
 <a class="jxr_linenumber" name="32" href="#32">32</a>  
-<a class="jxr_linenumber" name="33" href="#33">33</a>  
+<a class="jxr_linenumber" name="33" href="#33">33</a>          <em class="jxr_comment">// TODO: Combine into one prompt for removing buy/Sell</em>
 <a class="jxr_linenumber" name="34" href="#34">34</a>  		<strong class="jxr_keyword">if</strong> (delete) {
 <a class="jxr_linenumber" name="35" href="#35">35</a>  			ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
 <a class="jxr_linenumber" name="36" href="#36">36</a>  			ItemPrice itemprice = (ItemPrice) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEMPRICE);
 <a class="jxr_linenumber" name="37" href="#37">37</a>  			ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
 <a class="jxr_linenumber" name="38" href="#38">38</a>  			Shop shop = view.getShop();
-<a class="jxr_linenumber" name="39" href="#39">39</a>  			<strong class="jxr_keyword">if</strong> (!shop.hasBuyItem(itemprice)) {
+<a class="jxr_linenumber" name="39" href="#39">39</a>  			<strong class="jxr_keyword">if</strong> (!shop.hasItem(itemprice)) {
 <a class="jxr_linenumber" name="40" href="#40">40</a>  				shop.getInventoryInterface().removeInventory(itemprice.getItemStack(), -1);
 <a class="jxr_linenumber" name="41" href="#41">41</a>  			}
 <a class="jxr_linenumber" name="42" href="#42">42</a>  			String id = shop.getItemId(item);
-<a class="jxr_linenumber" name="43" href="#43">43</a>  			shop.getSellprices().remove(id);
+<a class="jxr_linenumber" name="43" href="#43">43</a>  			shop.getPriceList().remove(id);
 <a class="jxr_linenumber" name="44" href="#44">44</a>  			view.buildItemView(item);
 <a class="jxr_linenumber" name="45" href="#45">45</a>  			<strong class="jxr_keyword">return</strong> L.getString(<span class="jxr_string">"conversation.itemadmin.delete.deleted"</span>);
 <a class="jxr_linenumber" name="46" href="#46">46</a>  		} <strong class="jxr_keyword">else</strong> {
