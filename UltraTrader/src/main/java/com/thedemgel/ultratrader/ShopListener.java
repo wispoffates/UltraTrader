@@ -83,11 +83,13 @@ public class ShopListener implements Listener {
 		final ShopInventoryView view = (ShopInventoryView) event.getView();
 
 		// Nothing needs to be dragged anymore...
-		if (!(event.getRawSlot() < view.getTopInventory().getSize())) {
+		if (!(event.getRawSlot() < view.getTopInventory().getSize()) || event.getRawSlot() == -999) {
 			return;
 		} else {
 			event.setCancelled(true);
         }
+
+        System.out.println(event.getRawSlot());
 
 		switch (view.getStatus()) {
 			case CATEGORY_SCREEN:
@@ -102,8 +104,8 @@ public class ShopListener implements Listener {
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_ARRANGE_SLOT && view.getShop().getOwner().equals(player.getName())) {
 					view.setKeepAlive(true);
 					player.closeInventory();
-					AdminCategoryPlacementView newview = new AdminCategoryPlacementView(player, view.getShop(), view.getStatus());
-					player.openInventory(newview);
+					AdminCategoryPlacementView newView = new AdminCategoryPlacementView(player, view.getShop(), view.getStatus());
+					player.openInventory(newView);
 					return;
 				}
 
@@ -134,7 +136,6 @@ public class ShopListener implements Listener {
 					view.buildCategoryItemView();
 				} else if (event.getCursor().getData().getItemType().equals(Material.AIR)) {
 				} else if (view.getShop().isOwner(player)) {
-                    // TODO: Change to add Category conversation
 					if (!player.isConversing()) {
 						event.setCancelled(false);
 						ItemStack inHand = event.getCursor().clone();
