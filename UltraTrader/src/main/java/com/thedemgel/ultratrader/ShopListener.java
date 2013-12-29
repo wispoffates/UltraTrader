@@ -89,8 +89,6 @@ public class ShopListener implements Listener {
 			event.setCancelled(true);
         }
 
-        System.out.println(event.getRawSlot());
-
 		switch (view.getStatus()) {
 			case CATEGORY_SCREEN:
 				if (event.getRawSlot() == InventoryHandler.INVENTORY_CREATE_ITEM_SLOT) {
