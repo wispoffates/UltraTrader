@@ -17,7 +17,7 @@ public class AbandonConvo implements ConversationAbandonedListener {
 			final Player player = (Player) abandonedEvent.getContext().getForWhom();
 			if (UltraTrader.getStoreHandler().getInventoryHandler().hasInventoryView(player)) {
 				ShopInventoryView view = (ShopInventoryView) UltraTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
-				view.getShop().save();
+				view.getShop().save(true);
 				if (view.isKeepAlive()) {
 					view.setKeepAlive(false);
 

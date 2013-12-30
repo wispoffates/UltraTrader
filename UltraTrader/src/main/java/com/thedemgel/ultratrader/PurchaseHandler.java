@@ -147,7 +147,7 @@ public class PurchaseHandler {
 			player.sendMessage(L.getString("transaction.error.fundstoshop"));
 		}
 
-		shop.save();
+		shop.save(true);
 
 		if (UltraTrader.isLoggingEnabled()) {
 			UltraTrader.getLogDbObj().doLog(shop, player, new EconomyResponse(traderDeposit.doubleValue(), 0, ResponseType.SUCCESS, ""), ShopAction.SELL, "Player pruchased " + finalamount + " " + buyStack.getType().name());
@@ -216,7 +216,7 @@ public class PurchaseHandler {
 		player.sendMessage(L.getFormatString("transaction.sale.shop.sale", item.getType().name(), item.getAmount()));
 		player.sendMessage(L.getFormatString("transaction.sale.shop.totalpurchase", UltraTrader.getEconomy().format(heldFunds.amount)));
 
-		shop.save();
+		shop.save(true);
 
 		if (UltraTrader.isLoggingEnabled()) {
 			UltraTrader.getLogDbObj().doLog(shop, player, heldFunds, ShopAction.BUY, "Sold " + item.getAmount() + " " + item.getType().name());

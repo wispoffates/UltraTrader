@@ -83,9 +83,9 @@ public class UltraTrader extends JavaPlugin {
 		return traitHandler;
 	}
 
-    public UltraTrader() {
-        ConfigurationSerialization.registerClass(CategoryItem.class);
-    }
+    //public UltraTrader() {
+    //    ConfigurationSerialization.registerClass(CategoryItem.class);
+    //}
 
 	private boolean citizens;
 	private boolean vault;
@@ -101,6 +101,7 @@ public class UltraTrader extends JavaPlugin {
 
 	@Override
 	public final void onEnable() {
+        ConfigurationSerialization.registerClass(CategoryItem.class);
 		try {
 			Metrics metrics = new Metrics(this);
 			metrics.start();
@@ -157,7 +158,7 @@ public class UltraTrader extends JavaPlugin {
 
 	@Override
 	public final void onDisable() {
-		getStoreHandler().saveShops();
+		getStoreHandler().saveShops(false);
 		this.saveConfig();
 		this.getLogger().log(Level.INFO, "UltraTrader Disabled...");
 	}

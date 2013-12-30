@@ -17,7 +17,7 @@ public abstract class DataObject {
 		System.out.println("Pool created");
 	}
 
-	public abstract void save(Shop shop);
+	public abstract void save(Shop shop, boolean async);
 
 	public abstract void load(int shopid);
 

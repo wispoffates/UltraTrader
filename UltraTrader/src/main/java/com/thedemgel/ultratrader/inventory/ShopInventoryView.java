@@ -127,9 +127,9 @@ public class ShopInventoryView extends InventoryView {
             ItemMeta setPriceMeta = doAdmin.getItemMeta();
             List<String> doAdminText = new ArrayList<>();
             // TODO: add to language
-            doAdminText.add(L.getString("inventory.buyadmin.lore"));
+            doAdminText.add(L.getString("inventory.admin.lore"));
             setPriceMeta.setLore(doAdminText);
-            setPriceMeta.setDisplayName(L.getString("inventory.buyadmin.display"));
+            setPriceMeta.setDisplayName(L.getString("inventory.admin.display"));
             doAdmin.setItemMeta(setPriceMeta);
             this.setItem(InventoryHandler.INVENTORY_ADMIN_SLOT, doAdmin);
 

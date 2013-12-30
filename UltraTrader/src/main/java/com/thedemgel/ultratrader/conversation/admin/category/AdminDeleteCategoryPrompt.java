@@ -43,7 +43,12 @@ public class AdminDeleteCategoryPrompt extends FixedIgnoreCaseSetPrompt {
             for (String line : item.getLore()) {
                 p.sendRawMessage(prefix.getPrefix(conversationContext) + ChatColor.WHITE + line);
             }
+
+            p.sendRawMessage(prefix.getPrefix(conversationContext) + ChatColor.RED + "This will delete all Items/Inventories in this Category!");
+            p.sendRawMessage(prefix.getPrefix(conversationContext) + ChatColor.RED + "Type the name to delete Category.");
         }
+
+
 
         return L.getString("conversation.options") + ": " + this.formatFixedSet();
     }

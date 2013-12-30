@@ -88,7 +88,7 @@ public class MysqlDataObject extends DataObject {
 	}
 
 	@Override
-	public void save(Shop shop) {
+	public void save(Shop shop, boolean async) {
 	}
 
 	@Override

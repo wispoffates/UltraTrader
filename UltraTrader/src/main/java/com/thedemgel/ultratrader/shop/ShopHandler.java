@@ -41,9 +41,9 @@ public class ShopHandler {
 		UltraTrader.getDbObj().initShops();
 	}
 
-	public void saveShops() {
+	public void saveShops(boolean async) {
 		for (Shop shop : shops.values()) {
-			shop.save();
+			shop.save(async);
 		}
 	}
 
@@ -124,7 +124,7 @@ public class ShopHandler {
 		tempShop.setWalletType(WalletHandler.DEFAULT_WALLET_TYPE);
 		tempShop.setInventoryInterfaceType(InventoryInterfaceHandler.DEFAULT_INVENTORY_TYPE);
 		tempShop.setLevel(LimitHandler.getLevelAtCreate(player));
-		tempShop.save();
+		tempShop.save(true);
 
 		shops.put(tempShop.getId(), tempShop);
 		return tempShop;

@@ -34,8 +34,13 @@ public class YamlDataObject extends DataObject {
 	}
 
 	@Override
-	public void save(Shop shop) {
-		getPool().execute(new SaveShop(shop));
+	public void save(Shop shop, boolean async) {
+        if (async) {
+		    getPool().execute(new SaveShop(shop));
+        } else {
+            SaveShop save = new SaveShop(shop);
+            save.run();
+        }
 	}
 
     @Override
@@ -263,7 +268,11 @@ public class YamlDataObject extends DataObject {
 	@Override
 	public void initShops() {
 		for (int id : getShopIds()) {
-			load(id);
+            try {
+			    load(id);
+            } catch (Exception e) {
+                System.out.println("Store could not be loaded (" + e.getMessage() + ")");
+            }
 		}
 	}
 
@@ -299,95 +308,98 @@ public class YamlDataObject extends DataObject {
 
 		@Override
 		public void run() {
-            ConfigurationSerialization.registerClass(CategoryItem.class);
-            ConfigurationSection catSection = config.getConfig().createSection("category");
+            try {
+                ConfigurationSection catSection = config.getConfig().createSection("category");
 
-            for (CategoryItem categoryItem : shop.getCategoryItem().values()) {
-                catSection.set(categoryItem.getCategoryId() + ".id", categoryItem.getCategoryId());
-                catSection.set(categoryItem.getCategoryId() + ".itemStack", categoryItem);
-                catSection.set(categoryItem.getCategoryId() + ".slot", categoryItem.getSlot());
-                catSection.set(categoryItem.getCategoryId() + ".lore", categoryItem.getLore());
+                for (CategoryItem categoryItem : shop.getCategoryItem().values()) {
+                    catSection.set(categoryItem.getCategoryId() + ".id", categoryItem.getCategoryId());
+                    catSection.set(categoryItem.getCategoryId() + ".itemStack", categoryItem);
+                    catSection.set(categoryItem.getCategoryId() + ".slot", categoryItem.getSlot());
+                    catSection.set(categoryItem.getCategoryId() + ".lore", categoryItem.getLore());
+                }
+
+                ConfigurationSection priceConfig = config.getConfig().createSection("priceList");
+
+                for (ItemPrice priceList : shop.getPriceList().values()) {
+                    priceConfig.set(priceList.getId() + ".description", priceList.getDescription());
+                    priceConfig.set(priceList.getId() + ".category", priceList.getCategoryId());
+                    priceConfig.set(priceList.getId() + ".itemStack", priceList.getItemStack());
+                    priceConfig.set(priceList.getId() + ".sellPrice", priceList.getSellPrice());
+                    priceConfig.set(priceList.getId() + ".buyPrice", priceList.getBuyPrice());
+                    priceConfig.set(priceList.getId() + ".random", priceList.getId());
+                    priceConfig.set(priceList.getId() + ".slot", priceList.getSlot());
+                }
+
+			    ConfigurationSection invConfig = config.getConfig().getConfigurationSection("inventory");
+			    if (invConfig == null) {
+				    invConfig = config.getConfig().createSection("inventory");
+			    }
+
+			    // Save Inventory INFO
+			    ConfigurationSection inventoryInfoConfig = invConfig.getConfigurationSection("info");
+			    if (inventoryInfoConfig == null) {
+				    inventoryInfoConfig = invConfig.createSection("info");
+				    ConfigValue<String> defaultinventory = new ConfigValue(InventoryInterfaceHandler.DEFAULT_INVENTORY_TYPE);
+				    inventoryInfoConfig.set("type", defaultinventory.getValue());
+			    }
+
+			    for (Entry<String, ConfigValue> inventoryinfo : shop.getInventoryinfo().entrySet()) {
+				    inventoryInfoConfig.set(inventoryinfo.getKey(), inventoryinfo.getValue().getValue());
+			    }
+
+			    // Save Inventory items
+			    ConfigurationSection invconf = invConfig.createSection("items");
+
+			    Integer count = 0;
+
+			    for (Map.Entry<ItemStack, Integer> entry : shop.getInventory().entrySet()) {
+				    invconf.set(count.toString() + ".itemstack", entry.getKey());
+				    invconf.set(count.toString() + ".amount", entry.getValue());
+				    count++;
+			    }
+
+			    // Get wallet information
+			    ConfigurationSection walletconfig = config.getConfig().getConfigurationSection("wallet");
+			    if (walletconfig == null) {
+				    walletconfig = config.getConfig().createSection("wallet");
+				    walletconfig.set("type", WalletHandler.DEFAULT_WALLET_TYPE);
+			    }
+
+			    for (Entry<String, ConfigValue> walletinfo : shop.getWalletinfo().entrySet()) {
+				    walletconfig.set(walletinfo.getKey(), walletinfo.getValue().getValue());
+			    }
+
+			    ConfigurationSection infoconfig = config.getConfig().getConfigurationSection("info");
+			    if (infoconfig == null) {
+				    infoconfig = config.getConfig().createSection("info");
+				    //ConfigValue<String> defaultname = new ConfigValue(L.getString("general.newshopname"));
+				    infoconfig.set("name", new ConfigValue(L.getString("general.newshopname")));
+			    }
+
+			    for (Entry<String, ConfigValue> info : shop.getInfo().entrySet()) {
+				    infoconfig.set(info.getKey(), info.getValue().getValue());
+			    }
+
+			    ConfigurationSection blockConfig = config.getConfig().getConfigurationSection("blocks");
+                if (blockConfig == null) {
+                    blockConfig = config.getConfig().createSection("blocks");
+                }
+
+                ConfigurationSection blocks = blockConfig.createSection("blocklocation");
+
+                int i = 0;
+                for (Location loc : shop.getBlockShops()) {
+                    blocks.set(i + ".world", loc.getWorld().getName());
+                    blocks.set(i + ".x", loc.getBlockX());
+                    blocks.set(i + ".y", loc.getBlockY());
+                    blocks.set(i + ".z", loc.getBlockZ());
+                    i++;
+                }
+
+			    config.saveConfig();
+            } catch (Exception e) {
+                System.out.println("Store Config cannot be saved (" + e.getMessage() + ")");
             }
-
-            ConfigurationSection priceConfig = config.getConfig().createSection("priceList");
-
-            for (ItemPrice priceList : shop.getPriceList().values()) {
-                priceConfig.set(priceList.getId() + ".description", priceList.getDescription());
-                priceConfig.set(priceList.getId() + ".category", priceList.getCategoryId());
-                priceConfig.set(priceList.getId() + ".itemStack", priceList.getItemStack());
-                priceConfig.set(priceList.getId() + ".sellPrice", priceList.getSellPrice());
-                priceConfig.set(priceList.getId() + ".buyPrice", priceList.getBuyPrice());
-                priceConfig.set(priceList.getId() + ".random", priceList.getId());
-                priceConfig.set(priceList.getId() + ".slot", priceList.getSlot());
-            }
-
-			ConfigurationSection invConfig = config.getConfig().getConfigurationSection("inventory");
-			if (invConfig == null) {
-				invConfig = config.getConfig().createSection("inventory");
-			}
-
-			// Save Inventory INFO
-			ConfigurationSection inventoryInfoConfig = invConfig.getConfigurationSection("info");
-			if (inventoryInfoConfig == null) {
-				inventoryInfoConfig = invConfig.createSection("info");
-				ConfigValue<String> defaultinventory = new ConfigValue(InventoryInterfaceHandler.DEFAULT_INVENTORY_TYPE);
-				inventoryInfoConfig.set("type", defaultinventory.getValue());
-			}
-
-			for (Entry<String, ConfigValue> inventoryinfo : shop.getInventoryinfo().entrySet()) {
-				inventoryInfoConfig.set(inventoryinfo.getKey(), inventoryinfo.getValue().getValue());
-			}
-
-			// Save Inventory items
-			ConfigurationSection invconf = invConfig.createSection("items");
-
-			Integer count = 0;
-
-			for (Map.Entry<ItemStack, Integer> entry : shop.getInventory().entrySet()) {
-				invconf.set(count.toString() + ".itemstack", entry.getKey());
-				invconf.set(count.toString() + ".amount", entry.getValue());
-				count++;
-			}
-
-			// Get wallet information
-			ConfigurationSection walletconfig = config.getConfig().getConfigurationSection("wallet");
-			if (walletconfig == null) {
-				walletconfig = config.getConfig().createSection("wallet");
-				walletconfig.set("type", WalletHandler.DEFAULT_WALLET_TYPE);
-			}
-
-			for (Entry<String, ConfigValue> walletinfo : shop.getWalletinfo().entrySet()) {
-				walletconfig.set(walletinfo.getKey(), walletinfo.getValue().getValue());
-			}
-
-			ConfigurationSection infoconfig = config.getConfig().getConfigurationSection("info");
-			if (infoconfig == null) {
-				infoconfig = config.getConfig().createSection("info");
-				//ConfigValue<String> defaultname = new ConfigValue(L.getString("general.newshopname"));
-				infoconfig.set("name", new ConfigValue(L.getString("general.newshopname")));
-			}
-
-			for (Entry<String, ConfigValue> info : shop.getInfo().entrySet()) {
-				infoconfig.set(info.getKey(), info.getValue().getValue());
-			}
-
-			ConfigurationSection blockConfig = config.getConfig().getConfigurationSection("blocks");
-            if (blockConfig == null) {
-                blockConfig = config.getConfig().createSection("blocks");
-            }
-
-            ConfigurationSection blocks = blockConfig.createSection("blocklocation");
-
-            int i = 0;
-            for (Location loc : shop.getBlockShops()) {
-                blocks.set(i + ".world", loc.getWorld().getName());
-                blocks.set(i + ".x", loc.getBlockX());
-                blocks.set(i + ".y", loc.getBlockY());
-                blocks.set(i + ".z", loc.getBlockZ());
-                i++;
-            }
-
-			config.saveConfig();
 		}
 	}
 }

@@ -29,7 +29,8 @@ public class AdminCategoryMenuPrompt extends FixedIgnoreCaseSetPrompt {
         Player p = (Player) conversationContext.getForWhom();
         ShopInventoryView view = (ShopInventoryView) conversationContext.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
 
-        addOption("delete", Prompt.END_OF_CONVERSATION);
+        // TODO: fix category deletion
+        addOption("delete", new AdminDeleteCategoryPrompt());
         addOption("edit", new AdminEditCategoryPrompt());
         addOption(L.getString("general.exit"), new AdminMenuPrompt());
 

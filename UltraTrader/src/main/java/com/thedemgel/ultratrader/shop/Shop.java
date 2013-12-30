@@ -37,8 +37,8 @@ public class Shop {
 		//inv = new ShopInventoryInterface(this);
 	}
 
-	public void save() {
-		UltraTrader.getDbObj().save(this);
+	public void save(boolean async) {
+		UltraTrader.getDbObj().save(this, async);
 	}
 
 	public ConcurrentMap<ItemStack, Integer> getInventory() {

@@ -146,7 +146,7 @@ public class AdminItemPlacementView extends InventoryView implements Listener {
 				itemprice.setSlot(i);
 			}
 
-			shop.save();
+			shop.save(true);
 		}
 
 		HandlerList.unregisterAll(this);

@@ -30,6 +30,7 @@ public class AddCategoryItemBeginPrompt extends MessagePrompt {
 		context.setSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW, view);
 		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
 		CategoryItem categoryItem = new CategoryItem(item);
+        categoryItem.setAmount(1);
         categoryItem.setSlot(-1);
         context.setSessionData(ConversationHandler.CONVERSATION_SESSION_CATEGORYITEM, categoryItem);
 

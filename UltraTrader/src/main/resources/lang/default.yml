@@ -186,8 +186,8 @@ inventory:
       full: Click to Move all to Inventory
       empty: Nothing to move to Inventory
   tobuyscreen:
-    display: Buy Screen
-    lore: Goto Buy Screen
+    display: Back to Categories
+    lore: Goto Category Screen
   tosellscreen:
     display: Sell Screen
     lore: Goto Sell Screen

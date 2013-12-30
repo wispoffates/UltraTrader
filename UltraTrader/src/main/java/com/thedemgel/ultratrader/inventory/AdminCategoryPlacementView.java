@@ -144,7 +144,7 @@ public class AdminCategoryPlacementView extends InventoryView implements Listene
 				categoryItem.setSlot(i);
 			}
 
-			shop.save();
+			shop.save(true);
 		}
 
 		HandlerList.unregisterAll(this);

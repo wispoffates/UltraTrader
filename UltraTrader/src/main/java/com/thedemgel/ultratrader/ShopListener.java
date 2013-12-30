@@ -136,12 +136,21 @@ public class ShopListener implements Listener {
 				} else if (view.getShop().isOwner(player)) {
 					if (!player.isConversing()) {
 						event.setCancelled(false);
-						ItemStack inHand = event.getCursor().clone();
-						Conversation convo = UltraTrader.getConversationHandler().getAddCategoryItem().buildConversation(player);
-						convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, inHand);
-						convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
-						view.setConvo(convo);
-						convo.begin();
+						final ItemStack inHand = event.getCursor().clone();
+                        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                            @Override
+                            public void run() {
+                                player.setItemOnCursor(new ItemStack(Material.AIR));
+
+                                Conversation convo = UltraTrader.getConversationHandler().getAddCategoryItem().buildConversation(player);
+                                convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, inHand);
+                                convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
+                                view.setConvo(convo);
+                                convo.begin();
+
+                            }
+                        }, UltraTrader.BUKKIT_SCHEDULER_DELAY);
+
 					} else {
 						player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
 					}
