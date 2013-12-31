@@ -147,4 +147,8 @@ public class ShopHandler {
 
         UltraTrader.getDbObj().removeShopFile(shop.getId());
     }
+
+    public Map<Integer, Shop> getShops() {
+        return shops;
+    }
 }

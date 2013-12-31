@@ -90,6 +90,7 @@ public class UltraTrader extends JavaPlugin {
 	private boolean citizens;
 	private boolean vault;
 	private boolean debug = false;
+    private MetricHandler metricHandler;
 
 	public void toggleDebug() {
 		debug = !debug;
@@ -102,13 +103,15 @@ public class UltraTrader extends JavaPlugin {
 	@Override
 	public final void onEnable() {
         ConfigurationSerialization.registerClass(CategoryItem.class);
-		try {
+
+
+		/*try {
 			Metrics metrics = new Metrics(this);
 			metrics.start();
 		} catch (IOException e) {
 			// Failed to submit the stats :-(
 			getLogger().info("Metrics has failed to load...");
-		}
+		}*/
 		plugin = this;
 
 		traitHandler = new TraitHandler();
@@ -153,7 +156,10 @@ public class UltraTrader extends JavaPlugin {
 
 		getServer().getPluginManager().registerEvents(new ShopListener(this), this);
         getServer().getPluginManager().registerEvents(new BlockListener(), this);
-		this.getLogger().log(Level.INFO, "UltraTrader Enabled...");
+
+        metricHandler = new MetricHandler();
+
+        this.getLogger().log(Level.INFO, "UltraTrader Enabled...");
 	}
 
 	@Override

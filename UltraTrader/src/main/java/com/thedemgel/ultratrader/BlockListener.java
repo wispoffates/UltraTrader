@@ -56,6 +56,8 @@ public class BlockListener implements Listener {
                 event.setCancelled(true);
             } else {
                 shop.getBlockShops().remove(block.getLocation());
+                block.removeMetadata(BlockShopHandler.SHOP_METADATA_KEY, UltraTrader.getInstance());
+                block.removeMetadata(BlockShopHandler.SHOP_OWNER_KEY, UltraTrader.getInstance());
                 // TODO: Language addition
                 player.sendMessage(ChatColor.AQUA + "Shop removed from block.");
             }
