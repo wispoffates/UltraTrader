@@ -32,6 +32,10 @@ public class RentalHandler {
 		ecs.scheduleAtFixedRate(new RentCheck(), 10, 10, TimeUnit.SECONDS);
 	}
 
+    public static int getNumberRentalNPCs() {
+        return rentalNPCs.size();
+    }
+
 	public static boolean unregisterRentalNPC(NPC npc) {
 		if (rentalNPCs.contains(npc)) {
 			rentalNPCs.remove(npc);

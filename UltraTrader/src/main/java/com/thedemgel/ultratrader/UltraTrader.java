@@ -25,6 +25,7 @@ import java.util.logging.Level;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.trait.TraitInfo;
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -159,6 +160,17 @@ public class UltraTrader extends JavaPlugin {
 
         metricHandler = new MetricHandler();
 
+        // Wait will all plugins are loaded to start final tasks
+        if (Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
+            @Override
+            public void run() {
+                metricHandler.getMetrics().start();
+                getLogger().log(Level.INFO, "UltraTrader finished loading " + shopHandler.getShops().size() + " shops.");
+            }
+        }, BUKKIT_SCHEDULER_DELAY) == -1) {
+            getLogger().log(Level.WARNING, "Final tasks did not run.");
+        }
+
         this.getLogger().log(Level.INFO, "UltraTrader Enabled...");
 	}
 
@@ -209,4 +221,8 @@ public class UltraTrader extends JavaPlugin {
 	public final boolean isVault() {
 		return vault;
 	}
+
+    public MetricHandler getMetrics() {
+        return metricHandler;
+    }
 }
