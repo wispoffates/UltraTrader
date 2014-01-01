@@ -40,6 +40,8 @@ public class UltraRental extends JavaPlugin {
 			.thatExcludesNonPlayersWithMessage("No Console Please");
 
 		UltraTrader.getTraitHandler().registerTrait(RentalShop.class, "rentalshop");
+
+        addMetrics();
 	}
 
     public void addMetrics() {
