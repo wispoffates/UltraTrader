@@ -27,6 +27,11 @@ public class MetricHandler {
 
         numberOfShopsGraph.addPlotter(new Metrics.Plotter() {
             @Override
+            public String getColumnName() {
+                return "TotalShops";
+            }
+
+            @Override
             public int getValue() {
                 return UltraTrader.getStoreHandler().getShops().size();
             }
