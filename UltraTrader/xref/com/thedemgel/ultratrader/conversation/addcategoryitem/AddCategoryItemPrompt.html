@@ -21,34 +21,35 @@
 <a class="jxr_linenumber" name="11" href="#11">11</a>  <strong class="jxr_keyword">import</strong> org.bukkit.inventory.ItemStack;
 <a class="jxr_linenumber" name="12" href="#12">12</a>  
 <a class="jxr_linenumber" name="13" href="#13">13</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../com/thedemgel/ultratrader/conversation/addcategoryitem/AddCategoryItemPrompt.html">AddCategoryItemPrompt</a> <strong class="jxr_keyword">extends</strong> StringPrompt {
-<a class="jxr_linenumber" name="14" href="#14">14</a>  
-<a class="jxr_linenumber" name="15" href="#15">15</a>  	@Override
-<a class="jxr_linenumber" name="16" href="#16">16</a>  	<strong class="jxr_keyword">public</strong> Prompt acceptInput(ConversationContext context, String input) {
-<a class="jxr_linenumber" name="17" href="#17">17</a>          <a href="../../../../../com/thedemgel/ultratrader/inventory/ShopInventoryView.html">ShopInventoryView</a> view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
-<a class="jxr_linenumber" name="18" href="#18">18</a>          <a href="../../../../../com/thedemgel/ultratrader/shop/CategoryItem.html">CategoryItem</a> categoryItem = (CategoryItem) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_CATEGORYITEM);
-<a class="jxr_linenumber" name="19" href="#19">19</a>          categoryItem.setDisplayName(input);
-<a class="jxr_linenumber" name="20" href="#20">20</a>  
-<a class="jxr_linenumber" name="21" href="#21">21</a>          String shopId = input.replaceAll(<span class="jxr_string">"[^a-zA-Z]"</span>, <span class="jxr_string">""</span>);
-<a class="jxr_linenumber" name="22" href="#22">22</a>  
-<a class="jxr_linenumber" name="23" href="#23">23</a>          <strong class="jxr_keyword">int</strong> i = 1;
-<a class="jxr_linenumber" name="24" href="#24">24</a>          <strong class="jxr_keyword">while</strong> (view.getShop().getCategoryItem().containsKey(shopId)) {
-<a class="jxr_linenumber" name="25" href="#25">25</a>              shopId += i;
-<a class="jxr_linenumber" name="26" href="#26">26</a>              i++;
-<a class="jxr_linenumber" name="27" href="#27">27</a>          }
-<a class="jxr_linenumber" name="28" href="#28">28</a>  
-<a class="jxr_linenumber" name="29" href="#29">29</a>          categoryItem.setCategoryId(input.replaceAll(<span class="jxr_string">"[^a-zA-Z]"</span>, <span class="jxr_string">""</span>));
-<a class="jxr_linenumber" name="30" href="#30">30</a>  
-<a class="jxr_linenumber" name="31" href="#31">31</a>  		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../com/thedemgel/ultratrader/conversation/addcategoryitem/AddCategoryItemDescriptionPrompt.html">AddCategoryItemDescriptionPrompt</a>();
-<a class="jxr_linenumber" name="32" href="#32">32</a>  	}
-<a class="jxr_linenumber" name="33" href="#33">33</a>  
-<a class="jxr_linenumber" name="34" href="#34">34</a>  	@Override
-<a class="jxr_linenumber" name="35" href="#35">35</a>  	<strong class="jxr_keyword">public</strong> String getPromptText(ConversationContext context) {
-<a class="jxr_linenumber" name="36" href="#36">36</a>  		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
-<a class="jxr_linenumber" name="37" href="#37">37</a>  
-<a class="jxr_linenumber" name="38" href="#38">38</a>          <em class="jxr_comment">// TODO: language addition</em>
-<a class="jxr_linenumber" name="39" href="#39">39</a>  		<strong class="jxr_keyword">return</strong> MessageFormat.format(<span class="jxr_string">"What display name would you like for {0}?"</span>, item.getType().name());
-<a class="jxr_linenumber" name="40" href="#40">40</a>  	}
-<a class="jxr_linenumber" name="41" href="#41">41</a>  }
+<a class="jxr_linenumber" name="14" href="#14">14</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String ADD_CATEGORY_SUCCESS = <span class="jxr_string">"addCategorySuccess"</span>;
+<a class="jxr_linenumber" name="15" href="#15">15</a>  
+<a class="jxr_linenumber" name="16" href="#16">16</a>  	@Override
+<a class="jxr_linenumber" name="17" href="#17">17</a>  	<strong class="jxr_keyword">public</strong> Prompt acceptInput(ConversationContext context, String input) {
+<a class="jxr_linenumber" name="18" href="#18">18</a>          <a href="../../../../../com/thedemgel/ultratrader/inventory/ShopInventoryView.html">ShopInventoryView</a> view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
+<a class="jxr_linenumber" name="19" href="#19">19</a>          <a href="../../../../../com/thedemgel/ultratrader/shop/CategoryItem.html">CategoryItem</a> categoryItem = (CategoryItem) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_CATEGORYITEM);
+<a class="jxr_linenumber" name="20" href="#20">20</a>          categoryItem.setDisplayName(input);
+<a class="jxr_linenumber" name="21" href="#21">21</a>  
+<a class="jxr_linenumber" name="22" href="#22">22</a>          String shopId = input.replaceAll(<span class="jxr_string">"[^a-zA-Z]"</span>, <span class="jxr_string">""</span>);
+<a class="jxr_linenumber" name="23" href="#23">23</a>  
+<a class="jxr_linenumber" name="24" href="#24">24</a>          <strong class="jxr_keyword">int</strong> i = 1;
+<a class="jxr_linenumber" name="25" href="#25">25</a>          <strong class="jxr_keyword">while</strong> (view.getShop().getCategoryItem().containsKey(shopId)) {
+<a class="jxr_linenumber" name="26" href="#26">26</a>              shopId += i;
+<a class="jxr_linenumber" name="27" href="#27">27</a>              i++;
+<a class="jxr_linenumber" name="28" href="#28">28</a>          }
+<a class="jxr_linenumber" name="29" href="#29">29</a>  
+<a class="jxr_linenumber" name="30" href="#30">30</a>          categoryItem.setCategoryId(input.replaceAll(<span class="jxr_string">"[^a-zA-Z]"</span>, <span class="jxr_string">""</span>));
+<a class="jxr_linenumber" name="31" href="#31">31</a>  
+<a class="jxr_linenumber" name="32" href="#32">32</a>  		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../com/thedemgel/ultratrader/conversation/addcategoryitem/AddCategoryItemDescriptionPrompt.html">AddCategoryItemDescriptionPrompt</a>();
+<a class="jxr_linenumber" name="33" href="#33">33</a>  	}
+<a class="jxr_linenumber" name="34" href="#34">34</a>  
+<a class="jxr_linenumber" name="35" href="#35">35</a>  	@Override
+<a class="jxr_linenumber" name="36" href="#36">36</a>  	<strong class="jxr_keyword">public</strong> String getPromptText(ConversationContext context) {
+<a class="jxr_linenumber" name="37" href="#37">37</a>  		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
+<a class="jxr_linenumber" name="38" href="#38">38</a>  
+<a class="jxr_linenumber" name="39" href="#39">39</a>          <em class="jxr_comment">// TODO: language addition</em>
+<a class="jxr_linenumber" name="40" href="#40">40</a>  		<strong class="jxr_keyword">return</strong> MessageFormat.format(<span class="jxr_string">"What display name would you like for {0}?"</span>, item.getType().name());
+<a class="jxr_linenumber" name="41" href="#41">41</a>  	}
+<a class="jxr_linenumber" name="42" href="#42">42</a>  }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>

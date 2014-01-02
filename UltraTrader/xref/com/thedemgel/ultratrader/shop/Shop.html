@@ -47,8 +47,8 @@
 <a class="jxr_linenumber" name="37" href="#37">37</a>  		<em class="jxr_comment">//inv = new ShopInventoryInterface(this);</em>
 <a class="jxr_linenumber" name="38" href="#38">38</a>  	}
 <a class="jxr_linenumber" name="39" href="#39">39</a>  
-<a class="jxr_linenumber" name="40" href="#40">40</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> save() {
-<a class="jxr_linenumber" name="41" href="#41">41</a>  		UltraTrader.getDbObj().save(<strong class="jxr_keyword">this</strong>);
+<a class="jxr_linenumber" name="40" href="#40">40</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> save(<strong class="jxr_keyword">boolean</strong> async) {
+<a class="jxr_linenumber" name="41" href="#41">41</a>  		UltraTrader.getDbObj().save(<strong class="jxr_keyword">this</strong>, async);
 <a class="jxr_linenumber" name="42" href="#42">42</a>  	}
 <a class="jxr_linenumber" name="43" href="#43">43</a>  
 <a class="jxr_linenumber" name="44" href="#44">44</a>  	<strong class="jxr_keyword">public</strong> ConcurrentMap&lt;ItemStack, Integer&gt; getInventory() {
