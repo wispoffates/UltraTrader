@@ -26,7 +26,8 @@ public class ConversationHandler {
 	public static final String CONVERSATION_SESSION_VIEW = "view";
 	public static final String CONVERSATION_SESSION_DESCRIPTION = "description";
 	public static final String CONVERSATION_SESSION_NPC = "npc";
-	public static final String CONVERSATION_SESSION_PRICE = "price";
+	public static final String CONVERSATION_SESSION_BUYPRICE = "buyprice";
+    public static final String CONVERSATION_SESSION_SELLPRICE = "sellprice";
 	public static final String CONVERSATION_SESSION_RETURN = "return";
 	public static final String CONVERSATION_SESSION_SLOT = "slot";
     public static final String CONVERSATION_SESSION_IS_BLOCK = "isblock";

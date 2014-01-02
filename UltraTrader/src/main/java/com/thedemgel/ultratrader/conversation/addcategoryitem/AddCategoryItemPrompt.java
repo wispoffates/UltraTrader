@@ -11,6 +11,7 @@ import org.bukkit.conversations.StringPrompt;
 import org.bukkit.inventory.ItemStack;
 
 public class AddCategoryItemPrompt extends StringPrompt {
+    public static final String ADD_CATEGORY_SUCCESS = "addCategorySuccess";
 
 	@Override
 	public Prompt acceptInput(ConversationContext context, String input) {

@@ -1,6 +1,7 @@
 
 package com.thedemgel.ultratrader.conversation.addcategoryitem;
 
+import com.thedemgel.ultratrader.LimitHandler;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
@@ -8,6 +9,7 @@ import com.thedemgel.ultratrader.shop.CategoryItem;
 import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import com.thedemgel.ultratrader.util.Permissions;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
 import org.bukkit.conversations.Prompt;
@@ -20,24 +22,30 @@ public class AddCategoryItemBeginPrompt extends MessagePrompt {
 	@Override
 	protected Prompt getNextPrompt(ConversationContext context) {
 		final Player player = (Player) context.getForWhom();
+        context.setSessionData(AddCategoryItemPrompt.ADD_CATEGORY_SUCCESS, true);
+
+        final ShopInventoryView view = (ShopInventoryView) UltraTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
+        context.setSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW, view);
+        final ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
 
         if (!player.hasPermission(Permissions.SHOP_CATEGORY_CREATE)) {
-            player.sendRawMessage("You don't have permission to create a category.");
-            return Prompt.END_OF_CONVERSATION;
+            player.sendRawMessage(ChatColor.RED + "You don't have permission to create a category.");
+            context.setSessionData(AddCategoryItemPrompt.ADD_CATEGORY_SUCCESS, false);
+            return new AddCategoryItemFinishPrompt();
         }
 
-		ShopInventoryView view = (ShopInventoryView) UltraTrader.getStoreHandler().getInventoryHandler().getInventoryView(player);
-		context.setSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW, view);
-		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
+        if (view.getShop().getCategoryItem().size() >= LimitHandler.getMaxCategory(player)) {
+            player.sendRawMessage(ChatColor.RED + "You don't have enough room to create a category. (player limit " + LimitHandler.getMaxCategory(player) + ")");
+
+            context.setSessionData(AddCategoryItemPrompt.ADD_CATEGORY_SUCCESS, false);
+
+            return new AddCategoryItemFinishPrompt();
+        }
+
 		CategoryItem categoryItem = new CategoryItem(item);
         categoryItem.setAmount(1);
         categoryItem.setSlot(-1);
         context.setSessionData(ConversationHandler.CONVERSATION_SESSION_CATEGORYITEM, categoryItem);
-
-        // TODO: add category limit
-		//if (view.getShop().getPriceList().size() >= LimitHandler.getMaxBuySellSize(view.getShop())) {
-		//	return new AddItemShopFullPrompt();
-		//}
 
 		view.setKeepAlive(true);
 		Bukkit.getScheduler().scheduleSyncDelayedTask(UltraTrader.getInstance(), new Runnable() {
@@ -53,7 +61,7 @@ public class AddCategoryItemBeginPrompt extends MessagePrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
         // TODO: language addition/change
-		return L.getString("conversation.addbuyitem.begin");
+		return "Begin adding a new Category.";
 	}
 
 }

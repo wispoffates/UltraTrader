@@ -22,9 +22,10 @@ public class AddItemFinishPrompt extends MessagePrompt {
 
 		String description = (String) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_DESCRIPTION);
 		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
-		BigDecimal price = (BigDecimal) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_PRICE);
+		BigDecimal buyPrice = (BigDecimal) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_BUYPRICE);
+        BigDecimal sellPrice = (BigDecimal) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_SELLPRICE);
 
-		view.getShop().addItem(item, price, BigDecimal.ZERO, description, view.getCategory());
+		view.getShop().addItem(item, sellPrice, buyPrice, description, view.getCategory());
 		view.getShop().getInventoryInterface().addInventory(item);
 
 		view.buildCategoryItemView();

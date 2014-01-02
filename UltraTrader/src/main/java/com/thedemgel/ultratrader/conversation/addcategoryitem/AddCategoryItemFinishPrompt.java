@@ -23,24 +23,28 @@ public class AddCategoryItemFinishPrompt extends MessagePrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
         try {
-		final ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
+		    final ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
+            final ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
 
-		final ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
+            boolean success = (boolean) context.getSessionData(AddCategoryItemPrompt.ADD_CATEGORY_SUCCESS);
 
-        CategoryItem categoryItem = (CategoryItem) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_CATEGORYITEM);
-        view.getShop().getCategoryItem().put(categoryItem.getCategoryId(), categoryItem);
+            if (success) {
+                CategoryItem categoryItem = (CategoryItem) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_CATEGORYITEM);
+                view.getShop().getCategoryItem().put(categoryItem.getCategoryId(), categoryItem);
+            }
 
-		view.buildCategoryView();
+		    view.buildCategoryView();
 
-		Bukkit.getScheduler().scheduleSyncDelayedTask(UltraTrader.getInstance(), new Runnable() {
-			@Override
-			public void run() {
-				view.getBottomInventory().addItem(item);
-			}
-		}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
+		    Bukkit.getScheduler().scheduleSyncDelayedTask(UltraTrader.getInstance(), new Runnable() {
+			    @Override
+			    public void run() {
+				    view.getBottomInventory().addItem(item);
+			    }
+		    }, UltraTrader.BUKKIT_SCHEDULER_DELAY);
         } catch (Exception e) {
             e.printStackTrace();
         }
-		return "Category Added";
+
+        return "End Category Addition.";
 	}
 }

@@ -17,3 +17,21 @@ logging:
     url: some.url.should.be.localhost
     # The port your mysql server listens on (default: 3306)
     port: 3306
+# Set the default limits of the server
+# The old limits.yml is being phased out
+defaults:
+                   trader:
+                     limits:
+                       category: 3
+                       levelcost:
+                         '1': 1000
+                         '2': 10000
+                         '3': 15000
+                         '4': 30000
+                       createshop: 1000
+                       createlevel: 1
+                       enableremote: false
+                       remoteitemcost: 500
+                       itemactivatecost: 10000
+                       maxshops: 1
+                       maxlevel: 1

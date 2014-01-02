@@ -254,6 +254,14 @@ public class Permissions {
      */
     public static final String SHOP_LIMIT_LEVEL_COST = "trader.limits.levelcost";
 
+    /**
+     * START SNIPPET: perm
+     * ####trader.limits.category
+     * `This will limit how many categories a player may place in their shop. Default: 2 (or set in config.yml)`
+     * END SNIPPET: perm
+     */
+    public static final String SHOP_LIMIT_CATEGORY = "trader.limits.category";
+
 	/**
 	 * START SNIPPET: perm
 	 * ####trader.limits.required.groupname.sometrait
@@ -272,13 +280,4 @@ public class Permissions {
 	 * END SNIPPET: perm
 	 */
 	public static final String SHOP_LIMIT_TRAITS_REQUIRED = "trader.limits.required";
-
-	/**
-	 * START SNIPPET: perm
-	 * ####trader.limits.required.override
-	 * `This permissions is used to tell Ultratrader to completely override all required traits
-	 * on ultratrader creation with permission requirements instead of limits.yml`
-	 * END SNIPPET: perm
-	 */
-	public static final String SHOP_LIMIT_TRAITS_REQUIRED_OVERRIDE = "trader.limits.required.override";
 }

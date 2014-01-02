@@ -1,8 +1,6 @@
 #parse( "common" )
 $h2 Limits
-There are 2 ways to set limits in Ultratrader. You can use the limits.yml method, which
-will allow you to set permission groups to assign to players/groups via a permission
-system. Or you can use individual permissions.
+Limits are set with defaults in the `config.yml` and then overridden with permissions.
 
 $h2 Permissions
 You can assign limit permissions to any player/group via a permissions plugin and it will
@@ -16,9 +14,7 @@ Then you just append the number (shops in this case) that is the limit.
 
 `trader.limits.maxshops.2`
 
-would limit the players max number of shops to 2. Remember this will override the
-limits.yml setting for whatever group this player is in, but not the other settings
-assigned by limits.yml.
+would limit the players max number of shops to 2.
 
 All the Permission nodes required setting permission limits can be found here:
 [Limits] (permission.html#Limits)
@@ -27,15 +23,13 @@ $h3 Required Traits
 It is possible to require that some traits be present on NPCs when a player
 creates them, if they are not present then they will be added automatically.
 
-To let Ultratrader know that some traits are required to you will use the either
-limits.yml or permissions. In this case the permissions are far more flexeble than
-the limits.yml method.
+To let Ultratrader know that some traits are required to you will use permissions.
 
 `trader.limits.required.groupname.traitname`
 
 Groupname is the group the special group the player is in (usually this would
 likely be `default`, or `trader.limits.required.default.traitname` but if you use
-more than one system of protections or limits then you would want to give out different
+more than one system of protections then you would want to give out different
 groups of requirements.
 
 $h4 Why would I set required Traits
@@ -57,10 +51,3 @@ and sections need to stay the same. Most of these settings are what a player
 gets if they just have the permissions needed to make a shop. So make sure that
 the settings in this section are good for everyone, unless you place players
 that can have shops into a special group/permission.
-
-In the Section below each item is explained.
-
-$h3 Limits
-#set( $snippetFile = "/src/main/resources/limits.yml" )
-#set( $snippetName = "" )
-#parse( "snippet" )

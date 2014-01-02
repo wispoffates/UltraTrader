@@ -219,14 +219,14 @@ public class ShopInventoryView extends InventoryView {
 		this.setItem(InventoryHandler.INVENTORY_BACK_ARROW_SLOT, toSell);
 
 		if (displayAdmin) {
-			ItemStack doAdmin = new ItemStack(Material.BOOK_AND_QUILL);
+			/*ItemStack doAdmin = new ItemStack(Material.BOOK_AND_QUILL);
 			ItemMeta setPriceMeta = doAdmin.getItemMeta();
 			List<String> doAdminText = new ArrayList<>();
 			doAdminText.add(L.getString("inventory.admin.lore"));
 			setPriceMeta.setLore(doAdminText);
 			setPriceMeta.setDisplayName(L.getString("inventory.admin.display"));
 			doAdmin.setItemMeta(setPriceMeta);
-			this.setItem(InventoryHandler.INVENTORY_ADMIN_SLOT, doAdmin);
+			this.setItem(InventoryHandler.INVENTORY_ADMIN_SLOT, doAdmin);*/
 
 			ItemStack doArrange = new ItemStack(Material.BOOKSHELF);
 			ItemMeta setArrangeMeta = doArrange.getItemMeta();
