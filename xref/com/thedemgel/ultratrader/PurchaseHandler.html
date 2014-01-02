@@ -157,7 +157,7 @@
 <a class="jxr_linenumber" name="147" href="#147">147</a> 			player.sendMessage(L.getString(<span class="jxr_string">"transaction.error.fundstoshop"</span>));
 <a class="jxr_linenumber" name="148" href="#148">148</a> 		}
 <a class="jxr_linenumber" name="149" href="#149">149</a> 
-<a class="jxr_linenumber" name="150" href="#150">150</a> 		shop.save();
+<a class="jxr_linenumber" name="150" href="#150">150</a> 		shop.save(<strong class="jxr_keyword">true</strong>);
 <a class="jxr_linenumber" name="151" href="#151">151</a> 
 <a class="jxr_linenumber" name="152" href="#152">152</a> 		<strong class="jxr_keyword">if</strong> (UltraTrader.isLoggingEnabled()) {
 <a class="jxr_linenumber" name="153" href="#153">153</a> 			UltraTrader.getLogDbObj().doLog(shop, player, <strong class="jxr_keyword">new</strong> EconomyResponse(traderDeposit.doubleValue(), 0, ResponseType.SUCCESS, <span class="jxr_string">""</span>), ShopAction.SELL, <span class="jxr_string">"Player pruchased "</span> + finalamount + <span class="jxr_string">" "</span> + buyStack.getType().name());
@@ -226,7 +226,7 @@
 <a class="jxr_linenumber" name="216" href="#216">216</a> 		player.sendMessage(L.getFormatString(<span class="jxr_string">"transaction.sale.shop.sale"</span>, item.getType().name(), item.getAmount()));
 <a class="jxr_linenumber" name="217" href="#217">217</a> 		player.sendMessage(L.getFormatString(<span class="jxr_string">"transaction.sale.shop.totalpurchase"</span>, UltraTrader.getEconomy().format(heldFunds.amount)));
 <a class="jxr_linenumber" name="218" href="#218">218</a> 
-<a class="jxr_linenumber" name="219" href="#219">219</a> 		shop.save();
+<a class="jxr_linenumber" name="219" href="#219">219</a> 		shop.save(<strong class="jxr_keyword">true</strong>);
 <a class="jxr_linenumber" name="220" href="#220">220</a> 
 <a class="jxr_linenumber" name="221" href="#221">221</a> 		<strong class="jxr_keyword">if</strong> (UltraTrader.isLoggingEnabled()) {
 <a class="jxr_linenumber" name="222" href="#222">222</a> 			UltraTrader.getLogDbObj().doLog(shop, player, heldFunds, ShopAction.BUY, <span class="jxr_string">"Sold "</span> + item.getAmount() + <span class="jxr_string">" "</span> + item.getType().name());

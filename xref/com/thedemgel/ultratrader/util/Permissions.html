@@ -264,34 +264,33 @@
 <a class="jxr_linenumber" name="254" href="#254">254</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="255" href="#255">255</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String SHOP_LIMIT_LEVEL_COST = <span class="jxr_string">"trader.limits.levelcost"</span>;
 <a class="jxr_linenumber" name="256" href="#256">256</a> 
-<a class="jxr_linenumber" name="257" href="#257">257</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="258" href="#258">258</a> <em class="jxr_javadoccomment">	 * START SNIPPET: perm</em>
-<a class="jxr_linenumber" name="259" href="#259">259</a> <em class="jxr_javadoccomment">	 * ####trader.limits.required.groupname.sometrait</em>
-<a class="jxr_linenumber" name="260" href="#260">260</a> <em class="jxr_javadoccomment">	 * `This limit matches the traits.required setting in limits.yml, replace sometrait with the</em>
-<a class="jxr_linenumber" name="261" href="#261">261</a> <em class="jxr_javadoccomment">	 * required trait. WARNING: this will add to the required traits listed in traits.required unless you</em>
-<a class="jxr_linenumber" name="262" href="#262">262</a> <em class="jxr_javadoccomment">	 * set trader.limits.required.override`</em>
-<a class="jxr_linenumber" name="263" href="#263">263</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="264" href="#264">264</a> <em class="jxr_javadoccomment">	 * `groupname is the group that the player is attempting to create a trader in. If "/trader create"</em>
-<a class="jxr_linenumber" name="265" href="#265">265</a> <em class="jxr_javadoccomment">	 * is used without arguments then group "default" is used, if an arguement is passed "/trader create worldguard"</em>
-<a class="jxr_linenumber" name="266" href="#266">266</a> <em class="jxr_javadoccomment">	 * then the group "worldguard" is used`</em>
-<a class="jxr_linenumber" name="267" href="#267">267</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="268" href="#268">268</a> <em class="jxr_javadoccomment">	 * `some examples:`</em>
-<a class="jxr_linenumber" name="269" href="#269">269</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="270" href="#270">270</a> <em class="jxr_javadoccomment">	 * - `trader.limits.required.default.worldguardowner`</em>
-<a class="jxr_linenumber" name="271" href="#271">271</a> <em class="jxr_javadoccomment">	 * - `trader.limits.required.worldguard.worldguardowner`</em>
-<a class="jxr_linenumber" name="272" href="#272">272</a> <em class="jxr_javadoccomment">	 * END SNIPPET: perm</em>
-<a class="jxr_linenumber" name="273" href="#273">273</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="274" href="#274">274</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String SHOP_LIMIT_TRAITS_REQUIRED = <span class="jxr_string">"trader.limits.required"</span>;
-<a class="jxr_linenumber" name="275" href="#275">275</a> 
-<a class="jxr_linenumber" name="276" href="#276">276</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="277" href="#277">277</a> <em class="jxr_javadoccomment">	 * START SNIPPET: perm</em>
-<a class="jxr_linenumber" name="278" href="#278">278</a> <em class="jxr_javadoccomment">	 * ####trader.limits.required.override</em>
-<a class="jxr_linenumber" name="279" href="#279">279</a> <em class="jxr_javadoccomment">	 * `This permissions is used to tell Ultratrader to completely override all required traits</em>
-<a class="jxr_linenumber" name="280" href="#280">280</a> <em class="jxr_javadoccomment">	 * on ultratrader creation with permission requirements instead of limits.yml`</em>
-<a class="jxr_linenumber" name="281" href="#281">281</a> <em class="jxr_javadoccomment">	 * END SNIPPET: perm</em>
-<a class="jxr_linenumber" name="282" href="#282">282</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="283" href="#283">283</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String SHOP_LIMIT_TRAITS_REQUIRED_OVERRIDE = <span class="jxr_string">"trader.limits.required.override"</span>;
-<a class="jxr_linenumber" name="284" href="#284">284</a> }
+<a class="jxr_linenumber" name="257" href="#257">257</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="258" href="#258">258</a> <em class="jxr_javadoccomment">     * START SNIPPET: perm</em>
+<a class="jxr_linenumber" name="259" href="#259">259</a> <em class="jxr_javadoccomment">     * ####trader.limits.category</em>
+<a class="jxr_linenumber" name="260" href="#260">260</a> <em class="jxr_javadoccomment">     * `This will limit how many categories a player may place in their shop. Default: 2 (or set in config.yml)`</em>
+<a class="jxr_linenumber" name="261" href="#261">261</a> <em class="jxr_javadoccomment">     * END SNIPPET: perm</em>
+<a class="jxr_linenumber" name="262" href="#262">262</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="263" href="#263">263</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String SHOP_LIMIT_CATEGORY = <span class="jxr_string">"trader.limits.category"</span>;
+<a class="jxr_linenumber" name="264" href="#264">264</a> 
+<a class="jxr_linenumber" name="265" href="#265">265</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="266" href="#266">266</a> <em class="jxr_javadoccomment">	 * START SNIPPET: perm</em>
+<a class="jxr_linenumber" name="267" href="#267">267</a> <em class="jxr_javadoccomment">	 * ####trader.limits.required.groupname.sometrait</em>
+<a class="jxr_linenumber" name="268" href="#268">268</a> <em class="jxr_javadoccomment">	 * `This limit matches the traits.required setting in limits.yml, replace sometrait with the</em>
+<a class="jxr_linenumber" name="269" href="#269">269</a> <em class="jxr_javadoccomment">	 * required trait. WARNING: this will add to the required traits listed in traits.required unless you</em>
+<a class="jxr_linenumber" name="270" href="#270">270</a> <em class="jxr_javadoccomment">	 * set trader.limits.required.override`</em>
+<a class="jxr_linenumber" name="271" href="#271">271</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="272" href="#272">272</a> <em class="jxr_javadoccomment">	 * `groupname is the group that the player is attempting to create a trader in. If "/trader create"</em>
+<a class="jxr_linenumber" name="273" href="#273">273</a> <em class="jxr_javadoccomment">	 * is used without arguments then group "default" is used, if an arguement is passed "/trader create worldguard"</em>
+<a class="jxr_linenumber" name="274" href="#274">274</a> <em class="jxr_javadoccomment">	 * then the group "worldguard" is used`</em>
+<a class="jxr_linenumber" name="275" href="#275">275</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="276" href="#276">276</a> <em class="jxr_javadoccomment">	 * `some examples:`</em>
+<a class="jxr_linenumber" name="277" href="#277">277</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="278" href="#278">278</a> <em class="jxr_javadoccomment">	 * - `trader.limits.required.default.worldguardowner`</em>
+<a class="jxr_linenumber" name="279" href="#279">279</a> <em class="jxr_javadoccomment">	 * - `trader.limits.required.worldguard.worldguardowner`</em>
+<a class="jxr_linenumber" name="280" href="#280">280</a> <em class="jxr_javadoccomment">	 * END SNIPPET: perm</em>
+<a class="jxr_linenumber" name="281" href="#281">281</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="282" href="#282">282</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String SHOP_LIMIT_TRAITS_REQUIRED = <span class="jxr_string">"trader.limits.required"</span>;
+<a class="jxr_linenumber" name="283" href="#283">283</a> }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>
