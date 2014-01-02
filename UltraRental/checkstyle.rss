@@ -6,11 +6,11 @@
     <link>http://demgelopensource.github.io/UltraTrader/UltraRental</link>
     <description>UltraRental - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2013 Demgel OpenSource Coding</copyright>
+    <copyright>&#169;2013 - 2014 Demgel OpenSource Coding</copyright>
     <item>
       <title>File: 15,
-             Errors: 55,
-             Warnings: 80,
+             Errors: 56,
+             Warnings: 82,
              Infos: 0
       </title>
             <link>http://demgelopensource.github.io/UltraTrader/UltraRental/checkstyle.html</link>
@@ -119,7 +119,7 @@
                   0
                 </td>
                 <td>
-                  11
+                  12
                 </td>
                 <td>
                   4
@@ -217,10 +217,10 @@
                   0
                 </td>
                 <td>
-                  7
+                  8
                 </td>
                 <td>
-                  1
+                  2
                 </td>
               </tr>
                           <tr>
