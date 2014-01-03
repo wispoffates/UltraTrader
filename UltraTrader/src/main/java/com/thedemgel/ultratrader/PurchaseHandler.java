@@ -187,14 +187,7 @@ public class PurchaseHandler {
         }
 
 		if (!success) {
-			/*Bukkit.getScheduler().scheduleSyncDelayedTask(UltraTrader.getInstance(), new Runnable() {
-
-				@Override
-				public void run() {
-					player.getInventory().addItem(item);
-				}
-			}, UltraTrader.BUKKIT_SCHEDULER_DELAY);*/
-
+			player.getInventory().addItem(removeStack);
 			return;
 		}
 

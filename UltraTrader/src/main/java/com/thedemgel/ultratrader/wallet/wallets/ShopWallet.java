@@ -30,7 +30,7 @@ public class ShopWallet extends Wallet {
 	@Override
 	public boolean hasFunds(BigDecimal amount) {
 		BigDecimal balance = getBalance();
-		if (balance.compareTo(amount) > 0) {
+		if (balance.compareTo(amount) >= 0) {
 			return true;
 		}
 		return false;

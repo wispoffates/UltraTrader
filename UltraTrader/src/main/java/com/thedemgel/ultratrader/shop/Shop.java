@@ -20,6 +20,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 
+import javax.annotation.Nullable;
+
 public class Shop {
 
     private ConcurrentMap<String, ItemPrice> priceList = new ConcurrentHashMap<>();
@@ -45,61 +47,10 @@ public class Shop {
 		return inventory;
 	}
 
-	/*public boolean hasSellItem(final ItemPrice checkItem) {
-		Predicate<ItemPrice> itemPredicate = new Predicate<ItemPrice>() {
-			@Override
-			public boolean apply(ItemPrice item) {
-				return item.getItemStack().equals(checkItem.getItemStack());
-			}
-		};
-		Collection<ItemPrice> sellItems = Collections2.filter(getSellPrices().values(), itemPredicate);
-
-		return sellItems.size() > 0;
-	}
-
-	/*public boolean hasBuyItem(final ItemStack checkItem) {
-		return getBuyItem(checkItem) != null;
-	}
-
-	public ItemPrice getBuyItem(ItemStack checkItem) {
-		final ItemStack check = checkItem.clone();
-		check.setAmount(1);
-
-		Predicate<ItemPrice> itemPredicate = new Predicate<ItemPrice>() {
-			@Override
-			public boolean apply(ItemPrice item) {
-				return item.getItemStack().equals(check);
-			}
-		};
-		Collection<ItemPrice> buyItems = Collections2.filter(getBuyPrices().values(), itemPredicate);
-
-		if (buyItems.size() > 0) {
-			return (ItemPrice) buyItems.toArray()[0];
-		} else {
-			return null;
-		}
-	}*/
-
     public ItemPrice getItemPrice(ItemStack checkItem) {
         String id = getItemId(checkItem);
 
         return getPriceList().get(id);
-        /*final ItemStack check = checkItem.clone();
-        check.setAmount(1);
-
-        Predicate<ItemPrice> itemPredicate = new Predicate<ItemPrice>() {
-            @Override
-            public boolean apply(ItemPrice item) {
-                return item.getItemStack().equals(check);
-            }
-        };
-        Collection<ItemPrice> priceItems = Collections2.filter(getPriceList().values(), itemPredicate);
-
-        if (priceItems.size() > 0) {
-            return (ItemPrice) priceItems.toArray()[0];
-        } else {
-            return null;
-        }*/
     }
 
 	public boolean hasItem(final ItemPrice checkItem) {
@@ -113,22 +64,6 @@ public class Shop {
 
 		return buyItems.size() > 0;
 	}
-
-	/*public boolean addSellItem(ItemStack item, BigDecimal sellPrice, String description) {
-
-		ItemPrice invItem = new ItemPrice(item, sellPrice, BigDecimal.ZERO, description);
-
-		if (hasSellItem(invItem)) {
-			return false;
-		}
-
-		String random = invItem.setRandom();
-		while (getSellPrices().containsKey(random)) {
-			random = invItem.setRandom();
-		}
-		getSellPrices().put(random, invItem);
-		return true;
-	}*/
 
 	public boolean addItem(ItemStack item, BigDecimal sellPrice, BigDecimal buyPrice, String description, String category) {
 		ItemPrice invItem = new ItemPrice(item, sellPrice, buyPrice, description);
@@ -182,18 +117,6 @@ public class Shop {
 		id = id.substring(id.length() - 8);
 		return id;
 	}
-
-	//public ConcurrentMap<String, ItemPrice> getBuyPrices() {
-	//	return buyPrices;
-	//}
-
-	//public ConcurrentMap<String, ItemPrice> getSellPrices() {
-	//	return sellPrices;
-	//}
-
-	/*public InventoryInterface getInventoryInterface() {
-		return inv;
-	}*/
 
 	public final void initWallet() {
 		ConfigValue<String> walletType = getWalletinfo().get("type");
@@ -363,5 +286,19 @@ public class Shop {
 
     public ConcurrentMap<String, CategoryItem> getCategoryItem() {
         return categoryItems;
+    }
+
+    public Collection<ItemPrice> getItemsInCategory(final String category) {
+
+        Predicate<ItemPrice> itemPricePredicate = new Predicate<ItemPrice>() {
+            @Override
+            public boolean apply(@Nullable ItemPrice itemPrice) {
+                return itemPrice.getCategoryId().equals(category);
+            }
+        };
+
+        Collection<ItemPrice> items = Collections2.filter(priceList.values(), itemPricePredicate);
+
+        return items;
     }
 }

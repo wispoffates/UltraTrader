@@ -149,16 +149,17 @@ public class ShopInventoryView extends InventoryView {
 
 		top.clear();
 		boolean displayAdmin = shop.getInventoryInterface().displayItemToPlayer(player);
-		List<ItemPrice> itemqueue = new ArrayList<>();
+		List<ItemPrice> itemQueue = new ArrayList<>();
 
-        Predicate<ItemPrice> itemPricePredicate = new Predicate<ItemPrice>() {
-            @Override
-            public boolean apply(@Nullable ItemPrice itemPrice) {
-                return itemPrice.getCategoryId().equals(category);
-            }
-        };
+        //Predicate<ItemPrice> itemPricePredicate = new Predicate<ItemPrice>() {
+        //    @Override
+        //    public boolean apply(@Nullable ItemPrice itemPrice) {
+        //        return itemPrice.getCategoryId().equals(category);
+        //    }
+        //};
 
-        Collection<ItemPrice> items = Collections2.filter(getShop().getPriceList().values(), itemPricePredicate);
+        //items = Collections2.filter(getShop().getPriceList().values(), itemPricePredicate);
+        Collection<ItemPrice> items = shop.getItemsInCategory(category);
 
 		for (ItemPrice item : items) {
 			int currentInvAmount = shop.getInventoryInterface().getInventoryStock(item);
@@ -166,24 +167,24 @@ public class ShopInventoryView extends InventoryView {
 			if (!item.getSellPrice().equals(BigDecimal.valueOf(-1)) || !item.getBuyPrice().equals(BigDecimal.valueOf(-1)) || shop.isOwner(player)) {
 				if (displayAdmin) {
 					if (item.getSlot() == -1) {
-						itemqueue.add(item);
+						itemQueue.add(item);
 					} else {
 						ItemStack slot = getTopInventory().getItem(item.getSlot());
 
 						if (slot != null) {
-							itemqueue.add(item);
+							itemQueue.add(item);
 						} else {
 							getTopInventory().setItem(item.getSlot(), item.generateLore(1, true, currentInvAmount, current));
 						}
 					}
 				} else {
 					if (item.getSlot() == -1) {
-						itemqueue.add(item);
+						itemQueue.add(item);
 					} else {
 						ItemStack slot = getTopInventory().getItem(item.getSlot());
 
 						if (slot != null) {
-							itemqueue.add(item);
+							itemQueue.add(item);
 						} else {
 							this.getTopInventory().setItem(item.getSlot(), item.generateLore(current));
 						}
@@ -192,7 +193,7 @@ public class ShopInventoryView extends InventoryView {
 			}
 		}
 
-		for (ItemPrice item : itemqueue) {
+		for (ItemPrice item : itemQueue) {
 			int currentInvAmount = shop.getInventoryInterface().getInventoryStock(item);
 
 			if (!item.getSellPrice().equals(BigDecimal.valueOf(-1)) || !item.getBuyPrice().equals(BigDecimal.valueOf(-1)) || shop.isOwner(player)) {
@@ -219,15 +220,6 @@ public class ShopInventoryView extends InventoryView {
 		this.setItem(InventoryHandler.INVENTORY_BACK_ARROW_SLOT, toSell);
 
 		if (displayAdmin) {
-			/*ItemStack doAdmin = new ItemStack(Material.BOOK_AND_QUILL);
-			ItemMeta setPriceMeta = doAdmin.getItemMeta();
-			List<String> doAdminText = new ArrayList<>();
-			doAdminText.add(L.getString("inventory.admin.lore"));
-			setPriceMeta.setLore(doAdminText);
-			setPriceMeta.setDisplayName(L.getString("inventory.admin.display"));
-			doAdmin.setItemMeta(setPriceMeta);
-			this.setItem(InventoryHandler.INVENTORY_ADMIN_SLOT, doAdmin);*/
-
 			ItemStack doArrange = new ItemStack(Material.BOOKSHELF);
 			ItemMeta setArrangeMeta = doArrange.getItemMeta();
 			List<String> doArrangeText = new ArrayList<>();
@@ -253,104 +245,6 @@ public class ShopInventoryView extends InventoryView {
 		}
 	}
 
-	/*public void buildBuyView() {
-		current = Status.BUY_SCREEN;
-		top.clear();
-
-		boolean displayAdmin = shop.getInventoryInterface().displayItemToPlayer(player);
-		List<ItemPrice> itemqueue = new ArrayList<>();
-		for (ItemPrice item : getShop().getBuyPrices().values()) {
-			int currentInvAmount = shop.getInventoryInterface().getInventoryStock(item);
-
-			if (currentInvAmount > 0 || shop.isOwner(player)) {
-				if (displayAdmin) {
-					if (item.getSlot() == -1) {
-						itemqueue.add(item);
-					} else {
-						ItemStack slot = getTopInventory().getItem(item.getSlot());
-
-						if (slot != null) {
-							itemqueue.add(item);
-						} else {
-							getTopInventory().setItem(item.getSlot(), item.generateLore(1, true, currentInvAmount, current));
-						}
-					}
-				} else {
-					if (item.getSlot() == -1) {
-						itemqueue.add(item);
-					} else {
-						ItemStack slot = getTopInventory().getItem(item.getSlot());
-
-						if (slot != null) {
-							itemqueue.add(item);
-						} else {
-							this.getTopInventory().setItem(item.getSlot(), item.generateLore(current));
-						}
-					}
-				}
-			}
-		}
-
-		for (ItemPrice item : itemqueue) {
-			int currentInvAmount = shop.getInventoryInterface().getInventoryStock(item);
-
-			if (currentInvAmount > 0 || shop.isOwner(player)) {
-				if (displayAdmin) {
-					int slot = getTopInventory().firstEmpty();
-					item.setSlot(slot);
-					this.getTopInventory().setItem(item.getSlot(), item.generateLore(1, true, currentInvAmount, current));
-				} else {
-					int slot = getTopInventory().firstEmpty();
-					item.setSlot(slot);
-					this.getTopInventory().setItem(item.getSlot(), item.generateLore(current));
-				}
-			}
-		}
-
-		ItemStack toSell = new ItemStack(Material.SLIME_BALL);
-		ItemMeta toSellMeta = toSell.getItemMeta();
-		List<String> toSellText = new ArrayList<>();
-		toSellText.add(L.getString("inventory.tosellscreen.lore"));
-		toSellMeta.setLore(toSellText);
-		toSellMeta.setDisplayName(L.getString("inventory.tosellscreen.display"));
-		toSell.setItemMeta(toSellMeta);
-		this.setItem(InventoryHandler.INVENTORY_BACK_ARROW_SLOT, toSell);
-
-		if (displayAdmin) {
-			ItemStack doAdmin = new ItemStack(Material.BOOK_AND_QUILL);
-			ItemMeta setPriceMeta = doAdmin.getItemMeta();
-			List<String> doAdminText = new ArrayList<>();
-			doAdminText.add(L.getString("inventory.buyadmin.lore"));
-			setPriceMeta.setLore(doAdminText);
-			setPriceMeta.setDisplayName(L.getString("inventory.buyadmin.display"));
-			doAdmin.setItemMeta(setPriceMeta);
-			this.setItem(InventoryHandler.INVENTORY_ADMIN_SLOT, doAdmin);
-
-			ItemStack doArrange = new ItemStack(Material.BOOKSHELF);
-			ItemMeta setArrangeMeta = doArrange.getItemMeta();
-			List<String> doArrangeText = new ArrayList<>();
-			doArrangeText.add(L.getString("inventory.arrange.lore"));
-			setArrangeMeta.setLore(doArrangeText);
-			setArrangeMeta.setDisplayName(L.getString("inventory.arrange.display"));
-			doArrange.setItemMeta(setArrangeMeta);
-			this.setItem(InventoryHandler.INVENTORY_ARRANGE_SLOT, doArrange);
-		}
-
-		// Check if limits allow for remote access...
-		if (shop.getCanRemote()) {
-			ItemStack doItemShop = new ItemStack(StoreItem.STORE_ITEM_MATERIAL);
-			StoreItem.linkToShop(shop, doItemShop);
-			ItemMeta meta = doItemShop.getItemMeta();
-			List<String> lore = meta.getLore();
-			lore.set(0, ChatColor.AQUA + "Click to buy Remote Shop Item");
-			lore.add(ChatColor.YELLOW + "Price: " + UltraTrader.getEconomy().format(shop.getRemoteItemCost()));
-			meta.setLore(lore);
-			meta.setDisplayName("Remote Store Item");
-			doItemShop.setItemMeta(meta);
-			this.setItem(InventoryHandler.INVENTORY_CREATE_ITEM_SLOT, doItemShop);
-		}
-	} */
-
 	public void buildBuyItemView(ItemStack item) {
 		current = Status.BUY_ITEM_SCREEN;
 		top.clear();
@@ -360,7 +254,6 @@ public class ShopInventoryView extends InventoryView {
 		ItemPrice invItem;
 		if (getShop().getPriceList().containsKey(id)) {
 			invItem = getShop().getPriceList().get(id);
-            System.out.println("Check one: " + id);
 		} else {
 			buildCategoryItemView();
 			return;
@@ -368,13 +261,6 @@ public class ShopInventoryView extends InventoryView {
 
 		int invCount = shop.getInventoryInterface().getInventoryStock(invItem);
 
-		//if (invCount < 1 && !shop.getInventoryInterface().displayItemToPlayer(player)) {
-        //    System.out.println("Check 2: " + id);
-		//	buildCategoryItemView();
-		//	return;
-		//}
-
-		//int max = AdminInventoryInterface.ADMIN_INVENTORY_STOCK;
         Map<Integer, ? extends ItemStack> itemStackHashMap = player.getInventory().all(invItem.getItemStack().getType());
 
         int max = 0;

@@ -170,35 +170,40 @@ public class ShopListener implements Listener {
                     return;
                 }
 
-                if (!event.getCursor().getData().getItemType().equals(Material.AIR)) {
-                    if (view.getShop().isOwner(player)) {
-                        if (!player.isConversing()) {
-                            event.setCancelled(false);
-                            ItemStack inHand = event.getCursor().clone();
-                            Conversation convo = UltraTrader.getConversationHandler().getAddSellItem().buildConversation(player);
-                            convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, inHand);
-                            convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
-                            view.setConvo(convo);
-                            convo.begin();
-                        } else {
-                            player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+                if (event.getCurrentItem() == null) {
+                    if (!event.getCursor().getData().getItemType().equals(Material.AIR)) {
+                        if (view.getShop().isOwner(player)) {
+                            if (!player.isConversing()) {
+                                event.setCancelled(false);
+                                Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                                @Override
+                                public void run() {
+                                    ItemStack inHand = view.getItem(event.getRawSlot()).clone();
+                                    Conversation convo = UltraTrader.getConversationHandler().getAddSellItem().buildConversation(player);
+                                    convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, inHand);
+                                    convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
+                                    view.setConvo(convo);
+                                    convo.begin();
+                                    }
+                                }, UltraTrader.BUKKIT_SCHEDULER_DELAY);
+                                return;
+                            } else {
+                                player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+                                return;
+                            }
                         }
                     }
-                }
-
-                if (event.getCurrentItem() == null) {
-                    return;
-                }
-
-                switch (event.getClick()) {
-                    case RIGHT:
-                        view.buildBuyItemView(event.getCurrentItem());
-                        break;
-                    case LEFT:
-                        view.buildItemView(event.getCurrentItem());
-                        break;
-                    default:
-                        break;
+                } else {
+                    switch (event.getClick()) {
+                        case RIGHT:
+                            view.buildBuyItemView(event.getCurrentItem());
+                            break;
+                        case LEFT:
+                            view.buildItemView(event.getCurrentItem());
+                            break;
+                        default:
+                            break;
+                    }
                 }
                 break;
 			case SELL_ITEM_SCREEN:
