@@ -8,7 +8,7 @@
 
 	<head>
 		<meta charset="UTF-8" />
-		<title>UltraRental</title>
+		<title>Installation | UltraRental</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content="" />
 		<meta http-equiv="content-language" content="en" />
@@ -33,7 +33,7 @@
 <link rel="author" href="https://github.com/tenowg"/>
 	</head>
 
-	<body class="page-index project-ultrarental" data-spy="scroll" data-offset="60" data-target="#toc-scroll-target">
+	<body class="page-installation project-ultrarental" data-spy="scroll" data-offset="60" data-target="#toc-scroll-target">
 
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
@@ -47,29 +47,29 @@
 					<div class="nav-collapse">
 						<ul class="nav pull-right">
 							<li><a href="download.html" title="Download">Download </a></li>
-							<li class="dropdown active">
+							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Main <b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li class="active"><a href="./" title="Home">Home </a></li>
+									<li><a href="./" title="Home">Home </a></li>
 									<li><a href="https://github.com/demgelopensource/UltraTrader/UltraRental" title="GitHub project" class="externalLink">GitHub project </a></li>
 									<li><a href="changes-report.html" title="Release notes">Release notes </a></li>
 								</ul>
 							</li>
-							<li class="dropdown">
+							<li class="dropdown active">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li><a href="installation.html" title="Installation">Installation </a></li>
+									<li class="active"><a href="" title="Installation">Installation </a></li>
 									<li><a href="permission.html" title="Permissions">Permissions </a></li>
 								</ul>
 							</li>
-							<li class="dropdown active">
+							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Maven Documentation <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li class="dropdown-submenu">
 										<a href="project-info.html" title="Project Information">Project Information </a>
 										<ul class="dropdown-menu">
 											<li><a href="integration.html" title="Continuous Integration">Continuous Integration </a></li>
-											<li class="active"><a href="" title="About">About </a></li>
+											<li><a href="index.html" title="About">About </a></li>
 											<li><a href="issue-tracking.html" title="Issue Tracking">Issue Tracking </a></li>
 											<li><a href="license.html" title="Project License">Project License </a></li>
 											<li><a href="team-list.html" title="Project Team">Project Team </a></li>
@@ -111,39 +111,58 @@
 				</div>
 			</div>
 		</div>
+		<div>
+			<ul class="breadcrumb">
+				<li><a href="./" title="UltraWorldGuard">UltraWorldGuard </a></li>
+				<li class="divider">/</li>
+				<li>Installation</li>
+			</ul>
+		</div>
 	</header>
 
 	<div class="main-body">
 	<div class="row">
 		<div class="span8">
 			<div class="body-content">
-				<div class="section"> 
+<div class="section"> 
  <div class="page-header">
-  <h2 id="UltraWorldGuard">UltraWorldGuard</h2>
+  <h2 id="Installation">Installation</h2>
  </div> 
+ <p>Installation of UltraTrader requires only a few things to be done.</p> 
+ <ul> 
+  <li>Download <i>Citizens 2</i></li> 
+  <li>Make sure <i>Citizens 2</i> is installed correctly</li> 
+  <li>Download <i>Vault</i> (Make sure you have a Economy Plugin installed)</li> 
+  <li>Make sure <i>Vault</i> is installed correctly</li> 
+  <li>Download <i>UltraTrader</i></li> 
+  <li>Drop into plugins folder</li> 
+  <li>Start and then Stop server (eventually all basic settings will be done ingame)</li> 
+  <li>Edit <tt>config.yml</tt> and <tt>limits.yml</tt></li> 
+  <li>Restart server.</li> 
+ </ul> 
  <div class="section"> 
-  <h3 id="What_is_UltraWorldGuard">What is UltraWorldGuard</h3> 
- </div> 
- <div class="section"> 
-  <h3 id="Dependencies">Dependencies</h3> 
-  <ul> 
-   <li>UltraTrader</li> 
-   <li>Citizens 2</li> 
-  </ul> 
- </div> 
- <div class="section"> 
-  <h3 id="How_it_Works">How it Works</h3> 
+  <h3 id="Permissions">Permissions</h3> 
+  <p>I don’t set any permissions by default, I leave this to the admin.</p> 
+  <p>Almost everything in UltraTrader will come with a permission, so be careful what you set.</p> 
+  <p>The basic permission you will likely want to set on a new server is:</p> 
+  <p><b>trader.store.use</b> to all users, so they can use the shops you create.</p> 
  </div> 
 </div>
 			</div>
 		</div>
 		<div class="span4">
-			<div class="well sidebar">
-	<h3 id="Documentation">Documentation</h3>
-<ul> 
- <li><a href="installation.html" title="Installation">Installation</a></li> 
- <li><a href="permission.html" title="Permissions">Permissions</a></li> 
-</ul>
+			<div id="toc-sidebar">
+				<div class="well">
+					<ul class="nav nav-list">
+						<li class="nav-header">Table of Contents</li>
+		<li class="dropdown"><a href="#Installation" title="Installation">Installation <b class="caret"></b></a>
+			<ul class="nav nav-list">
+		<li><a href="#Permissions" title="Permissions">Permissions</a>
+				<li class="divider"></li>
+			</ul>
+		</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -159,8 +178,8 @@
 				<div class="span3 bottom-nav">
 					<ul class="nav nav-list">
 						<li class="nav-header">Main</li>
-						<li class="active">
-							<a href="#" title="Home">Home </a>
+						<li>
+							<a href="./" title="Home">Home </a>
 						</li>
 						<li>
 							<a href="https://github.com/demgelopensource/UltraTrader/UltraRental" title="GitHub project" class="externalLink">GitHub project </a>
@@ -173,8 +192,8 @@
 				<div class="span3 bottom-nav">
 					<ul class="nav nav-list">
 						<li class="nav-header">Documentation</li>
-						<li>
-							<a href="installation.html" title="Installation">Installation </a>
+						<li class="active">
+							<a href="#" title="Installation">Installation </a>
 						</li>
 						<li>
 							<a href="permission.html" title="Permissions">Permissions </a>
@@ -185,30 +204,7 @@
 					<ul class="nav nav-list">
 						<li class="nav-header">Maven Documentation</li>
 						<li>
-							<a href="project-info.html" title="Project Information">Project Information <i class="icon-chevron-down"></i></a>
-							<ul class="nav nav-list">
-						<li>
-							<a href="integration.html" title="Continuous Integration">Continuous Integration </a>
-						</li>
-						<li class="active">
-							<a href="#" title="About">About </a>
-						</li>
-						<li>
-							<a href="issue-tracking.html" title="Issue Tracking">Issue Tracking </a>
-						</li>
-						<li>
-							<a href="license.html" title="Project License">Project License </a>
-						</li>
-						<li>
-							<a href="team-list.html" title="Project Team">Project Team </a>
-						</li>
-						<li>
-							<a href="source-repository.html" title="Source Repository">Source Repository </a>
-						</li>
-						<li>
-							<a href="project-summary.html" title="Project Summary">Project Summary </a>
-						</li>
-							</ul>
+							<a href="project-info.html" title="Project Information">Project Information <i class="icon-chevron-right"></i></a>
 						</li>
 						<li>
 							<a href="project-reports.html" title="Project Reports">Project Reports <i class="icon-chevron-right"></i></a>
