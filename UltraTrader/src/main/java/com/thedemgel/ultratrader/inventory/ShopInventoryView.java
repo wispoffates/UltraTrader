@@ -6,10 +6,6 @@ import com.thedemgel.ultratrader.InventoryHandler;
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.shop.*;
-
-import java.math.BigDecimal;
-import java.util.*;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.conversations.Conversation;
@@ -22,6 +18,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import javax.annotation.Nullable;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 public class ShopInventoryView extends InventoryView {
 
@@ -85,6 +86,15 @@ public class ShopInventoryView extends InventoryView {
         top.clear();
 
         boolean displayAdmin = shop.getInventoryInterface().displayItemToPlayer(player);
+
+        if (shop.getCategoryItem().size() == 1 && !shop.getOwner().equals(player.getName())) {
+            CategoryItem item = shop.getCategoryItem().values().iterator().next();
+
+            category = item.getCategoryId();
+
+            buildCategoryItemView();
+            return;
+        }
 
         List<CategoryItem> itemQueue = new ArrayList<>();
 
@@ -151,14 +161,6 @@ public class ShopInventoryView extends InventoryView {
 		boolean displayAdmin = shop.getInventoryInterface().displayItemToPlayer(player);
 		List<ItemPrice> itemQueue = new ArrayList<>();
 
-        //Predicate<ItemPrice> itemPricePredicate = new Predicate<ItemPrice>() {
-        //    @Override
-        //    public boolean apply(@Nullable ItemPrice itemPrice) {
-        //        return itemPrice.getCategoryId().equals(category);
-        //    }
-        //};
-
-        //items = Collections2.filter(getShop().getPriceList().values(), itemPricePredicate);
         Collection<ItemPrice> items = shop.getItemsInCategory(category);
 
 		for (ItemPrice item : items) {

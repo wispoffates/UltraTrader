@@ -35,9 +35,20 @@ Once the conversation is started all you need to do is follow the instructions a
 
 When done, just click the trader again, and your shop will open for you.
 
+$h4 Adding your first Category
+UltraTrader shops require the use of Categories, these are easily added by just dragging an item stack you want to use as
+the category icon on the traders main inventory screen (The screen that first opens) and following the instructions
+in the conversation.
+
+UltraTrader will automatically make the first Category for you, if you wish players to not see the category screen, just
+don't add anymore categories, if there is only one category, it will act as the default category and players will automatically
+be shown the Items of that category.
+
 $h4 See In Action
 
 This video was created when UltraTrader was CitiTradersRE, just change `cititrader` trait for `ultratrader`
+
+This video is somewhat out dated and will be replaced soon.
 #set( $id = "76019421" )
 #set( $title = "Creating a Trader in UltraTrader" )
 #set( $showCaption = "false" )

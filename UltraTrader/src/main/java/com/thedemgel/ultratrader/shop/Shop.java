@@ -4,23 +4,25 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 import com.thedemgel.ultratrader.BlockShopHandler;
-import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.StoreConfig;
+import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.inventory.InventoryInterface;
 import com.thedemgel.ultratrader.inventory.InventoryInterfaceHandler;
 import com.thedemgel.ultratrader.util.ConfigValue;
 import com.thedemgel.ultratrader.wallet.Wallet;
-import java.math.BigDecimal;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 
 import javax.annotation.Nullable;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 public class Shop {
 
@@ -114,7 +116,13 @@ public class Shop {
         }
 
 		String id = Iterables.getLast(item.getItemMeta().getLore());
-		id = id.substring(id.length() - 8);
+
+        try {
+		    id = id.substring(id.length() - 8);
+        } catch (StringIndexOutOfBoundsException e) {
+            return "000000";
+        }
+
 		return id;
 	}
 

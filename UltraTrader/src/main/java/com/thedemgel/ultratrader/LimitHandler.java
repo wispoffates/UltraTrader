@@ -2,25 +2,30 @@
 package com.thedemgel.ultratrader;
 
 import com.thedemgel.ultratrader.shop.Shop;
-import com.thedemgel.ultratrader.util.ConfigValue;
 import com.thedemgel.ultratrader.util.PermissionPredicate;
 import com.thedemgel.ultratrader.util.Permissions;
-import java.util.List;
-import java.util.logging.Level;
-import org.bukkit.Bukkit;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+
+import java.util.List;
 
 
 public class LimitHandler {
 	private static final int INV_INCREASE_PER_LEVEL = 9;
     private static final String BASE_CONFIG_LIMITS = "defaults";
 
+    private static final int MAX_CATEGORY = 36;
+    private static final int UNLIMITED_SHOPS = -1;
+    private static final int MAX_SHOP_LEVEL = 4;
+
 	public static int getMaxBuySellSize(Shop shop) {
 		return shop.getLevel() * LimitHandler.INV_INCREASE_PER_LEVEL;
 	}
 
 	public static int getMaxLevel(Player player) {
+        if (player.isOp()) {
+            return MAX_SHOP_LEVEL;
+        }
+
 		PermissionPredicate pred = new PermissionPredicate();
 
 		Integer maxLevel = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_MAXLEVEL, player);
@@ -33,6 +38,10 @@ public class LimitHandler {
 	}
 
     public static int getMaxCategory(Player player) {
+        if (player.isOp()) {
+            return MAX_CATEGORY;
+        }
+
         PermissionPredicate pred = new PermissionPredicate();
 
         Integer maxCategory = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_CATEGORY, player);
@@ -45,6 +54,10 @@ public class LimitHandler {
     }
 
 	public static int getLevelAtCreate(Player player) {
+        if (player.isOp()) {
+            return MAX_SHOP_LEVEL;
+        }
+
 		PermissionPredicate pred = new PermissionPredicate();
 
 		Integer createLevel = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_CREATE_LEVEL, player);
@@ -57,6 +70,10 @@ public class LimitHandler {
 	}
 
 	public static int getMaxShops(Player player) {
+        if (player.isOp()) {
+            return UNLIMITED_SHOPS;
+        }
+
         PermissionPredicate pred = new PermissionPredicate();
 
         Integer maxShop = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_MAXSHOPS, player);
@@ -69,6 +86,10 @@ public class LimitHandler {
 	}
 
 	public static double getRemoteActivateCost(Player player) {
+        if (player.isOp()) {
+            return 0;
+        }
+
         PermissionPredicate pred = new PermissionPredicate();
 
         Integer remoteItemCost = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_ITEM_ACTIVATE_COST, player);
@@ -81,7 +102,6 @@ public class LimitHandler {
 	}
 
 	public static double getRemoteItemCost(Player player) {
-        // Start player limit override.
         PermissionPredicate pred = new PermissionPredicate();
 
         Integer itemCost = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_REMOTE_ITEM_COST, player);
@@ -89,14 +109,15 @@ public class LimitHandler {
         if (itemCost != null) {
             return itemCost.doubleValue();
         }
-        // End player limit override
 
-        // Begin new Defaults check
         return UltraTrader.getInstance().getConfig().getDouble(BASE_CONFIG_LIMITS + "." + Permissions.SHOP_LIMIT_REMOTE_ITEM_COST);
 	}
 
 	public static boolean canEnableRemoteAccess(Player player) {
-        // Start player limit override.
+        if (player.isOp()) {
+            return true;
+        }
+
         PermissionPredicate pred = new PermissionPredicate();
 
         Boolean enableRemote = pred.getBooleanPermission(Permissions.SHOP_LIMIT_ENABLE_REMOTE, player);
@@ -104,14 +125,15 @@ public class LimitHandler {
         if (enableRemote != null) {
             return enableRemote;
         }
-        // End player limit override
 
-        // Begin new Defaults check
         return UltraTrader.getInstance().getConfig().getBoolean(BASE_CONFIG_LIMITS + "." + Permissions.SHOP_LIMIT_ENABLE_REMOTE);
 	}
 
 	public static double getCreateCost(Player player) {
-        // Start player limit override.
+        if (player.isOp()) {
+            return 0;
+        }
+
         PermissionPredicate pred = new PermissionPredicate();
 
         Integer storeCreateCost = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_CREATE_COST, player);
@@ -119,14 +141,15 @@ public class LimitHandler {
         if (storeCreateCost != null) {
             return storeCreateCost.doubleValue();
         }
-        // End player limit override
 
-        // Begin new Defaults check
         return UltraTrader.getInstance().getConfig().getDouble(BASE_CONFIG_LIMITS + "." + Permissions.SHOP_LIMIT_CREATE_COST);
 	}
 
 	public static double getLevelCost(Player player, int level) {
-        // Start player limit override.
+        if (player.isOp()) {
+            return 0;
+        }
+
         PermissionPredicate pred = new PermissionPredicate();
 
         Integer storeLevelCost = pred.getHighestPermissionSet(Permissions.SHOP_LIMIT_LEVEL_COST + "." + level, player);
@@ -134,9 +157,7 @@ public class LimitHandler {
         if (storeLevelCost != null) {
             return storeLevelCost.doubleValue();
         }
-        // End player limit override
 
-        // Begin new Defaults check
         return UltraTrader.getInstance().getConfig().getDouble(BASE_CONFIG_LIMITS + "." + Permissions.SHOP_LIMIT_LEVEL_COST + "." + level);
 	}
 
@@ -148,8 +169,9 @@ public class LimitHandler {
 
 	public static boolean canOwnShop(Shop shop, Player player) {
 		int maxLevel = getMaxLevel(player);
+        int maxCategory = getMaxCategory(player);
 
-        return canCreate(player) && (shop.getLevel() <= maxLevel);
+        return canCreate(player) && (shop.getLevel() <= maxLevel) && shop.getCategoryItem().size() <= maxCategory;
     }
 
 	public static List<String> getRequiredTraits(Player player) {

@@ -2,23 +2,20 @@ package com.thedemgel.ultratrader.shop;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
-import com.thedemgel.ultratrader.UltraTrader;
-import com.thedemgel.ultratrader.InventoryHandler;
-import com.thedemgel.ultratrader.L;
-import com.thedemgel.ultratrader.LimitHandler;
-import com.thedemgel.ultratrader.StoreConfig;
+import com.thedemgel.ultratrader.*;
 import com.thedemgel.ultratrader.inventory.InventoryInterfaceHandler;
 import com.thedemgel.ultratrader.util.Permissions;
 import com.thedemgel.ultratrader.wallet.WalletHandler;
-import java.io.File;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Random;
-import java.util.concurrent.ConcurrentHashMap;
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import java.io.File;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ShopHandler {
 
@@ -124,6 +121,17 @@ public class ShopHandler {
 		tempShop.setWalletType(WalletHandler.DEFAULT_WALLET_TYPE);
 		tempShop.setInventoryInterfaceType(InventoryInterfaceHandler.DEFAULT_INVENTORY_TYPE);
 		tempShop.setLevel(LimitHandler.getLevelAtCreate(player));
+
+        // Add default category
+        CategoryItem categoryItem = new CategoryItem(new ItemStack(Material.APPLE));
+        categoryItem.setDisplayName("Default Category");
+        categoryItem.setCategoryId("default");
+        List<String> lore = new ArrayList<>();
+        lore.add("This is a default Category");
+        categoryItem.setLore(lore);
+
+        tempShop.getCategoryItem().put(categoryItem.getCategoryId(), categoryItem);
+
 		tempShop.save(true);
 
 		shops.put(tempShop.getId(), tempShop);

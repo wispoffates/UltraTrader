@@ -4,12 +4,12 @@ import com.thedemgel.ultratrader.citizens.TraderTrait;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.inventory.AdminCategoryPlacementView;
 import com.thedemgel.ultratrader.inventory.AdminItemPlacementView;
+import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import com.thedemgel.ultratrader.shop.CategoryItem;
 import com.thedemgel.ultratrader.shop.ItemPrice;
 import com.thedemgel.ultratrader.shop.ShopHandler;
-import com.thedemgel.ultratrader.util.Permissions;
-import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import com.thedemgel.ultratrader.shop.StoreItem;
+import com.thedemgel.ultratrader.util.Permissions;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.api.trait.trait.Owner;
@@ -21,21 +21,16 @@ import org.bukkit.conversations.Conversation;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.metadata.MetadataValue;
 
-import java.util.List;
 import java.util.concurrent.ConcurrentMap;
 
 public class ShopListener implements Listener {
@@ -400,6 +395,20 @@ public class ShopListener implements Listener {
 					player.sendMessage(ChatColor.RED + L.getString("general.notopen.errorloading"));
 					return;
 				}
+
+                if (event.getPlayer().getItemInHand().getType().equals(Material.PAPER)) {
+                    if (npc.getTrait(Owner.class).isOwnedBy(player)) {
+                        if (!player.isConversing()) {
+                            Conversation convo = UltraTrader.getConversationHandler().getCreateShop().buildConversation(player);
+                            convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
+                            convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_IS_BLOCK, false);
+                            convo.begin();
+                        } else {
+                            player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+                        }
+                        return;
+                    }
+                }
 
 				InventoryHandler handler = UltraTrader.getStoreHandler().getInventoryHandler();
 				// Open Store
