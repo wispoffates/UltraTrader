@@ -38,7 +38,8 @@
 		<!--<module>UltraWorldGuard</module> -->
 		<module>UltraRental</module>
 		<module>UltraFrame</module>
-	</modules>
+        <module>UltraDenizen</module>
+    </modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

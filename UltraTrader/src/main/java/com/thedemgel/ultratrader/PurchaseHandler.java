@@ -1,20 +1,20 @@
 package com.thedemgel.ultratrader;
 
+import com.thedemgel.ultratrader.events.PlayerPurchaseFromShopEvent;
+import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import com.thedemgel.ultratrader.shop.ItemPrice;
 import com.thedemgel.ultratrader.shop.Shop;
-import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import com.thedemgel.ultratrader.shop.StoreItem;
 import com.thedemgel.ultratrader.util.ShopAction;
 import com.thedemgel.ultratrader.wallet.Wallet;
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
-
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import java.math.BigDecimal;
+import java.util.HashMap;
 
 /**
  * If there is anything left (no order is required) a reverse order will be
@@ -61,6 +61,7 @@ public class PurchaseHandler {
 	 * @param buyStack The itemstack of the item clicked.
 	 */
 	public static void processPurchase(Shop shop, Player player, ItemStack buyStack) {
+
 		boolean charge = true;
 		// Should we charge
 		if (shop.isOwner(player)) {
@@ -70,8 +71,16 @@ public class PurchaseHandler {
 		String buyStackId = shop.getItemId(buyStack);
 		ItemPrice invItem = shop.getPriceList().get(buyStackId);
 		BigDecimal buyStackPriceEach = invItem.getSellPrice();
-
 		BigDecimal buyStackPrice = buyStackPriceEach.multiply(BigDecimal.valueOf(buyStack.getAmount()));
+        ItemStack baseItem = invItem.getItemStack().clone();
+        baseItem.setAmount(buyStack.getAmount());
+
+        PlayerPurchaseFromShopEvent event = new PlayerPurchaseFromShopEvent(player, invItem, shop, baseItem, buyStackPrice);
+        Bukkit.getServer().getPluginManager().callEvent(event);
+
+        if (event.isCancelled()) {
+            return;
+        }
 
 		EconomyResponse heldFunds;
 		if (!charge) {
@@ -94,10 +103,9 @@ public class PurchaseHandler {
 		}
 
 		// Check for availability
-		ItemStack baseItem = invItem.getItemStack();
-		Integer currentInvAmount = shop.getInventoryInterface().getInventoryStock(baseItem);
+		Integer currentInvAmount = shop.getInventoryInterface().getInventoryStock(invItem.getItemStack());
 
-		if (buyStack.getAmount() > currentInvAmount) {
+		if (baseItem.getAmount() > currentInvAmount) {
 			if (charge) {
 				UltraTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), heldFunds.amount);
 			}
@@ -105,15 +113,15 @@ public class PurchaseHandler {
 			player.sendMessage(L.getString("transaction.sale.shop.notenoughitems"));
 			return;
 		} else {
-			shop.getInventoryInterface().removeInventory(baseItem, buyStack.getAmount());
+			shop.getInventoryInterface().removeInventory(invItem.getItemStack(), buyStack.getAmount());
 		}
 
-		ItemStack placedStack = invItem.getItemStack().clone();
-		placedStack.setAmount(buyStack.getAmount());
-		HashMap<Integer, ItemStack> returnedItems = player.getInventory().addItem(placedStack);
+		//ItemStack placedStack = invItem.getItemStack().clone();
+		//placedStack.setAmount(buyStack.getAmount());
+		HashMap<Integer, ItemStack> returnedItems = player.getInventory().addItem(baseItem);
 
 		BigDecimal refund = BigDecimal.ZERO;
-		Integer finalamount = buyStack.getAmount();
+		Integer finalAmount = buyStack.getAmount();
 
 		if (!returnedItems.isEmpty()) {
 			// calculate returned funds... readd to merchant
@@ -131,17 +139,17 @@ public class PurchaseHandler {
 			ItemStack itemReturned = baseItem.clone();
 			itemReturned.setAmount(returned);
 			shop.getInventoryInterface().addInventory(itemReturned);
-			finalamount =- returned;
+			finalAmount =- returned;
 		}
 
 		BigDecimal traderDeposit = BigDecimal.valueOf(heldFunds.amount).subtract(refund);
 
 		// Deposit into trader when interface is ready.
 		if (!charge) {
-			player.sendMessage(L.getFormatString("transaction.sale.shop.purchase", buyStack.getType().name(), finalamount));
+			player.sendMessage(L.getFormatString("transaction.sale.shop.purchase", buyStack.getType().name(), finalAmount));
 			player.sendMessage(L.getFormatString("transaction.sale.shop.totalpurchase", "FREE"));
 		} else if (shop.getWallet().addFunds(traderDeposit).type.equals(ResponseType.SUCCESS)) {
-			player.sendMessage(L.getFormatString("transaction.sale.shop.purchase", buyStack.getType().name(), finalamount));
+			player.sendMessage(L.getFormatString("transaction.sale.shop.purchase", buyStack.getType().name(), finalAmount));
 			player.sendMessage(L.getFormatString("transaction.sale.shop.totalpurchase", UltraTrader.getEconomy().format(traderDeposit.doubleValue())));
 		} else {
 			player.sendMessage(L.getString("transaction.error.fundstoshop"));
@@ -150,7 +158,7 @@ public class PurchaseHandler {
 		shop.save(true);
 
 		if (UltraTrader.isLoggingEnabled()) {
-			UltraTrader.getLogDbObj().doLog(shop, player, new EconomyResponse(traderDeposit.doubleValue(), 0, ResponseType.SUCCESS, ""), ShopAction.SELL, "Player pruchased " + finalamount + " " + buyStack.getType().name());
+			UltraTrader.getLogDbObj().doLog(shop, player, new EconomyResponse(traderDeposit.doubleValue(), 0, ResponseType.SUCCESS, ""), ShopAction.SELL, "Player pruchased " + finalAmount + " " + buyStack.getType().name());
 		}
 	}
 

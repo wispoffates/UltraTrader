@@ -1,13 +1,10 @@
 package com.thedemgel.ultrarental;
 
 import com.thedemgel.ultrarental.conversation.rentalshop.RentalEndRentingPrompt;
-import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.citizens.TraderTrait;
 import com.thedemgel.ultratrader.citizens.UltraTrait;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
-import com.thedemgel.ultratrader.shop.ShopHandler;
 import com.thedemgel.ultratrader.util.TimeFormat;
-import java.util.concurrent.TimeUnit;
 import net.citizensnpcs.api.persistence.Persist;
 import net.citizensnpcs.api.trait.trait.Owner;
 import org.bukkit.ChatColor;
@@ -15,6 +12,8 @@ import org.bukkit.Material;
 import org.bukkit.conversations.Conversation;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.entity.Player;
+
+import java.util.concurrent.TimeUnit;
 
 public class RentalShop extends UltraTrait {
 
@@ -163,18 +162,6 @@ public class RentalShop extends UltraTrait {
 			return false;
 		}
 
-		/*TraderTrait trader = npc.getTrait(TraderTrait.class);
-
-		 if (trader.getShopId().equals(ShopHandler.SHOP_NULL)) {
-		 if (getRenter().equals(player.getName())) {
-		 Conversation convo = UltraTrader.getConversationHandler().getCreateShop().buildConversation(player);
-		 convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_NPC, npc);
-		 convo.begin();
-		 return false;
-		 } else {
-		 // send message shop isn't open yet.
-		 }
-		 }*/
 		return true;
 	}
 

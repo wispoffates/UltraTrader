@@ -1,0 +1,4 @@
+name: UltraDenizen
+main: com.thedemgel.ultradenizen.UltraDenizen
+version: 1.0.0-SNAPSHOT
+depend: [Citizens,UltraTrader,Denizen]
