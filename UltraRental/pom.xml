@@ -25,7 +25,7 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>UltraTrader</artifactId>
-			<version>0.91-BETA</version>
+			<version>0.92-BETA</version>
 		</dependency>
 	</dependencies>
 
