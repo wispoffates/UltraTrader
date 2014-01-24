@@ -4,7 +4,6 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 import com.thedemgel.ultratrader.BlockShopHandler;
-import com.thedemgel.ultratrader.StoreConfig;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.inventory.InventoryInterface;
 import com.thedemgel.ultratrader.inventory.InventoryInterfaceHandler;
@@ -37,9 +36,9 @@ public class Shop {
 
     private ConcurrentMap<String, CategoryItem> categoryItems = new ConcurrentHashMap<>();
 
-	public Shop(StoreConfig shopconfig) {
+	/*public Shop(StoreConfig shopconfig) {
 		//inv = new ShopInventoryInterface(this);
-	}
+	}*/
 
 	public void save(boolean async) {
 		UltraTrader.getDbObj().save(this, async);
@@ -67,6 +66,25 @@ public class Shop {
 		return buyItems.size() > 0;
 	}
 
+    public ItemPrice getItemPriceIfInStore(ItemStack item) {
+        final ItemPrice checkItem = new ItemPrice(item);
+
+        Predicate<ItemPrice> itemPredicate = new Predicate<ItemPrice>() {
+            @Override
+            public boolean apply(ItemPrice item) {
+                return item.getItemStack().equals(checkItem.getItemStack());
+            }
+        };
+
+        Iterator<ItemPrice> items = Collections2.filter(getPriceList().values(), itemPredicate).iterator();
+
+        if (items.hasNext()) {
+            return items.next();
+        } else {
+            return null;
+        }
+    }
+
 	public boolean addItem(ItemStack item, BigDecimal sellPrice, BigDecimal buyPrice, String description, String category) {
 		ItemPrice invItem = new ItemPrice(item, sellPrice, buyPrice, description);
 
@@ -88,9 +106,10 @@ public class Shop {
 	public void setMetaData() {
 		// Decide whether to set metadata (not if item store) and then set it.
         if (!blockShops.isEmpty()) {
-            Iterator<Location> blocks = blockShops.iterator();
-            while (blocks.hasNext()) {
-                Location loc = blocks.next();
+            //Iterator<Location> blocks = blockShops.iterator();
+            for (Location loc : blockShops) {
+            //while (blocks.hasNext()) {
+                //Location loc = blocks.next();
 
                 loc.getBlock().setMetadata(BlockShopHandler.SHOP_METADATA_KEY, new FixedMetadataValue(UltraTrader.getInstance(), getId()));
                 loc.getBlock().setMetadata(BlockShopHandler.SHOP_OWNER_KEY, new FixedMetadataValue(UltraTrader.getInstance(), getOwner()));
@@ -262,8 +281,7 @@ public class Shop {
 			Integer cost = (Integer) price.getValue();
 			return cost.doubleValue();
 		} else {
-			Double cost = (Double) price.getValue();
-			return cost;
+			return (Double) price.getValue();
 		}
 	}
 
@@ -305,8 +323,6 @@ public class Shop {
             }
         };
 
-        Collection<ItemPrice> items = Collections2.filter(priceList.values(), itemPricePredicate);
-
-        return items;
+        return Collections2.filter(priceList.values(), itemPricePredicate);
     }
 }

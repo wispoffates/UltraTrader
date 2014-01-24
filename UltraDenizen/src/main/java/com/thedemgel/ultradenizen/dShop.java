@@ -1,6 +1,7 @@
 package com.thedemgel.ultradenizen;
 
 import com.thedemgel.ultratrader.UltraTrader;
+import com.thedemgel.ultratrader.shop.ItemPrice;
 import com.thedemgel.ultratrader.shop.Shop;
 import net.aufdemrand.denizen.objects.Element;
 import net.aufdemrand.denizen.objects.Fetchable;
@@ -105,14 +106,29 @@ public class dShop implements dObject {
         // @plugin UltraTrader
         // -->
         if (attribute.startsWith("item")) {
-            String id = attribute.getContext(1);
+            String arg = attribute.getContext(1);
 
+            // Check if arg is dItem
+            dItem check = dItem.valueOf(arg);
+
+            ItemPrice itemPrice;
             dItem item;
 
-            if (shop.getPriceList().containsKey(id)) {
-                item = new dItem(shop.getPriceList().get(id).getItemStack());
+            if (check == null) {
+                if (shop.getPriceList().containsKey(arg)) {
+                    itemPrice = shop.getPriceList().get(arg);
+                    item = new dItem(itemPrice.getItemStack());
+                } else {
+                    return Element.NULL.getAttribute(attribute.fulfill(1));
+                }
             } else {
-                return Element.NULL.getAttribute(attribute.fulfill(1));
+                itemPrice = shop.getItemPriceIfInStore(check.getItemStack());
+
+                if (itemPrice != null) {
+                    item = new dItem(itemPrice.getItemStack());
+                } else {
+                    return Element.NULL.getAttribute(attribute.fulfill(1));
+                }
             }
 
             attribute.fulfill(1);
@@ -130,9 +146,30 @@ public class dShop implements dObject {
             if (attribute.startsWith("setsellprice")) {
                 double price = attribute.getDoubleContext(1);
 
-                shop.getPriceList().get(id).setSellPrice(BigDecimal.valueOf(price));
+                //shop.getPriceList().get(id).setSellPrice(BigDecimal.valueOf(price));
+                itemPrice.setSellPrice(BigDecimal.valueOf(price));
 
                 return new Element(price).getAttribute(attribute.fulfill(1));
+            }
+
+            if (attribute.startsWith("setbuyprice")) {
+                double price = attribute.getDoubleContext(1);
+
+                itemPrice.setBuyPrice(BigDecimal.valueOf(price));
+
+                return new Element(price).getAttribute(attribute.fulfill(1));
+            }
+
+            if (attribute.startsWith("sellprice")) {
+                BigDecimal price = itemPrice.getSellPrice();
+
+                return new Element(price.doubleValue()).getAttribute(attribute.fulfill(1));
+            }
+
+            if (attribute.startsWith("buyprice")) {
+                BigDecimal price = itemPrice.getBuyPrice();
+
+                return new Element(price.doubleValue()).getAttribute(attribute.fulfill(1));
             }
 
             return item.getAttribute(attribute);

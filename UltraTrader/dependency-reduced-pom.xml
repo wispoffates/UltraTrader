@@ -6,10 +6,9 @@
     <version>1.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.thedemgel</groupId>
   <artifactId>UltraTrader</artifactId>
   <name>UltraTrader</name>
-  <version>0.92-BETA</version>
+  <version>${ultratrader-version}</version>
   <build>
     <plugins>
       <plugin>

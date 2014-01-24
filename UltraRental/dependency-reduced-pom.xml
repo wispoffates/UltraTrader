@@ -43,7 +43,7 @@
     <dependency>
       <groupId>com.thedemgel</groupId>
       <artifactId>UltraTrader</artifactId>
-      <version>0.91-BETA</version>
+      <version>1.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>

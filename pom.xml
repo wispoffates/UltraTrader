@@ -43,6 +43,10 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <ultratrader-version>1.0</ultratrader-version>
+        <ultradenizen-version>1.0</ultradenizen-version>
+        <ultraframe-version>1.0</ultraframe-version>
+        <ultrarental-version>1.0</ultrarental-version>
 	</properties>
 	
 	<build>
@@ -113,6 +117,16 @@
 			</plugin>
 		</plugins>
 	</build>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.thedemgel</groupId>
+                <artifactId>UltraTrader</artifactId>
+                <version>${ultratrader-version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 	<dependencies>
 		<dependency>

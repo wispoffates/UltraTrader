@@ -14,7 +14,7 @@ I am even looking into creating PORTALABLE stores (as in, stores attached to ite
 
 * Stores will be accessible by voice (chat) by name.
 * Stores will be clickable.
-* Stores will be configurable to cascade (Catagories -> Catagories -> Items)
+* Stores will be configurable to cascade (Catagories -> Items)
 * ADMIN, USER, SERVER shops will be possible.
 * Items will have custom ToolTips to represent cost
 

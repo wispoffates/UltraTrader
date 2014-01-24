@@ -1,6 +1,7 @@
 package com.thedemgel.ultratrader;
 
 import com.thedemgel.ultratrader.events.PlayerPurchaseFromShopEvent;
+import com.thedemgel.ultratrader.events.ShopPurchaseFromPlayerEvent;
 import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import com.thedemgel.ultratrader.shop.ItemPrice;
 import com.thedemgel.ultratrader.shop.Shop;
@@ -173,10 +174,19 @@ public class PurchaseHandler {
 		ItemPrice invItem = shop.getItemPrice(item);
 		BigDecimal buyStackPriceEach = invItem.getBuyPrice();
 		BigDecimal buyStackPrice = buyStackPriceEach.multiply(BigDecimal.valueOf(item.getAmount()));
+        ItemStack removeStack = invItem.getItemStack().clone();
+        removeStack.setAmount(item.getAmount());
 
 		boolean success = true;
 
 		Wallet wallet = shop.getWallet();
+
+        ShopPurchaseFromPlayerEvent event = new ShopPurchaseFromPlayerEvent(player, invItem, shop, removeStack, buyStackPrice);
+        Bukkit.getServer().getPluginManager().callEvent(event);
+
+        if (event.isCancelled()) {
+            return;
+        }
 
 		EconomyResponse heldFunds = wallet.removeFunds(buyStackPrice);
 
@@ -184,9 +194,6 @@ public class PurchaseHandler {
 			player.sendMessage(L.getString("transaction.sale.shop.notenoughfunds"));
 			success = false;
 		}
-
-        ItemStack removeStack = invItem.getItemStack().clone();
-        removeStack.setAmount(item.getAmount());
 
         if (player.getInventory().containsAtLeast(invItem.getItemStack(), item.getAmount())) {
             player.getInventory().removeItem(removeStack);
