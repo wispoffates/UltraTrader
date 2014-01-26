@@ -113,8 +113,8 @@ public class ShopHandler {
 			return null;
 		}
 
-		StoreConfig tempShopConfig = new StoreConfig(plugin, tempConfig);
-		Shop tempShop = new Shop(tempShopConfig);
+		//StoreConfig tempShopConfig = new StoreConfig(plugin, tempConfig);
+		Shop tempShop = new Shop();
 		tempShop.setId(randid);
 		tempShop.setOwner(player);
 		tempShop.setName(L.getString("general.newshopname"));

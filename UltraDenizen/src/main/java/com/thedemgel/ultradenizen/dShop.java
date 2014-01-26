@@ -1,14 +1,13 @@
 package com.thedemgel.ultradenizen;
 
 import com.thedemgel.ultratrader.UltraTrader;
+import com.thedemgel.ultratrader.citizens.TraderTrait;
 import com.thedemgel.ultratrader.shop.ItemPrice;
 import com.thedemgel.ultratrader.shop.Shop;
-import net.aufdemrand.denizen.objects.Element;
-import net.aufdemrand.denizen.objects.Fetchable;
-import net.aufdemrand.denizen.objects.dItem;
-import net.aufdemrand.denizen.objects.dObject;
+import net.aufdemrand.denizen.objects.*;
 import net.aufdemrand.denizen.tags.Attribute;
 import net.aufdemrand.denizen.utilities.debugging.dB;
+import net.citizensnpcs.api.npc.NPC;
 
 import java.math.BigDecimal;
 
@@ -23,8 +22,27 @@ public class dShop implements dObject {
 
         string = string.replace("shop@", "");
 
-        if (UltraTrader.getStoreHandler().getShops().containsKey(Integer.valueOf(string))){
-            return new dShop(UltraTrader.getStoreHandler().getShops().get(Integer.valueOf(string)));
+        dNPC npc = dNPC.valueOf(string);
+
+        if (npc != null) {
+            NPC citiNpc = npc.getCitizen();
+
+            if (citiNpc.hasTrait(TraderTrait.class)) {
+                TraderTrait trait = citiNpc.getTrait(TraderTrait.class);
+                int id = trait.getShopId();
+                return new dShop(UltraTrader.getStoreHandler().getShop(id));
+            } else {
+                dB.log("NPC doesn't have tradertrait.");
+                return null;
+            }
+        }
+
+        try {
+            //if (UltraTrader.getStoreHandler().getShops().containsKey(Integer.valueOf(string))){
+                return new dShop(UltraTrader.getStoreHandler().getShop(Integer.valueOf(string)));
+            //}
+        } catch (NumberFormatException e) {
+            dB.echoError("Parameter passed is not a Number or Shop.");
         }
 
         return null;
@@ -96,6 +114,14 @@ public class dShop implements dObject {
         // -->
         if (attribute.startsWith("name")) {
             return new Element(shop.getName()).getAttribute(attribute.fulfill(1));
+        }
+
+        if (attribute.startsWith("id")) {
+            return new Element(shop.getId()).getAttribute(attribute.fulfill(1));
+        }
+
+        if (attribute.startsWith("owner")) {
+            return new Element(shop.getOwner()).getAttribute(attribute.fulfill(1));
         }
 
         // <--[tag]

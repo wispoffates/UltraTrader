@@ -1,8 +1,8 @@
 package com.thedemgel.ultratrader.data;
 
-import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.StoreConfig;
+import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.inventory.InventoryInterfaceHandler;
 import com.thedemgel.ultratrader.shop.CategoryItem;
 import com.thedemgel.ultratrader.shop.ItemPrice;
@@ -11,19 +11,22 @@ import com.thedemgel.ultratrader.util.ConfigValue;
 import com.thedemgel.ultratrader.util.ShopAction;
 import com.thedemgel.ultratrader.util.YamlFilenameFilter;
 import com.thedemgel.ultratrader.wallet.WalletHandler;
-import java.io.File;
-import java.math.BigDecimal;
-import java.util.*;
-import java.util.Map.Entry;
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import java.io.File;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class YamlDataObject extends DataObject {
 
@@ -56,10 +59,10 @@ public class YamlDataObject extends DataObject {
 
 	@Override
 	public void load(int shopid) {
-		File loadfile = new File(STORE_DIR, shopid + ".yml");
-		StoreConfig config = new StoreConfig(UltraTrader.getInstance(), loadfile);
+		File loadFile = new File(STORE_DIR, shopid + ".yml");
+		StoreConfig config = new StoreConfig(UltraTrader.getInstance(), loadFile);
 
-		Shop shop = new Shop(config);
+		Shop shop = new Shop();
 
 		// Find or create Inventory Section
 		ConfigurationSection invconfig = config.getConfig().getConfigurationSection("inventory");
