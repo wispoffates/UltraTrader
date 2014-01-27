@@ -8,9 +8,9 @@
     <language>en-us</language>
     <copyright>&#169;2013 - 2014 Demgel OpenSource Coding</copyright>
     <item>
-      <title>File: 155,
-             Errors: 640,
-             Warnings: 787,
+      <title>File: 164,
+             Errors: 700,
+             Warnings: 842,
              Infos: 25
       </title>
             <link>http://demgelopensource.github.io/UltraTrader/checkstyle.html</link>
@@ -206,7 +206,7 @@
                   16
                 </td>
                 <td>
-                  11
+                  13
                 </td>
               </tr>
                           <tr>
@@ -235,6 +235,20 @@
                 </td>
                 <td>
                   5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultradenizen.DTraderTags.java">com/thedemgel/ultradenizen/DTraderTags.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  1
                 </td>
               </tr>
                           <tr>
@@ -290,7 +304,7 @@
                   8
                 </td>
                 <td>
-                  12
+                  10
                 </td>
               </tr>
                           <tr>
@@ -347,6 +361,20 @@
                 </td>
                 <td>
                   6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultradenizen.event.ItemPurchaseEvent.java">com/thedemgel/ultradenizen/event/ItemPurchaseEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  5
                 </td>
               </tr>
                           <tr>
@@ -757,6 +785,34 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.events.ShopPurchaseFromPlayerEvent.java">com/thedemgel/ultratrader/events/ShopPurchaseFromPlayerEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  16
+                </td>
+                <td>
+                  15
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultradenizen.event.ItemSellEvent.java">com/thedemgel/ultradenizen/event/ItemSellEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.inventory.ShopInventoryInterface.java">com/thedemgel/ultratrader/inventory/ShopInventoryInterface.java</a>
                 </td>
                 <td>
@@ -836,7 +892,7 @@
                   3
                 </td>
                 <td>
-                  7
+                  5
                 </td>
               </tr>
                           <tr>
@@ -1009,6 +1065,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultradenizen.UltraDenizen.java">com/thedemgel/ultradenizen/UltraDenizen.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.addsellitem.AddItemBeginPrompt.java">com/thedemgel/ultratrader/conversation/addsellitem/AddItemBeginPrompt.java</a>
                 </td>
                 <td>
@@ -1158,7 +1228,21 @@
                   49
                 </td>
                 <td>
-                  40
+                  41
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultradenizen.dShop.java">com/thedemgel/ultradenizen/dShop.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+                <td>
+                  15
                 </td>
               </tr>
                           <tr>
@@ -1219,6 +1303,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultradenizen.UDEventListener.java">com/thedemgel/ultradenizen/UDEventListener.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.conversation.admin.bank.AdminBankMenuPrompt.java">com/thedemgel/ultratrader/conversation/admin/bank/AdminBankMenuPrompt.java</a>
                 </td>
                 <td>
@@ -1256,7 +1354,7 @@
                   24
                 </td>
                 <td>
-                  28
+                  26
                 </td>
               </tr>
                           <tr>
@@ -1383,6 +1481,20 @@
                 </td>
                 <td>
                   8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultratrader.events.PlayerPurchaseFromShopEvent.java">com/thedemgel/ultratrader/events/PlayerPurchaseFromShopEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  16
+                </td>
+                <td>
+                  15
                 </td>
               </tr>
                           <tr>
@@ -2054,7 +2166,7 @@
                   8
                 </td>
                 <td>
-                  14
+                  9
                 </td>
               </tr>
                           <tr>
@@ -2181,6 +2293,20 @@
                 </td>
                 <td>
                   2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/checkstyle.html#com.thedemgel.ultradenizen.UltraCommands.java">com/thedemgel/ultradenizen/UltraCommands.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  7
                 </td>
               </tr>
                           <tr>
