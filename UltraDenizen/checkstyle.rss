@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<rss version="0.91">
+  <channel>
+    <title>UltraDenizen - Checkstyle report</title>
+    <link>http://demgelopensource.github.io/UltraTrader/UltraDenizen</link>
+    <description>UltraDenizen - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2013 - 2014 Demgel OpenSource Coding</copyright>
+    <item>
+      <title>File: 7,
+             Errors: 36,
+             Warnings: 23,
+             Infos: 0
+      </title>
+            <link>http://demgelopensource.github.io/UltraTrader/UltraDenizen/checkstyle.html</link>
+      <description>
+        <p>Click <a href="http://demgelopensource.github.io/UltraTrader/UltraDenizen/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraDenizen/checkstyle.html#com.thedemgel.ultradenizen.dShop.java">com/thedemgel/ultradenizen/dShop.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+                <td>
+                  15
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraDenizen/checkstyle.html#com.thedemgel.ultradenizen.UDEventListener.java">com/thedemgel/ultradenizen/UDEventListener.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraDenizen/checkstyle.html#com.thedemgel.ultradenizen.event.ItemSellEvent.java">com/thedemgel/ultradenizen/event/ItemSellEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraDenizen/checkstyle.html#com.thedemgel.ultradenizen.event.ItemPurchaseEvent.java">com/thedemgel/ultradenizen/event/ItemPurchaseEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraDenizen/checkstyle.html#com.thedemgel.ultradenizen.UltraDenizen.java">com/thedemgel/ultradenizen/UltraDenizen.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraDenizen/checkstyle.html#com.thedemgel.ultradenizen.UltraCommands.java">com/thedemgel/ultradenizen/UltraCommands.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://demgelopensource.github.io/UltraTrader/UltraDenizen/checkstyle.html#com.thedemgel.ultradenizen.DTraderTags.java">com/thedemgel/ultradenizen/DTraderTags.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+
