@@ -20,8 +20,6 @@ import com.thedemgel.ultratrader.wallet.wallets.AdminWallet;
 import com.thedemgel.ultratrader.wallet.wallets.BankWallet;
 import com.thedemgel.ultratrader.wallet.wallets.PlayerWallet;
 import com.thedemgel.ultratrader.wallet.wallets.ShopWallet;
-import java.io.IOException;
-import java.util.logging.Level;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.trait.TraitInfo;
 import net.milkbowl.vault.economy.Economy;
@@ -29,7 +27,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.mcstats.Metrics;
+
+import java.util.logging.Level;
 
 public class UltraTrader extends JavaPlugin {
 
@@ -92,6 +91,7 @@ public class UltraTrader extends JavaPlugin {
 	private boolean vault;
 	private boolean debug = false;
     private MetricHandler metricHandler;
+    private OpHandler opHandler;
 
 	public void toggleDebug() {
 		debug = !debug;
@@ -105,14 +105,8 @@ public class UltraTrader extends JavaPlugin {
 	public final void onEnable() {
         ConfigurationSerialization.registerClass(CategoryItem.class);
 
+        opHandler = new OpHandler();
 
-		/*try {
-			Metrics metrics = new Metrics(this);
-			metrics.start();
-		} catch (IOException e) {
-			// Failed to submit the stats :-(
-			getLogger().info("Metrics has failed to load...");
-		}*/
 		plugin = this;
 
 		traitHandler = new TraitHandler();
@@ -224,5 +218,9 @@ public class UltraTrader extends JavaPlugin {
 
     public MetricHandler getMetrics() {
         return metricHandler;
+    }
+
+    public OpHandler getOpHandler() {
+        return opHandler;
     }
 }

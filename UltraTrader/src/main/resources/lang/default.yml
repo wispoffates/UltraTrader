@@ -1,3 +1,12 @@
+commands:
+  delete:
+    idrequired: ShopID is required.
+    idisanumber: ShopID needs to be a number.
+    doesnotexist: Shop does not exist with ID {0}.
+    notowner: You need to be the Owner to delete a shop.
+  toggleop:
+    enable: Shops will now ignore your Onwershop or Op status for transactions.
+    disable: Shops will not recognize your Ownershop or Op status for transactions.
 conversation:
   abandon: Conversation abandoned.
   admin:
@@ -10,7 +19,7 @@ conversation:
     remote:
       enable: Shop remove access enabled.
       disable: Shop remove access disabled.
-      nofunds: Insuffient Funds.
+      nofunds: Insufficient Funds.
       deny: You can't enable remote access.
       prompt:
         enable: Enable Remote Item access for {0}?
@@ -145,6 +154,7 @@ general:
   right: (RIGHT)
   name: Name
   newshopname: No Name Set.
+  nocitizens: This only works with Citizens.
   notopen:
     errorloading: Store wasn't loaded properly. (Please report)
     unassigned: Store not open yet. (No store assinged)

@@ -1,6 +1,8 @@
 
 package com.thedemgel.ultratrader.command.commands;
 
+import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.command.BukkitCommand;
 import com.thedemgel.ultratrader.command.Commands;
 import org.bukkit.ChatColor;
@@ -24,6 +26,19 @@ public class PlayerCommands extends Commands implements CommandExecutor {
         sender.sendMessage(ChatColor.GREEN + "  No one to add yet...");
         sender.sendMessage(ChatColor.AQUA + "Special Thanks:");
         sender.sendMessage(ChatColor.GREEN + "  Whiteescape.com - hosting my first test server.");
+        return true;
+    }
+
+    @BukkitCommand(name = "toggleop")
+    public boolean toggleOp(CommandSender sender, Command cmd, String label, String[] args) {
+        UltraTrader.getInstance().getOpHandler().applyToggle(sender.getName());
+
+        if (UltraTrader.getInstance().getOpHandler().getToggle(sender.getName())) {
+            sender.sendMessage(ChatColor.GREEN + L.getString("commands.toggleop.enable"));
+        } else {
+            sender.sendMessage(ChatColor.GREEN + L.getString("commands.toggleop.disable"));
+        }
+
         return true;
     }
 }

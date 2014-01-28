@@ -124,13 +124,19 @@ public class dShop implements dObject {
             return new Element(shop.getOwner()).getAttribute(attribute.fulfill(1));
         }
 
-        // <--[tag]
-        // @attribute <shop@shop.item[<id>]>
-        // @returns Element(dItem)
-        // @description
-        // Returns Item type from item id
-        // @plugin UltraTrader
-        // -->
+        /**
+         * [START: tag]
+         * ## shop@#.item[dItem]
+         * + example: `shop@3.item[i@glass]`
+         * + returns: dItem
+         *
+         * `Returns an item from a shop if both the Shop and the Item exist.`
+         *
+         * `This can also be used with the Item ID (faster and less resource intensive). To find the ID of the item
+         * either narrate the with shop@3.item[i@glass].id or look in the shops YML file, or is you have excellent
+         * vision, you can find it listed on each item in the shop in-game.`
+         * [END: tag]
+         */
         if (attribute.startsWith("item")) {
             String arg = attribute.getContext(1);
 

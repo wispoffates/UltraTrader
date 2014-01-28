@@ -1,0 +1,6 @@
+#parse( "common" )
+$h2 Tags
+
+#set( $snippetFile = "/src/main/java/com/thedemgel/ultradenizen/dShop.java" )
+#set( $snippetName = "tag" )
+#parse( "snippet_javadoc" )

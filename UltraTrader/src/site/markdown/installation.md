@@ -8,7 +8,7 @@ Installation of UltraTrader requires only a few things to be done.
 + Download *UltraTrader*
 + Drop into plugins folder
 + Start and then Stop server (eventually all basic settings will be done ingame)
-+ Edit `config.yml` and `limits.yml`
++ Edit `config.yml`
 + Restart server.
 
 ### Permissions ###

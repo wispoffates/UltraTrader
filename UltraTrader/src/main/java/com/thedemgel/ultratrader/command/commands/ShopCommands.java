@@ -29,14 +29,22 @@ public class ShopCommands extends Commands implements CommandExecutor {
 
 	@BukkitCommand(name = "myshops")
 	public boolean getShops(CommandSender sender, Command cmd, String label, String[] args) {
-		Collection<Shop> shops = UltraTrader.getStoreHandler().getShopsByOwner((Player) sender);
+        String player = sender.getName();
+
+        if (args.length == 2) {
+            player = args[1];
+        } else if (args.length > 2) {
+            return true;
+        }
+
+		Collection<Shop> shops = UltraTrader.getStoreHandler().getShopsByOwner(player);
 
 		if (shops.isEmpty()) {
 			sender.sendMessage(ChatColor.GREEN + L.getString("shops.list.noshops"));
 		} else {
 			sender.sendMessage(ChatColor.YELLOW + L.getString("shops.list.yourshops"));
 			for (Shop shop : shops) {
-				sender.sendMessage(shop.getId() + ": " + shop.getName());
+				sender.sendMessage(ChatColor.GRAY + "[" + ChatColor.WHITE + shop.getId() + ChatColor.GRAY + "] " + ChatColor.WHITE + shop.getName());
 			}
 		}
 
@@ -46,7 +54,7 @@ public class ShopCommands extends Commands implements CommandExecutor {
 	@BukkitCommand(name = "create")
 	public boolean createTrader(CommandSender sender, Command cmd, String label, String[] args) {
         if (!UltraTrader.getInstance().isCitizens()) {
-            sender.sendMessage(ChatColor.RED + "This command only works with Citizens.");
+            sender.sendMessage(ChatColor.RED + L.getString("general.nocitizens"));
             return true;
         }
 
@@ -118,14 +126,14 @@ public class ShopCommands extends Commands implements CommandExecutor {
         int shopId;
 
         if (args.length < 2) {
-            sender.sendMessage("ShopID is required.");
+            sender.sendMessage(ChatColor.RED + L.getString("commands.delete.idrequired"));
             return true;
         } else {
             try {
                 shopId = Integer.valueOf(args[1]);
             } catch (Exception e) {
                 e.printStackTrace();
-                sender.sendMessage("ShopID needs to be a number");
+                sender.sendMessage(ChatColor.RED + L.getString("commands.delete.idisanumber"));
                 return true;
             }
         }
@@ -133,15 +141,19 @@ public class ShopCommands extends Commands implements CommandExecutor {
         Shop shop = UltraTrader.getStoreHandler().getShop(shopId);
 
         if (shop == null) {
-            sender.sendMessage("Shop does not exist with ID " + shopId);
+            sender.sendMessage(ChatColor.RED + L.getFormatString("commands.delete.doesnotexist", shopId));
             return true;
         } else if (!shop.getOwner().equals(sender.getName()) && !sender.isOp()) {
-            sender.sendMessage("You need to be Owner to delete a shop.");
+            sender.sendMessage(ChatColor.RED + L.getString("commands.delete.notowner"));
             return true;
         }
 
-        // TODO make this a conversation
         UltraTrader.getStoreHandler().deleteShop(shop);
+        return true;
+    }
+
+    @BukkitCommand(name = "info")
+    public boolean npcInfo(CommandSender sender, Command cmd, String label, String[] args) {
         return true;
     }
 }

@@ -9,12 +9,20 @@ public class Permissions {
 	 */
 
 	/**
-	 * START SNIPPET: perm
-	 * ####trader.admin.debug
-	 * `Allows a player to use the "/traderdebug" command`
-	 * END SNIPPET: perm
-	 */
-	public static final String ADMIN_DEBUG = "trader.admin.debug";
+     * START SNIPPET: perm
+     * ####trader.admin.debug
+     * `Allows a player to use the "/traderadmin debug" command`
+     * END SNIPPET: perm
+     */
+    public static final String ADMIN_DEBUG = "trader.admin.debug";
+
+    /**
+     * START SNIPPET: perm
+     * ####trader.admin.viewothers
+     * `Allows a player to list other players shops.`
+     * END SNIPPET: perm
+     */
+    public static final String ADMIN_LIST_OTHERS_SHOPS = "trader.admin.viewothers";
 
 	/* START SNIPPET: perm
 	 * ### Stores or Shops

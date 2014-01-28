@@ -65,7 +65,7 @@ public class PurchaseHandler {
 
 		boolean charge = true;
 		// Should we charge
-		if (shop.isOwner(player)) {
+		if (shop.isOwner(player) && !UltraTrader.getInstance().getOpHandler().getToggle(player.getName())) {
 			charge = false;
 		}
 
@@ -236,12 +236,10 @@ public class PurchaseHandler {
 		String buyStackId = shop.getItemId(item);
 
 		ItemPrice invItem;
-        // TODO: clean up
+
 		switch (view.getStatus()) {
 			case BUY_ITEM_SCREEN:
-				invItem = shop.getPriceList().get(buyStackId);
-				break;
-			case SELL_ITEM_SCREEN:
+            case SELL_ITEM_SCREEN:
 				invItem = shop.getPriceList().get(buyStackId);
 				break;
 			default:

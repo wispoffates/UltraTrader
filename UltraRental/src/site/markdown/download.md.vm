@@ -1,0 +1,13 @@
+#parse( "common" )
+$h1 Downloads
+There are two main places that you may download ${project.name}
+
+$h2 Jenkins
+These are developments builds and are not 100% guaranteed to work as expected.
+
+<https://tenowg.ci.cloudbees.com/job/UltraTrader/lastSuccessfulBuild/com.thedemgel$${project.name}/>
+
+$h2 Bukkit
+These builds have been tested and approved by BukkitDev and can be downloaded directly from their site:
+
+<http://dev.bukkit.org/bukkit-plugins/${project.name}>

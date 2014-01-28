@@ -52,11 +52,15 @@ public class ShopHandler {
 		return shops.get(shopId);
 	}
 
-	public Collection<Shop> getShopsByOwner(final Player player) {
+    public Collection<Shop> getShopsByOwner(Player player) {
+        return getShopsByOwner(player.getName());
+    }
+
+	public Collection<Shop> getShopsByOwner(final String player) {
 		Predicate<Shop> owner = new Predicate<Shop>() {
 			@Override
 			public boolean apply(Shop shop) {
-				return (shop.getOwner() == null ? player.getName() == null : shop.getOwner().equals(player.getName()));
+				return (shop.getOwner() == null ? player == null : shop.getOwner().equals(player));
 			}
 		};
 

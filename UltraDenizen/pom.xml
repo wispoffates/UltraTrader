@@ -11,6 +11,15 @@
 
     <artifactId>UltraDenizen</artifactId>
     <version>${ultradenizen-version}</version>
+    <name>UltraDenizen</name>
+    <description>UltraTrader extension enabling Denizen scripts.</description>
+
+    <distributionManagement>
+        <site>
+            <id>github-project-site</id>
+            <url>${project.name}</url>
+        </site>
+    </distributionManagement>
 
     <dependencies>
         <dependency>
