@@ -35,3 +35,6 @@ defaults:
       itemactivatecost: 10000
       maxshops: 1
       maxlevel: 1
+material:
+  click: paper
+  info: stick

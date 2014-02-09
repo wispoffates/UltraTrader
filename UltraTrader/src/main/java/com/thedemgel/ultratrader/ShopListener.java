@@ -175,6 +175,7 @@ public class ShopListener implements Listener {
                                 public void run() {
                                     ItemStack inHand = view.getItem(event.getRawSlot()).clone();
                                     Conversation convo = UltraTrader.getConversationHandler().getAddSellItem().buildConversation(player);
+                                    //convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW, view);
                                     convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM, inHand);
                                     convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_SLOT, event.getRawSlot());
                                     view.setConvo(convo);
@@ -350,8 +351,7 @@ public class ShopListener implements Listener {
 	}
 
 	@EventHandler
-	public void onPlayerInteractEntityEvent(PlayerInteractEntityEvent event
-	) {
+	public void onPlayerInteractEntityEvent(PlayerInteractEntityEvent event) {
 		Entity entity = event.getRightClicked();
 		Player player = event.getPlayer();
 
@@ -372,11 +372,19 @@ public class ShopListener implements Listener {
 			}
 
 			if (npc.hasTrait(TraderTrait.class)) {
+
 				TraderTrait trait = npc.getTrait(TraderTrait.class);
 
-				Integer shopid = trait.getShopId();
+                Integer shopid = trait.getShopId();
 
-				if (shopid == ShopHandler.SHOP_NULL) {
+                // TODO: info if info click material is in hand.
+
+                if (event.getPlayer().getItemInHand().getType().equals(UltraTrader.clickInfoMaterial)) {
+                    UltraTrader.getStoreHandler().displayInfo(event.getPlayer(), shopid);
+                    return;
+                }
+
+                if (shopid == ShopHandler.SHOP_NULL) {
 					if (npc.getTrait(Owner.class).isOwnedBy(player)) {
 						if (!player.isConversing()) {
 							Conversation convo = UltraTrader.getConversationHandler().getCreateShop().buildConversation(player);
@@ -396,7 +404,7 @@ public class ShopListener implements Listener {
 					return;
 				}
 
-                if (event.getPlayer().getItemInHand().getType().equals(Material.PAPER)) {
+                if (event.getPlayer().getItemInHand().getType().equals(UltraTrader.clickMaterial)) {
                     if (npc.getTrait(Owner.class).isOwnedBy(player)) {
                         if (!player.isConversing()) {
                             Conversation convo = UltraTrader.getConversationHandler().getCreateShop().buildConversation(player);
@@ -456,7 +464,12 @@ public class ShopListener implements Listener {
                 // TODO: open shop
                 int shopId = block.getMetadata(BlockShopHandler.SHOP_METADATA_KEY).get(0).asInt();
 
-                if (shopId == ShopHandler.SHOP_NULL  || item.getType().equals(Material.PAPER)) {
+                if (event.getPlayer().getItemInHand().getType().equals(UltraTrader.clickInfoMaterial)) {
+                    UltraTrader.getStoreHandler().displayInfo(event.getPlayer(), shopId);
+                    return;
+                }
+
+                if (shopId == ShopHandler.SHOP_NULL  || item.getType().equals(UltraTrader.clickMaterial)) {
                     if(BlockShopHandler.assignShopConvo(event.getPlayer(), block)) {
                         return;
                     }
@@ -481,7 +494,7 @@ public class ShopListener implements Listener {
 			}
 
             // Check if item in hand is create block shop item
-            if (item != null && item.getType().equals(Material.PAPER)) {
+            if (item != null && item.getType().equals(UltraTrader.clickMaterial)) {
                 if (BlockShopHandler.createBlockShop(player, event.getClickedBlock())) {
                     return;
                 }

@@ -24,6 +24,7 @@ import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.trait.TraitInfo;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -46,6 +47,8 @@ public class UltraTrader extends JavaPlugin {
 	private static ShopHandler shopHandler;
 	private static TraitHandler traitHandler;
 	private static boolean isLoggingEnabled = false;
+    public static Material clickMaterial = Material.PAPER;
+    public static Material clickInfoMaterial = Material.STICK;
 
 	public static Economy getEconomy() {
 		return economy;
@@ -82,10 +85,6 @@ public class UltraTrader extends JavaPlugin {
 	public static TraitHandler getTraitHandler() {
 		return traitHandler;
 	}
-
-    //public UltraTrader() {
-    //    ConfigurationSerialization.registerClass(CategoryItem.class);
-    //}
 
 	private boolean citizens;
 	private boolean vault;
@@ -135,6 +134,8 @@ public class UltraTrader extends JavaPlugin {
 			isLoggingEnabled = true;
 		}
 
+        setClickMaterial();
+
 		// Verify resources (Vault/CitizensAPI)
 		checkCitizens();
 		checkVault();
@@ -171,13 +172,39 @@ public class UltraTrader extends JavaPlugin {
 	@Override
 	public final void onDisable() {
 		getStoreHandler().saveShops(false);
-		this.saveConfig();
+		//this.saveConfig();
 		this.getLogger().log(Level.INFO, "UltraTrader Disabled...");
 	}
 
 	public static ShopHandler getStoreHandler() {
 		return shopHandler;
 	}
+
+    public void setClickMaterial() {
+        String material = getConfig().getString("material.click");
+
+        Material mat;
+
+        try {
+            mat = Material.valueOf(material.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            getLogger().log(Level.WARNING, "Material name " + material + " was not found, defaulting to PAPER");
+            mat = Material.PAPER;
+        }
+
+        clickMaterial = mat;
+
+        material = getConfig().getString("material.info");
+
+        try {
+            mat = Material.valueOf(material.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            getLogger().log(Level.WARNING, "Material name " + material + " was not found, defaulting to STICK");
+            mat = Material.STICK;
+        }
+
+        clickInfoMaterial = mat;
+    }
 
 	private void checkCitizens() {
 		if (getServer().getPluginManager().getPlugin("Citizens") == null || !getServer().getPluginManager().getPlugin("Citizens").isEnabled()) {

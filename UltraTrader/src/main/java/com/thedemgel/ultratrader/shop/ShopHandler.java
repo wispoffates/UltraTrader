@@ -160,6 +160,20 @@ public class ShopHandler {
         UltraTrader.getDbObj().removeShopFile(shop.getId());
     }
 
+    public void displayInfo(Player player, int shopId) {
+        if (!getShops().containsKey(shopId)) {
+            player.sendMessage(ChatColor.RED + "No Shop is assigned.");
+            return;
+        }
+
+        Shop shop = getShop(shopId);
+
+        player.sendMessage(ChatColor.GREEN + "**************** Shop Info *****************");
+        player.sendMessage(ChatColor.GREEN + "Name: " + ChatColor.WHITE + shop.getName());
+        player.sendMessage(ChatColor.GREEN + "Id: " + ChatColor.WHITE + shop.getId());
+        player.sendMessage(ChatColor.GREEN + "Owner: " + ChatColor.WHITE + shop.getOwner());
+    }
+
     public Map<Integer, Shop> getShops() {
         return shops;
     }
