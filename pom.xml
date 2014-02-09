@@ -43,7 +43,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <ultratrader-version>1.0</ultratrader-version>
+        <ultratrader-version>1.1</ultratrader-version>
         <ultradenizen-version>1.0</ultradenizen-version>
         <ultraframe-version>1.0</ultraframe-version>
         <ultrarental-version>1.0</ultrarental-version>
