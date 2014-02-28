@@ -3,17 +3,22 @@ package com.thedemgel.ultratrader.conversation.addsellitem;
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.NotADoublePrompt;
-import java.math.BigDecimal;
-import java.text.MessageFormat;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.conversations.StringPrompt;
 import org.bukkit.inventory.ItemStack;
 
+import java.math.BigDecimal;
+import java.text.MessageFormat;
+
 public class AddItemPrompt extends StringPrompt {
 
 	@Override
 	public Prompt acceptInput(ConversationContext context, String input) {
+
+        if (input.equals("no") || input.equals("none")) {
+            input = "-1";
+        }
 
 		Double price;
 		try {

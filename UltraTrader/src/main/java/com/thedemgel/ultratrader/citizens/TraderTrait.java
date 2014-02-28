@@ -3,18 +3,12 @@ package com.thedemgel.ultratrader.citizens;
 
 import net.citizensnpcs.api.persistence.Persist;
 import net.citizensnpcs.api.trait.Trait;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Score;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
 
 
 public class TraderTrait extends Trait {
 
 	@Persist private Integer shopid = -1;
+    @Persist private boolean open = true;
 
 	public TraderTrait() {
 		super("ultratrader");
@@ -27,4 +21,12 @@ public class TraderTrait extends Trait {
 	public void setShopId(Integer value) {
 		shopid = value;
 	}
+
+    public boolean getOpen() {
+        return open;
+    }
+
+    public void setOpen(boolean value) {
+        open = value;
+    }
 }

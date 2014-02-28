@@ -95,8 +95,8 @@ conversation:
       deleted: Item Deleted.
       cancelled: Operation Cancelled.
     prefix: ITEM ADMIN
-    setprice: What would you like to CHARGE for {0}?
-    setbuyprice: What would you like to PAY for {0}?
+    setprice: What would you like to CHARGE for {0}? (no or none to disable)
+    setbuyprice: What would you like to PAY for {0}? (no or none to disable)
     setdescription: Give a short description of {0} (type "{1}" for no description).
     menu:
       options:
@@ -113,7 +113,7 @@ conversation:
   addbuyitem:
     begin: Begin adding an item to buy.
     prefix: ADD BUY ITEM
-    setprice: What would you like to pay for [{0}]?
+    setprice: What would you like to pay for [{0}]? (no or none to disable)
     setdescription: Give a short description. {0} (type "{1}" for no description).
     cantaddinventory: You can't add inventory in buy mode.
     added: Item Added.
@@ -122,7 +122,7 @@ conversation:
   additem:
     begin: Begin adding an item for sale.
     prefix: ADD SELL ITEM
-    setprice: What would you like to charge for new item [{0}]?
+    setprice: What would you like to charge for new item [{0}]? (no or none to disable)
     setdescription: Give a short description of {0} (type "{1}" for no description).
     addinventory: Item has been added to inventory.
     added: Item Added.
@@ -158,6 +158,7 @@ general:
   notopen:
     errorloading: Store wasn't loaded properly. (Please report)
     unassigned: Store not open yet. (No store assinged)
+    closed: Shop is not currently open to the public
   price: Price
   create:
     noselected: You must have an NPC selected.
@@ -195,7 +196,7 @@ inventory:
     lore:
       full: Click to Move all to Inventory
       empty: Nothing to move to Inventory
-  tobuyscreen:
+  tocategoryscreen:
     display: Back to Categories
     lore: Goto Category Screen
   tosellscreen:

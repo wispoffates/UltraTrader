@@ -418,6 +418,13 @@ public class ShopListener implements Listener {
                     }
                 }
 
+                if (!trait.getOpen()) {
+                    player.sendRawMessage(ChatColor.RED + L.getString("general.notopen.closed"));
+                    if (!npc.getTrait(Owner.class).isOwnedBy(player)) {
+                        return;
+                    }
+                }
+
 				InventoryHandler handler = UltraTrader.getStoreHandler().getInventoryHandler();
 				// Open Store
 				if (handler.hasInventoryView(player)) {

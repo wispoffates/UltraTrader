@@ -211,15 +211,16 @@ public class ShopInventoryView extends InventoryView {
 			}
 		}
 
-        // TODO: change text
-		ItemStack toSell = new ItemStack(Material.ARROW);
-		ItemMeta toSellMeta = toSell.getItemMeta();
-		List<String> toSellText = new ArrayList<>();
-		toSellText.add(L.getString("inventory.tobuyscreen.lore"));
-		toSellMeta.setLore(toSellText);
-		toSellMeta.setDisplayName(L.getString("inventory.tobuyscreen.display"));
-		toSell.setItemMeta(toSellMeta);
-		this.setItem(InventoryHandler.INVENTORY_BACK_ARROW_SLOT, toSell);
+        if (shop.getCategoryItem().values().size() > 1 || shop.isOwner(player)) {
+		    ItemStack toSell = new ItemStack(Material.ARROW);
+		    ItemMeta toSellMeta = toSell.getItemMeta();
+		    List<String> toSellText = new ArrayList<>();
+		    toSellText.add(L.getString("inventory.tocategoryscreen.lore"));
+		    toSellMeta.setLore(toSellText);
+		    toSellMeta.setDisplayName(L.getString("inventory.tocategoryscreen.display"));
+		    toSell.setItemMeta(toSellMeta);
+		    this.setItem(InventoryHandler.INVENTORY_BACK_ARROW_SLOT, toSell);
+        }
 
 		if (displayAdmin) {
 			ItemStack doArrange = new ItemStack(Material.BOOKSHELF);
@@ -260,6 +261,11 @@ public class ShopInventoryView extends InventoryView {
 			buildCategoryItemView();
 			return;
 		}
+
+        if (invItem.getBuyPrice().doubleValue() < 0 && !shop.isOwner(player)) {
+            buildCategoryItemView();
+            return;
+        }
 
 		int invCount = shop.getInventoryInterface().getInventoryStock(invItem);
 
@@ -338,6 +344,11 @@ public class ShopInventoryView extends InventoryView {
 			buildCategoryItemView();
 			return;
 		}
+
+        if (invItem.getSellPrice().doubleValue() < 0 && !shop.isOwner(player)) {
+            buildCategoryItemView();
+            return;
+        }
 
 		int invCount;
 

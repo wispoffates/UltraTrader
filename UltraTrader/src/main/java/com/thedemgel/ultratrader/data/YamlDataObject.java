@@ -331,6 +331,7 @@ public class YamlDataObject extends DataObject {
                     priceConfig.set(priceList.getId() + ".buyPrice", priceList.getBuyPrice());
                     priceConfig.set(priceList.getId() + ".random", priceList.getId());
                     priceConfig.set(priceList.getId() + ".slot", priceList.getSlot());
+
                 }
 
 			    ConfigurationSection invConfig = config.getConfig().getConfigurationSection("inventory");
@@ -402,6 +403,7 @@ public class YamlDataObject extends DataObject {
 			    config.saveConfig();
             } catch (Exception e) {
                 System.out.println("Store Config cannot be saved (" + e.getMessage() + ")");
+                e.printStackTrace();
             }
 		}
 	}

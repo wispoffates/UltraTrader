@@ -1,14 +1,15 @@
 package com.thedemgel.ultratrader.shop;
 
-import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.L;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import com.thedemgel.ultratrader.UltraTrader;
 import org.apache.commons.lang.RandomStringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemPrice {
 
@@ -80,8 +81,12 @@ public class ItemPrice {
 				genLore.add(ChatColor.BLUE + L.getFormatString("general.sellpriceview", stackAmount, sellPrice, UltraTrader.getEconomy().format(sellPrice.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
 				break;
 			default:
-                genLore.add(ChatColor.BLUE + L.getString("general.left") + " " + L.getFormatString("general.sellprice", UltraTrader.getEconomy().format(sellPrice.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
-                genLore.add(ChatColor.GOLD + L.getString("general.right") + " " + L.getFormatString("general.buyprice", UltraTrader.getEconomy().format(buyPrice.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
+                if (sellPrice.doubleValue() >= 0) {
+                    genLore.add(ChatColor.BLUE + L.getString("general.left") + " " + L.getFormatString("general.sellprice", UltraTrader.getEconomy().format(sellPrice.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
+                }
+                if (buyPrice.doubleValue() >= 0) {
+                    genLore.add(ChatColor.GOLD + L.getString("general.right") + " " + L.getFormatString("general.buyprice", UltraTrader.getEconomy().format(buyPrice.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
+                }
 		}
 		// Will need to figure for discounts
 		// If there is a discount... add a message here

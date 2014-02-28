@@ -43,7 +43,7 @@
     <dependency>
       <groupId>com.thedemgel</groupId>
       <artifactId>UltraTrader</artifactId>
-      <version>1.0</version>
+      <version>1.1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -80,6 +80,12 @@
       <groupId>org.mcstats.bukkit</groupId>
       <artifactId>metrics</artifactId>
       <version>R7</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.comphenix.protocol</groupId>
+      <artifactId>ProtocolLib</artifactId>
+      <version>3.2.0</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>

@@ -16,6 +16,10 @@ public class AddBuyItemPrompt extends StringPrompt {
 	@Override
 	public Prompt acceptInput(ConversationContext context, String input) {
 
+        if (input.equals("no") || input.equals("none")) {
+            input = "-1";
+        }
+
 		Double price;
 		try {
 			price = Double.valueOf(input);

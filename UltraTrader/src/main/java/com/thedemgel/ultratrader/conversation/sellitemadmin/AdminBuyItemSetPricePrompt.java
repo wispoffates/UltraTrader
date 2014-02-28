@@ -3,7 +3,6 @@ package com.thedemgel.ultratrader.conversation.sellitemadmin;
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.NotADoublePrompt;
-import com.thedemgel.ultratrader.conversation.buyitemadmin.AdminBuyItemMenuPrompt;
 import com.thedemgel.ultratrader.shop.ItemPrice;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.Prompt;
@@ -15,6 +14,10 @@ public class AdminBuyItemSetPricePrompt extends StringPrompt {
 
 	@Override
 	public Prompt acceptInput(ConversationContext context, String input) {
+
+        if (input.equals("no") || input.equals("none")) {
+            input = "-1";
+        }
 
 		Double price;
 		try {

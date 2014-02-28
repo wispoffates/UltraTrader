@@ -35,10 +35,13 @@ public class AdminSellItemMenuPrompt extends FixedIgnoreCaseSetPrompt {
 	public String getPromptText(ConversationContext context) {
 		ItemPrice itemprice = (ItemPrice) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEMPRICE);
 		Player p = (Player) context.getForWhom();
+        String buyprice = (itemprice.getBuyPrice().doubleValue() < 0) ? "Disabled" : UltraTrader.getEconomy().format(itemprice.getBuyPrice().doubleValue());
+        String sellprice = (itemprice.getSellPrice().doubleValue() < 0) ? "Disabled" : UltraTrader.getEconomy().format(itemprice.getSellPrice().doubleValue());
+
 		p.sendRawMessage(prefix.getPrefix(context) + "------<" + ChatColor.BLUE + "ITEM ADMIN" + ChatColor.YELLOW + ">------");
         p.sendRawMessage(prefix.getPrefix(context) + "Category: " + ChatColor.WHITE + itemprice.getCategoryId());
-		p.sendRawMessage(prefix.getPrefix(context) + L.getString("general.price") + "(SELL (from Shop to player): " + ChatColor.WHITE + UltraTrader.getEconomy().format(itemprice.getSellPrice().doubleValue()));
-        p.sendRawMessage(prefix.getPrefix(context) + L.getString("general.price") + "(BUY (to shop from player)): " + ChatColor.WHITE + UltraTrader.getEconomy().format(itemprice.getBuyPrice().doubleValue()));
+		p.sendRawMessage(prefix.getPrefix(context) + L.getString("general.price") + "(SELL (from Shop to player): " + ChatColor.WHITE + sellprice);
+        p.sendRawMessage(prefix.getPrefix(context) + L.getString("general.price") + "(BUY (to shop from player)): " + ChatColor.WHITE + buyprice);
         p.sendRawMessage(prefix.getPrefix(context) + L.getString("general.description") + ": " + ChatColor.WHITE + itemprice.getDescription());
 		return L.getString("conversation.options") + ": " + this.formatFixedSet();
 	}

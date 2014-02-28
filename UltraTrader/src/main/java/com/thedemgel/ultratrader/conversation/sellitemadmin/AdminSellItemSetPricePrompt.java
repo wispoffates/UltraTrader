@@ -4,15 +4,20 @@ import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.NotADoublePrompt;
 import com.thedemgel.ultratrader.shop.ItemPrice;
-import java.math.BigDecimal;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.conversations.StringPrompt;
+
+import java.math.BigDecimal;
 
 public class AdminSellItemSetPricePrompt extends StringPrompt {
 
 	@Override
 	public Prompt acceptInput(ConversationContext context, String input) {
+
+        if (input.equals("no") || input.equals("none")) {
+            input = "-1";
+        }
 
 		Double price;
 		try {

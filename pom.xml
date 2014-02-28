@@ -165,6 +165,11 @@
 			<version>R7</version>
 			<scope>compile</scope>
 		</dependency>
+        <dependency>
+            <groupId>com.comphenix.protocol</groupId>
+            <artifactId>ProtocolLib</artifactId>
+            <version>3.2.0</version>
+        </dependency>
 	</dependencies>
 	<repositories>
 		<repository>
@@ -187,6 +192,11 @@
 			<id>Plugin Metrics</id>
 			<url>http://repo.mcstats.org/content/repositories/public</url>
 		</repository>
+        <repository>
+            <id>comphenix-rep</id>
+            <name>Comphenix Repository</name>
+            <url>http://repo.comphenix.net/content/groups/public</url>
+        </repository>
 	</repositories>
 
 	<reporting>
