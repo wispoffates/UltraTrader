@@ -37,7 +37,7 @@ public class AdminRemoteTogglePrompt extends BooleanPrompt {
 			} else {
 				// Charge the player (will later)
 				if (LimitHandler.canEnableRemoteAccess(p)) {
-					EconomyResponse resp = UltraTrader.getEconomy().withdrawPlayer(p.getName(), p.getWorld().getName(), cost);
+					EconomyResponse resp = UltraTrader.getEconomy().withdrawPlayer(p, p.getWorld().getName(), cost);
 					if (resp.type.equals(ResponseType.SUCCESS)) {
 						p.sendRawMessage(prefix.getPrefix(cc) + L.getString("conversation.admin.remote.enable"));
 						view.getShop().setCanRemote(true);

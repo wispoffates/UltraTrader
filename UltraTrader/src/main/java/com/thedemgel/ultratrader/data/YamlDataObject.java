@@ -1,5 +1,13 @@
 package com.thedemgel.ultratrader.data;
 
+import java.io.File;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.StoreConfig;
 import com.thedemgel.ultratrader.UltraTrader;
@@ -11,7 +19,7 @@ import com.thedemgel.ultratrader.util.ConfigValue;
 import com.thedemgel.ultratrader.util.ShopAction;
 import com.thedemgel.ultratrader.util.YamlFilenameFilter;
 import com.thedemgel.ultratrader.wallet.WalletHandler;
-import net.milkbowl.vault.economy.EconomyResponse;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -20,13 +28,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.io.File;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
+import net.milkbowl.vault.economy.EconomyResponse;
 
 public class YamlDataObject extends DataObject {
 
@@ -192,7 +194,6 @@ public class YamlDataObject extends DataObject {
 			    //shop.getBuyPrices().put(item.getId(), item);
 
                 ItemPrice itemPrice = shop.getItemPrice(item.getItemStack());
-                System.out.println(itemPrice.getBuyPrice());
                 if (itemPrice == null) {
                     item.setCategoryId(CategoryItem.DEFAULT_CAT_BUY);
                     shop.getPriceList().put(item.getId(), item);
@@ -206,7 +207,8 @@ public class YamlDataObject extends DataObject {
                     }
                 } else if (itemPrice.getBuyPrice().equals(BigDecimal.ZERO)){
                     itemPrice.setBuyPrice(item.getBuyPrice());
-                }
+				}
+				System.out.println(itemPrice.getBuyPrice());
 		    }
         }
 
@@ -343,7 +345,7 @@ public class YamlDataObject extends DataObject {
 			    ConfigurationSection inventoryInfoConfig = invConfig.getConfigurationSection("info");
 			    if (inventoryInfoConfig == null) {
 				    inventoryInfoConfig = invConfig.createSection("info");
-				    ConfigValue<String> defaultinventory = new ConfigValue(InventoryInterfaceHandler.DEFAULT_INVENTORY_TYPE);
+				    ConfigValue<String> defaultinventory = new ConfigValue<String>(InventoryInterfaceHandler.DEFAULT_INVENTORY_TYPE);
 				    inventoryInfoConfig.set("type", defaultinventory.getValue());
 			    }
 

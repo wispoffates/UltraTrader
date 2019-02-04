@@ -379,7 +379,7 @@ public class ShopListener implements Listener {
 
                 // TODO: info if info click material is in hand.
 
-                if (event.getPlayer().getItemInHand().getType().equals(UltraTrader.clickInfoMaterial)) {
+                if (event.getPlayer().getInventory().getItemInMainHand().getType().equals(UltraTrader.clickInfoMaterial)) {
                     UltraTrader.getStoreHandler().displayInfo(event.getPlayer(), shopid);
                     return;
                 }
@@ -404,7 +404,7 @@ public class ShopListener implements Listener {
 					return;
 				}
 
-                if (event.getPlayer().getItemInHand().getType().equals(UltraTrader.clickMaterial)) {
+                if (event.getPlayer().getInventory().getItemInMainHand().getType().equals(UltraTrader.clickMaterial)) {
                     if (npc.getTrait(Owner.class).isOwnedBy(player)) {
                         if (!player.isConversing()) {
                             Conversation convo = UltraTrader.getConversationHandler().getCreateShop().buildConversation(player);
@@ -471,7 +471,7 @@ public class ShopListener implements Listener {
                 // TODO: open shop
                 int shopId = block.getMetadata(BlockShopHandler.SHOP_METADATA_KEY).get(0).asInt();
 
-                if (event.getPlayer().getItemInHand().getType().equals(UltraTrader.clickInfoMaterial)) {
+                if (event.getPlayer().getInventory().getItemInMainHand().getType().equals(UltraTrader.clickInfoMaterial)) {
                     UltraTrader.getStoreHandler().displayInfo(event.getPlayer(), shopId);
                     return;
                 }

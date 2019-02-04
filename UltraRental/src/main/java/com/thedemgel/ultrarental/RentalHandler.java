@@ -8,6 +8,7 @@ import com.thedemgel.ultratrader.util.ResponseObject;
 import com.thedemgel.ultratrader.util.ResponseObjectType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -16,7 +17,7 @@ import net.citizensnpcs.api.npc.NPC;
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
+import org.bukkit.OfflinePlayer;
 
 
 public class RentalHandler {
@@ -55,36 +56,32 @@ public class RentalHandler {
 		return true;
 	}
 
-	public static ResponseObject rentNPC(NPC npc, Player player) {
-		return rentNPC(npc, player.getName(), false);
-	}
-
-	public static ResponseObject rentNPC(NPC npc, String player) {
+	public static ResponseObject<?> rentNPC(NPC npc, OfflinePlayer player) {
 		return rentNPC(npc, player, false);
 	}
 
-	public static ResponseObject rentNPC(NPC npc, String player, boolean update) {
+	public static ResponseObject<?> rentNPC(NPC npc, OfflinePlayer player, boolean update) {
 		if (!npc.hasTrait(RentalShop.class) || !npc.hasTrait(TraderTrait.class)) {
 			Bukkit.getLogger().log(Level.SEVERE, "Missing Trait from NPC: " + npc.getId());
-			return new ResponseObject("This NPC is missing a trait.", ResponseObjectType.FAILURE);
+			return new ResponseObject<Void>("This NPC is missing a trait.", ResponseObjectType.FAILURE);
 		}
 
 		RentalShop rent = npc.getTrait(RentalShop.class);
 
 		if (rent.isRented() && !update) {
-			return new ResponseObject("This NPC is already rented", ResponseObjectType.FAILURE);
+			return new ResponseObject<Void>("This NPC is already rented", ResponseObjectType.FAILURE);
 		}
 
 		EconomyResponse resp = UltraTrader.getEconomy().withdrawPlayer(player, npc.getStoredLocation().getWorld().getName(), rent.getCost());
 
 		if (!resp.transactionSuccess()) {
-			return new ResponseObject("Sorry you don't have the funds to rent this npc.", ResponseObjectType.FAILURE);
+			return new ResponseObject<Void>("Sorry you don't have the funds to rent this npc.", ResponseObjectType.FAILURE);
 		}
 
 		rent.setRenter(player);
 		rent.setRentedOn(System.currentTimeMillis());
 
-		return new ResponseObject("You have successfully rented this npc.", ResponseObjectType.SUCCESS);
+		return new ResponseObject<Void>("You have successfully rented this npc.", ResponseObjectType.SUCCESS);
 	}
 
 	public static void clearNPC(NPC npc) {
@@ -97,7 +94,7 @@ public class RentalHandler {
 		TraderTrait trader = npc.getTrait(TraderTrait.class);
 
 		trader.setShopId(ShopHandler.SHOP_NULL);
-		rent.setRenter("");
+		rent.setRenter((UUID)null);
 		rent.setRentedOn(0);
 	}
 
@@ -117,10 +114,10 @@ public class RentalHandler {
 					//System.out.println(expire + "  " + current);
 					if (expire <= current) {
 						//System.out.println("rent has expired");
-						if (Bukkit.getOfflinePlayer(rental.getRenter()).isOnline()) {
-							Bukkit.getPlayerExact(rental.getRenter()).sendMessage(ChatColor.GREEN + "[UltraTrader] " + ChatColor.YELLOW + "Your rent for " + npc.getFullName() + " has been paid.");
+						if (rental.getRenterPlayer().get().isOnline()) {
+							Bukkit.getPlayer(rental.getRenter().get()).sendMessage(ChatColor.GREEN + "[UltraTrader] " + ChatColor.YELLOW + "Your rent for " + npc.getFullName() + " has been paid.");
 						}
-						rentNPC(npc, rental.getRenter(), true);
+						rentNPC(npc, rental.getRenterPlayer().get(), true);
 					}
 				} else {
 					rentalNPCs.remove(npc);

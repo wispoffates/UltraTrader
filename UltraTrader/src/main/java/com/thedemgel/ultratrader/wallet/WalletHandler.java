@@ -1,14 +1,15 @@
 
 package com.thedemgel.ultratrader.wallet;
 
-import com.thedemgel.ultratrader.shop.Shop;
-import com.thedemgel.ultratrader.wallet.annotation.WalletPermission;
-import com.thedemgel.ultratrader.wallet.annotation.WalletTypeName;
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import com.thedemgel.ultratrader.shop.Shop;
+import com.thedemgel.ultratrader.wallet.annotation.WalletPermission;
+import com.thedemgel.ultratrader.wallet.annotation.WalletTypeName;
+
 import org.bukkit.Bukkit;
 
 

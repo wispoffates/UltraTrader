@@ -1,7 +1,6 @@
 
 package com.thedemgel.ultratrader.conversation.addcategoryitem;
 
-import com.thedemgel.ultratrader.L;
 import org.bukkit.ChatColor;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.ConversationPrefix;

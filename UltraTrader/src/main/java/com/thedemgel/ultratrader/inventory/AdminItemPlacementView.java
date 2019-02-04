@@ -10,7 +10,6 @@ import com.thedemgel.ultratrader.shop.Status;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.ConcurrentMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -34,7 +33,6 @@ public class AdminItemPlacementView extends InventoryView implements Listener {
 	private final Inventory top;
     private final Collection<ItemPrice> items;
 
-	@SuppressWarnings("LeakingThisInConstructor")
 	public AdminItemPlacementView(Player player, Shop shop, final String category) {
 		this.player = player;
 		this.shop = shop;

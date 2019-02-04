@@ -1,16 +1,17 @@
 
 package com.thedemgel.ultratrader.conversation.admin.bank;
 
+import java.math.BigDecimal;
+
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
 import com.thedemgel.ultratrader.conversation.admin.AdminConversationPrefix;
 import com.thedemgel.ultratrader.conversation.admin.AdminMenuPrompt;
-import com.thedemgel.ultratrader.inventory.InventoryInterface;
 import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import com.thedemgel.ultratrader.wallet.Wallet;
-import java.math.BigDecimal;
+
 import org.bukkit.ChatColor;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.ConversationPrefix;

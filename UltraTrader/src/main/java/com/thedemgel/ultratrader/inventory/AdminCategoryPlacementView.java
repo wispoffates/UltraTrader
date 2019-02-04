@@ -1,13 +1,15 @@
 package com.thedemgel.ultratrader.inventory;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.Collections2;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import com.thedemgel.ultratrader.InventoryHandler;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.shop.CategoryItem;
-import com.thedemgel.ultratrader.shop.ItemPrice;
 import com.thedemgel.ultratrader.shop.Shop;
 import com.thedemgel.ultratrader.shop.Status;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -24,10 +26,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 public class AdminCategoryPlacementView extends InventoryView implements Listener {
 
 	private final Player player;
@@ -37,7 +35,6 @@ public class AdminCategoryPlacementView extends InventoryView implements Listene
 	//private final ConcurrentMap<String, ItemPrice> items;
     private final Collection<CategoryItem> items;
 
-	@SuppressWarnings("LeakingThisInConstructor")
 	public AdminCategoryPlacementView(Player player, Shop shop, Status viewStatus) {
 		this.player = player;
 		this.shop = shop;

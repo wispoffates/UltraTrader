@@ -5,10 +5,13 @@ import com.thedemgel.ultratrader.conversation.admin.AdminConversationPrefix;
 import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import com.thedemgel.ultratrader.shop.CategoryItem;
 import com.thedemgel.ultratrader.shop.Shop;
+
 import org.bukkit.ChatColor;
-import org.bukkit.conversations.*;
+import org.bukkit.conversations.ConversationContext;
+import org.bukkit.conversations.ConversationPrefix;
+import org.bukkit.conversations.Prompt;
+import org.bukkit.conversations.StringPrompt;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.InventoryView;
 
 public class AdminListCategoryPrompt extends StringPrompt {
     public static final String SESSION_LIST_SELECTION = "categoryListSelection";

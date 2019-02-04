@@ -9,7 +9,6 @@ import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.PlayerNamePrompt;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 
 
 public class PlayerWalletAnotherPrompt extends PlayerNamePrompt {
@@ -22,7 +21,7 @@ public class PlayerWalletAnotherPrompt extends PlayerNamePrompt {
 	protected Prompt acceptValidatedInput(ConversationContext cc, Player player) {
 		Player p = (Player) cc.getForWhom();
 		ShopInventoryView view = (ShopInventoryView) cc.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
-		view.getShop().getWallet().setInfo("player", new ConfigValue(player.getName()));
+		view.getShop().getWallet().setInfo("player", new ConfigValue<String>(p.getName()));
 		String type = (String) cc.getSessionData("wallettype");
 		view.getShop().setWalletType(type);
 

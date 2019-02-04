@@ -7,19 +7,24 @@ import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.util.TimeFormat;
 import net.citizensnpcs.api.persistence.Persist;
 import net.citizensnpcs.api.trait.trait.Owner;
+
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.conversations.Conversation;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.entity.Player;
 
+import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class RentalShop extends UltraTrait {
 
 	// Player renting shop
 	@Persist
-	private String renter = "";
+	private Optional<UUID> renter = Optional.empty();
 
 	// Time shop was rented
 	// 0 if not rented
@@ -43,16 +48,16 @@ public class RentalShop extends UltraTrait {
 		setMenuOption("rental");
 	}
 
-	public String getRenter() {
+	public Optional<UUID> getRenter() {
 		return renter;
 	}
 
-	public boolean isRented() {
-		if ("".equals(renter)) {
-			return false;
-		}
+	public Optional<OfflinePlayer> getRenterPlayer() {
+		return this.renter.isPresent() ? Optional.of(Bukkit.getOfflinePlayer(this.renter.get())) : Optional.empty();
+	}
 
-		return true;
+	public boolean isRented() {
+		return renter.isPresent();
 	}
 
 	@Override
@@ -75,12 +80,12 @@ public class RentalShop extends UltraTrait {
 		}
 	}
 
-	public void setRenter(String value) {
-		renter = value;
+	public void setRenter(UUID value) {
+		renter = Optional.ofNullable(value);
 	}
 
-	public void setRenter(Player player) {
-		renter = player.getName();
+	public void setRenter(OfflinePlayer player) {
+		renter = Optional.of(player.getUniqueId());
 	}
 
 	public long getRentedOn() {
@@ -135,7 +140,7 @@ public class RentalShop extends UltraTrait {
 	public boolean onClick(Player player) {
 		Owner owner = npc.getTrait(Owner.class);
 
-		if (owner.isOwnedBy(player) && player.getItemInHand().getType().equals(Material.STICK)) {
+		if (owner.isOwnedBy(player) && player.getInventory().getItemInMainHand().getType().equals(Material.STICK)) {
 			if (!player.isConversing()) {
 				// Open up rental conversation
 				Conversation convo = UltraRental.getRentalTraderConvo().buildConversation(player);

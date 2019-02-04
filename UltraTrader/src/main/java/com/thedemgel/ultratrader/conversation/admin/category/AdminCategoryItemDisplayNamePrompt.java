@@ -1,10 +1,8 @@
 package com.thedemgel.ultratrader.conversation.admin.category;
 
 import com.thedemgel.ultratrader.L;
-import com.thedemgel.ultratrader.conversation.ConversationHandler;
-import com.thedemgel.ultratrader.conversation.sellitemadmin.AdminSellItemMenuPrompt;
 import com.thedemgel.ultratrader.shop.CategoryItem;
-import com.thedemgel.ultratrader.shop.ItemPrice;
+
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.Prompt;
 import org.bukkit.conversations.StringPrompt;

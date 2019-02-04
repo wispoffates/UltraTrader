@@ -82,7 +82,7 @@ public class ShopHandler {
 
 		// Check to be sure the player has the money to create the shop
 		double cost = LimitHandler.getCreateCost(player);
-		boolean has = UltraTrader.getEconomy().has(player.getName(), player.getWorld().getName(), cost);
+		boolean has = UltraTrader.getEconomy().has(player, player.getWorld().getName(), cost);
 		if (!has) {
 			player.sendRawMessage(ChatColor.RED + "Not enough funds.");
 			return null;
@@ -109,7 +109,7 @@ public class ShopHandler {
 		}
 
 		// Withdraw the money if successfully created
-		EconomyResponse response = UltraTrader.getEconomy().withdrawPlayer(player.getName(), player.getWorld().getName(), cost);
+		EconomyResponse response = UltraTrader.getEconomy().withdrawPlayer(player, player.getWorld().getName(), cost);
 		if (response.type.equals(ResponseType.SUCCESS)) {
 			player.sendRawMessage(cost + " withdrawn from account");
 		} else {

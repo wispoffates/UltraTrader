@@ -1,11 +1,10 @@
 package com.thedemgel.ultratrader.conversation.admin.bank.player;
 
-import com.thedemgel.ultratrader.conversation.admin.AdminMenuPrompt;
-import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
-import java.util.ResourceBundle;
+import com.thedemgel.ultratrader.conversation.admin.AdminMenuPrompt;
+
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.Prompt;
 

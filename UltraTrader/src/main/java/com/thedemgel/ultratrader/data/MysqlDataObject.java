@@ -25,7 +25,7 @@ public class MysqlDataObject extends DataObject {
 	public MysqlDataObject() {
 		super();
 		try {
-			Class c = Class.forName("com.mysql.jdbc.Driver");
+			Class<?> c = Class.forName("com.mysql.jdbc.Driver");
 			Driver driver = (Driver) c.newInstance();
 			DriverManager.registerDriver(driver);
 		} catch (ClassNotFoundException ex) {

@@ -4,7 +4,6 @@ import com.thedemgel.ultratrader.shop.Shop;
 import com.thedemgel.ultratrader.util.ConfigValue;
 import java.math.BigDecimal;
 import net.milkbowl.vault.economy.EconomyResponse;
-import org.bukkit.conversations.Prompt;
 
 public abstract class Wallet {
 

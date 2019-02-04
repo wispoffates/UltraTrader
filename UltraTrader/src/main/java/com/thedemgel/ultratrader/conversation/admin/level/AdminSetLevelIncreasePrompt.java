@@ -35,7 +35,7 @@ public class AdminSetLevelIncreasePrompt extends BooleanPrompt {
 		}
 
 		// Take the money
-		EconomyResponse resp = UltraTrader.getEconomy().withdrawPlayer(player.getName(), player.getWorld().getName(), price);
+		EconomyResponse resp = UltraTrader.getEconomy().withdrawPlayer(player, player.getWorld().getName(), price);
 
 		if (resp.type.equals(ResponseType.SUCCESS)) {
 		// Increase the level

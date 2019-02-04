@@ -1,12 +1,10 @@
 package com.thedemgel.ultratrader.conversation.addcategoryitem;
 
 import com.thedemgel.ultratrader.UltraTrader;
-import com.thedemgel.ultratrader.L;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.inventory.ShopInventoryView;
-import java.math.BigDecimal;
-
 import com.thedemgel.ultratrader.shop.CategoryItem;
+
 import org.bukkit.Bukkit;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;

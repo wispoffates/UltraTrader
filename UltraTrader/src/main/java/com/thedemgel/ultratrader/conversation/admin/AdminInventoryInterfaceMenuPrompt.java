@@ -1,15 +1,14 @@
 package com.thedemgel.ultratrader.conversation.admin;
 
-import com.thedemgel.ultratrader.UltraTrader;
+import java.util.Map.Entry;
+
 import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
-import com.thedemgel.ultratrader.conversation.admin.bank.AdminBankPrompt;
 import com.thedemgel.ultratrader.conversation.admin.inventoryinterface.AdminInventoryInterfacePrompt;
 import com.thedemgel.ultratrader.inventory.InventoryInterface;
 import com.thedemgel.ultratrader.inventory.InventoryInterfaceHandler;
-import com.thedemgel.ultratrader.wallet.Wallet;
-import com.thedemgel.ultratrader.wallet.WalletHandler;
-import java.util.Map.Entry;
+
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.ConversationPrefix;
 import org.bukkit.conversations.Prompt;

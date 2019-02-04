@@ -38,7 +38,7 @@ public class PurchaseHandler {
 
 		double cost = shop.getRemoteItemCost();
 
-		EconomyResponse resp = UltraTrader.getEconomy().withdrawPlayer(player.getName(), player.getWorld().getName(), cost);
+		EconomyResponse resp = UltraTrader.getEconomy().withdrawPlayer(player, player.getWorld().getName(), cost);
 
 		if (!resp.type.equals(ResponseType.SUCCESS)) {
 			player.sendMessage(L.getString("transaction.sale.player.notenoughfunds"));
@@ -86,8 +86,8 @@ public class PurchaseHandler {
 		EconomyResponse heldFunds;
 		if (!charge) {
 			heldFunds = new EconomyResponse(0, 0, ResponseType.SUCCESS, "");
-		} else if (UltraTrader.getEconomy().has(player.getName(), player.getWorld().getName(), buyStackPrice.doubleValue())) {
-			heldFunds = UltraTrader.getEconomy().withdrawPlayer(player.getName(), player.getWorld().getName(), buyStackPrice.doubleValue());
+		} else if (UltraTrader.getEconomy().has(player, player.getWorld().getName(), buyStackPrice.doubleValue())) {
+			heldFunds = UltraTrader.getEconomy().withdrawPlayer(player, player.getWorld().getName(), buyStackPrice.doubleValue());
 		} else {
 			player.sendMessage(L.getString("transaction.sale.player.notenoughfunds"));
 			return;
@@ -108,7 +108,7 @@ public class PurchaseHandler {
 
 		if (baseItem.getAmount() > currentInvAmount) {
 			if (charge) {
-				UltraTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), heldFunds.amount);
+				UltraTrader.getEconomy().depositPlayer(player, player.getWorld().getName(), heldFunds.amount);
 			}
 			// Some error checks for deposit
 			player.sendMessage(L.getString("transaction.sale.shop.notenoughitems"));
@@ -134,7 +134,7 @@ public class PurchaseHandler {
 			if (charge) {
 				refund = buyStackPriceEach.multiply(BigDecimal.valueOf(returned));
 
-				UltraTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), refund.doubleValue());
+				UltraTrader.getEconomy().depositPlayer(player, player.getWorld().getName(), refund.doubleValue());
 			}
 
 			ItemStack itemReturned = baseItem.clone();
@@ -209,7 +209,7 @@ public class PurchaseHandler {
 		// Add the Item to Trader Inventory
 		shop.getInventoryInterface().addInventory(removeStack);
 
-		EconomyResponse depResponse = UltraTrader.getEconomy().depositPlayer(player.getName(), player.getWorld().getName(), heldFunds.amount);
+		EconomyResponse depResponse = UltraTrader.getEconomy().depositPlayer(player, player.getWorld().getName(), heldFunds.amount);
 
 		if (depResponse == null) {
 			player.sendMessage(L.getString("transaction.error.economy") + 3);

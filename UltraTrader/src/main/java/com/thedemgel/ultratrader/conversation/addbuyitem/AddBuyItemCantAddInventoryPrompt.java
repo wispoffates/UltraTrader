@@ -8,7 +8,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
 import org.bukkit.conversations.Prompt;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class AddBuyItemCantAddInventoryPrompt extends MessagePrompt {

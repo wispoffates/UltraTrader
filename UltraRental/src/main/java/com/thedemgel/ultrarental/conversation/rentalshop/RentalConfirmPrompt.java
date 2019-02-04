@@ -28,7 +28,7 @@ public class RentalConfirmPrompt extends BooleanPrompt {
 	protected Prompt acceptValidatedInput(ConversationContext cc, boolean bln) {
 		// Do rental Logic here.
 		if (bln) {
-			ResponseObject resp = RentalHandler.rentNPC(n, p);
+			ResponseObject<?> resp = RentalHandler.rentNPC(n, p);
 			p.sendRawMessage(prefix.getPrefix(cc) + resp.getMessage());
 		} else {
 			p.sendRawMessage(prefix.getPrefix(cc) + L.getString("conversation.rental.rented"));
