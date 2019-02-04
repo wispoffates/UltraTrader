@@ -10,7 +10,6 @@ import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
 import org.bukkit.conversations.Prompt;
 
-import javax.annotation.Nullable;
 import java.util.Collection;
 
 public class AdminCategoryItemDeletedPrompt extends MessagePrompt {
@@ -24,7 +23,7 @@ public class AdminCategoryItemDeletedPrompt extends MessagePrompt {
 
         Predicate<ItemPrice> itemPricePredicate = new Predicate<ItemPrice>() {
             @Override
-            public boolean apply(@Nullable ItemPrice itemPrice) {
+            public boolean apply(ItemPrice itemPrice) {
                 return itemPrice.getCategoryId().equals(catId);
             }
         };

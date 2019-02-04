@@ -14,7 +14,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 
-import javax.annotation.Nullable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -318,7 +317,7 @@ public class Shop {
 
         Predicate<ItemPrice> itemPricePredicate = new Predicate<ItemPrice>() {
             @Override
-            public boolean apply(@Nullable ItemPrice itemPrice) {
+            public boolean apply(ItemPrice itemPrice) {
                 return itemPrice.getCategoryId().equals(category);
             }
         };

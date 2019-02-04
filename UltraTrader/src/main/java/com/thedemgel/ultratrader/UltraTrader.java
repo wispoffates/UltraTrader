@@ -89,7 +89,6 @@ public class UltraTrader extends JavaPlugin {
 	private boolean citizens;
 	private boolean vault;
 	private boolean debug = false;
-    private MetricHandler metricHandler;
     private OpHandler opHandler;
 
 	public void toggleDebug() {
@@ -153,13 +152,10 @@ public class UltraTrader extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new ShopListener(this), this);
         getServer().getPluginManager().registerEvents(new BlockListener(), this);
 
-        metricHandler = new MetricHandler();
-
         // Wait will all plugins are loaded to start final tasks
         if (Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
             @Override
             public void run() {
-                metricHandler.getMetrics().start();
                 getLogger().log(Level.INFO, "UltraTrader finished loading " + shopHandler.getShops().size() + " shops.");
             }
         }, BUKKIT_SCHEDULER_DELAY) == -1) {
@@ -242,10 +238,6 @@ public class UltraTrader extends JavaPlugin {
 	public final boolean isVault() {
 		return vault;
 	}
-
-    public MetricHandler getMetrics() {
-        return metricHandler;
-    }
 
     public OpHandler getOpHandler() {
         return opHandler;

@@ -92,10 +92,11 @@ public class dShop implements dObject {
         return "shop@" + shop.getId();
     }
 
+    /*
     @Override
     public String identifySimple() {
         return identify();
-    }
+    }*/
 
     @Override
     public dObject setPrefix(String s) {

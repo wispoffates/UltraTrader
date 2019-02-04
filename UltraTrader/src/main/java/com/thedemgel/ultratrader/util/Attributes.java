@@ -9,8 +9,7 @@ import com.google.common.collect.Iterators;
 import com.google.common.collect.Maps;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+
 import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
@@ -114,7 +113,7 @@ public class Attributes {
             return Operation.fromId(data.getInteger("Operation"));
         }
 
-        public void setOperation(@Nonnull Operation operation) {
+        public void setOperation(Operation operation) {
             Preconditions.checkNotNull(operation, "operation cannot be NULL.");
             data.put("Operation", operation.getId());
         }
@@ -123,7 +122,7 @@ public class Attributes {
             return AttributeType.fromId(data.getString("AttributeName"));
         }
 
-        public void setAttributeType(@Nonnull AttributeType type) {
+        public void setAttributeType(AttributeType type) {
             Preconditions.checkNotNull(type, "type cannot be NULL.");
             data.put("AttributeName", type.getMinecraftId());
         }
@@ -132,7 +131,7 @@ public class Attributes {
             return data.getString("Name");
         }
 
-        public void setName(@Nonnull String name) {
+        public void setName(String name) {
             data.put("Name", name);
         }
 
@@ -140,7 +139,7 @@ public class Attributes {
             return new UUID(data.getLong("UUIDMost"), data.getLong("UUIDLeast"));
         }
 
-        public void setUUID(@Nonnull UUID id) {
+        public void setUUID(UUID id) {
             Preconditions.checkNotNull("id", "id cannot be NULL.");
             data.put("UUIDLeast", id.getLeastSignificantBits());
             data.put("UUIDMost", id.getMostSignificantBits());
@@ -260,7 +259,7 @@ public class Attributes {
                         attributes.getValue().iterator(),
                         new Function<NbtBase<Map<String, NbtBase<?>>>, Attribute>() {
                             @Override
-                            public Attribute apply(@Nullable NbtBase<Map<String, NbtBase<?>>> element) {
+                            public Attribute apply(NbtBase<Map<String, NbtBase<?>>> element) {
                                 return new Attribute((NbtCompound) element);
                             }
                         });

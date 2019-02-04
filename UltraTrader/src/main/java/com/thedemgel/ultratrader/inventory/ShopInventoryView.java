@@ -17,7 +17,6 @@ import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import javax.annotation.Nullable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -133,7 +132,7 @@ public class ShopInventoryView extends InventoryView {
         }
 
         if (displayAdmin) {
-            ItemStack doAdmin = new ItemStack(Material.BOOK_AND_QUILL);
+            ItemStack doAdmin = new ItemStack(Material.WRITABLE_BOOK);
             ItemMeta setPriceMeta = doAdmin.getItemMeta();
             List<String> doAdminText = new ArrayList<>();
             // TODO: add to language
@@ -300,7 +299,7 @@ public class ShopInventoryView extends InventoryView {
 		this.setItem(InventoryHandler.INVENTORY_BACK_ARROW_SLOT, arrow);
 
 		if (shop.isOwner(player)) {
-			ItemStack setPrice = new ItemStack(Material.BOOK_AND_QUILL);
+			ItemStack setPrice = new ItemStack(Material.WRITABLE_BOOK);
 			ItemMeta setPriceMeta = setPrice.getItemMeta();
 			List<String> setPriceText = new ArrayList<>();
 			setPriceText.add(L.getString("inventory.itemadmin.lore"));
@@ -380,7 +379,7 @@ public class ShopInventoryView extends InventoryView {
 		this.setItem(InventoryHandler.INVENTORY_BACK_ARROW_SLOT, arrow);
 
 		if (shop.isOwner(player)) {
-			ItemStack setPrice = new ItemStack(Material.BOOK_AND_QUILL);
+			ItemStack setPrice = new ItemStack(Material.WRITABLE_BOOK);
 			ItemMeta setPriceMeta = setPrice.getItemMeta();
 			List<String> setPriceText = new ArrayList<>();
 			setPriceText.add(L.getString("inventory.itemadmin.lore"));
@@ -442,7 +441,7 @@ public class ShopInventoryView extends InventoryView {
     public void setCategory(final int slot) {
         Predicate<CategoryItem> categoryItemPredicate = new Predicate<CategoryItem>() {
             @Override
-            public boolean apply(@Nullable CategoryItem categoryItem) {
+            public boolean apply(CategoryItem categoryItem) {
                 return categoryItem.getSlot() == slot;
             }
         };

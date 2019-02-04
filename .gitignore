@@ -1,6 +1,5 @@
-/UltraRental/target/
-/UltraFactions/target/
-/UltraTowny/target/
-/UltraWorldGuard/target/
-/target/
-/UltraFrame/target/
+**/target
+**/.settings
+**/.project
+**/.classpath
+**/.vscode

@@ -29,8 +29,8 @@ public class StoreConfig {
 		if (plugin == null) {
 			throw new IllegalArgumentException("plugin cannot be null");
 		}
-		if (!plugin.isInitialized()) {
-			throw new IllegalArgumentException("plugin must be initiaized");
+		if (!plugin.isEnabled()) {
+			throw new IllegalArgumentException("plugin must be enabled");
 		}
 		this.plugin = plugin;
 		File dataFolder = plugin.getDataFolder();

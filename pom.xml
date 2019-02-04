@@ -56,8 +56,8 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<configuration>
-						<source>1.7</source>
-						<target>1.7</target>
+						<source>1.8</source>
+						<target>1.8</target>
 					</configuration>
 				</plugin>
 			</plugins>
@@ -129,10 +129,12 @@
     </dependencyManagement>
 
 	<dependencies>
+		<!--Spigot API -->
 		<dependency>
-			<groupId>org.bukkit</groupId>
-			<artifactId>bukkit</artifactId>
-			<version>1.7.2-R0.3-SNAPSHOT</version>
+			<groupId>org.spigotmc</groupId>
+			<artifactId>spigot-api</artifactId>
+			<version>1.13.2-R0.1-SNAPSHOT</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>net.snaq</groupId>
@@ -153,17 +155,15 @@
 			<groupId>net.citizensnpcs</groupId>
 			<artifactId>citizensapi</artifactId>
 			<version>2.0.11-SNAPSHOT</version>
+			<scope>provided</scope>
 		</dependency>
+		<!-- Vault -->
 		<dependency>
 			<groupId>net.milkbowl.vault</groupId>
-			<artifactId>Vault</artifactId>
-			<version>1.2.27</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mcstats.bukkit</groupId>
-			<artifactId>metrics</artifactId>
-			<version>R7</version>
-			<scope>compile</scope>
+			<artifactId>VaultAPI</artifactId>
+			<optional>true</optional>
+			<version>1.7</version>
+			<scope>provided</scope>
 		</dependency>
         <dependency>
             <groupId>com.comphenix.protocol</groupId>
@@ -173,8 +173,16 @@
 	</dependencies>
 	<repositories>
 		<repository>
-			<id>bukkit-repo</id>
-			<url>http://repo.bukkit.org/content/groups/public/</url>
+			<id>spigot-repo</id>
+			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+		</repository>
+		<repository>
+			<id>vault-repo</id>
+			<url>http://nexus.hc.to/content/repositories/pub_releases</url>
+		</repository>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
 		</repository>
 		<repository>
 			<id>citizens-repo</id>
@@ -187,10 +195,6 @@
 		<repository>
 			<id>demgel-repo</id>
 			<url>http://repository-tenowg.forge.cloudbees.com/release</url>
-		</repository>
-		<repository>
-			<id>Plugin Metrics</id>
-			<url>http://repo.mcstats.org/content/repositories/public</url>
 		</repository>
         <repository>
             <id>comphenix-rep</id>

@@ -8,7 +8,6 @@ import com.thedemgel.ultratrader.conversation.AbandonConvo;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import org.bukkit.conversations.ConversationFactory;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.mcstats.Metrics;
 
 
 public class UltraRental extends JavaPlugin {
@@ -40,19 +39,7 @@ public class UltraRental extends JavaPlugin {
 			.thatExcludesNonPlayersWithMessage("No Console Please");
 
 		UltraTrader.getTraitHandler().registerTrait(RentalShop.class, "rentalshop");
-
-        addMetrics();
 	}
-
-    public void addMetrics() {
-        UltraTrader.getInstance().getMetrics().numberOfShopsGraph
-        .addPlotter(new Metrics.Plotter("RentalNPCs") {
-            @Override
-            public int getValue() {
-                return RentalHandler.getNumberRentalNPCs();
-            }
-        });
-    }
 
 	public static ConversationFactory getRentalTraderConvo() {
 		return rentalTrader;

@@ -27,8 +27,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nullable;
-
 public class AdminItemPlacementView extends InventoryView implements Listener {
 
 	private final Player player;
@@ -44,7 +42,7 @@ public class AdminItemPlacementView extends InventoryView implements Listener {
 
         Predicate<ItemPrice> itemPricePredicate = new Predicate<ItemPrice>() {
             @Override
-            public boolean apply(@Nullable ItemPrice itemPrice) {
+            public boolean apply(ItemPrice itemPrice) {
                 return itemPrice.getCategoryId().equals(category);
             }
         };
