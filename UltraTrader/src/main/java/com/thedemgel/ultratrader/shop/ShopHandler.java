@@ -121,7 +121,7 @@ public class ShopHandler {
 		Shop tempShop = new Shop();
 		tempShop.setId(randid);
 		tempShop.setOwner(player);
-		tempShop.setName(L.getString("general.newshopname"));
+		tempShop.setName(Lang.getString("general.newshopname"));
 		tempShop.setWalletType(WalletHandler.DEFAULT_WALLET_TYPE);
 		tempShop.setInventoryInterfaceType(InventoryInterfaceHandler.DEFAULT_INVENTORY_TYPE);
 		tempShop.setLevel(LimitHandler.getLevelAtCreate(player));

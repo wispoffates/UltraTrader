@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import org.bukkit.Bukkit;
 
 
-public class L {
+public class Lang {
 	private static ResourceBundle rb;
 
 	static {

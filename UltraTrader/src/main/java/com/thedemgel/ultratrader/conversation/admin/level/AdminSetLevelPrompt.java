@@ -1,7 +1,7 @@
 
 package com.thedemgel.ultratrader.conversation.admin.level;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.LimitHandler;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
@@ -27,17 +27,17 @@ public class AdminSetLevelPrompt extends FixedIgnoreCaseSetPrompt {
 		Player player = (Player) context.getForWhom();
 
 		if (view.getShop().getLevel() < LimitHandler.getMaxLevel(player) && player.hasPermission(Permissions.LEVEL_INCREASE)) {
-			addOption(L.getString("conversation.admin.level.options.increase"), new AdminSetLevelIncreasePrompt());
+			addOption(Lang.getString("conversation.admin.level.options.increase"), new AdminSetLevelIncreasePrompt());
 		}
 		if (view.getShop().getLevel() > 1 && player.hasPermission(Permissions.LEVEL_DECREASE)) {
-			addOption(L.getString("conversation.admin.level.options.decrease"), new AdminSetLevelDecreasePrompt());
+			addOption(Lang.getString("conversation.admin.level.options.decrease"), new AdminSetLevelDecreasePrompt());
 		}
 		if (player.hasPermission(Permissions.LEVEL_SET)) {
 			//addOption(L.getString("conversation.admin.level.options.set"), this);
 		}
 
-		addOption(L.getString("general.exit"), new AdminMenuPrompt());
-		return L.getString("conversation.options") + ": " + this.formatFixedSet();
+		addOption(Lang.getString("general.exit"), new AdminMenuPrompt());
+		return Lang.getString("conversation.options") + ": " + this.formatFixedSet();
 	}
 
 }

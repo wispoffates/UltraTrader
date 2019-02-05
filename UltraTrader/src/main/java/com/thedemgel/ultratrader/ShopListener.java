@@ -109,7 +109,7 @@ public class ShopListener implements Listener {
 						view.setConvo(convo);
 						convo.begin();
 					} else {
-						player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+						player.sendRawMessage(ChatColor.RED + Lang.getString("conversation.error.inconvo"));
 					}
 					return;
 				} else if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && !view.getShop().getOwner().equals(player.getName())) {
@@ -148,7 +148,7 @@ public class ShopListener implements Listener {
                         }, UltraTrader.BUKKIT_SCHEDULER_DELAY);
 
 					} else {
-						player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+						player.sendRawMessage(ChatColor.RED + Lang.getString("conversation.error.inconvo"));
 					}
 				}
 				break;
@@ -185,7 +185,7 @@ public class ShopListener implements Listener {
                                 }, UltraTrader.BUKKIT_SCHEDULER_DELAY);
                                 return;
                             } else {
-                                player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+                                player.sendRawMessage(ChatColor.RED + Lang.getString("conversation.error.inconvo"));
                                 return;
                             }
                         }
@@ -216,7 +216,7 @@ public class ShopListener implements Listener {
 						view.setConvo(convo);
 						convo.begin();
 					} else {
-						player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+						player.sendRawMessage(ChatColor.RED + Lang.getString("conversation.error.inconvo"));
 					}
 					return;
 				} else if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && !view.getShop().getOwner().equals(player.getName())) {
@@ -262,7 +262,7 @@ public class ShopListener implements Listener {
 						view.setConvo(convo);
 						convo.begin();
 					} else {
-						player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+						player.sendRawMessage(ChatColor.RED + Lang.getString("conversation.error.inconvo"));
 					}
 					return;
 				} else if (event.getRawSlot() == InventoryHandler.INVENTORY_ADMIN_SLOT && !view.getShop().getOwner().equals(player.getName())) {
@@ -397,15 +397,15 @@ public class ShopListener implements Listener {
                             convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_IS_BLOCK, false);
 							convo.begin();
 						} else {
-							player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+							player.sendRawMessage(ChatColor.RED + Lang.getString("conversation.error.inconvo"));
 						}
 						return;
 					} else {
-						player.sendMessage(ChatColor.YELLOW + L.getString("general.notopen.unassigned"));
+						player.sendMessage(ChatColor.YELLOW + Lang.getString("general.notopen.unassigned"));
 						return;
 					}
 				} else if (UltraTrader.getStoreHandler().getShop(shopid) == null) {
-					player.sendMessage(ChatColor.RED + L.getString("general.notopen.errorloading"));
+					player.sendMessage(ChatColor.RED + Lang.getString("general.notopen.errorloading"));
 					return;
 				}
 
@@ -417,14 +417,14 @@ public class ShopListener implements Listener {
                             convo.getContext().setSessionData(ConversationHandler.CONVERSATION_SESSION_IS_BLOCK, false);
                             convo.begin();
                         } else {
-                            player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+                            player.sendRawMessage(ChatColor.RED + Lang.getString("conversation.error.inconvo"));
                         }
                         return;
                     }
                 }
 
                 if (!trait.getOpen()) {
-                    player.sendRawMessage(ChatColor.RED + L.getString("general.notopen.closed"));
+                    player.sendRawMessage(ChatColor.RED + Lang.getString("general.notopen.closed"));
                     if (!npc.getTrait(Owner.class).isOwnedBy(player)) {
                         return;
                     }

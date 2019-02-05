@@ -1,7 +1,7 @@
 package com.thedemgel.ultratrader.conversation;
 
 import com.thedemgel.ultratrader.UltraTrader;
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import org.bukkit.Bukkit;
 import org.bukkit.conversations.ConversationAbandonedEvent;
@@ -47,7 +47,7 @@ public class AbandonConvo implements ConversationAbandonedListener {
 				}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
 
 			}
-			abandonedEvent.getContext().getForWhom().sendRawMessage(L.getString("conversation.abandon"));
+			abandonedEvent.getContext().getForWhom().sendRawMessage(Lang.getString("conversation.abandon"));
 		}
 	}
 }

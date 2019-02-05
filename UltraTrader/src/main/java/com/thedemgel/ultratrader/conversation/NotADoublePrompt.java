@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.conversation;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import org.bukkit.ChatColor;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
@@ -15,6 +15,6 @@ public class NotADoublePrompt extends MessagePrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		return ChatColor.RED + L.getString("conversation.error.notadouble");
+		return ChatColor.RED + Lang.getString("conversation.error.notadouble");
 	}
 }

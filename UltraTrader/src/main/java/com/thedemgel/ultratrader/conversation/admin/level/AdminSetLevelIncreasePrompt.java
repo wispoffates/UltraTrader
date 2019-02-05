@@ -1,7 +1,7 @@
 
 package com.thedemgel.ultratrader.conversation.admin.level;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.LimitHandler;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
@@ -40,9 +40,9 @@ public class AdminSetLevelIncreasePrompt extends BooleanPrompt {
 		if (resp.type.equals(ResponseType.SUCCESS)) {
 		// Increase the level
 			shop.setLevel(nextlevel);
-			player.sendRawMessage(prefix.getPrefix(context) + L.getFormatString("conversation.admin.level.raised", nextlevel));
+			player.sendRawMessage(prefix.getPrefix(context) + Lang.getFormatString("conversation.admin.level.raised", nextlevel));
 		} else {
-			player.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.admin.level.notenoughfunds"));
+			player.sendRawMessage(prefix.getPrefix(context) + Lang.getString("conversation.admin.level.notenoughfunds"));
 		}
 		return new AdminSetLevelPrompt();
 	}
@@ -57,7 +57,7 @@ public class AdminSetLevelIncreasePrompt extends BooleanPrompt {
 
 		price = LimitHandler.getLevelCost(player, nextlevel);
 
-		return L.getFormatString("conversation.admin.level.proceed", price, nextlevel);
+		return Lang.getFormatString("conversation.admin.level.proceed", price, nextlevel);
 	}
 
 }

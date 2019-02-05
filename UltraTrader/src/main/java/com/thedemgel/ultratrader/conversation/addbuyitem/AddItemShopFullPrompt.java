@@ -1,7 +1,7 @@
 package com.thedemgel.ultratrader.conversation.addbuyitem;
 
 import com.thedemgel.ultratrader.UltraTrader;
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import org.bukkit.Bukkit;
@@ -32,6 +32,6 @@ public class AddItemShopFullPrompt extends MessagePrompt {
 			}
 		}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
 
-		return L.getString("conversation.addbuyitem.shopfull");
+		return Lang.getString("conversation.addbuyitem.shopfull");
 	}
 }

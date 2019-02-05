@@ -1,7 +1,7 @@
 package com.thedemgel.ultratrader.wallet.wallets;
 
 import com.thedemgel.ultratrader.UltraTrader;
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.conversation.admin.bank.player.PlayerWalletPrompt;
 import com.thedemgel.ultratrader.shop.Shop;
 import com.thedemgel.ultratrader.util.ConfigValue;
@@ -58,6 +58,6 @@ public class PlayerWallet extends Wallet {
 
 	@Override
 	public String getDisplayName() {
-		return L.getString("general.wallet.player");
+		return Lang.getString("general.wallet.player");
 	}
 }

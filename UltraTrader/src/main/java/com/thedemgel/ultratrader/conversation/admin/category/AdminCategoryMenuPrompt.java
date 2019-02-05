@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.conversation.admin.category;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
 import com.thedemgel.ultratrader.conversation.admin.AdminConversationPrefix;
@@ -32,10 +32,10 @@ public class AdminCategoryMenuPrompt extends FixedIgnoreCaseSetPrompt {
         // TODO: fix category deletion
         addOption("delete", new AdminDeleteCategoryPrompt());
         addOption("edit", new AdminEditCategoryPrompt());
-        addOption(L.getString("general.exit"), new AdminMenuPrompt());
+        addOption(Lang.getString("general.exit"), new AdminMenuPrompt());
 
         p.sendRawMessage(prefix.getPrefix(conversationContext) + "------<[ " + ChatColor.BLUE + "CATEGORY" + ChatColor.YELLOW + " ]>------");
 
-        return L.getString("conversation.options") + ": " + this.formatFixedSet();
+        return Lang.getString("conversation.options") + ": " + this.formatFixedSet();
     }
 }

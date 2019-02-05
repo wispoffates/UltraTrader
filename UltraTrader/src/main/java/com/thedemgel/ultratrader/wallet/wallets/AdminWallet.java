@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.wallet.wallets;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.shop.Shop;
 import com.thedemgel.ultratrader.util.Permissions;
 import com.thedemgel.ultratrader.wallet.Wallet;
@@ -46,6 +46,6 @@ public class AdminWallet extends Wallet {
 
 	@Override
 	public String getDisplayName() {
-		return L.getString("general.wallet.admin");
+		return Lang.getString("general.wallet.admin");
 	}
 }

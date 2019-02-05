@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.shop;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.UltraTrader;
 import org.apache.commons.lang.RandomStringUtils;
 import org.bukkit.ChatColor;
@@ -75,24 +75,24 @@ public class ItemPrice {
 
 		switch (status) {
 			case BUY_ITEM_SCREEN:
-				genLore.add(ChatColor.GOLD + L.getFormatString("general.buypriceview", stackAmount, buyPrice, UltraTrader.getEconomy().format(buyPrice.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
+				genLore.add(ChatColor.GOLD + Lang.getFormatString("general.buypriceview", stackAmount, buyPrice, UltraTrader.getEconomy().format(buyPrice.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
 				break;
 			case SELL_ITEM_SCREEN:
-				genLore.add(ChatColor.BLUE + L.getFormatString("general.sellpriceview", stackAmount, sellPrice, UltraTrader.getEconomy().format(sellPrice.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
+				genLore.add(ChatColor.BLUE + Lang.getFormatString("general.sellpriceview", stackAmount, sellPrice, UltraTrader.getEconomy().format(sellPrice.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
 				break;
 			default:
                 if (sellPrice.doubleValue() >= 0) {
-                    genLore.add(ChatColor.BLUE + L.getString("general.left") + " " + L.getFormatString("general.sellprice", UltraTrader.getEconomy().format(sellPrice.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
+                    genLore.add(ChatColor.BLUE + Lang.getString("general.left") + " " + Lang.getFormatString("general.sellprice", UltraTrader.getEconomy().format(sellPrice.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
                 }
                 if (buyPrice.doubleValue() >= 0) {
-                    genLore.add(ChatColor.GOLD + L.getString("general.right") + " " + L.getFormatString("general.buyprice", UltraTrader.getEconomy().format(buyPrice.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
+                    genLore.add(ChatColor.GOLD + Lang.getString("general.right") + " " + Lang.getFormatString("general.buyprice", UltraTrader.getEconomy().format(buyPrice.multiply(BigDecimal.valueOf(stackAmount)).doubleValue())));
                 }
 		}
 		// Will need to figure for discounts
 		// If there is a discount... add a message here
 		// Id will always be LAST in the list
 		if (displayInventoryAmount) {
-			genLore.add(ChatColor.GREEN + L.getString("general.instock") + ": " + stock);
+			genLore.add(ChatColor.GREEN + Lang.getString("general.instock") + ": " + stock);
 		}
 		genLore.add(ChatColor.BLACK + getId());
 

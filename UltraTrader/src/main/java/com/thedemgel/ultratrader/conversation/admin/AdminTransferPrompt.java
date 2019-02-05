@@ -1,7 +1,7 @@
 
 package com.thedemgel.ultratrader.conversation.admin;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.LimitHandler;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
@@ -26,10 +26,10 @@ public class AdminTransferPrompt extends PlayerNamePrompt {
 		ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
 		if (LimitHandler.canOwnShop(view.getShop(), input)) {
 			view.getShop().setOwner(input);
-			context.getForWhom().sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.admin.transfer.transfered"));
+			context.getForWhom().sendRawMessage(prefix.getPrefix(context) + Lang.getString("conversation.admin.transfer.transfered"));
 			return new AdminFinishPrompt();
 		} else {
-			context.getForWhom().sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.admin.transfer.playercantaccept"));
+			context.getForWhom().sendRawMessage(prefix.getPrefix(context) + Lang.getString("conversation.admin.transfer.playercantaccept"));
 			return this;
 		}
 	}
@@ -38,8 +38,8 @@ public class AdminTransferPrompt extends PlayerNamePrompt {
 	public String getPromptText(ConversationContext context) {
 		Player p = (Player) context.getForWhom();
 
-		p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.admin.transfer.towhom"));
-		return L.getString("conversation.admin.transfer.needstobeonline");
+		p.sendRawMessage(prefix.getPrefix(context) + Lang.getString("conversation.admin.transfer.towhom"));
+		return Lang.getString("conversation.admin.transfer.needstobeonline");
 	}
 
 }

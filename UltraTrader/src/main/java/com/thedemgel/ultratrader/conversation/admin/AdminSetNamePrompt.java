@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.conversation.admin;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import org.bukkit.conversations.ConversationContext;
@@ -22,6 +22,6 @@ public class AdminSetNamePrompt extends StringPrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		return L.getString("conversation.admin.setname.setname");
+		return Lang.getString("conversation.admin.setname.setname");
 	}
 }

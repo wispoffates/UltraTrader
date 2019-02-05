@@ -1,7 +1,7 @@
 
 package com.thedemgel.ultratrader.conversation.admin;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.LimitHandler;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
@@ -40,9 +40,9 @@ public class AdminRemotePrompt extends FixedIgnoreCaseSetPrompt {
 			addOption("enable", new AdminRemoteTogglePrompt(false));
 		}
 
-		addOption(L.getString("general.exit"), new AdminMenuPrompt());
+		addOption(Lang.getString("general.exit"), new AdminMenuPrompt());
 
-		return L.getString("conversation.options") + ": " + this.formatFixedSet();
+		return Lang.getString("conversation.options") + ": " + this.formatFixedSet();
 	}
 
 	@Override

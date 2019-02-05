@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.conversation.admin.category;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.shop.CategoryItem;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.conversations.ConversationContext;
@@ -15,7 +15,7 @@ public class AdminCategoryDescriptionPrompt extends StringPrompt {
 	@Override
 	public Prompt acceptInput(ConversationContext context, String input) {
 		CategoryItem categoryItem = (CategoryItem) context.getSessionData(AdminListCategoryPrompt.SESSION_LIST_SELECTION);
-		if (!input.equalsIgnoreCase(L.getString("conversation.itemadmin.none"))) {
+		if (!input.equalsIgnoreCase(Lang.getString("conversation.itemadmin.none"))) {
             String wrapped = WordUtils.wrap(input, 25, System.lineSeparator(), false);
             String[] broken = wrapped.split(System.lineSeparator());
             List<String> unbroken = new ArrayList<>();
@@ -30,6 +30,6 @@ public class AdminCategoryDescriptionPrompt extends StringPrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
 		CategoryItem item = (CategoryItem) context.getSessionData(AdminListCategoryPrompt.SESSION_LIST_SELECTION);
-		return "Set description: (" + L.getString("conversation.itemadmin.none") + ")";
+		return "Set description: (" + Lang.getString("conversation.itemadmin.none") + ")";
 	}
 }

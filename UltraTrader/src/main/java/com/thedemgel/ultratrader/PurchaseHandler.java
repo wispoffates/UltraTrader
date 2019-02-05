@@ -41,7 +41,7 @@ public class PurchaseHandler {
 		EconomyResponse resp = UltraTrader.getEconomy().withdrawPlayer(player, player.getWorld().getName(), cost);
 
 		if (!resp.type.equals(ResponseType.SUCCESS)) {
-			player.sendMessage(L.getString("transaction.sale.player.notenoughfunds"));
+			player.sendMessage(Lang.getString("transaction.sale.player.notenoughfunds"));
 			return;
 		}
 
@@ -89,17 +89,17 @@ public class PurchaseHandler {
 		} else if (UltraTrader.getEconomy().has(player, player.getWorld().getName(), buyStackPrice.doubleValue())) {
 			heldFunds = UltraTrader.getEconomy().withdrawPlayer(player, player.getWorld().getName(), buyStackPrice.doubleValue());
 		} else {
-			player.sendMessage(L.getString("transaction.sale.player.notenoughfunds"));
+			player.sendMessage(Lang.getString("transaction.sale.player.notenoughfunds"));
 			return;
 		}
 
 		if (heldFunds == null) {
-			player.sendMessage(L.getString("transaction.error.economy") + " Held funds is null!");
+			player.sendMessage(Lang.getString("transaction.error.economy") + " Held funds is null!");
 			return;
 		}
 
 		if (!heldFunds.type.equals(ResponseType.SUCCESS)) {
-			player.sendMessage(L.getString("transaction.error.economy") + " " + heldFunds.errorMessage);
+			player.sendMessage(Lang.getString("transaction.error.economy") + " " + heldFunds.errorMessage);
 			return;
 		}
 
@@ -111,7 +111,7 @@ public class PurchaseHandler {
 				UltraTrader.getEconomy().depositPlayer(player, player.getWorld().getName(), heldFunds.amount);
 			}
 			// Some error checks for deposit
-			player.sendMessage(L.getString("transaction.sale.shop.notenoughitems"));
+			player.sendMessage(Lang.getString("transaction.sale.shop.notenoughitems"));
 			return;
 		} else {
 			shop.getInventoryInterface().removeInventory(invItem.getItemStack(), buyStack.getAmount());
@@ -147,13 +147,13 @@ public class PurchaseHandler {
 
 		// Deposit into trader when interface is ready.
 		if (!charge) {
-			player.sendMessage(L.getFormatString("transaction.sale.shop.purchase", buyStack.getType().name(), finalAmount));
-			player.sendMessage(L.getFormatString("transaction.sale.shop.totalpurchase", "FREE"));
+			player.sendMessage(Lang.getFormatString("transaction.sale.shop.purchase", buyStack.getType().name(), finalAmount));
+			player.sendMessage(Lang.getFormatString("transaction.sale.shop.totalpurchase", "FREE"));
 		} else if (shop.getWallet().addFunds(traderDeposit).type.equals(ResponseType.SUCCESS)) {
-			player.sendMessage(L.getFormatString("transaction.sale.shop.purchase", buyStack.getType().name(), finalAmount));
-			player.sendMessage(L.getFormatString("transaction.sale.shop.totalpurchase", UltraTrader.getEconomy().format(traderDeposit.doubleValue())));
+			player.sendMessage(Lang.getFormatString("transaction.sale.shop.purchase", buyStack.getType().name(), finalAmount));
+			player.sendMessage(Lang.getFormatString("transaction.sale.shop.totalpurchase", UltraTrader.getEconomy().format(traderDeposit.doubleValue())));
 		} else {
-			player.sendMessage(L.getString("transaction.error.fundstoshop"));
+			player.sendMessage(Lang.getString("transaction.error.fundstoshop"));
 		}
 
 		shop.save(true);
@@ -191,7 +191,7 @@ public class PurchaseHandler {
 		EconomyResponse heldFunds = wallet.removeFunds(buyStackPrice);
 
 		if (!heldFunds.type.equals(ResponseType.SUCCESS)) {
-			player.sendMessage(L.getString("transaction.sale.shop.notenoughfunds"));
+			player.sendMessage(Lang.getString("transaction.sale.shop.notenoughfunds"));
 			success = false;
 		}
 
@@ -212,17 +212,17 @@ public class PurchaseHandler {
 		EconomyResponse depResponse = UltraTrader.getEconomy().depositPlayer(player, player.getWorld().getName(), heldFunds.amount);
 
 		if (depResponse == null) {
-			player.sendMessage(L.getString("transaction.error.economy") + " Economy Response is null");
+			player.sendMessage(Lang.getString("transaction.error.economy") + " Economy Response is null");
 			return;
 		}
 
 		if (!depResponse.type.equals(ResponseType.SUCCESS)) {
-			player.sendMessage(L.getString("transaction.error.economy") + " " + depResponse.errorMessage);
+			player.sendMessage(Lang.getString("transaction.error.economy") + " " + depResponse.errorMessage);
 			return;
 		}
 
-		player.sendMessage(L.getFormatString("transaction.sale.shop.sale", item.getType().name(), item.getAmount()));
-		player.sendMessage(L.getFormatString("transaction.sale.shop.totalpurchase", UltraTrader.getEconomy().format(heldFunds.amount)));
+		player.sendMessage(Lang.getFormatString("transaction.sale.shop.sale", item.getType().name(), item.getAmount()));
+		player.sendMessage(Lang.getFormatString("transaction.sale.shop.totalpurchase", UltraTrader.getEconomy().format(heldFunds.amount)));
 
 		shop.save(true);
 

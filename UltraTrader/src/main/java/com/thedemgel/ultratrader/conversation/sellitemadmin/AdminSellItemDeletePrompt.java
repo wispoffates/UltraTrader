@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.conversation.sellitemadmin;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
 import com.thedemgel.ultratrader.shop.ItemPrice;
@@ -17,8 +17,8 @@ public class AdminSellItemDeletePrompt extends FixedIgnoreCaseSetPrompt {
 
 	public AdminSellItemDeletePrompt() {
 		prefix = new AdminSellItemConversationPrefix();
-		addOption(L.getString("general.accept"), new AdminSellItemDeleteConfirmPrompt(true));
-		addOption(L.getString("general.decline"), new AdminSellItemDeleteConfirmPrompt(false));
+		addOption(Lang.getString("general.accept"), new AdminSellItemDeleteConfirmPrompt(true));
+		addOption(Lang.getString("general.decline"), new AdminSellItemDeleteConfirmPrompt(false));
 	}
 
 	@Override
@@ -37,11 +37,11 @@ public class AdminSellItemDeletePrompt extends FixedIgnoreCaseSetPrompt {
 		}
 
 		if (invCount > 0 && !view.getShop().hasItem(itemprice)) {
-			p.sendRawMessage(prefix.getPrefix(context) + ChatColor.RED + L.getString("conversation.itemadmin.delete.full"));
-			p.sendRawMessage(prefix.getPrefix(context) + ChatColor.RED + L.getString("conversation.itemadmin.delete.warn"));
+			p.sendRawMessage(prefix.getPrefix(context) + ChatColor.RED + Lang.getString("conversation.itemadmin.delete.full"));
+			p.sendRawMessage(prefix.getPrefix(context) + ChatColor.RED + Lang.getString("conversation.itemadmin.delete.warn"));
 		}
 
-		p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.itemadmin.delete.confirm") + ": " + ChatColor.WHITE + itemprice.getItemStack().getType().name());
-		return L.getString("conversation.options") + ": " + this.formatFixedSet();
+		p.sendRawMessage(prefix.getPrefix(context) + Lang.getString("conversation.itemadmin.delete.confirm") + ": " + ChatColor.WHITE + itemprice.getItemStack().getType().name());
+		return Lang.getString("conversation.options") + ": " + this.formatFixedSet();
 	}
 }

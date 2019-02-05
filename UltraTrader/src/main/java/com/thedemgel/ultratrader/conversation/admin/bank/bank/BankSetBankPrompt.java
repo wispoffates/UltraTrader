@@ -1,7 +1,7 @@
 
 package com.thedemgel.ultratrader.conversation.admin.bank.bank;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.inventory.ShopInventoryView;
@@ -22,7 +22,7 @@ public class BankSetBankPrompt extends StringPrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		return L.getString("conversation.admin.wallet.bank.choosebank");
+		return Lang.getString("conversation.admin.wallet.bank.choosebank");
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class BankSetBankPrompt extends StringPrompt {
 			view.getShop().getWallet().setInfo("bank", new ConfigValue<String>(input));
 			view.getShop().setWalletType(type);
 		} else {
-			player.sendRawMessage(ChatColor.RED + L.getString("conversation.admin.wallet.bank.noaccess"));
+			player.sendRawMessage(ChatColor.RED + Lang.getString("conversation.admin.wallet.bank.noaccess"));
 		}
 		return (Prompt) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_RETURN);
 	}

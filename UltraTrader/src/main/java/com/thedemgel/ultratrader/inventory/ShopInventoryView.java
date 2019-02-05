@@ -3,7 +3,7 @@ package com.thedemgel.ultratrader.inventory;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.thedemgel.ultratrader.InventoryHandler;
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.shop.*;
 import org.bukkit.ChatColor;
@@ -136,18 +136,18 @@ public class ShopInventoryView extends InventoryView {
             ItemMeta setPriceMeta = doAdmin.getItemMeta();
             List<String> doAdminText = new ArrayList<>();
             // TODO: add to language
-            doAdminText.add(L.getString("inventory.admin.lore"));
+            doAdminText.add(Lang.getString("inventory.admin.lore"));
             setPriceMeta.setLore(doAdminText);
-            setPriceMeta.setDisplayName(L.getString("inventory.admin.display"));
+            setPriceMeta.setDisplayName(Lang.getString("inventory.admin.display"));
             doAdmin.setItemMeta(setPriceMeta);
             this.setItem(InventoryHandler.INVENTORY_ADMIN_SLOT, doAdmin);
 
             ItemStack doArrange = new ItemStack(Material.BOOKSHELF);
             ItemMeta setArrangeMeta = doArrange.getItemMeta();
             List<String> doArrangeText = new ArrayList<>();
-            doArrangeText.add(L.getString("inventory.arrange.lore"));
+            doArrangeText.add(Lang.getString("inventory.arrange.lore"));
             setArrangeMeta.setLore(doArrangeText);
-            setArrangeMeta.setDisplayName(L.getString("inventory.arrange.display"));
+            setArrangeMeta.setDisplayName(Lang.getString("inventory.arrange.display"));
             doArrange.setItemMeta(setArrangeMeta);
             this.setItem(InventoryHandler.INVENTORY_ARRANGE_SLOT, doArrange);
         }
@@ -214,9 +214,9 @@ public class ShopInventoryView extends InventoryView {
 		    ItemStack toSell = new ItemStack(Material.ARROW);
 		    ItemMeta toSellMeta = toSell.getItemMeta();
 		    List<String> toSellText = new ArrayList<>();
-		    toSellText.add(L.getString("inventory.tocategoryscreen.lore"));
+		    toSellText.add(Lang.getString("inventory.tocategoryscreen.lore"));
 		    toSellMeta.setLore(toSellText);
-		    toSellMeta.setDisplayName(L.getString("inventory.tocategoryscreen.display"));
+		    toSellMeta.setDisplayName(Lang.getString("inventory.tocategoryscreen.display"));
 		    toSell.setItemMeta(toSellMeta);
 		    this.setItem(InventoryHandler.INVENTORY_BACK_ARROW_SLOT, toSell);
         }
@@ -225,9 +225,9 @@ public class ShopInventoryView extends InventoryView {
 			ItemStack doArrange = new ItemStack(Material.BOOKSHELF);
 			ItemMeta setArrangeMeta = doArrange.getItemMeta();
 			List<String> doArrangeText = new ArrayList<>();
-			doArrangeText.add(L.getString("inventory.arrange.lore"));
+			doArrangeText.add(Lang.getString("inventory.arrange.lore"));
 			setArrangeMeta.setLore(doArrangeText);
-			setArrangeMeta.setDisplayName(L.getString("inventory.arrange.display"));
+			setArrangeMeta.setDisplayName(Lang.getString("inventory.arrange.display"));
 			doArrange.setItemMeta(setArrangeMeta);
 			this.setItem(InventoryHandler.INVENTORY_ARRANGE_SLOT, doArrange);
 		}
@@ -292,9 +292,9 @@ public class ShopInventoryView extends InventoryView {
 		ItemStack arrow = new ItemStack(Material.ARROW);
 		ItemMeta arrowMeta = arrow.getItemMeta();
 		List<String> arrowText = new ArrayList<>();
-		arrowText.add(L.getString("inventory.back.lore"));
+		arrowText.add(Lang.getString("inventory.back.lore"));
 		arrowMeta.setLore(arrowText);
-		arrowMeta.setDisplayName(L.getString("inventory.back.display"));
+		arrowMeta.setDisplayName(Lang.getString("inventory.back.display"));
 		arrow.setItemMeta(arrowMeta);
 		this.setItem(InventoryHandler.INVENTORY_BACK_ARROW_SLOT, arrow);
 
@@ -302,10 +302,10 @@ public class ShopInventoryView extends InventoryView {
 			ItemStack setPrice = new ItemStack(Material.WRITABLE_BOOK);
 			ItemMeta setPriceMeta = setPrice.getItemMeta();
 			List<String> setPriceText = new ArrayList<>();
-			setPriceText.add(L.getString("inventory.itemadmin.lore"));
+			setPriceText.add(Lang.getString("inventory.itemadmin.lore"));
 			setPriceText.add(ChatColor.DARK_GRAY + id);
 			setPriceMeta.setLore(setPriceText);
-			setPriceMeta.setDisplayName(L.getString("inventory.itemadmin.display"));
+			setPriceMeta.setDisplayName(Lang.getString("inventory.itemadmin.display"));
 			setPrice.setItemMeta(setPriceMeta);
 			this.setItem(InventoryHandler.INVENTORY_ADMIN_SLOT, setPrice);
 
@@ -318,13 +318,13 @@ public class ShopInventoryView extends InventoryView {
 			ItemMeta setRemoveStockMeta = removeStock.getItemMeta();
 			List<String> setRemoveStockText = new ArrayList<>();
 			if (invCount > 0) {
-				setRemoveStockText.add(L.getString("inventory.removestock.lore.full"));
+				setRemoveStockText.add(Lang.getString("inventory.removestock.lore.full"));
 			} else {
-				setRemoveStockText.add(L.getString("inventory.removestock.lore.empty"));
+				setRemoveStockText.add(Lang.getString("inventory.removestock.lore.empty"));
 			}
 			setRemoveStockText.add(ChatColor.DARK_GRAY + id);
 			setRemoveStockMeta.setLore(setRemoveStockText);
-			setRemoveStockMeta.setDisplayName(L.getString("inventory.removestock.display"));
+			setRemoveStockMeta.setDisplayName(Lang.getString("inventory.removestock.display"));
 			removeStock.setItemMeta(setRemoveStockMeta);
 			this.setItem(InventoryHandler.INVENTORY_TAKE_ALL_SLOT, removeStock);
 		}
@@ -372,9 +372,9 @@ public class ShopInventoryView extends InventoryView {
 		ItemStack arrow = new ItemStack(Material.ARROW);
 		ItemMeta arrowMeta = arrow.getItemMeta();
 		List<String> arrowText = new ArrayList<>();
-		arrowText.add(L.getString("inventory.back.lore"));
+		arrowText.add(Lang.getString("inventory.back.lore"));
 		arrowMeta.setLore(arrowText);
-		arrowMeta.setDisplayName(L.getString("inventory.back.display"));
+		arrowMeta.setDisplayName(Lang.getString("inventory.back.display"));
 		arrow.setItemMeta(arrowMeta);
 		this.setItem(InventoryHandler.INVENTORY_BACK_ARROW_SLOT, arrow);
 
@@ -382,10 +382,10 @@ public class ShopInventoryView extends InventoryView {
 			ItemStack setPrice = new ItemStack(Material.WRITABLE_BOOK);
 			ItemMeta setPriceMeta = setPrice.getItemMeta();
 			List<String> setPriceText = new ArrayList<>();
-			setPriceText.add(L.getString("inventory.itemadmin.lore"));
+			setPriceText.add(Lang.getString("inventory.itemadmin.lore"));
 			setPriceText.add(ChatColor.DARK_GRAY + id);
 			setPriceMeta.setLore(setPriceText);
-			setPriceMeta.setDisplayName(L.getString("inventory.itemadmin.display"));
+			setPriceMeta.setDisplayName(Lang.getString("inventory.itemadmin.display"));
 			setPrice.setItemMeta(setPriceMeta);
 			this.setItem(InventoryHandler.INVENTORY_ADMIN_SLOT, setPrice);
 
@@ -398,13 +398,13 @@ public class ShopInventoryView extends InventoryView {
 			ItemMeta setRemoveStockMeta = removeStock.getItemMeta();
 			List<String> setRemoveStockText = new ArrayList<>();
 			if (invCount > 0) {
-				setRemoveStockText.add(L.getString("inventory.removestock.lore.full"));
+				setRemoveStockText.add(Lang.getString("inventory.removestock.lore.full"));
 			} else {
-				setRemoveStockText.add(L.getString("inventory.removestock.lore.empty"));
+				setRemoveStockText.add(Lang.getString("inventory.removestock.lore.empty"));
 			}
 			setRemoveStockText.add(ChatColor.DARK_GRAY + id);
 			setRemoveStockMeta.setLore(setRemoveStockText);
-			setRemoveStockMeta.setDisplayName(L.getString("inventory.removestock.display"));
+			setRemoveStockMeta.setDisplayName(Lang.getString("inventory.removestock.display"));
 			removeStock.setItemMeta(setRemoveStockMeta);
 			this.setItem(InventoryHandler.INVENTORY_TAKE_ALL_SLOT, removeStock);
 		}

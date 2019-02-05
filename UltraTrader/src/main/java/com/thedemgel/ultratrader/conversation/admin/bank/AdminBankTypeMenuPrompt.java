@@ -1,7 +1,7 @@
 package com.thedemgel.ultratrader.conversation.admin.bank;
 
 import com.thedemgel.ultratrader.UltraTrader;
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
 import com.thedemgel.ultratrader.conversation.admin.AdminConversationPrefix;
 import com.thedemgel.ultratrader.wallet.Wallet;
@@ -40,9 +40,9 @@ public class AdminBankTypeMenuPrompt extends FixedIgnoreCaseSetPrompt {
 			}
 		}
 
-		addOption(L.getString("conversation.admin.menu.options.exit"), new AdminBankMenuPrompt());
+		addOption(Lang.getString("conversation.admin.menu.options.exit"), new AdminBankMenuPrompt());
 
-		p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.admin.banktypemenu"));
-		return L.getString("conversation.options") + ": " + this.formatFixedSet();
+		p.sendRawMessage(prefix.getPrefix(context) + Lang.getString("conversation.admin.banktypemenu"));
+		return Lang.getString("conversation.options") + ": " + this.formatFixedSet();
 	}
 }

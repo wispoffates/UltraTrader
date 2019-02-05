@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.conversation.addsellitem;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.NotADoublePrompt;
 import org.bukkit.conversations.ConversationContext;
@@ -35,6 +35,6 @@ public class AddBuyItemPrompt extends StringPrompt {
 	public String getPromptText(ConversationContext context) {
 		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
 
-		return MessageFormat.format(L.getString("conversation.addbuyitem.setprice"), item.getType().name());
+		return MessageFormat.format(Lang.getString("conversation.addbuyitem.setprice"), item.getType().name());
 	}
 }

@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.StoreConfig;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.inventory.InventoryInterfaceHandler;
@@ -378,7 +378,7 @@ public class YamlDataObject extends DataObject {
 			    if (infoconfig == null) {
 				    infoconfig = config.getConfig().createSection("info");
 				    //ConfigValue<String> defaultname = new ConfigValue(L.getString("general.newshopname"));
-				    infoconfig.set("name", new ConfigValue(L.getString("general.newshopname")));
+				    infoconfig.set("name", new ConfigValue(Lang.getString("general.newshopname")));
 			    }
 
 			    for (Entry<String, ConfigValue> info : shop.getInfo().entrySet()) {

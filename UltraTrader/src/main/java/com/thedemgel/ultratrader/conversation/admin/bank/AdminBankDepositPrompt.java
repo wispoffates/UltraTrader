@@ -2,7 +2,7 @@ package com.thedemgel.ultratrader.conversation.admin.bank;
 
 import java.math.BigDecimal;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.NotADoublePrompt;
@@ -43,6 +43,6 @@ public class AdminBankDepositPrompt extends StringPrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		return L.getString("conversation.admin.deposit");
+		return Lang.getString("conversation.admin.deposit");
 	}
 }

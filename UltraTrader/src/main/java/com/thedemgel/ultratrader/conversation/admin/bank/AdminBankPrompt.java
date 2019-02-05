@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.conversation.admin.bank;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.admin.AdminMenuPrompt;
@@ -48,6 +48,6 @@ public class AdminBankPrompt extends MessagePrompt {
 		wallet = UltraTrader.getWallethandler().getWalletInstance(type, view.getShop());
 		context.setSessionData("wallettype", type);
 
-		return ChatColor.GREEN + L.getString("conversation.admin.setbank") + ": " + type;
+		return ChatColor.GREEN + Lang.getString("conversation.admin.setbank") + ": " + type;
 	}
 }

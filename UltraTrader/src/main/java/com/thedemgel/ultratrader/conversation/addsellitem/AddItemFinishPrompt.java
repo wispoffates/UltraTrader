@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.conversation.addsellitem;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import java.math.BigDecimal;
@@ -30,6 +30,6 @@ public class AddItemFinishPrompt extends MessagePrompt {
 
 		view.buildCategoryItemView();
 
-		return L.getString("conversation.additem.added");
+		return Lang.getString("conversation.additem.added");
 	}
 }

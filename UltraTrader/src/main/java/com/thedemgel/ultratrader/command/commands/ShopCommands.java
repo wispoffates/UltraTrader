@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.command.commands;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.LimitHandler;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.citizens.TraderTrait;
@@ -40,9 +40,9 @@ public class ShopCommands extends Commands implements CommandExecutor {
 		Collection<Shop> shops = UltraTrader.getStoreHandler().getShopsByOwner(player);
 
 		if (shops.isEmpty()) {
-			sender.sendMessage(ChatColor.GREEN + L.getString("shops.list.noshops"));
+			sender.sendMessage(ChatColor.GREEN + Lang.getString("shops.list.noshops"));
 		} else {
-			sender.sendMessage(ChatColor.YELLOW + L.getString("shops.list.yourshops"));
+			sender.sendMessage(ChatColor.YELLOW + Lang.getString("shops.list.yourshops"));
 			for (Shop shop : shops) {
 				sender.sendMessage(ChatColor.GRAY + "[" + ChatColor.WHITE + shop.getId() + ChatColor.GRAY + "] " + ChatColor.WHITE + shop.getName());
 			}
@@ -54,29 +54,29 @@ public class ShopCommands extends Commands implements CommandExecutor {
 	@BukkitCommand(name = "create")
 	public boolean createTrader(CommandSender sender, Command cmd, String label, String[] args) {
         if (!UltraTrader.getInstance().isCitizens()) {
-            sender.sendMessage(ChatColor.RED + L.getString("general.nocitizens"));
+            sender.sendMessage(ChatColor.RED + Lang.getString("general.nocitizens"));
             return true;
         }
 
 		if (!sender.hasPermission(Permissions.NPC_CREATE)) {
-			sender.sendMessage(ChatColor.RED + L.getString("general.create.nopermission"));
+			sender.sendMessage(ChatColor.RED + Lang.getString("general.create.nopermission"));
             return true;
 		}
 
 		NPC npc = CitizensAPI.getDefaultNPCSelector().getSelected(sender);
 
 		if (npc == null) {
-			sender.sendMessage(ChatColor.RED + L.getString("general.create.noselected"));
+			sender.sendMessage(ChatColor.RED + Lang.getString("general.create.noselected"));
 			return true;
 		}
 
 		if (npc.hasTrait(TraderTrait.class)) {
-			sender.sendMessage(ChatColor.RED + L.getString("general.create.alreadytrader"));
+			sender.sendMessage(ChatColor.RED + Lang.getString("general.create.alreadytrader"));
 			return true;
 		}
 
 		if (!npc.getTrait(Owner.class).isOwnedBy(sender)) {
-			sender.sendMessage(ChatColor.RED + L.getString("general.create.notowner"));
+			sender.sendMessage(ChatColor.RED + Lang.getString("general.create.notowner"));
 			return true;
 		}
 
@@ -115,7 +115,7 @@ public class ShopCommands extends Commands implements CommandExecutor {
 			if (!npc.hasTrait(TraderTrait.class)) {
 				npc.addTrait(TraderTrait.class);
 			}
-			sender.sendMessage(ChatColor.GREEN + L.getString("general.create.success"));
+			sender.sendMessage(ChatColor.GREEN + Lang.getString("general.create.success"));
 		}
 
 		return true;
@@ -126,14 +126,14 @@ public class ShopCommands extends Commands implements CommandExecutor {
         int shopId;
 
         if (args.length < 2) {
-            sender.sendMessage(ChatColor.RED + L.getString("commands.delete.idrequired"));
+            sender.sendMessage(ChatColor.RED + Lang.getString("commands.delete.idrequired"));
             return true;
         } else {
             try {
                 shopId = Integer.valueOf(args[1]);
             } catch (Exception e) {
                 e.printStackTrace();
-                sender.sendMessage(ChatColor.RED + L.getString("commands.delete.idisanumber"));
+                sender.sendMessage(ChatColor.RED + Lang.getString("commands.delete.idisanumber"));
                 return true;
             }
         }
@@ -141,10 +141,10 @@ public class ShopCommands extends Commands implements CommandExecutor {
         Shop shop = UltraTrader.getStoreHandler().getShop(shopId);
 
         if (shop == null) {
-            sender.sendMessage(ChatColor.RED + L.getFormatString("commands.delete.doesnotexist", shopId));
+            sender.sendMessage(ChatColor.RED + Lang.getFormatString("commands.delete.doesnotexist", shopId));
             return true;
         } else if (!shop.getOwner().equals(sender.getName()) && !sender.isOp()) {
-            sender.sendMessage(ChatColor.RED + L.getString("commands.delete.notowner"));
+            sender.sendMessage(ChatColor.RED + Lang.getString("commands.delete.notowner"));
             return true;
         }
 

@@ -2,7 +2,7 @@ package com.thedemgel.ultratrader.conversation.admin;
 
 import java.util.Map.Entry;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
 import com.thedemgel.ultratrader.conversation.admin.inventoryinterface.AdminInventoryInterfacePrompt;
@@ -42,11 +42,11 @@ public class AdminInventoryInterfaceMenuPrompt extends FixedIgnoreCaseSetPrompt 
 			}
 		}
 
-		addOption(L.getString("conversation.admin.menu.options.exit"), new AdminMenuPrompt());
+		addOption(Lang.getString("conversation.admin.menu.options.exit"), new AdminMenuPrompt());
 
 		Player p = (Player) context.getForWhom();
 
-		p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.admin.inventorytypemenu"));
-		return L.getString("conversation.options") + ": " + this.formatFixedSet();
+		p.sendRawMessage(prefix.getPrefix(context) + Lang.getString("conversation.admin.inventorytypemenu"));
+		return Lang.getString("conversation.options") + ": " + this.formatFixedSet();
 	}
 }

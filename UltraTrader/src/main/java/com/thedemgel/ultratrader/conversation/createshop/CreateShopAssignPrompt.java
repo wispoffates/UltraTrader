@@ -1,7 +1,7 @@
 package com.thedemgel.ultratrader.conversation.createshop;
 
 import com.thedemgel.ultratrader.BlockShopHandler;
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.citizens.TraderTrait;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
@@ -42,9 +42,9 @@ public class CreateShopAssignPrompt extends FixedIgnoreCaseSetPrompt {
 			addOption("" + shop.getId(), this);
 		}
 
-		addOption(L.getString("conversation.admin.menu.options.exit"), new CreateShopMenuPrompt());
+		addOption(Lang.getString("conversation.admin.menu.options.exit"), new CreateShopMenuPrompt());
 
-		return L.getString("conversation.options") + ": " + this.formatFixedSet();
+		return Lang.getString("conversation.options") + ": " + this.formatFixedSet();
 	}
 
 	@Override

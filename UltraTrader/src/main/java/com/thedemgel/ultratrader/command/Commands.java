@@ -3,7 +3,7 @@ package com.thedemgel.ultratrader.command;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -14,7 +14,7 @@ public class Commands {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		Method[] methods = this.getClass().getDeclaredMethods();
 		if (args.length == 0) {
-			sender.sendMessage(ChatColor.RED + L.getString("general.requiresubcommand"));
+			sender.sendMessage(ChatColor.RED + Lang.getString("general.requiresubcommand"));
 			return false;
 		}
 		for (Method method : methods) {
@@ -24,7 +24,7 @@ public class Commands {
 				if (bcmd.name().equalsIgnoreCase(args[0])) {
 					if (bcmd.isPlayer()) {
 						if (!(sender instanceof Player)) {
-							sender.sendMessage(L.getString("general.consoleonly"));
+							sender.sendMessage(Lang.getString("general.consoleonly"));
 							return false;
 						}
 					}
@@ -38,7 +38,7 @@ public class Commands {
 
 			}
 		}
-		sender.sendMessage(ChatColor.RED + L.getString("general.commandnotfound"));
+		sender.sendMessage(ChatColor.RED + Lang.getString("general.commandnotfound"));
 		return false;
 	}
 }

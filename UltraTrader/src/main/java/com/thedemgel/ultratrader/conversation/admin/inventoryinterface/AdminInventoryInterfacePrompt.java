@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.conversation.admin.inventoryinterface;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.admin.AdminMenuPrompt;
 import com.thedemgel.ultratrader.inventory.ShopInventoryView;
@@ -42,6 +42,6 @@ public class AdminInventoryInterfacePrompt extends MessagePrompt {
 		view.getShop().setInventoryInterfaceType(type);
 		//inventoryInterface = view.getShop().getInventoryInterface();
 
-		return ChatColor.GREEN + L.getString("conversation.admin.setinventory") + ": " + type;
+		return ChatColor.GREEN + Lang.getString("conversation.admin.setinventory") + ": " + type;
 	}
 }

@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.conversation.admin;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.inventory.ShopInventoryView;
 import org.bukkit.conversations.ConversationContext;
@@ -19,6 +19,6 @@ public class AdminFinishPrompt extends MessagePrompt {
 		ShopInventoryView view = (ShopInventoryView) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_VIEW);
 		view.buildCategoryView();
 
-		return L.getString("conversation.admin.exit");
+		return Lang.getString("conversation.admin.exit");
 	}
 }

@@ -61,7 +61,7 @@ public class BlockShopHandler {
             convo.begin();
             return true;
         } else {
-            player.sendRawMessage(ChatColor.RED + L.getString("conversation.error.inconvo"));
+            player.sendRawMessage(ChatColor.RED + Lang.getString("conversation.error.inconvo"));
             return true;
         }
     }

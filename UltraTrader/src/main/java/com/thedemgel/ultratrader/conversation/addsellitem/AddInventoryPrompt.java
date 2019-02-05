@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.conversation.addsellitem;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.inventory.ShopInventoryView;
@@ -32,6 +32,6 @@ public class AddInventoryPrompt extends MessagePrompt {
 			}
 		}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
 
-		return L.getString("conversation.additem.addinventory");
+		return Lang.getString("conversation.additem.addinventory");
 	}
 }

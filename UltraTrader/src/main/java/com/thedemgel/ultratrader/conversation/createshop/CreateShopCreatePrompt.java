@@ -2,7 +2,7 @@ package com.thedemgel.ultratrader.conversation.createshop;
 
 import com.thedemgel.ultratrader.BlockShopHandler;
 import com.thedemgel.ultratrader.UltraTrader;
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.citizens.TraderTrait;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.shop.Shop;
@@ -50,16 +50,16 @@ public class CreateShopCreatePrompt extends MessagePrompt {
                 return Prompt.END_OF_CONVERSATION;
             }
 
-			player.sendRawMessage(prefix.getPrefix(context) + ChatColor.GREEN + L.getString("conversation.createshop.create.created"));
+			player.sendRawMessage(prefix.getPrefix(context) + ChatColor.GREEN + Lang.getString("conversation.createshop.create.created"));
 			return Prompt.END_OF_CONVERSATION;
 		} else {
-			player.sendRawMessage(prefix.getPrefix(context) + ChatColor.RED + L.getString("conversation.createshop.create.error"));
+			player.sendRawMessage(prefix.getPrefix(context) + ChatColor.RED + Lang.getString("conversation.createshop.create.error"));
 			return new CreateShopMenuPrompt();
 		}
 	}
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		return L.getString("conversation.createshop.create.creating");
+		return Lang.getString("conversation.createshop.create.creating");
 	}
 }

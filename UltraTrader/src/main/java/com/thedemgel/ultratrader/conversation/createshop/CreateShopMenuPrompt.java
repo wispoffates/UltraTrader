@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.conversation.createshop;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
 import org.bukkit.ChatColor;
 import org.bukkit.conversations.ConversationContext;
@@ -14,9 +14,9 @@ public class CreateShopMenuPrompt extends FixedIgnoreCaseSetPrompt {
 
 	public CreateShopMenuPrompt() {
 		prefix = new CreateShopConversationPrefix();
-		addOption(L.getString("conversation.createshop.menu.options.create"), new CreateShopCreatePrompt());
-		addOption(L.getString("conversation.createshop.menu.options.assign"), new CreateShopAssignPrompt());
-		addOption(L.getString("general.exit"), Prompt.END_OF_CONVERSATION);
+		addOption(Lang.getString("conversation.createshop.menu.options.create"), new CreateShopCreatePrompt());
+		addOption(Lang.getString("conversation.createshop.menu.options.assign"), new CreateShopAssignPrompt());
+		addOption(Lang.getString("general.exit"), Prompt.END_OF_CONVERSATION);
 	}
 
 	@Override
@@ -28,9 +28,9 @@ public class CreateShopMenuPrompt extends FixedIgnoreCaseSetPrompt {
 	public String getPromptText(ConversationContext context) {
 		Player p = (Player) context.getForWhom();
 		p.sendRawMessage(prefix.getPrefix(context) + "------<" + ChatColor.BLUE + "CREATE/ASSIGN" + ChatColor.YELLOW + ">------");
-		p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.createshop.menu.text.begin"));
-		p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.createshop.menu.text.create"));
-		p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.createshop.menu.text.assign"));
-		return L.getString("conversation.options") + ": " + this.formatFixedSet();
+		p.sendRawMessage(prefix.getPrefix(context) + Lang.getString("conversation.createshop.menu.text.begin"));
+		p.sendRawMessage(prefix.getPrefix(context) + Lang.getString("conversation.createshop.menu.text.create"));
+		p.sendRawMessage(prefix.getPrefix(context) + Lang.getString("conversation.createshop.menu.text.assign"));
+		return Lang.getString("conversation.options") + ": " + this.formatFixedSet();
 	}
 }

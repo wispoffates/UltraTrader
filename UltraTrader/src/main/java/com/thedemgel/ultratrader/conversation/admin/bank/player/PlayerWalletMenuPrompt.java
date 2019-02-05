@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.conversation.admin.bank.player;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.FixedIgnoreCaseSetPrompt;
 import com.thedemgel.ultratrader.conversation.admin.AdminMenuPrompt;
@@ -18,10 +18,10 @@ public class PlayerWalletMenuPrompt extends FixedIgnoreCaseSetPrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
 		Prompt ret = (Prompt) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_RETURN);
-		addOption(L.getString("conversation.admin.playerwallet.options.anotherplayer"), new PlayerWalletAnotherPrompt());
-		addOption(L.getString("conversation.admin.playerwallet.options.yourself"), new PlayerWalletSelfPrompt());
-		addOption(L.getString("general.exit"), ret);
+		addOption(Lang.getString("conversation.admin.playerwallet.options.anotherplayer"), new PlayerWalletAnotherPrompt());
+		addOption(Lang.getString("conversation.admin.playerwallet.options.yourself"), new PlayerWalletSelfPrompt());
+		addOption(Lang.getString("general.exit"), ret);
 
-		return L.getString("conversation.options") + ": " + this.formatFixedSet();
+		return Lang.getString("conversation.options") + ": " + this.formatFixedSet();
 	}
 }

@@ -1,7 +1,7 @@
 
 package com.thedemgel.ultratrader.conversation.admin.bank.bank;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
 import org.bukkit.conversations.Prompt;
@@ -16,7 +16,7 @@ public class BankWalletPrompt extends MessagePrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		return L.getString("conversation.admin.wallet.bank.settingbank");
+		return Lang.getString("conversation.admin.wallet.bank.settingbank");
 	}
 
 }

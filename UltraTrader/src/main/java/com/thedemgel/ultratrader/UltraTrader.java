@@ -115,10 +115,10 @@ public class UltraTrader extends JavaPlugin {
 
 		wallethandler = new WalletHandler();
 
-		getWallethandler().registerWallet(AdminWallet.class, L.getString("general.wallet.admin"))
-			.registerWallet(PlayerWallet.class, L.getString("general.wallet.player"))
-			.registerWallet(BankWallet.class, L.getString("general.wallet.bank"))
-			.registerWallet(ShopWallet.class, L.getString("general.wallet.shop"));
+		getWallethandler().registerWallet(AdminWallet.class, Lang.getString("general.wallet.admin"))
+			.registerWallet(PlayerWallet.class, Lang.getString("general.wallet.player"))
+			.registerWallet(BankWallet.class, Lang.getString("general.wallet.bank"))
+			.registerWallet(ShopWallet.class, Lang.getString("general.wallet.shop"));
 
 		inventoryInterfaceHandler = new InventoryInterfaceHandler();
 

@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.conversation.admin;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
 import org.bukkit.conversations.Prompt;
@@ -14,6 +14,6 @@ public class AdminStringToLongPrompt extends MessagePrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		return L.getString("conversation.admin.setname.nametolong");
+		return Lang.getString("conversation.admin.setname.nametolong");
 	}
 }

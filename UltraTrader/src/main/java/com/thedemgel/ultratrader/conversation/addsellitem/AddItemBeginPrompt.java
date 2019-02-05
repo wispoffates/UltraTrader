@@ -1,7 +1,7 @@
 
 package com.thedemgel.ultratrader.conversation.addsellitem;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.LimitHandler;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
@@ -48,7 +48,7 @@ public class AddItemBeginPrompt extends MessagePrompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {
-		return L.getString("conversation.additem.begin");
+		return Lang.getString("conversation.additem.begin");
 	}
 
 }

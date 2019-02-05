@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.conversation.sellitemadmin;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.conversation.NotADoublePrompt;
 import com.thedemgel.ultratrader.shop.ItemPrice;
@@ -34,6 +34,6 @@ public class AdminBuyItemSetPricePrompt extends StringPrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
 		ItemPrice item = (ItemPrice) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEMPRICE);
-		return L.getFormatString("conversation.itemadmin.setbuyprice", item.getItemStack().getType().name());
+		return Lang.getFormatString("conversation.itemadmin.setbuyprice", item.getItemStack().getType().name());
 	}
 }

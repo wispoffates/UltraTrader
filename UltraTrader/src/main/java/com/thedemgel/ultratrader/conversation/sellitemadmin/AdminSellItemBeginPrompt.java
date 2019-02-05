@@ -1,7 +1,7 @@
 package com.thedemgel.ultratrader.conversation.sellitemadmin;
 
 import com.thedemgel.ultratrader.UltraTrader;
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.shop.ItemPrice;
 import com.thedemgel.ultratrader.inventory.ShopInventoryView;
@@ -51,7 +51,7 @@ public class AdminSellItemBeginPrompt extends MessagePrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
 		Player p = (Player) context.getForWhom();
-		p.sendRawMessage(prefix.getPrefix(context) + L.getString("conversation.itemadmin.begin"));
-		return L.getString("conversation.toquit");
+		p.sendRawMessage(prefix.getPrefix(context) + Lang.getString("conversation.itemadmin.begin"));
+		return Lang.getString("conversation.toquit");
 	}
 }

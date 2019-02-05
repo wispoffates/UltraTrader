@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.conversation.addcategoryitem;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.shop.CategoryItem;
 import org.apache.commons.lang.WordUtils;
@@ -17,7 +17,7 @@ public class AddCategoryItemDescriptionPrompt extends StringPrompt {
 	@Override
 	public Prompt acceptInput(ConversationContext context, String input) {
         CategoryItem categoryItem = (CategoryItem) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_CATEGORYITEM);
-        if (!input.equalsIgnoreCase(L.getString("conversation.itemadmin.none"))) {
+        if (!input.equalsIgnoreCase(Lang.getString("conversation.itemadmin.none"))) {
             String wrapped = WordUtils.wrap(input, 25, System.lineSeparator(), false);
             String[] broken = wrapped.split(System.lineSeparator());
             List<String> unbroken = new ArrayList<>();
@@ -32,6 +32,6 @@ public class AddCategoryItemDescriptionPrompt extends StringPrompt {
 	@Override
 	public String getPromptText(ConversationContext context) {
 		ItemStack item = (ItemStack) context.getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
-		return L.getFormatString("conversation.addbuyitem.setdescription", item.getType().name(), L.getString("conversation.addbuyitem.none"));
+		return Lang.getFormatString("conversation.addbuyitem.setdescription", item.getType().name(), Lang.getString("conversation.addbuyitem.none"));
 	}
 }

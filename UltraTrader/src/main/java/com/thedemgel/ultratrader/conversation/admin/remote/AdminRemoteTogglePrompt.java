@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.conversation.admin.remote;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.LimitHandler;
 import com.thedemgel.ultratrader.UltraTrader;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
@@ -33,19 +33,19 @@ public class AdminRemoteTogglePrompt extends BooleanPrompt {
 		if (bln) {
 			if (arg) {
 				view.getShop().setCanRemote(false);
-				p.sendRawMessage(prefix.getPrefix(cc) + L.getString("conversation.admin.remote.disable"));
+				p.sendRawMessage(prefix.getPrefix(cc) + Lang.getString("conversation.admin.remote.disable"));
 			} else {
 				// Charge the player (will later)
 				if (LimitHandler.canEnableRemoteAccess(p)) {
 					EconomyResponse resp = UltraTrader.getEconomy().withdrawPlayer(p, p.getWorld().getName(), cost);
 					if (resp.type.equals(ResponseType.SUCCESS)) {
-						p.sendRawMessage(prefix.getPrefix(cc) + L.getString("conversation.admin.remote.enable"));
+						p.sendRawMessage(prefix.getPrefix(cc) + Lang.getString("conversation.admin.remote.enable"));
 						view.getShop().setCanRemote(true);
 					} else {
-						p.sendRawMessage(prefix.getPrefix(cc) + L.getString("conversation.admin.remote.nofunds"));
+						p.sendRawMessage(prefix.getPrefix(cc) + Lang.getString("conversation.admin.remote.nofunds"));
 					}
 				} else {
-					p.sendRawMessage(prefix.getPrefix(cc) + L.getString("conversation.admin.remote.deny"));
+					p.sendRawMessage(prefix.getPrefix(cc) + Lang.getString("conversation.admin.remote.deny"));
 				}
 			}
 		}
@@ -59,10 +59,10 @@ public class AdminRemoteTogglePrompt extends BooleanPrompt {
 		p = (Player) cc.getForWhom();
 
 		if (arg) {
-			return L.getString("conversation.admin.remote.prompt.disable");
+			return Lang.getString("conversation.admin.remote.prompt.disable");
 		} else {
 			cost = LimitHandler.getRemoteActivateCost(p);
-			return L.getFormatString("conversation.admin.remote.prompt.enable", UltraTrader.getEconomy().format(cost));
+			return Lang.getFormatString("conversation.admin.remote.prompt.enable", UltraTrader.getEconomy().format(cost));
 		}
 	}
 }

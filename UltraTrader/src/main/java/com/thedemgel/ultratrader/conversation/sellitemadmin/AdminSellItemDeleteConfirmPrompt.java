@@ -1,6 +1,6 @@
 package com.thedemgel.ultratrader.conversation.sellitemadmin;
 
-import com.thedemgel.ultratrader.L;
+import com.thedemgel.ultratrader.Lang;
 import com.thedemgel.ultratrader.conversation.ConversationHandler;
 import com.thedemgel.ultratrader.shop.ItemPrice;
 import com.thedemgel.ultratrader.shop.Shop;
@@ -42,9 +42,9 @@ public class AdminSellItemDeleteConfirmPrompt extends MessagePrompt {
 			String id = shop.getItemId(item);
 			shop.getPriceList().remove(id);
 			view.buildItemView(item);
-			return L.getString("conversation.itemadmin.delete.deleted");
+			return Lang.getString("conversation.itemadmin.delete.deleted");
 		} else {
-			return L.getString("conversation.itemadmin.delete.cancelled");
+			return Lang.getString("conversation.itemadmin.delete.cancelled");
 		}
 	}
 }
