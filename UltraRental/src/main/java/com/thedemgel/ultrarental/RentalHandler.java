@@ -101,19 +101,15 @@ public class RentalHandler {
 	private class RentCheck implements Runnable {
 		@Override
 		public void run() {
-			//System.out.println("do this every minute");
 			for (NPC npc : rentalNPCs) {
 				if (npc.hasTrait(RentalShop.class)) {
 					RentalShop rental = npc.getTrait(RentalShop.class);
 					if (!rental.isRented()) {
 						continue;
 					}
-					//System.out.println("Checking if rental period is up for " + npc.getFullName());
 					long current = System.currentTimeMillis();
 					long expire = rental.getRentedOn() + rental.getTermInMilliseconds();
-					//System.out.println(expire + "  " + current);
 					if (expire <= current) {
-						//System.out.println("rent has expired");
 						if (rental.getRenterPlayer().get().isOnline()) {
 							Bukkit.getPlayer(rental.getRenter().get()).sendMessage(ChatColor.GREEN + "[UltraTrader] " + ChatColor.YELLOW + "Your rent for " + npc.getFullName() + " has been paid.");
 						}

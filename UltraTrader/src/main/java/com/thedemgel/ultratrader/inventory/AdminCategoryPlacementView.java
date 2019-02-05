@@ -109,9 +109,6 @@ public class AdminCategoryPlacementView extends InventoryView implements Listene
 		if (event.getRawSlot() >= InventoryHandler.MAX_SELL_BUY_ITEMS || event.getRawSlot() < 0) {
 			event.setCancelled(true);
 		}
-
-        System.out.println(event.getAction());
-
 	}
 
 	@EventHandler
@@ -130,7 +127,6 @@ public class AdminCategoryPlacementView extends InventoryView implements Listene
 			// Update if everything is ok
 			for (int i = 0; i < 36; i++) {
 				ItemStack item = getTopInventory().getItem(i);
-                System.out.println(item);
 				if (item == null) {
 					continue;
 				}

@@ -29,6 +29,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.concurrent.ConcurrentMap;
@@ -127,7 +128,7 @@ public class ShopListener implements Listener {
                     }
                     view.setCategory(id);
 					view.buildCategoryItemView();
-				} else if (event.getCursor().getData().getItemType().equals(Material.AIR)) {
+				} else if (event.getCursor().getType().equals(Material.AIR)) {
 				} else if (view.getShop().isOwner(player)) {
 					if (!player.isConversing()) {
 						event.setCancelled(false);
@@ -166,7 +167,7 @@ public class ShopListener implements Listener {
                 }
 
                 if (event.getCurrentItem() == null) {
-                    if (!event.getCursor().getData().getItemType().equals(Material.AIR)) {
+                    if (!event.getCursor().getType().equals(Material.AIR)) {
                         if (view.getShop().isOwner(player)) {
                             if (!player.isConversing()) {
                                 event.setCancelled(false);
@@ -352,6 +353,10 @@ public class ShopListener implements Listener {
 
 	@EventHandler
 	public void onPlayerInteractEntityEvent(PlayerInteractEntityEvent event) {
+		if(event.getHand() == EquipmentSlot.OFF_HAND) {
+			return; //skip off hand firing of this event as it fires for both hands
+		}
+
 		Entity entity = event.getRightClicked();
 		Player player = event.getPlayer();
 
@@ -451,6 +456,10 @@ public class ShopListener implements Listener {
 	 */
 	@EventHandler
 	public void onPlayerInteractEvent(PlayerInteractEvent event) {
+		if(event.getHand() == EquipmentSlot.OFF_HAND) {
+			return; //skip off hand firing of this event as it fires for both hands
+		}
+
 		Player player = event.getPlayer();
 
 		// Check if player can even access stores

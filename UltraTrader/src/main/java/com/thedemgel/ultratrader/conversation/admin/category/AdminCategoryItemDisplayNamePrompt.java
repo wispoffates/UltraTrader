@@ -14,7 +14,6 @@ public class AdminCategoryItemDisplayNamePrompt extends StringPrompt {
 		CategoryItem categoryItem = (CategoryItem) context.getSessionData(AdminListCategoryPrompt.SESSION_LIST_SELECTION);
 		if (!input.equalsIgnoreCase(L.getString("conversation.itemadmin.none"))) {
 			categoryItem.setDisplayName(input);
-            System.out.println("setting displayname");
 		}
 		return new AdminEditCategoryPrompt();
 	}

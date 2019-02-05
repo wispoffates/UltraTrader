@@ -162,7 +162,7 @@ public class Shop {
 		ConfigValue<String> type = walletinfo.get("type");
 
 		if (type == null) {
-			type = new ConfigValue("shop");
+			type = new ConfigValue<String>("shop");
 			walletinfo.put("type", type);
 		}
 
@@ -187,7 +187,7 @@ public class Shop {
 	}
 
 	public void setInventoryInterfaceType(String type) {
-		inventoryinfo.put("type", new ConfigValue(type));
+		inventoryinfo.put("type", new ConfigValue<String>(type));
 		initInventoryInterface();
 	}
 
@@ -195,7 +195,7 @@ public class Shop {
 		ConfigValue<String> type = inventoryinfo.get("type");
 
 		if (type == null) {
-			type = new ConfigValue(InventoryInterfaceHandler.DEFAULT_INVENTORY_TYPE);
+			type = new ConfigValue<String>(InventoryInterfaceHandler.DEFAULT_INVENTORY_TYPE);
 			inventoryinfo.put("type", type);
 		}
 
@@ -213,7 +213,7 @@ public class Shop {
 	}
 
 	public void setOwner(String value) {
-		ConfigValue<String> owner = new ConfigValue(value);
+		ConfigValue<String> owner = new ConfigValue<String>(value);
 		info.put("owner", owner);
 	}
 

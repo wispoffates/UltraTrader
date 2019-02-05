@@ -85,7 +85,7 @@ public class YamlDataObject extends DataObject {
 
 		if (!shop.getInventoryinfo().containsKey("type")) {
 			System.out.println("Setting to Default Inventory Interface!!!!!!");
-			shop.getInventoryinfo().put("type", new ConfigValue(InventoryInterfaceHandler.DEFAULT_INVENTORY_TYPE));
+			shop.getInventoryinfo().put("type", new ConfigValue<String>(InventoryInterfaceHandler.DEFAULT_INVENTORY_TYPE));
 		}
 
 		ConfigValue<String> inventorytype = shop.getInventoryinfo().get("type");
@@ -208,7 +208,6 @@ public class YamlDataObject extends DataObject {
                 } else if (itemPrice.getBuyPrice().equals(BigDecimal.ZERO)){
                     itemPrice.setBuyPrice(item.getBuyPrice());
 				}
-				System.out.println(itemPrice.getBuyPrice());
 		    }
         }
 

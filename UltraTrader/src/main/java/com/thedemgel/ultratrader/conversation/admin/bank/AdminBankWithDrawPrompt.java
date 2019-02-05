@@ -31,7 +31,7 @@ public class AdminBankWithDrawPrompt extends StringPrompt {
 		if (view.getShop().getWallet().hasFunds(BigDecimal.valueOf(withdraw))) {
 			EconomyResponse res = view.getShop().getWallet().removeFunds(BigDecimal.valueOf(withdraw));
 			if (res.type.equals(EconomyResponse.ResponseType.SUCCESS)) {
-				econ.depositPlayer(p.getName(), p.getWorld().getName(), res.amount);
+				econ.depositPlayer(p, p.getWorld().getName(), res.amount);
 			}
 		}
 		return new AdminBankMenuPrompt();
