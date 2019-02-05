@@ -3,6 +3,7 @@ main: com.thedemgel.ultratrader.UltraTrader
 version: 1.1
 depend: [Vault]
 softdepend: [Citizens]
+api-version: 1.13
 
 commands:
    trader:

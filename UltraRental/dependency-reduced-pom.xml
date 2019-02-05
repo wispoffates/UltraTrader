@@ -3,12 +3,12 @@
   <parent>
     <artifactId>UltraTrader-Common</artifactId>
     <groupId>com.thedemgel</groupId>
-    <version>1.0</version>
+    <version>1.0.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>UltraRental</artifactId>
   <name>UltraRental</name>
-  <version>${ultrarental-version}</version>
+  <version>1.0.0</version>
   <description>An Extension of UltraTrader to allow Rental of Shops.</description>
   <build>
     <plugins>
@@ -43,7 +43,7 @@
     <dependency>
       <groupId>com.thedemgel</groupId>
       <artifactId>UltraTrader</artifactId>
-      <version>1.1</version>
+      <version>1.0.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>

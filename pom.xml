@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.thedemgel</groupId>
 	<artifactId>UltraTrader-Common</artifactId>
-	<version>1.0</version>
+	<version>1.0.0</version>
 	<packaging>pom</packaging>
 	<name>UltraTrader-Common</name>
 
@@ -43,10 +43,6 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <ultratrader-version>1.1</ultratrader-version>
-        <ultradenizen-version>1.0</ultradenizen-version>
-        <ultraframe-version>1.0</ultraframe-version>
-        <ultrarental-version>1.0</ultrarental-version>
 	</properties>
 	
 	<build>
@@ -123,7 +119,7 @@
             <dependency>
                 <groupId>com.thedemgel</groupId>
                 <artifactId>UltraTrader</artifactId>
-                <version>${ultratrader-version}</version>
+                <version>1.0.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

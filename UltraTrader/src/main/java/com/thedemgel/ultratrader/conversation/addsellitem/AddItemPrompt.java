@@ -11,6 +11,9 @@ import org.bukkit.inventory.ItemStack;
 import java.math.BigDecimal;
 import java.text.MessageFormat;
 
+/**
+ * Conversation Prompt for adding an item to sell in a shop.
+ */
 public class AddItemPrompt extends StringPrompt {
 
 	@Override

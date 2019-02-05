@@ -21,11 +21,8 @@ public class PlayerCommands extends Commands implements CommandExecutor {
     @BukkitCommand(name = "credits")
     public boolean credits(CommandSender sender, Command cmd, String label, String[] args) {
         sender.sendMessage(ChatColor.AQUA + "Authors:");
-        sender.sendMessage(ChatColor.GREEN + "  Tenowg - Creator, Author");
-        sender.sendMessage(ChatColor.AQUA + "Testers:");
-        sender.sendMessage(ChatColor.GREEN + "  No one to add yet...");
-        sender.sendMessage(ChatColor.AQUA + "Special Thanks:");
-        sender.sendMessage(ChatColor.GREEN + "  Whiteescape.com - hosting my first test server.");
+        sender.sendMessage(ChatColor.GREEN + "  Wispoffates - Author");
+        sender.sendMessage(ChatColor.GREEN + "  Tenowg - Creator");
         return true;
     }
 

@@ -14,7 +14,9 @@ import org.bukkit.conversations.Prompt;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-
+/**
+ * Prompt beginning add item to sell in a shop
+ */
 public class AddItemBeginPrompt extends MessagePrompt {
 
 	@Override

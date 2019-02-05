@@ -11,7 +11,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-
 public class DebugCommands extends Commands implements CommandExecutor {
 
 	@BukkitCommand(name = "debug")
@@ -31,9 +30,9 @@ public class DebugCommands extends Commands implements CommandExecutor {
 		return true;
 	}
 
-    @BukkitCommand(name = "reload")
-    public boolean reloadConfig(CommandSender sender, Command cmd, String label, String[] args) {
-        return true;
-    }
+	@BukkitCommand(name = "reload")
+	public boolean reloadConfig(CommandSender sender, Command cmd, String label, String[] args) {
+		return true;
+	}
 
 }
