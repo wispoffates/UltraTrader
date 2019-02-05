@@ -223,5 +223,5 @@ transaction:
       sale: You sold {0} {1}
       notenoughfunds: Shop doesn't have the funds for this Transaction.
   error:
-    economy: There was an error with the economy, please report. (NULL)
-    fundstoshop: There was an error, please report
+    economy: There was an error with the economy, please report.
+    fundstoshop: There was an error, please report.

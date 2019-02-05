@@ -94,12 +94,12 @@ public class PurchaseHandler {
 		}
 
 		if (heldFunds == null) {
-			player.sendMessage(L.getString("transaction.error.economy"));
+			player.sendMessage(L.getString("transaction.error.economy") + " Held funds is null!");
 			return;
 		}
 
 		if (!heldFunds.type.equals(ResponseType.SUCCESS)) {
-			player.sendMessage(L.getString("transaction.error.economy"));
+			player.sendMessage(L.getString("transaction.error.economy") + " " + heldFunds.errorMessage);
 			return;
 		}
 
@@ -212,12 +212,12 @@ public class PurchaseHandler {
 		EconomyResponse depResponse = UltraTrader.getEconomy().depositPlayer(player, player.getWorld().getName(), heldFunds.amount);
 
 		if (depResponse == null) {
-			player.sendMessage(L.getString("transaction.error.economy") + 3);
+			player.sendMessage(L.getString("transaction.error.economy") + " Economy Response is null");
 			return;
 		}
 
 		if (!depResponse.type.equals(ResponseType.SUCCESS)) {
-			player.sendMessage(L.getString("transaction.error.economy") + 4);
+			player.sendMessage(L.getString("transaction.error.economy") + " " + depResponse.errorMessage);
 			return;
 		}
 
