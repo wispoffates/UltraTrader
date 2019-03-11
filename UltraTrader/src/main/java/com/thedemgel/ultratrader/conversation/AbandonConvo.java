@@ -8,6 +8,7 @@ import org.bukkit.conversations.ConversationAbandonedEvent;
 import org.bukkit.conversations.ConversationAbandonedListener;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryView;
+import org.bukkit.inventory.ItemStack;
 
 public class AbandonConvo implements ConversationAbandonedListener {
 
@@ -46,6 +47,11 @@ public class AbandonConvo implements ConversationAbandonedListener {
 					}
 				}, UltraTrader.BUKKIT_SCHEDULER_DELAY);
 
+			}
+			//attempt to return the item
+			ItemStack item = (ItemStack) abandonedEvent.getContext().getSessionData(ConversationHandler.CONVERSATION_SESSION_ITEM);
+			if(item != null) {
+				player.getInventory().addItem(item);
 			}
 			abandonedEvent.getContext().getForWhom().sendRawMessage(Lang.getString("conversation.abandon"));
 		}

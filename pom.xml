@@ -6,31 +6,26 @@
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
 	<name>UltraTrader-Common</name>
-
 	<url>http://demgelopensource.github.io/UltraTrader</url>
 	<inceptionYear>2013</inceptionYear>
 	<description>A rewrite of the popular CitiTraders originally by tehBeard and tenowg.</description>
-
 	<organization>
 		<name>Demgel OpenSource Coding</name>
 		<url>http://demgelopensource.github.io/</url>
 	</organization>
-
 	<scm>
 		<connection>scm:git:git@github.com:demgelopensource/UltraTrader.git</connection>
 		<developerConnection>scm:git:git@github.com:demgelopensource/UltraTrader.git</developerConnection>
 		<tag>HEAD</tag>
 		<url>https://github.com/demgelopensource/UltraTrader</url>
 	</scm>
-
 	<distributionManagement>
 		<site>
 			<id>github-project-site</id>
 			<!--<url>gitsite:git@github.com/demgelopensource/UltraTrader.git</url>-->
-			<url/>
+			<url />
 		</site>
 	</distributionManagement>
-
 	<modules>
 		<module>UltraTrader</module>
 		<module>UltraTowny</module>
@@ -38,13 +33,11 @@
 		<!--<module>UltraWorldGuard</module> -->
 		<module>UltraRental</module>
 		<module>UltraFrame</module>
-        <module>UltraDenizen</module>
-    </modules>
-
+		<!--<module>UltraDenizen</module> -->
+	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -88,7 +81,6 @@
 					<skipDeploy>true</skipDeploy>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>com.github.github</groupId>
 				<artifactId>site-maven-plugin</artifactId>
@@ -113,17 +105,15 @@
 			</plugin>
 		</plugins>
 	</build>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.thedemgel</groupId>
-                <artifactId>UltraTrader</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.thedemgel</groupId>
+				<artifactId>UltraTrader</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<dependencies>
 		<!--Spigot API -->
 		<dependency>
@@ -161,11 +151,11 @@
 			<version>1.7</version>
 			<scope>provided</scope>
 		</dependency>
-        <dependency>
-            <groupId>com.comphenix.protocol</groupId>
-            <artifactId>ProtocolLib</artifactId>
-            <version>3.2.0</version>
-        </dependency>
+		<dependency>
+			<groupId>com.comphenix.protocol</groupId>
+			<artifactId>ProtocolLib-API</artifactId>
+			<version>4.4.0</version>
+		</dependency>
 	</dependencies>
 	<repositories>
 		<repository>
@@ -184,21 +174,11 @@
 			<id>citizens-repo</id>
 			<url>http://repo.citizensnpcs.co</url>
 		</repository>
-		<!--<repository>
-			<id>vault-repo</id>
-			<url>http://ci.herocraftonline.com/plugin/repository/everything</url>
-		</repository> -->
 		<repository>
-			<id>demgel-repo</id>
-			<url>http://repository-tenowg.forge.cloudbees.com/release</url>
+			<id>dmulloy2-repo</id>
+			<url>http://repo.dmulloy2.net/nexus/repository/public/</url>
 		</repository>
-        <repository>
-            <id>comphenix-rep</id>
-            <name>Comphenix Repository</name>
-            <url>http://repo.comphenix.net/content/groups/public</url>
-        </repository>
 	</repositories>
-
 	<reporting>
 		<plugins>
 			<plugin>
